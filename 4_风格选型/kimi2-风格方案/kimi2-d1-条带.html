@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>明镜 · 运营工作台（kimi2 · d1 条带）</title>
+<style>
+/* ============ d1 条带：时间轴 + 表格化 · 信息图形化配额 ============ */
+:root{
+  --canvas:#f6f8f7; --surface:#ffffff; --surface-2:#eef2f0;
+  --ink:#14201d; --ink-2:#3d5a52; --ink-3:#7a928a;
+  --primary:#0e7c66; --primary-soft:#e3f2ee;
+  --danger:#be123c; --danger-soft:#fde7ed;
+  --warn:#a16207; --warn-soft:#f7efdc;
+  --ok:#0d9488; --hair:#d4ddd9;
+  --sans:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  --mono:"SF Mono","JetBrains Mono","Consolas",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:var(--canvas);font-family:var(--sans);color:var(--ink);overflow:hidden}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font-family:inherit}
+::-webkit-scrollbar{display:none}
+
+/* 桌面壳层 */
+.stage{min-height:100vh}
+.stage-caption{display:none}
+.phone{position:relative;height:100vh;height:100dvh;overflow:hidden;background:var(--canvas)}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden}
+.ist,.ihome{display:none}
+html.shell body{background:#c8cfc8;display:flex;justify-content:center;padding:28px 0}
+html.shell .stage{display:flex;flex-direction:column;align-items:center;min-height:0}
+html.shell .stage-caption{display:block;color:#6a7a6a;font-size:12px;letter-spacing:.16em;margin-top:18px;font-family:var(--mono)}
+html.shell .phone{width:390px;height:844px;flex:0 0 auto;border-radius:52px;
+  box-shadow:0 0 0 10px #1a2420,0 0 0 12px #4a5a54,0 40px 90px rgba(0,0,0,.55),inset 0 0 0 1px rgba(0,0,0,.3)}
+html.shell .ist{display:block;position:absolute;left:50%;top:10px;transform:translateX(-50%);width:110px;height:28px;background:#1a2420;border-radius:20px;z-index:60}
+html.shell .ihome{display:block;position:absolute;left:50%;bottom:7px;transform:translateX(-50%);width:120px;height:4px;border-radius:2px;background:rgba(20,32,29,.4);z-index:60}
+
+/* 顶栏 */
+.appbar{height:68px;padding:34px 14px 0;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface);border-bottom:1.5px solid var(--ink)}
+.brand{display:flex;align-items:center;gap:8px}
+.seal{width:28px;height:28px;background:var(--primary);color:#fff;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;border-radius:5px}
+.appbar .pname{font-size:15px;font-weight:800;letter-spacing:.04em}
+.appbar-right{display:flex;align-items:center;gap:9px}
+.role{font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 7px;border:1.5px solid var(--ink);border-radius:4px}
+.bell{position:relative;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.bell svg{width:18px;height:18px}
+.badge{position:absolute;top:0;right:0;min-width:15px;height:15px;background:var(--danger);color:#fff;border-radius:50%;
+  font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--surface);font-family:var(--mono)}
+
+/* 滚动区 */
+.content{flex:1;overflow-y:auto;padding:12px 12px 10px}
+.content.stretch{padding-bottom:80px}
+
+/* 页头三行 */
+.phead{margin-bottom:10px}
+.phead h1{font-size:18px;font-weight:900;letter-spacing:.02em}
+.phead .who{font-size:11px;color:var(--ink-3);margin-top:3px}
+.phead .motto{font-size:11px;color:var(--primary);font-weight:700;margin-top:2px}
+
+/* 时间带（图形化主角） */
+.band-wrap{margin-bottom:10px}
+.band-label{font-size:9.5px;color:var(--ink-3);letter-spacing:.12em;margin-bottom:4px;font-weight:700}
+.band{height:56px;border:1.5px solid var(--ink);background:var(--surface);display:flex;position:relative;overflow:hidden}
+.band i{flex:1;border-right:1px solid var(--hair);position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px}
+.band i:last-child{border-right:0}
+.band i b{position:absolute;left:2px;right:2px;height:20px;background:var(--hair);border-radius:2px}
+.band i b.live{background:var(--ink)}
+.band i b.risk{box-shadow:inset 0 0 0 2px var(--danger);background:var(--danger-soft)}
+.band i b.wait{background:var(--surface-2);border:1px solid var(--ink-3)}
+.band i span{font-size:8px;color:var(--ink-3);font-family:var(--mono);position:relative;z-index:1}
+.band .tick{position:absolute;bottom:-14px;font-size:8px;color:var(--ink-3);font-family:var(--mono)}
+
+/* 班次 */
+.shift-row{display:flex;gap:7px;margin-bottom:9px}
+.shift{flex:1;padding:8px 10px;border:1.5px solid var(--ink);border-radius:5px;font-size:12.5px;font-weight:700;
+  background:var(--surface);transition:all .15s;text-align:left}
+.shift .s{display:block;font-size:10px;color:var(--ink-3);font-family:var(--mono);margin-top:1px}
+.shift.on{background:var(--ink);color:var(--surface)}
+.shift.on .s{color:rgba(255,255,255,.6)}
+.shift:not(.on):active{transform:scale(.97)}
+
+/* 群发 */
+.broadcast{width:100%;margin-bottom:10px;padding:11px;background:var(--primary);color:#fff;border-radius:5px;
+  font-size:14px;font-weight:800;letter-spacing:.1em;display:flex;align-items:center;justify-content:center;gap:7px;
+  box-shadow:0 2px 8px rgba(14,124,102,.3);transition:transform .15s}
+.broadcast:active{transform:scale(.97)}
+
+/* 送达卡 */
+.bcast-card{background:var(--surface);border:1.5px solid var(--primary);border-radius:5px;padding:10px 11px;margin-bottom:10px;
+  animation:rise .3s ease}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+.bcast-card .bc-head{display:flex;justify-content:space-between;font-size:13px;font-weight:800}
+.bcast-card .bc-head span{color:var(--primary);font-family:var(--mono);font-size:11px}
+.bcast-card .msg{font-size:12px;line-height:1.6;margin:6px 0 8px;color:var(--ink-2)}
+.rcpt{display:flex;flex-wrap:wrap;gap:5px}
+.rcpt span{font-size:10px;padding:2px 6px;background:var(--primary-soft);border-radius:3px;color:var(--primary);display:inline-flex;gap:3px;align-items:center}
+.rcpt i{font-style:normal;width:5px;height:5px;border-radius:50%;background:var(--primary)}
+
+/* Tabs */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--ink);margin-bottom:10px}
+.tab{padding:8px 14px;font-size:13px;font-weight:700;color:var(--ink-3);position:relative;display:flex;align-items:center;gap:5px}
+.tab .cnt{font-size:10px;font-family:var(--mono);background:var(--surface-2);padding:1px 5px;border-radius:3px}
+.tab.on{color:var(--ink)}
+.tab.on .cnt{background:var(--primary);color:#fff}
+.tab-slider{position:absolute;bottom:-2px;height:3px;background:var(--primary);transition:left .25s cubic-bezier(.3,.7,.3,1),width .25s cubic-bezier(.3,.7,.3,1)}
+
+/* 表格化待办 */
+.todo-table{width:100%;border-collapse:collapse;font-size:11.5px;background:var(--surface);border:1.5px solid var(--ink);border-radius:5px;overflow:hidden}
+.todo-table th{font-size:9px;color:var(--ink-3);font-weight:700;letter-spacing:.08em;text-align:left;padding:6px 8px;
+  background:var(--surface-2);border-bottom:1px solid var(--hair)}
+.todo-table td{padding:8px;border-bottom:1px solid var(--hair);vertical-align:middle}
+.todo-table tr:last-child td{border-bottom:0}
+.todo-table .cat{font-size:9.5px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.todo-table .sig{font-weight:700}
+.todo-table .sig.danger{color:var(--danger)}
+.todo-table .sig.warn{color:var(--warn)}
+.todo-table .val{font-family:var(--mono);font-weight:700;font-size:11px;white-space:nowrap}
+.todo-table .act{font-size:10.5px;font-weight:700;padding:4px 8px;border-radius:3px;white-space:nowrap}
+.todo-table .act.p{background:var(--ink);color:#fff}
+.todo-table .act.s{background:var(--surface);border:1px solid var(--ink);color:var(--ink)}
+.todo-table .act.g{color:var(--ink-3);border:1px dashed var(--ink-3)}
+.todo-table .lv{width:8px;height:8px;display:inline-block;flex:0 0 auto}
+.todo-table .lv.r{background:var(--danger)}
+.todo-table .lv.f{border:1.5px solid var(--warn)}
+.todo-table .lv.n{border:1px solid var(--hair)}
+.todo-table .src{font-size:9px;color:var(--ink-3);font-weight:600}
+
+/* 草稿双栏 */
+.draft-card{background:var(--surface);border:1.5px dashed var(--warn);border-radius:5px;overflow:hidden;margin-top:10px}
+.draft-head{padding:7px 10px;background:var(--warn-soft);font-size:10px;font-weight:700;color:var(--warn);letter-spacing:.08em;
+  border-bottom:1px dashed var(--warn)}
+.draft-body{display:grid;grid-template-columns:1.3fr 1fr}
+.draft-main{padding:9px 10px}
+.draft-main .title{font-size:13px;font-weight:800;margin-bottom:5px}
+.draft-main .body{font-size:11.5px;line-height:1.6;color:var(--ink-2)}
+.draft-main .body b{color:var(--ink);font-family:var(--mono)}
+.draft-stamp{display:inline-block;margin-top:6px;font-size:9px;letter-spacing:.18em;color:var(--warn);font-weight:800;
+  border:1px solid var(--warn);padding:2px 6px;border-radius:2px}
+.draft-actions{border-left:1.5px dashed var(--warn);display:flex;flex-direction:column}
+.dact{flex:1;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;padding:10px 4px;min-height:40px;transition:all .15s}
+.dact+.dact{border-top:1px dashed var(--warn)}
+.dact.adopt{background:var(--warn);color:#fff}
+.dact.adopt.done{background:var(--ok)}
+.dact.tweak{color:var(--warn)}
+.dact.drop{color:var(--ink-3)}
+.dact.done-badge{background:var(--ok)!important;color:#fff!important;pointer-events:none}
+
+/* 分工行 */
+.handshake{margin-top:8px;border-top:1px dashed var(--hair);padding-top:7px;font-size:10.5px;line-height:1.6;color:var(--ink-2);
+  display:flex;gap:10px}
+.handshake .ai{color:var(--primary);font-weight:700}
+.handshake .hu{color:var(--ink);font-weight:700}
+
+/* KPI 行 */
+.kpi-row{display:flex;gap:6px;margin:10px 0}
+.kpi{flex:1;border:1.5px solid var(--ink);border-radius:4px;padding:7px 8px;background:var(--surface);text-align:left;
+  font-family:var(--mono);font-size:14px;font-weight:800;transition:transform .15s}
+.kpi:active{transform:scale(.95)}
+.kpi span{display:block;font-size:9px;color:var(--ink-3);font-weight:400;margin-top:1px;font-family:var(--sans)}
+
+/* 开播列表 */
+.sect{background:var(--surface);border:1.5px solid var(--ink);border-radius:5px;overflow:hidden;margin-top:10px}
+.sect-head{display:flex;justify-content:space-between;padding:8px 10px;background:var(--surface-2);border-bottom:1px solid var(--ink);
+  font-size:12px;font-weight:800}
+.sect-head .r{font-size:10px;color:var(--ink-3);font-family:var(--mono);font-weight:400}
+.row{display:flex;align-items:center;gap:7px;padding:7px 10px;min-height:42px;font-size:11.5px}
+.row+.row{border-top:1px solid var(--hair)}
+.dot{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+.dot.live{background:var(--primary);box-shadow:0 0 6px var(--primary);animation:pulse 1.4s ease infinite}
+@keyframes pulse{50%{opacity:.4;transform:scale(1.4)}}
+.dot.off{background:var(--hair)}
+.dot.wait{background:var(--warn)}
+.row-name{flex:0 0 40px;font-weight:700}
+.row-slot{flex:0 0 auto;font-size:10px;color:var(--ink-3);font-family:var(--mono)}
+.row-risk{flex:1;min-width:0;font-size:10.5px;color:var(--ink-2)}
+.row-risk.warn{color:var(--danger);font-weight:700}
+.st{font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:3px;white-space:nowrap;flex:0 0 auto}
+.st.live{background:var(--primary-soft);color:var(--primary);border:1px solid var(--primary)}
+.st.off{background:var(--surface-2);color:var(--ink-3)}
+.st.wait{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+.sect-foot{padding:7px 10px;border-top:1px dashed var(--hair);font-size:10px;color:var(--ink-3);line-height:1.6}
+.sect-foot b{color:var(--primary);font-family:var(--mono)}
+
+/* 已处理 */
+.done-item{display:flex;gap:8px;padding:10px;background:var(--surface);border:1.5px solid var(--hair);border-radius:5px;
+  font-size:12px;line-height:1.6}
+.done-item .ok{width:16px;height:16px;flex:0 0 auto;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:900;border-radius:3px;margin-top:1px}
+.done-item time{display:block;font-size:10px;color:var(--ink-3);font-family:var(--mono);margin-top:2px}
+
+/* 弹层 */
+.overlay{position:absolute;inset:0;background:rgba(20,32,29,.5);backdrop-filter:blur(2px);z-index:50;display:flex;align-items:flex-end;
+  animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.overlay.closing{animation:fadeOut .2s forwards}
+@keyframes fadeOut{to{opacity:0}}
+.sheet{width:100%;max-height:80%;background:var(--surface);border-radius:8px 8px 0 0;display:flex;flex-direction:column;
+  animation:slideUp .25s cubic-bezier(.25,.9,.3,1);overflow:hidden;box-shadow:0 -8px 30px rgba(0,0,0,.3)}
+@keyframes slideUp{from{transform:translateY(50%)}to{transform:none}}
+.sheet.closing{animation:slideDown .2s forwards}
+@keyframes slideDown{to{transform:translateY(100%)}}
+.sheet-title{font-size:17px;font-weight:900;padding:12px 15px 2px}
+.sheet-desc{font-size:11px;color:var(--ink-3);padding:0 15px 10px}
+.sheet-body{overflow-y:auto;padding:8px 15px 12px;border-top:1px solid var(--hair)}
+.pick-label{font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--ink-2);margin:8px 0 7px}
+.pick-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.pick{display:inline-flex;align-items:center;gap:5px;padding:6px 10px;border:1.5px solid var(--ink-3);border-radius:4px;
+  background:var(--surface);font-size:12px;font-weight:600;min-height:34px;transition:all .14s}
+.pick.on{border-color:var(--primary);background:var(--primary-soft);color:var(--primary)}
+.pick.on::before{content:"✓ ";font-weight:900}
+.msg-input{width:100%;border:1.5px solid var(--ink-3);border-radius:5px;background:var(--surface);padding:10px 11px;font-size:13px;
+  min-height:70px;resize:none;line-height:1.6;color:var(--ink)}
+.msg-input:focus{outline:2px solid var(--primary);outline-offset:1px}
+.msg-input::placeholder{color:var(--ink-3)}
+.sheet-actions{display:flex;gap:8px;padding:11px 15px 16px;border-top:1px solid var(--ink)}
+.sheet-actions .btn{flex:1;text-align:center;padding:10px;font-size:13px;font-weight:800;border-radius:5px}
+.btn.cancel{background:var(--surface);border:1.5px solid var(--ink);color:var(--ink)}
+.btn.send{background:var(--primary);color:#fff}
+.drill-card{border:1.5px solid var(--ink);border-radius:5px;padding:11px;margin-bottom:9px;background:var(--surface)}
+.drill-card h4{font-size:13px;font-weight:900;margin-bottom:7px;display:flex;justify-content:space-between}
+.drill-card h4 span{font-size:9.5px;color:var(--ink-3);font-weight:400;font-family:var(--mono)}
+.drill-row{display:flex;justify-content:space-between;gap:10px;font-size:11.5px;padding:6px 0;border-top:1px dashed var(--hair);color:var(--ink-2)}
+.drill-row b{font-family:var(--mono);color:var(--ink);text-align:right}
+
+/* 底部 Tab */
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:70px;background:var(--surface);border-top:1.5px solid var(--ink);
+  display:flex;z-index:30;padding:7px 4px 20px}
+.tab-i{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding-top:3px;color:var(--ink-3);font-size:9.5px;font-weight:700}
+.tab-i .ic{font-size:14px;font-weight:900;font-family:var(--mono)}
+.tab-i.on{color:var(--primary)}
+.tab-i.on .ic{color:var(--ink)}
+
+/* Toast */
+.toast{position:absolute;left:50%;top:88px;transform:translateX(-50%);background:var(--ink);color:#fff;
+  font-size:12px;font-weight:700;padding:9px 16px;border-radius:4px;z-index:70;box-shadow:0 4px 12px rgba(0,0,0,.3);
+  max-width:300px;text-align:center;line-height:1.5;animation:toastIn .2s ease}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,-8px)}to{opacity:1}}
+
+/* P13 */
+.p13-kpis{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0}
+.p13-kpi{border:1.5px solid var(--ink);border-radius:4px;padding:9px 10px;background:var(--surface)}
+.p13-kpi .num{font-size:24px;font-weight:900;font-family:var(--mono)}
+.p13-kpi .delta{font-size:10px;color:var(--primary);font-weight:700;font-family:var(--mono)}
+.p13-kpi .lab{font-size:10px;color:var(--ink-3);margin-top:2px}
+.task-strip{border:1.5px solid var(--ink);border-radius:5px;padding:10px;margin:10px 0;background:var(--surface)}
+.task-strip h3{font-size:12px;font-weight:900;margin-bottom:8px}
+.task{display:flex;align-items:center;gap:6px;padding:5px 0;font-size:11px}
+.task+.task{border-top:1px dashed var(--hair)}
+.task .tname{font-weight:700;white-space:nowrap}
+.task .track{flex:1;height:5px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.task .fill{height:100%;background:var(--primary)}
+.task .tnum{font-family:var(--mono);font-size:10px;color:var(--ink-2);white-space:nowrap}
+.task .gap{font-size:9.5px;color:var(--danger);white-space:nowrap}
+.settle{font-size:10.5px;color:var(--ink-2);padding:7px 10px;border:1px dashed var(--primary);border-radius:4px;margin:8px 0;background:var(--primary-soft)}
+.abn-card{border:1.5px solid var(--danger);border-radius:5px;padding:9px 10px;margin:7px 0;display:flex;gap:8px;align-items:center;
+  background:var(--danger-soft)}
+.abn-card p{flex:1;font-size:11.5px;line-height:1.6}
+.abn-card p b{display:block;font-size:12.5px}
+.bench{border:1.5px solid var(--ink);border-radius:5px;padding:10px;margin:8px 0;background:var(--surface)}
+.bench h3{font-size:12px;font-weight:900;margin-bottom:7px}
+.b-row{padding:6px 0;font-size:11px}
+.b-row+.b-row{border-top:1px dashed var(--hair)}
+.b-row .bname{font-weight:700;display:block;margin-bottom:3px}
+.b-ascii{color:var(--ink);font-size:10px;letter-spacing:-1px;white-space:nowrap;overflow:hidden}
+.b-ascii i{font-style:normal;color:var(--hair)}
+.b-vals{display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink-3);font-family:var(--mono);margin-top:2px}
+.b-note{font-size:10px;color:var(--ink-3);margin-top:6px}
+.b-note b{color:var(--danger)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="stage" x-data="app()">
+<div class="phone">
+  <div class="ist"></div>
+  <div class="screen">
+    <header class="appbar">
+      <div class="brand"><div class="seal">明</div><div class="pname" x-text="page==='p20'?(shift==='am'?'运营工作台 · 今天':'运营工作台 · 晚班'):'经营大盘'"></div></div>
+      <div class="appbar-right"><span class="role" x-text="page==='p20'?'运营':'老板'"></span>
+        <button class="bell" aria-label="消息"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 19a2 2 0 0 0 4 0"/></svg><span class="badge">2</span></button>
+      </div>
+    </header>
+
+    <main class="content" x-show="page==='p20'">
+      <div class="phead">
+        <h1>今天先办七件事</h1>
+        <p class="who">运营工作台 · 今天 ／ 谁在用：运营（我 · 小林）</p>
+        <p class="motto">待办第一；早班先消化昨晚夜场</p>
+      </div>
+
+      <div class="band-wrap">
+        <div class="band-label">今日时间带 18:00–01:00</div>
+        <div class="band">
+          <i><b class="wait"></b><span>阿哲</span><span class="tick">18</span></i>
+          <i><b class="live"></b><span>大乔</span><span class="tick">19</span></i>
+          <i><b class="live"></b><span>小雨</span><span class="tick">20</span></i>
+          <i><b class="risk"></b><span>茉莉</span><span class="tick">21</span></i>
+          <i><b class="risk"></b><span>老K</span><span class="tick">22</span></i>
+          <i><b class="live"></b><span>九九</span><span class="tick">23</span></i>
+          <i><b></b><span class="tick">00</span></i>
+          <i><b class="risk"></b><span>老K</span><span class="tick">01</span></i>
+        </div>
+      </div>
+
+      <div class="shift-row">
+        <button class="shift" :class="{on:shift==='am'}" @click="shift='am';tab='todo'">早班<span class="s">7:30–16:30</span></button>
+        <button class="shift" :class="{on:shift==='pm'}" @click="shift='pm';tab='todo'">晚班<span class="s">16:30–01:30</span></button>
+      </div>
+
+      <button class="broadcast" @click="openSheet('cast')">群发通知</button>
+
+      <div class="bcast-card" x-show="sent">
+        <div class="bc-head"><b>群发通知</b><span x-text="picked.length+'人 · 已送达'"></span></div>
+        <p class="msg" x-text="sentMsg"></p>
+        <div class="rcpt"><template x-for="r in picked"><span><i></i><span x-text="r"></span></span></template></div>
+      </div>
+
+      <div class="tabs" x-ref="tabs">
+        <button class="tab" :class="{on:tab==='todo'}" @click="switchTab('todo')" x-ref="tabTodo">待办 <span class="cnt" x-text="shift==='am'?'7':'4'"></span></button>
+        <button class="tab" :class="{on:tab==='done'}" @click="switchTab('done')" x-ref="tabDone">已处理 <span class="cnt">1</span></button>
+        <div class="tab-slider" x-ref="slider" :style="sliderStyle"></div>
+      </div>
+
+      <div x-show="tab==='todo'">
+        <template x-if="shift==='am'">
+          <div>
+            <table class="todo-table">
+              <thead><tr><th></th><th>分类</th><th>信号</th><th>数值</th><th></th></tr></thead>
+              <tbody>
+                <tr><td><i class="lv n"></i></td><td><span class="cat">盯场复盘</span><br><span class="src">🤖 自动摘要</span></td><td class="sig">夜场小结</td><td class="val">34.2万 +2.4%</td><td><button class="act p" :class="{done:digested}" @click="digest()" x-text="digested?'✓ 已消化':'标记已消化'"></button></td></tr>
+                <tr><td><i class="lv r"></i></td><td><span class="cat">盯场复盘</span><br><span class="src">🤖 预警</span></td><td class="sig danger">老K 昨晚</td><td class="val">1.1万 −42%</td><td><button class="act p" @click="drill('老K · 近7天音浪曲线')">去复盘</button></td></tr>
+                <tr><td><i class="lv r"></i></td><td><span class="cat">流水跟踪</span><br><span class="src">🤖 预警</span></td><td class="sig danger">阿哲 近7天</td><td class="val">−16%</td><td><button class="act p" @click="drill('阿哲 · 流水下滑拆解')">去复盘</button></td></tr>
+                <tr><td><i class="lv f"></i></td><td><span class="cat">话术节奏</span><br><span class="src">🤖 预警</span></td><td class="sig warn">晓晓 开场</td><td class="val">峰值剩7成</td><td><button class="act p" @click="drill('晓晓 · 开场话术规划')">生成规划</button></td></tr>
+                <tr><td><i class="lv f"></i></td><td><span class="cat">新人孵化</span><br><span class="src">🖐 记录</span></td><td class="sig warn">麦子 第6天</td><td class="val">明天评估</td><td><button class="act s" @click="drill('麦子 · 孵化档案')">看详情</button></td></tr>
+                <tr><td><i class="lv f"></i></td><td><span class="cat">风险合规</span><br><span class="src">🤖 预警</span></td><td class="sig warn">茉莉 背景</td><td class="val">21:00前撤</td><td><button class="act p" @click="drill('茉莉 · 视觉工单')">转视觉</button></td></tr>
+              </tbody>
+            </table>
+            <div class="draft-card">
+              <div class="draft-head">话术沉淀 · ✍️ 草稿</div>
+              <div class="draft-body">
+                <div class="draft-main">
+                  <div class="title">小雨：收尾连唱有效</div>
+                  <div class="body">做法：连唱 2 首＋报下次歌单<br>佐证：停留 <b>41秒</b> · 全场最高</div>
+                  <span class="draft-stamp">待拍板 · 未生效</span>
+                </div>
+                <div class="draft-actions">
+                  <button class="dact adopt" :class="{done:draftState==='采纳'}" @click="decide('采纳')" x-text="draftState==='采纳'?'✓ 已采纳':'采纳'"></button>
+                  <button class="dact tweak" :class="{'done-badge':draftState==='修改'}" @click="decide('修改')" x-text="draftState==='修改'?'✓ 去修改':'修改'"></button>
+                  <button class="dact drop" :class="{'done-badge':draftState==='不用'}" @click="decide('不用')" x-text="draftState==='不用'?'✓ 已不用':'不用'"></button>
+                </div>
+              </div>
+              <div class="handshake"><span class="ai">🤖 AI做了什么</span>按昨晚场次写草稿 <span class="hu">🖐 人拍什么板</span>采纳/修改/不用</div>
+            </div>
+          </div>
+        </template>
+        <template x-if="shift==='pm'">
+          <div>
+            <table class="todo-table">
+              <thead><tr><th></th><th>分类</th><th>信号</th><th>数值</th><th></th></tr></thead>
+              <tbody>
+                <tr><td><i class="lv n"></i></td><td><span class="cat">盯场复盘</span><br><span class="src">🖐 记录</span></td><td class="sig">老K 22:00场</td><td class="val">自检六项</td><td><button class="act s" @click="drill('老K · 开播检查单')">看详情</button></td></tr>
+                <tr><td><i class="lv f"></i></td><td><span class="cat">新人孵化</span><br><span class="src">🖐 记录</span></td><td class="sig warn">栗子 第9天</td><td class="val">19:30场</td><td><button class="act s" @click="drill('栗子 · 新人数据')">看详情</button></td></tr>
+                <tr><td><i class="lv f"></i></td><td><span class="cat">风险合规</span><br><span class="src">🖐 记录</span></td><td class="sig warn">茉莉 背景</td><td class="val">19:00前回传</td><td><button class="act g" @click="urge()">催一下</button></td></tr>
+              </tbody>
+            </table>
+            <div class="draft-card">
+              <div class="draft-head">话术节奏 · ️ 草稿</div>
+              <div class="draft-body">
+                <div class="draft-main">
+                  <div class="title">晓晓 21:00场 开场换新版</div>
+                  <div class="body">热词起头 · 30秒内点歌<br>目标：峰值回 <b>9成</b></div>
+                  <span class="draft-stamp">待拍板 · 未生效</span>
+                </div>
+                <div class="draft-actions">
+                  <button class="dact adopt" :class="{done:draftState2==='采纳'}" @click="decide2('采纳')" x-text="draftState2==='采纳'?'✓ 已采纳':'采纳'"></button>
+                  <button class="dact tweak" :class="{'done-badge':draftState2==='修改'}" @click="decide2('修改')" x-text="draftState2==='修改'?'✓ 去修改':'修改'"></button>
+                  <button class="dact drop" :class="{'done-badge':draftState2==='不用'}" @click="decide2('不用')" x-text="draftState2==='不用'?'✓ 已不用':'不用'"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <div x-show="tab==='done'">
+        <div class="done-item"><span class="ok">✓</span><div><b>豆豆：</b>请假已批 · 10-15返岗<time>今天 09:12</time></div></div>
+      </div>
+
+      <div class="kpi-row">
+        <button class="kpi" @click="drillKpi('在管主播','13','小雨、大乔、甜甜、茉莉、阿哲、九九、栗子、晓晓、老K、麦子、豆豆、喵喵、小鹿')">13<span>在管主播 ›</span></button>
+        <button class="kpi" @click="drillKpi('今日应播','10','按排期表，今天有10场应播')">10<span>今日应播</span></button>
+        <button class="kpi" @click="drillKpi('已开播','6','小雨、大乔、茉莉3个在播；甜甜、阿哲、九九已下播')">6<span>已开播 ›</span></button>
+        <button class="kpi" @click="drillKpi('今日音浪','18.8万','小雨6.2万 · 大乔5.1万 · 茉莉4.0万 · 已下播3场合计3.5万')">18.8万<span>今日音浪 ›</span></button>
+      </div>
+
+      <section class="sect">
+        <header class="sect-head"><span>今日开播</span><span class="r">10场 · 3个在播</span></header>
+        <template x-for="r in roster">
+          <div class="row">
+            <span class="dot" :class="r.stCls"></span>
+            <span class="row-name" x-text="r.name"></span>
+            <span class="row-slot" x-text="r.slot"></span>
+            <p class="row-risk" :class="{warn:r.risk}" x-html="r.riskHtml"></p>
+            <span class="st" :class="r.stCls" x-text="r.st"></span>
+          </div>
+        </template>
+        <p class="sect-foot"><b>🤖</b> 逐人比对近7天数据 ｜ <b></b> 查详情或发消息</p>
+      </section>
+      <div style="height:8px"></div>
+    </main>
+
+    <main class="content" x-show="page==='p13'">
+      <div class="phead"><h1>经营大盘</h1><p class="who">谁在用：公会老板 ／ 今天谁在播、赚多少、谁有风险</p></div>
+      <button class="broadcast" style="background:var(--primary)" @click="toast('经营周报已生成，收益页可查收')">生成经营周报</button>
+      <div class="task-strip">
+        <h3>本月平台任务</h3>
+        <div class="task"><span class="tname">拉新主播</span><div class="track"><div class="fill" style="width:60%"></div></div><span class="tnum">12/20人</span><span class="gap">差8人</span></div>
+        <div class="task"><span class="tname">活跃主播</span><div class="track"><div class="fill" style="width:81.3%"></div></div><span class="tnum">61/75人</span><span class="gap">差14人</span></div>
+        <div class="task"><span class="tname">月音浪</span><div class="track"><div class="fill" style="width:44.6%"></div></div><span class="tnum">1560/3500万</span><span class="gap">差1940万</span></div>
+      </div>
+      <div class="settle">本月账单已出 · 主播收益页可查</div>
+      <div class="p13-kpis">
+        <div class="p13-kpi"><div class="num">86</div><div class="delta">较上月 +5</div><div class="lab">主播规模</div></div>
+        <div class="p13-kpi"><div class="num">61</div><div class="lab">活跃主播</div><div class="lab" style="color:var(--ink-3)">口径：10有效天</div></div>
+        <div class="p13-kpi"><div class="num">1560万</div><div class="delta">↑6.4%</div><div class="lab">本月音浪</div></div>
+        <div class="p13-kpi"><div class="num">71%</div><div class="lab">今日开播率</div><div class="lab" style="color:var(--ink-3)">61/86 人在播</div></div>
+      </div>
+      <div class="abn-card"><p><b>阿哲</b>连续3天流水下滑，近7天少16%</p><button class="act p" style="flex:0 0 auto" @click="toast('已打开阿哲处理单')">去处理</button></div>
+      <div class="abn-card"><p><b>喵喵</b>连续2天没开播，消息回得慢</p><button class="act p" style="flex:0 0 auto" @click="toast('已打开喵喵处理单')">去处理</button></div>
+      <div class="bench">
+        <h3>公会 vs 行业基准</h3>
+        <div class="b-row"><span class="bname">开播率</span><div class="b-ascii">██████████████<i>░░░░░░</i></div><div class="b-vals"><span>我们 71%</span><span>行业 65%</span></div></div>
+        <div class="b-row"><span class="bname">活跃率</span><div class="b-ascii">██████████████<i>░░░░░░</i></div><div class="b-vals"><span>我们 71%</span><span>行业 62%</span></div></div>
+        <div class="b-row"><span class="bname">新人30天留存</span><div class="b-ascii">██████████████<i>░░░░</i></div><div class="b-vals"><span>我们 74%</span><span>行业 76%</span></div></div>
+        <p class="b-note">前两项高于基准 · <b>留存低2个点</b></p>
+      </div>
+      <div style="height:8px"></div>
+    </main>
+
+    <nav class="tabbar">
+      <button class="tab-i on"><span class="ic">[今]</span><span>今天</span></button>
+      <button class="tab-i"><span class="ic">[播]</span><span>我的主播</span></button>
+      <button class="tab-i"><span class="ic">[交]</span><span>交接</span></button>
+      <button class="tab-i"><span class="ic">[我]</span><span>我的</span></button>
+      <button class="tab-i"><span class="ic">[AI]</span><span>助理</span></button>
+    </nav>
+
+    <div class="overlay" x-show="sheet==='cast'" x-cloak @click.self="closeSheet()">
+      <div class="sheet" :class="{closing:sheetClosing}">
+        <h3 class="sheet-title">群发通知</h3>
+        <p class="sheet-desc">选人、写通知，送达状态逐人可见</p>
+        <div class="sheet-body">
+          <p class="pick-label">选择收件人（<span x-text="picked.length"></span>/13）</p>
+          <div class="pick-grid">
+            <template x-for="n in names"><button class="pick" :class="{on:picked.includes(n)}" @click="togglePick(n)" x-text="n"></button></template>
+          </div>
+          <textarea class="msg-input" placeholder="比如：今晚全员提前十分钟开播" x-model="castMsg"></textarea>
+        </div>
+        <div class="sheet-actions">
+          <button class="btn cancel" @click="closeSheet()">取消</button>
+          <button class="btn send" @click="sendCast()">发送</button>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" x-show="sheet==='drill'" x-cloak @click.self="closeSheet()">
+      <div class="sheet" :class="{closing:sheetClosing}">
+        <h3 class="sheet-title" x-text="drillTitle"></h3>
+        <p class="sheet-desc">数据下钻 · 口径与明细</p>
+        <div class="sheet-body">
+          <div class="drill-card"><h4>数值 <span>实时</span></h4><div style="font-family:var(--mono);font-weight:900;font-size:32px;color:var(--primary)" x-text="drillNum"></div></div>
+          <div class="drill-card"><h4>构成明细</h4>
+            <div class="drill-row" style="border-top:none"><span>口径说明</span><b style="font-family:var(--sans)" x-text="drillDetail"></b></div>
+            <div class="drill-row"><span>更新</span><b>今天 09:40</b></div>
+            <div class="drill-row"><span>来源</span><b style="color:var(--primary)"> 自动汇总</b></div>
+          </div>
+          <p style="font-size:10.5px;color:var(--ink-3);text-align:center;padding:2px 0 8px">点开构成可继续下钻到单场</p>
+        </div>
+        <div class="sheet-actions"><button class="btn cancel" style="flex:1;background:var(--primary);color:#fff" @click="closeSheet()">知道了</button></div>
+      </div>
+    </div>
+
+    <div class="toast" x-show="toastMsg" x-cloak x-text="toastMsg"></div>
+    <div class="ihome"></div>
+  </div>
+</div>
+<p class="stage-caption">明镜 · kimi2 · d1 条带 · 390×844 · 时间轴+表格化</p>
+</div>
+
+<script defer src="vendor/alpine.min.js"></script>
+<script>
+function app(){
+  return {
+    page:new URLSearchParams(location.search).get('page')||'p20',
+    shift:'am',tab:'todo',sheet:null,sheetClosing:false,
+    sent:false,sentMsg:'',castMsg:'',picked:[],
+    digested:false,draftState:'',draftState2:'',
+    drillTitle:'',drillNum:'',drillDetail:'',
+    toastMsg:'',toastTimer:null,sliderStyle:'left:0;width:0',
+    names:['小雨','大乔','甜甜','茉莉','阿哲','九九','栗子','晓晓','老K','麦子','豆豆','喵喵','小鹿'],
+    roster:[
+      {name:'小雨',slot:'20:00-23:00',st:'直播中',stCls:'live',risk:false,riskHtml:'—'},
+      {name:'大乔',slot:'19:00-22:00',st:'直播中',stCls:'live',risk:false,riskHtml:'—'},
+      {name:'甜甜',slot:'21:00-24:00',st:'已下播',stCls:'off',risk:false,riskHtml:'—'},
+      {name:'茉莉',slot:'21:00-24:00',st:'直播中',stCls:'live',risk:false,riskHtml:'—'},
+      {name:'阿哲',slot:'18:00-21:00',st:'已下播',stCls:'off',risk:true,riskHtml:'流水−16% · 停留38→26秒'},
+      {name:'九九',slot:'20:00-23:00',st:'已下播',stCls:'off',risk:false,riskHtml:'—'},
+      {name:'栗子',slot:'19:30-22:30',st:'未开播',stCls:'wait',risk:true,riskHtml:'9天换2个时段'},
+      {name:'晓晓',slot:'21:00-23:30',st:'未开播',stCls:'wait',risk:true,riskHtml:'峰值只剩7成'},
+      {name:'老K',slot:'22:00-01:00',st:'未开播',stCls:'wait',risk:true,riskHtml:'昨晚−42% · 大场分流'},
+    ],
+    init(){
+      if(this.page==='p13')return;
+      this.$nextTick(()=>{
+        this.moveSlider(this.tab==='todo'?this.$refs.tabTodo:this.$refs.tabDone);
+        const c=parseInt(new URLSearchParams(location.search).get('card')||'0',10);
+        if(c>0){
+          const cards=this.$root.querySelectorAll('.todo-table tbody tr');
+          const el=cards[c-1];
+          if(el){const sc=this.$root.querySelector('.content');sc.scrollTop=el.offsetTop-sc.offsetTop-8;}
+        }
+      });
+    },
+    switchTab(t){this.tab=t;this.$nextTick(()=>this.moveSlider(t==='todo'?this.$refs.tabTodo:this.$refs.tabDone));},
+    moveSlider(el){if(el)this.sliderStyle='left:'+el.offsetLeft+'px;width:'+el.offsetWidth+'px';},
+    openSheet(s){this.sheet=s;this.sheetClosing=false;},
+    drill(t){this.drillTitle=t;this.drillNum='—';this.drillDetail='该下钻页为占位容器，展示数据构成与口径。';this.openSheet('drill');},
+    drillKpi(t,n,d){this.drillTitle=t;this.drillNum=n;this.drillDetail=d;this.openSheet('drill');},
+    closeSheet(){this.sheetClosing=true;setTimeout(()=>{this.sheet=null;this.sheetClosing=false;},200);},
+    togglePick(n){this.picked=this.picked.includes(n)?this.picked.filter(x=>x!==n):[...this.picked,n];},
+    sendCast(){if(!this.picked.length){this.toast('先选收件人');return;}if(!this.castMsg.trim()){this.toast('写点什么再发');return;}this.sentMsg=this.castMsg.trim();this.sent=true;this.closeSheet();this.toast('已送达 '+this.picked.length+' 人');},
+    digest(){this.digested=true;this.toast('已标记消化，AI 摘要归档');},
+    decide(v){this.draftState=v;this.toast(v==='采纳'?'已存进话术库':v==='修改'?'打开草稿编辑器':'已废弃这条草稿');},
+    decide2(v){this.draftState2=v;this.toast(v==='采纳'?'今晚开场用新版':v==='修改'?'打开草稿编辑器':'沿用旧版开场');},
+    urge(){this.toast('已催视觉组，工单加速处理');},
+    toast(m){this.toastMsg=m;clearTimeout(this.toastTimer);this.toastTimer=setTimeout(()=>this.toastMsg='',1800);},
+  }
+}
+</script>
+</body>
+</html>

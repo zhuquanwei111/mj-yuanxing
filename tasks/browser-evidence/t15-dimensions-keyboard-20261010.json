@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-10",
+  "environment": "Local prototype over HTTP on 127.0.0.1:8791; measurements taken inside prototype-qa.html iframe.",
+  "routesChecked": 49,
+  "initialViewportSweep": {
+    "viewports": ["360x800", "390x844", "430x932", "360x480"],
+    "routeViewportPairs": 196,
+    "wrongRouteHashes": 0,
+    "rootHorizontalOverflow": 0,
+    "bodyHorizontalOverflowOver1px": 0,
+    "horizontalScrollContainers": 0
+  },
+  "narrowViewportSweep": {
+    "configuredFrame": "320x568",
+    "browserContentViewport": "319x567 (1px scrollbar layout deduction)",
+    "routeViewportPairs": 49,
+    "wrongRouteHashes": 0,
+    "rootHorizontalOverflow": 0,
+    "bodyHorizontalOverflowOver1px": 0,
+    "horizontalScrollContainers": 0
+  },
+  "actionTargets": {
+    "buttonRoleAndSegmentMeasurements": 196,
+    "targetsBelow43_9px": 0,
+    "P23CheckboxLabelsAcrossFiveViewports": { "countPerViewport": 1, "minHeightPx": 43.99 },
+    "P52CheckboxLabelsAcrossFiveViewports": { "countPerViewport": 6, "minHeightPx": 47.98 },
+    "P20BroadcastRecipientLabelsAcrossFiveViewports": { "countPerViewport": 13, "minHeightPx": 43.99 }
+  },
+  "keyboard": {
+    "firstTabTarget": { "routeCount": 49, "viewport": "360x800", "visibleTargets": 49 },
+    "P10At320x568": {
+      "emptyGuildNameEnter": "Validation remained on step 1 and focus returned to f-nm.",
+      "advanceToStep2": "Enter advanced to step 2 and focus moved to f-ct.",
+      "emptyContactSubmit": "Validation remained on step 2 and focus returned to f-ct."
+    },
+    "P20BroadcastModal": {
+      "viewports": ["360x800", "390x844 (iframe width 389)", "430x932", "320x568", "360x480"],
+      "fitsInsideViewport": 5,
+      "footerInsideViewport": 5,
+      "shiftTabStayedInside": 5,
+      "escapeHidMaskAndRestoredTriggerFocus": 5,
+      "forwardTabWrap": "Previously verified on 360x800, 390x844, 430x932, and 360x480."
+    },
+    "P30CommunicationModal": {
+      "visualViewport": "360x480",
+      "panelAndFooterVisibleInsidePhone": true,
+      "shiftTabFromFirstControlWrappedToClose": true,
+      "tabSequenceReachedFieldsAndActionsThenWrapped": true,
+      "emptySubmitFeedback": "先写点内容",
+      "emptySubmitSavedNothing": true,
+      "escapeClosedAndRestoredOriginalTriggerFocus": true,
+      "narrowViewportKeyboardCheck": {
+        "viewport": "320x568",
+        "focusStayedWithinDialog": true,
+        "escapeRestoredOriginalTriggerFocus": true
+      },
+      "screenshotCaptureNote": "360x480 screenshot viewed in browser; 320x568 screenshot capture failed during this run, so visual containment is not claimed for that size. No new screenshot artifact was saved."
+    },
+    "P23PlanEditor": {
+      "viewportsVisuallyReviewed": ["360x480", "320x568"],
+      "modalContainedInPhone": true,
+      "scrollableFieldsAndPersistentFooter": "At both sizes, scrolling the editor field region to the end reveals the complete data-goal textarea while Cancel/Save remain visible.",
+      "longTextTextarea": "A temporary long script was visible in the bounded textarea with its own scroll; the editor field list remained independently scrollable.",
+      "tabSequence": ["duration", "script", "data goal", "cancel", "save", "close", "wrap to first field"],
+      "focusStayedWithinDialog": true,
+      "escapeRestoredModifyTrigger": true,
+      "temporaryLongTextDiscardedByCancel": true,
+      "savedNoChanges": true,
+      "screenshots": "Real browser screenshots viewed at 360x480 and 320x568; no image files saved."
+    },
+    "P24ReviewEditor": {
+      "viewportVisuallyReviewed": "320x568",
+      "modalContainedInPhone": true,
+      "scrollableFieldsAndPersistentFooter": "After scrolling to the end, the full next-step textarea and Cancel/Save actions are visible.",
+      "tabSequence": ["where it went well", "what needs work", "next step", "cancel", "save", "close", "wrap to first field"],
+      "focusStayedWithinDialog": true,
+      "escapeRestoredSupplementEditTrigger": true,
+      "savedNoChanges": true,
+      "screenshots": "Real browser screenshot viewed at 320x568; no image file saved."
+    }
+  },
+  "fullT15SpotChecks": {
+    "evidenceAudit": {
+      "routeViewportMetrics": { "routes": 49, "sizes": ["360x800", "390x844", "430x932"], "entries": 147, "horizontalOverflow": 0, "technicalFindings": 0, "smallFontFindings": 0 },
+      "expandedViewMetrics": { "routes": 25, "sizes": ["360x800", "390x844", "430x932"], "entries": 75, "horizontalOverflow": 0, "technicalFindings": 0, "smallFontFindings": 0 },
+      "modalMetrics": { "visibleVariants": 34, "entries": 136, "sizes": ["360x800", "390x844", "430x932", "360x480"], "outsideViewport": 0, "innerHorizontalOverflow": 0, "technicalFindings": 0, "orphanM31": "Documented as an unreferenced legacy function; excluded from pass count." },
+      "routeScreenshotAssets": 147
+    },
+    "contentAndStateChecks": [
+      {
+        "route": "P10",
+        "viewport": "320x568",
+        "content": "明镜星河新媒体直播公会长名称适配验收样本一二三四五",
+        "result": "Advanced to step 2; full organization name remained in the summary and wrapped onto multiple lines without horizontal clipping.",
+        "screenshot": "Viewed in the real browser; not saved as a new image artifact."
+      },
+      {
+        "route": "P71/xiaoyu",
+        "viewport": "320x568",
+        "content": "¥3.87万 estimated payment; 96.7万 sound waves; ¥9.67万 converted revenue",
+        "result": "Amounts and calculation text remained readable. Vertical scrolling exposed the complete calculation and both bottom actions; no horizontal clipping was visible.",
+        "screenshot": "Viewed in the real browser at the top and bottom scroll positions; not saved as a new image artifact."
+      },
+      {
+        "route": "P22/laok",
+        "viewport": "320x568",
+        "states": ["empty communication validation", "successful local prototype save", "saved communication visible in collaboration history"],
+        "result": "Empty submit displayed ‘先写点内容’ and created no item. A test-only note produced ‘已记下这条沟通’ and appeared as the first communication record. Returning restored P20. The QA iframe was reloaded afterward to discard temporary data.",
+        "screenshot": "Saved-history state viewed in the real browser; not saved as a new image artifact."
+      }
+    ],
+    "actorJourney": {
+      "steps": ["P00 choose 运营", "P20 open the highest-priority task’s details", "P22/laok open 更多操作 → 记一条沟通", "submit empty and verify inline feedback", "enter a local test note and save", "verify the success message and collaboration record", "use 返回 and verify P20"],
+      "returnRoute": "P20",
+      "temporaryDataDiscarded": true,
+      "screenshotReviewedInCua": true,
+      "screenshotSavedAsArtifact": false
+    }
+  },
+  "componentKeyboardRegression": {
+    "P20": {
+      "viewportsVisuallyReviewed": ["320x568", "360x800", "390x844", "430x932", "360x480"],
+      "arrowKeyMovesFocusWithoutActivating": true,
+      "spaceChangesSelectedTabAndContent": true,
+      "focusRetainedAfterRerender": true,
+      "focusRingVisible": true
+    },
+    "P30": {
+      "viewportsVisuallyReviewed": ["320x568", "360x800", "390x844", "430x932", "360x480"],
+      "arrowKeyMovesFocusWithoutActivating": true,
+      "spaceChangesSelectedTabAndContent": true,
+      "focusRetainedAfterRerender": true,
+      "focusRingVisible": true,
+      "shortViewportVerticalScrollReachesLowerQueueAndGrowthSummary": true,
+      "bottomNavigationRemainsVisibleAfterScroll": true
+    },
+    "P41": {
+      "viewportsVisuallyReviewed": ["320x568", "360x800", "390x844", "430x932", "360x480"],
+      "keyboardViewports": ["320x568", "360x800"],
+      "wrappedFiveOptionGroupFitsWithoutHorizontalScroll": true,
+      "tabMovesBetweenOptions": true,
+      "spaceChangesFilterAndResults": true,
+      "focusRetainedAfterUpdate": true,
+      "focusRingVisible": true
+    },
+    "screenshots": "Viewed in the real browser during this run; not saved as image artifacts."
+  },
+  "automatedChecks": {
+    "nodeTest": "70/70 passed",
+    "prototypeStaticCheck": "passed"
+  },
+  "console": {
+    "newErrorOrWarningEntriesDuringThisRun": 0,
+    "historicalEntries": "The reused QA tab retained three 2026-10-09 MutationObserver observe(Node) errors; source attribution is unresolved. CUA exposed no API to read this turn's browser console, so no claim is made about console output from the newly exercised states.",
+    "thisTurnConsoleReadable": false
+  },
+  "limitations": [
+    "The route sweep covers initial rendered state; expanded views and modal variants are separately summarized in their own evidence files. State and content spot checks are representative, not exhaustive for every possible user-entered value.",
+    "The iframe does not simulate a real iOS/Android soft keyboard, safe area, or operating-system date picker.",
+    "New screenshots from this continuation were reviewed in the real browser but not saved as image artifacts.",
+    "T15 final sign-off remains open until the current-tab console can be read and the three historical MutationObserver entries can be attributed or shown not to recur."
+  ]
+}

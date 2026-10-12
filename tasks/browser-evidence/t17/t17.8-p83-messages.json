@@ -1,0 +1,40 @@
+{
+  "task": "T17.8 P83 助理与 P90–P92 消息",
+  "date": "2026-10-11",
+  "source": "http://127.0.0.1:8791/明镜产品原型.html",
+  "environment": {
+    "browser": "Chrome DevTools attached local preview",
+    "viewport": "390x844 mobile emulation; 1200x900 for the preview route selector",
+    "screenshots": {
+      "viewed": false,
+      "archived": false,
+      "note": "本轮用可访问性树、DOM 和计算样式核对交互，未生成截图。"
+    }
+  },
+  "assistant": {
+    "route": "#AI (运营身份的 P83 助理视图)",
+    "first_use": "首次引导包含现有说明、三个既有快捷问题、输入框和发送操作；没有预置对话气泡或示例回复。",
+    "quick_question": "点击“给小雨生成下周规划”后生成关联对象建议，保留查看对象、采纳、编辑问题和忽略动作。",
+    "keyboard": "快捷问题后输入框聚焦，keyboard-open=true 且底部导航 display:none；按 Tab 离开输入框后状态复位，导航 display:flex。",
+    "layout": "390px 根宽等于视口宽；输入区可达，聊天容器可滚动且 WebKit 滚动条隐藏。"
+  },
+  "messages": {
+    "P90": "公会群按日期呈现群消息和可识别的系统通知；进入会话后未读标记清零。",
+    "P91": "对话显示对象身份、业务卡和消息；草稿“临时草稿验证：今晚提醒补水”离开会话并再次打开后保留。",
+    "P92": "全部、未读、系统通知筛选会更新列表与数量；打开“10月账单已出”通知精确到 P71 主播账单。",
+    "send_failure": "本地模拟 ST.chat.connection=offline 后发送，显示“暂时无法发送，草稿已保留。恢复连接后重试”，输入内容仍在。之后将连接恢复 online 并重新加载，临时模拟数据被清除；未发送外部消息。"
+  },
+  "fresh_load": {
+    "route": "#P90",
+    "http_status": 200,
+    "icon": "内联 SVG data URI 存在；Network 无 favicon.ico 请求。",
+    "console": "无控制台消息。",
+    "horizontal_overflow": false,
+    "scrollbar": "当前页面正文和内部滚动区使用隐藏滚动条规则。"
+  },
+  "automated_checks": {
+    "command": "node --test tasks/*.test.mjs",
+    "result": "112/112 passed"
+  },
+  "static_check": "node tasks/check-prototype.mjs passed; git diff --check passed"
+}

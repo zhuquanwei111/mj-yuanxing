@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="明镜移动端原型新增色彩落点的中性与补色视觉对照。">
+  <title>明镜移动端｜新增色位筛选</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #171717;
+      background: #fff;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      --active: #426579;
+      --series: #3b716a;
+      --content: #765b48;
+      --success: #2f765f;
+      --risk: #a33d3d;
+      --follow: #806216;
+      --ink: #171717;
+      --ink-2: #555;
+      --ink-3: #777;
+      --line: #e8e6e4;
+      --line-2: #d9d6d3;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #fff; }
+    .page { width: min(1080px, 100%); margin: 0 auto; padding: 30px 28px 54px; }
+    .eyebrow { margin: 0 0 8px; color: var(--ink-2); font-size: 11px; font-weight: 750; letter-spacing: .08em; }
+    h1 { margin: 0; font-size: clamp(25px, 4vw, 34px); line-height: 1.18; letter-spacing: -.035em; }
+    .intro { max-width: 740px; margin: 0 0 20px; color: var(--ink-2); font-size: 14px; line-height: 1.65; }
+    .palette { display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 18px 0 12px; }
+    .token { display: inline-flex; align-items: center; gap: 6px; color: #333; font-size: 11px; }
+    .token i { width: 13px; height: 13px; flex: 0 0 auto; border: 1px solid rgba(0,0,0,.1); border-radius: 50%; background: var(--swatch); }
+    .protected { margin: 0 0 22px; padding: 10px 0; border-block: 1px solid var(--line); color: var(--ink-2); font-size: 11px; line-height: 1.6; }
+    .protected strong { color: var(--ink); }
+    .selection-note { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 4px; color: var(--ink-3); font-size: 11px; }
+    #selected-count { color: var(--active); font-weight: 750; font-variant-numeric: tabular-nums; }
+    .candidate { padding: 19px 0 20px; border-top: 1px solid var(--line); }
+    .candidate-head { display: flex; align-items: flex-start; gap: 11px; }
+    .code { flex: 0 0 auto; color: var(--ink-2); font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+    .candidate-title { flex: 1; min-width: 0; }
+    h2 { margin: 0; font-size: 16px; line-height: 1.35; }
+    .route { margin: 3px 0 0; color: var(--ink-3); font-size: 11px; }
+    .pick { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; flex: 0 0 auto; color: var(--ink-2); font-size: 11px; cursor: pointer; }
+    .pick input { width: 18px; height: 18px; margin: 0; accent-color: var(--active); }
+    .decision { display: inline-flex; align-items: center; min-height: 32px; flex: 0 0 auto; color: var(--active); font-size: 11px; font-weight: 750; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 12px 0 0 36px; }
+    .sample { min-width: 0; }
+    .sample + .sample { padding-left: 18px; border-left: 1px solid var(--line); }
+    .sample-label { margin: 0 0 9px; color: var(--ink-3); font-size: 10px; }
+    .sample-label b { color: var(--ink-2); font-size: 10px; font-weight: 700; }
+    .recommend .sample-label b { color: var(--active); }
+    .mini-title { margin: 0; color: var(--ink); font-size: 12px; font-weight: 700; }
+    .mini-meta { margin: 3px 0 0; color: var(--ink-3); font-size: 10px; line-height: 1.45; }
+
+    /* C1 — the operations-specific navigation is currently neutral. */
+    .nav-sample { display: flex; align-items: center; justify-content: space-between; gap: 3px; margin-top: 5px; border-bottom: 1px solid var(--line); }
+    .nav-item { position: relative; padding: 8px 2px 9px; color: #333; font-size: 10px; text-align: center; white-space: nowrap; }
+    .nav-item small { display: block; margin-top: 1px; color: var(--ink-3); font-size: 8px; line-height: 1; }
+    .nav-item.selected { color: #171717; font-weight: 700; }
+    .nav-item.selected::after { position: absolute; right: 1px; bottom: -1px; left: 1px; height: 2px; background: #171717; content: ""; }
+    .recommend .nav-item.selected { color: var(--active); }
+    .recommend .nav-item.selected::after { background: var(--active); }
+
+    /* C2 — color only the one metric intended to lead the view. */
+    .kpi-sample { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; padding: 2px 0 1px; }
+    .kpi-value { display: block; margin-top: 3px; color: #171717; font-size: 23px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+    .recommend .kpi-value { color: var(--success); }
+    .kpi-delta { padding-bottom: 2px; color: #555; font-size: 10px; white-space: nowrap; }
+    .kpi-delta b { color: var(--success); font-weight: 700; }
+
+    /* C3 — actual P13 benchmark rows; leave existing status labels untouched. */
+    .bench-list { display: grid; gap: 10px; }
+    .bench-row { display: grid; gap: 5px; }
+    .bench-labels { display: flex; align-items: baseline; gap: 5px; font-size: 9px; line-height: 1.4; }
+    .bench-labels strong { flex: 0 0 auto; font-size: 10px; }
+    .bench-labels .guild { color: var(--ink-2); }
+    .bench-labels .industry { margin-left: auto; color: var(--ink-3); text-align: right; }
+    .bench-track { height: 7px; overflow: hidden; border-radius: 99px; background: #e8e6e4; }
+    .bench-fill { display: block; height: 100%; border-radius: inherit; background: #333; }
+    .recommend .bench-fill { background: var(--series); }
+
+    /* C4 — only the current process node is temporarily slate-blue; completed nodes use success green. */
+    .progress-scenarios { display: grid; gap: 10px; }
+    .progress-state { margin: 0 0 4px; color: var(--ink-3); font-size: 9px; }
+    .steps { display: grid; gap: 3px; }
+    .step { display: flex; align-items: center; gap: 7px; min-height: 16px; color: #777; font-size: 9px; }
+    .step i { width: 8px; height: 8px; flex: 0 0 auto; border: 1.5px solid #c9c7c4; border-radius: 50%; background: #fff; }
+    .neutral .step.done i { border-color: #777; background: #777; }
+    .neutral .step.current { color: #171717; font-weight: 700; }
+    .neutral .step.current i { border-color: #171717; background: #171717; }
+    .recommend .step.done { color: var(--success); font-weight: 650; }
+    .recommend .step.done i { border-color: var(--success); background: var(--success); }
+    .recommend .step.current { color: var(--active); font-weight: 700; }
+    .recommend .step.current i { border-color: var(--active); background: var(--active); }
+
+    /* C5 — only the P95 follow-up count receives the already-approved antique gold. */
+    .team-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 3px 8px; align-items: center; padding: 4px 0; }
+    .team-name { color: #171717; font-size: 11px; font-weight: 700; }
+    .team-meta { color: var(--ink-3); font-size: 9px; }
+    .team-follow { color: #333; font-size: 9px; white-space: nowrap; }
+    .recommend .team-follow { color: var(--follow); font-weight: 700; }
+
+    /* C6 — warm ink on actual P61 section titles helps scanning without recoloring the copy. */
+    .script-list { display: grid; gap: 7px; }
+    .script-section { padding: 0 0 6px; border-bottom: 1px solid var(--line); }
+    .script-section:last-child { padding-bottom: 0; border-bottom: 0; }
+    .script-section strong { display: block; color: #171717; font-size: 10px; }
+    .recommend .script-section strong { color: var(--content); }
+    .script-section p { margin: 2px 0 0; color: #333; font-size: 9px; line-height: 1.45; }
+
+    /* C7 — risk red marks the existing P13 alert signal only, not the whole row. */
+    .risk-list { display: grid; gap: 7px; }
+    .risk-row { display: grid; grid-template-columns: 9px minmax(0,1fr); gap: 7px; align-items: start; font-size: 9px; line-height: 1.45; }
+    .risk-mark { width: 7px; height: 7px; margin-top: 3px; border-radius: 50%; background: #777; }
+    .recommend .risk-mark { background: var(--risk); }
+    .risk-row strong { display: block; color: #171717; font-size: 10px; }
+    .risk-row small { display: block; color: var(--ink-2); font-size: 9px; }
+    .color-note { margin: 10px 0 0 36px; color: var(--ink-3); font-size: 10px; line-height: 1.55; }
+    .color-note code { color: var(--ink-2); font-family: inherit; font-weight: 700; }
+    .footer-note { margin: 23px 0 0; padding-top: 13px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 11px; line-height: 1.65; }
+    .footer-note strong { color: var(--ink); }
+    @media (max-width: 640px) {
+      .page { padding: 22px 16px 38px; }
+      .candidate { padding: 16px 0 17px; }
+      .compare { grid-template-columns: 1fr; gap: 12px; margin-left: 0; }
+      .sample + .sample { padding: 11px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+      .color-note { margin-left: 0; }
+      .pick { font-size: 10px; }
+      .protected { font-size: 10px; }
+    }
+    @media (max-width: 360px) {
+      .page { padding-inline: 12px; }
+      .compare { gap: 7px; }
+      .sample + .sample { padding-left: 7px; }
+      .nav-item { font-size: 9px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">明镜 · 基于当前原型实页校正</p>
+    <h1>按业务语义筛选新的色彩落点</h1>
+    <p class="intro">样例已逐页对照 P20、P13、P51、P95 与 P61 当前内容。各色只服务对应位置：当前选择、正向数据、流程进度、待跟进、内容结构或风险；不把一个颜色铺到所有元素。C4、C5、C7 已按你的选择应用到主原型；其余勾选项只记录筛选。</p>
+
+    <div class="palette" aria-label="建议色值">
+      <span class="token"><i style="--swatch:#426579"></i>当前选择 / 进度 <code>#426579</code></span>
+      <span class="token"><i style="--swatch:#2f765f"></i>正向 / 已完成 <code>#2F765F</code></span>
+      <span class="token"><i style="--swatch:#806216"></i>待跟进 <code>#806216</code></span>
+      <span class="token"><i style="--swatch:#a33d3d"></i>风险 <code>#A33D3D</code></span>
+      <span class="token"><i style="--swatch:#3b716a"></i>对标数据 <code>#3B716A</code></span>
+      <span class="token"><i style="--swatch:#765b48"></i>脚本结构 <code>#765B48</code></span>
+    </div>
+    <p class="protected"><strong>本轮决定：</strong>紫色方向已撤回。C4 已应用到 P51：当前节点用蓝灰 <code>#426579</code>，完成节点沿用深绿 <code>#2F765F</code>；C5 已将 P95 有待跟进的状态文字补为古金 <code>#806216</code>；C7 已将 P13 风险项前的标记点补为暗红 <code>#A33D3D</code>。其余色位仍待筛选；原有语义色保持原样。</p>
+    <p class="selection-note"><span>候选位置 <strong id="selected-count" aria-live="polite">0</strong> 项已勾选</span><span>勾选只用于筛选，不会改动主原型</span></p>
+
+    <section class="candidate" id="C1" aria-labelledby="title-C1">
+      <header class="candidate-head">
+        <span class="code">C1</span><div class="candidate-title"><h2 id="title-C1">运营工作台的当前页签</h2><p class="route">P20 · 顶部“运营工作区”页签；与底部主导航区分</p></div>
+        <label class="pick"><input type="checkbox" class="candidate-pick" value="C1">列入候选</label>
+      </header>
+      <div class="compare">
+        <div class="sample neutral"><p class="sample-label"><b>当前中性表现</b></p><div class="nav-sample"><span class="nav-item selected">待办</span><span class="nav-item">今日开播<small>9</small></span><span class="nav-item">经营概况</span></div></div>
+        <div class="sample recommend"><p class="sample-label"><b>建议补色</b></p><div class="nav-sample"><span class="nav-item selected">待办</span><span class="nav-item">今日开播<small>9</small></span><span class="nav-item">经营概况</span></div></div>
+      </div>
+      <p class="color-note">仅当前页签文字与细指示线试用蓝灰 <code>#426579</code>；P20 底部五项主导航不在此候选内。</p>
+    </section>
+
+    <section class="candidate" id="C2" aria-labelledby="title-C2">
+      <header class="candidate-head">
+        <span class="code">C2</span><div class="candidate-title"><h2 id="title-C2">正向变化对应的核心指标</h2><p class="route">P13 · “1560万 本月音浪 ↑6.4%”；不推广到其他指标</p></div>
+        <label class="pick"><input type="checkbox" class="candidate-pick" value="C2">列入候选</label>
+      </header>
+      <div class="compare">
+        <div class="sample neutral"><p class="sample-label"><b>当前中性表现</b></p><div class="kpi-sample"><div><p class="mini-meta">本月音浪</p><strong class="kpi-value">1560万</strong></div><span class="kpi-delta"><b>↑6.4%</b></span></div></div>
+        <div class="sample recommend"><p class="sample-label"><b>建议补色</b></p><div class="kpi-sample"><div><p class="mini-meta">本月音浪</p><strong class="kpi-value">1560万</strong></div><span class="kpi-delta"><b>↑6.4%</b></span></div></div>
+      </div>
+      <p class="color-note">仅为这项已有正向趋势的数值试用成功绿 <code>#2F765F</code>；原有绿色涨幅保持原色，其他指标数值不跟着染色。</p>
+    </section>
+
+    <section class="candidate" id="C3" aria-labelledby="title-C3">
+      <header class="candidate-head">
+        <span class="code">C3</span><div class="candidate-title"><h2 id="title-C3">经营分析中的公会对标条</h2><p class="route">P13 · 使用实际“公会 vs 行业基准”三项数据</p></div>
+        <label class="pick"><input type="checkbox" class="candidate-pick" value="C3">列入候选</label>
+      </header>
+      <div class="compare">
+        <div class="sample neutral"><p class="sample-label"><b>当前中性表现</b></p><div class="bench-list"><div class="bench-row"><div class="bench-labels"><strong>开播率</strong><span class="guild">我们 71%</span><span class="industry">行业基准 65%</span></div><div class="bench-track"><i class="bench-fill" style="width:71%"></i></div></div><div class="bench-row"><div class="bench-labels"><strong>活跃率</strong><span class="guild">我们 71%</span><span class="industry">行业基准 62%</span></div><div class="bench-track"><i class="bench-fill" style="width:71%"></i></div></div><div class="bench-row"><div class="bench-labels"><strong>新人 30 天留存</strong><span class="guild">我们 74%</span><span class="industry">行业基准 76%</span></div><div class="bench-track"><i class="bench-fill" style="width:74%"></i></div></div></div></div>
+        <div class="sample recommend"><p class="sample-label"><b>建议补色</b></p><div class="bench-list"><div class="bench-row"><div class="bench-labels"><strong>开播率</strong><span class="guild">我们 71%</span><span class="industry">行业基准 65%</span></div><div class="bench-track"><i class="bench-fill" style="width:71%"></i></div></div><div class="bench-row"><div class="bench-labels"><strong>活跃率</strong><span class="guild">我们 71%</span><span class="industry">行业基准 62%</span></div><div class="bench-track"><i class="bench-fill" style="width:71%"></i></div></div><div class="bench-row"><div class="bench-labels"><strong>新人 30 天留存</strong><span class="guild">我们 74%</span><span class="industry">行业基准 76%</span></div><div class="bench-track"><i class="bench-fill" style="width:74%"></i></div></div></div></div>
+      </div>
+      <p class="color-note">只把“我们”的指标条试用对标青绿 <code>#3B716A</code>；行业数字、已有高低判断标签和条形几何保持现状，不把这组色扩展到状态。</p>
+    </section>
+
+    <section class="candidate" id="C4" aria-labelledby="title-C4">
+      <header class="candidate-head">
+        <span class="code">C4</span><div class="candidate-title"><h2 id="title-C4">预约工单流程的当前进度点</h2><p class="route">P51 · 妆造单详情；P61 是脚本内容，没有流程节点</p></div>
+        <span class="decision">已采纳 · 颜色暂定</span>
+      </header>
+      <div class="compare">
+        <div class="sample neutral"><p class="sample-label"><b>当前中性表现</b></p><p class="mini-meta">服务预约 · 小雨 · 妆造跟场 · 待处理</p><div class="progress-scenarios"><div><p class="progress-state">当前待处理</p><div class="steps"><span class="step current"><i></i>已发起</span><span class="step"><i></i>已接单</span><span class="step"><i></i>服务进行中</span><span class="step"><i></i>完成并回传</span></div></div><div><p class="progress-state">接单后的处理中状态</p><div class="steps"><span class="step done"><i></i>已发起</span><span class="step done"><i></i>已接单</span><span class="step current"><i></i>服务进行中</span><span class="step"><i></i>完成并回传</span></div></div></div></div>
+        <div class="sample recommend"><p class="sample-label"><b>建议补色</b></p><p class="mini-meta">服务预约 · 小雨 · 妆造跟场 · 待处理</p><div class="progress-scenarios"><div><p class="progress-state">当前待处理</p><div class="steps"><span class="step current"><i></i>已发起</span><span class="step"><i></i>已接单</span><span class="step"><i></i>服务进行中</span><span class="step"><i></i>完成并回传</span></div></div><div><p class="progress-state">接单后的处理中状态</p><div class="steps"><span class="step done"><i></i>已发起</span><span class="step done"><i></i>已接单</span><span class="step current"><i></i>服务进行中</span><span class="step"><i></i>完成并回传</span></div></div></div></div>
+      </div>
+      <p class="color-note">当前节点暂用蓝灰 <code>#426579</code>，已完成节点用你指定的成功绿 <code>#2F765F</code>，未到节点保持中性；流程文字与纵向节点布局均沿用 P51。</p>
+    </section>
+
+    <section class="candidate" id="C5" aria-labelledby="title-C5">
+      <header class="candidate-head">
+        <span class="code">C5</span><div class="candidate-title"><h2 id="title-C5">组织列表中的待跟进人数</h2><p class="route">P95 · 运营一组；组名与人数保持黑色，只强调待跟进状态</p></div>
+        <span class="decision">已采纳 · 已应用</span>
+      </header>
+      <div class="compare">
+        <div class="sample neutral"><p class="sample-label"><b>当前中性表现</b></p><div class="team-row"><strong class="team-name">运营一组 · 小林</strong><span class="team-follow">5 人需跟进 ›</span><span class="team-meta">组长 小林 · 13 人</span></div></div>
+        <div class="sample recommend"><p class="sample-label"><b>建议补色</b></p><div class="team-row"><strong class="team-name">运营一组 · 小林</strong><span class="team-follow">5 人需跟进 ›</span><span class="team-meta">组长 小林 · 13 人</span></div></div>
+      </div>
+      <p class="color-note">P95 组织列表中，仅有待跟进数量的状态文字用古金 <code>#806216</code>；组名、成员数、箭头和整行保持原样。</p>
+    </section>
+
+    <section class="candidate" id="C6" aria-labelledby="title-C6">
+      <header class="candidate-head">
+        <span class="code">C6</span><div class="candidate-title"><h2 id="title-C6">脚本段落的结构标题</h2><p class="route">P61 · 保留原有脚本段落与正文，只试标题文字色</p></div>
+        <label class="pick"><input type="checkbox" class="candidate-pick" value="C6">列入候选</label>
+      </header>
+      <div class="compare">
+        <div class="sample neutral"><p class="sample-label"><b>当前中性表现</b></p><div class="script-list"><div class="script-section"><strong>开场</strong><p>先接上一场的话题，别急着进正题；</p></div><div class="script-section"><strong>互动</strong><p>每首歌之间留20秒，点名回弹幕；</p></div><div class="script-section"><strong>收尾</strong><p>连唱两首老歌，报明天主题。</p></div></div></div>
+        <div class="sample recommend"><p class="sample-label"><b>建议补色</b></p><div class="script-list"><div class="script-section"><strong>开场</strong><p>先接上一场的话题，别急着进正题；</p></div><div class="script-section"><strong>互动</strong><p>每首歌之间留20秒，点名回弹幕；</p></div><div class="script-section"><strong>收尾</strong><p>连唱两首老歌，报明天主题。</p></div></div></div>
+      </div>
+      <p class="color-note">仅段落标题试用暖棕 <code>#765B48</code>，正文保持黑色，原有段落布局与文字均不改；如果它没有帮助扫读，可放弃这个位置。</p>
+    </section>
+
+    <section class="candidate" id="C7" aria-labelledby="title-C7">
+      <header class="candidate-head">
+        <span class="code">C7</span><div class="candidate-title"><h2 id="title-C7">风险异常列表的风险信号</h2><p class="route">P13 · 当前“异常 · 要处理 2条”中的两条风险项</p></div>
+        <span class="decision">已采纳 · 已应用</span>
+      </header>
+      <div class="compare">
+        <div class="sample neutral"><p class="sample-label"><b>当前中性表现</b></p><div class="risk-list"><div class="risk-row"><i class="risk-mark"></i><div><strong>阿哲 · 连续3天流水下滑</strong><small>近7天比前7天少16%</small></div></div><div class="risk-row"><i class="risk-mark"></i><div><strong>喵喵 · 连续2天没开播</strong><small>消息回得慢</small></div></div></div></div>
+        <div class="sample recommend"><p class="sample-label"><b>建议补色</b></p><div class="risk-list"><div class="risk-row"><i class="risk-mark"></i><div><strong>阿哲 · 连续3天流水下滑</strong><small>近7天比前7天少16%</small></div></div><div class="risk-row"><i class="risk-mark"></i><div><strong>喵喵 · 连续2天没开播</strong><small>消息回得慢</small></div></div></div></div>
+      </div>
+      <p class="color-note">只给风险色点试用暗红 <code>#A33D3D</code>；风险标题、说明和整行保持中性，原有状态文案不变。</p>
+    </section>
+
+    <p class="footer-note"><strong>筛选方式：</strong>C4、C5、C7 已应用于主原型；可继续勾选 C1、C2、C3、C6 中认可的色位，再把编号发我。正式落地前仍会逐路由核对目标是否无色，并保留所有已有色彩；通过页面验收后再扩展到同类位置。</p>
+  </main>
+  <script>
+    const picks = [...document.querySelectorAll('.candidate-pick')];
+    const count = document.getElementById('selected-count');
+    const updateCount = () => { count.textContent = picks.filter(pick => pick.checked).length; };
+    picks.forEach(pick => pick.addEventListener('change', updateCount));
+  </script>
+</body>
+</html>

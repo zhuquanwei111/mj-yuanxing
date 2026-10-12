@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>明镜 · 运营工作台 · 今天（ds2-d4 人阵）</title>
+<style>
+/* ds2-d4 人阵 —— 珐琅标牌 + 瑞士网格：一屏先看人，再看字
+   色板：骨白 #F6F3EA / 格 #FDFCF8 / 墨 #191813 / 次级 #6B6759 / 格线 #E2DCCB
+        砖红 #A32A21 / 土黄 #C98A16 / 墨青 #2E5D52 / 台面 #EDE8DB
+   三档：危险＝砖红实心块＋格角切角；关注＝土黄角块；正常＝无标记 —— 几何形状是第二手段 */
+:root{
+  --bone:#f6f3ea; --cell:#fdfcf8; --ink:#191813; --ink2:#6b6759; --grid:#e2dccb; --rule:#191813;
+  --red:#a32a21; --amber:#c98a16; --teal:#2e5d52; --desk:#ede8db;
+  --sans:"Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"DejaVu Sans Mono",monospace;
+}
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--desk);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.6}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.desk{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px 20px;background:var(--desk)}
+.phone{position:relative;width:390px;height:844px;background:var(--bone);overflow:hidden;display:flex;flex-direction:column;
+  border:2px solid var(--ink);box-shadow:10px 12px 0 #19181326}
+.phone[hidden]{display:none}
+
+/* 壳 */
+.top{display:flex;align-items:center;gap:8px;height:48px;padding:0 12px;flex:none;border-bottom:2px solid var(--ink)}
+.top .mark{width:24px;height:24px;background:var(--ink);color:var(--cell);display:grid;place-items:center;font-size:12px;font-weight:900}
+.top .nm{font-size:14px;font-weight:900;letter-spacing:.02em}
+.top .sp{margin-left:auto;display:flex;align-items:center;gap:8px}
+.top .bell{position:relative;border:2px solid var(--ink);padding:1px 6px;font-family:var(--mono);font-size:12px}
+.top .bell b{position:absolute;top:-8px;right:-8px;background:var(--red);color:var(--cell);font-size:10px;font-weight:900;padding:1px 4px}
+.top .role{background:var(--ink);color:var(--cell);padding:2px 7px;font-size:12px;letter-spacing:.1em}
+.scroll{flex:1;overflow-y:auto}
+.tabbar{display:flex;flex:none;border-top:2px solid var(--ink);background:var(--cell)}
+.tabbar button{flex:1;min-height:46px;font-size:12px;color:var(--ink2);padding:14px 0;border-right:1px solid var(--grid)}
+.tabbar button:last-child{border-right:0}
+.tabbar button[aria-current="page"]{background:var(--ink);color:var(--cell);font-weight:900}
+
+/* 页头 */
+.head{padding:12px 12px 9px}
+.head .h1{font-size:18px;font-weight:900;letter-spacing:-.01em}
+.head .ln{margin-top:2px;font-size:12px;color:var(--ink2)}
+.bar{display:flex;gap:6px;align-items:center;padding:0 12px 10px}
+.chip{min-height:40px;padding:9px 9px;border:2px solid var(--ink);font-size:12px;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--cell)}
+.send{margin-left:auto;min-height:40px;padding:9px 10px;border:2px solid var(--ink);font-size:12px;font-weight:900}
+
+/* 待办格阵 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--ink);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.cell{background:var(--cell);padding:9px;position:relative;min-height:112px;display:flex;flex-direction:column}
+.cell.wide{grid-column:1/-1;min-height:96px}
+.cell .who{font-size:17px;font-weight:900;letter-spacing:-.01em;line-height:1.2;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.cell .who em{font-style:normal;font-size:12px;font-weight:400;color:var(--ink2)}
+.cell .tags{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+.tag{font-size:12px;border:2px solid var(--ink);padding:0 5px}
+.tag.src{border-width:1px;border-color:var(--ink2);color:var(--ink2)}
+.tag.src.draft{border-style:dashed;border-color:var(--ink);color:var(--ink)}
+.tag.lv-ok{background:var(--grid);border-color:var(--ink2);color:var(--ink2)}
+.tag.lv-risk{background:var(--red);border-color:var(--red);color:var(--cell);font-weight:900}
+.tag.lv-follow{background:var(--amber);border-color:var(--amber);color:var(--ink);font-weight:900}
+.cell p{margin:6px 0 0;font-size:12px;line-height:1.5}
+.cell p em{font-family:var(--mono);font-style:normal;font-weight:900}
+.cell .acts{margin-top:auto;padding-top:8px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.btn{min-height:40px;padding:10px 11px;border:2px solid var(--ink);font-size:12px;font-weight:900;transition:background 90ms linear,color 90ms linear}
+.btn.pri{background:var(--ink);color:var(--cell)}
+.btn:active{background:var(--ink);color:var(--cell)}
+.btn.weak{border-style:dotted;font-weight:400;color:var(--ink2)}
+.btn[disabled]{opacity:.45}
+.note{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.cut{position:absolute;top:0;right:0;width:0;height:0;border-top:18px solid var(--red);border-left:18px solid transparent}
+.cut.follow{width:18px;height:18px;border:0;background:var(--amber)}
+.cell.adopted{background:var(--teal)}
+.cell.adopted .who,.cell.adopted p,.cell.adopted .note{color:var(--cell)}
+.cell.adopted .tag{background:none;border-color:var(--cell);color:var(--cell)}
+.cell.adopted .btn{border-color:var(--cell);color:var(--cell);background:none}
+.cell.struck{position:relative}
+.cell.struck::after{content:"";position:absolute;left:9px;right:9px;top:22px;height:3px;background:var(--ink);
+  transform-origin:left;animation:bar .2s cubic-bezier(.3,.7,.2,1) both}
+@keyframes bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* KPI 格 */
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.kpi button{padding:9px 8px;border-right:1px solid var(--grid);text-align:left}
+.kpi button:last-child{border-right:0}
+.kpi .n{display:block;font-size:22px;font-weight:900;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.kpi .n i{font-style:normal;font-size:12.5px;font-weight:400}
+.kpi .k{display:block;font-size:12px;color:var(--ink2)}
+.kpi .k em{display:block;font-style:normal;font-family:var(--mono);font-size:12px}
+.kpi button[data-drill] .n::after{content:"▾";font-size:10px;color:var(--ink2);margin-left:3px;vertical-align:3px}
+.kpi button:active{background:var(--grid)}
+
+/* 人矩阵 */
+.sec{display:flex;align-items:baseline;gap:8px;padding:9px 12px 6px;border-bottom:2px solid var(--ink);background:var(--cell)}
+.sec b{font-size:14px;font-weight:900}
+.sec span{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.sec span.tap{cursor:pointer;border-bottom:1px dashed var(--ink2);min-height:40px;display:inline-flex;align-items:center}
+.mat{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--ink);border-bottom:2px solid var(--ink)}
+.mat .m{background:var(--cell);padding:8px 8px 13px;position:relative;min-height:104px}
+.mat .m .n{font-size:14px;font-weight:900}
+.mat .m .t{font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.mat .m .rk{font-size:12px;margin-top:4px;padding-top:3px;border-top:1px solid var(--ink);color:var(--red)}
+.mat .m .rk.quiet{color:var(--ink2);border-top-color:var(--grid)}
+.mat .m .band{position:absolute;left:0;right:0;bottom:0;height:7px;background:var(--teal)}
+.mat .m .band.off{background:var(--grid)}
+.mat .m .band.dash{background:repeating-linear-gradient(90deg,var(--ink) 0 6px,transparent 6px 11px);border-top:1px solid var(--ink);height:6px}
+.mat .m .band.dot{background-image:radial-gradient(var(--ink) 1px,transparent 1.2px);background-size:5px 5px;height:7px}
+.mat .m .band.hatch{background:repeating-linear-gradient(45deg,var(--ink2) 0 2px,transparent 2px 5px);height:7px}
+.mat .m .band.double{background:repeating-linear-gradient(90deg,var(--amber) 0 8px,var(--teal) 8px 16px);height:7px}
+.mat.doneonly .m:not(.dou){display:none}
+.mat.doneonly .m.dou{grid-column:1/-1;min-height:120px}
+.mat .m .cut{position:absolute;top:0;right:0;width:0;height:0;border-top:14px solid var(--red);border-left:14px solid transparent}
+.mat .m .cut.follow{width:12px;height:12px;border:0;background:var(--amber)}
+.tail{height:18px}
+
+/* 弹层 */
+.scrim{position:absolute;inset:0;background:#19181380;opacity:0;transition:opacity .16s linear}
+.scrim[hidden]{display:none}
+.scrim.on{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:84%;background:var(--cell);border-top:2px solid var(--ink);
+  display:flex;flex-direction:column;transform:translateY(101%);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.sheet.on{transform:none}
+.sheet .hd{display:flex;align-items:center;gap:8px;padding:12px 12px 8px;border-bottom:2px solid var(--ink)}
+.sheet .hd b{font-size:14px;font-weight:900}
+.sheet .hd .x{margin-left:auto;border:2px solid var(--ink);min-height:40px;padding:9px 10px;font-size:12px}
+.sheet .bd{padding:10px 12px 16px;overflow-y:auto}
+.kv{display:flex;gap:8px;font-size:12px;padding:8px 0;border-bottom:1px solid var(--grid)}
+.kv b{font-family:var(--mono);min-width:64px}
+.kv span{flex:1;color:var(--ink2)}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.pick label{display:flex;align-items:center;gap:8px;min-height:40px;font-size:12px;border-bottom:1px solid var(--grid)}
+.pick input{appearance:none;width:18px;height:18px;border:2px solid var(--ink);position:relative;flex:none;background:var(--cell)}
+.pick input:checked{background:var(--ink)}
+.pick input:checked::after{content:"✓";color:var(--cell);font-size:12px;position:absolute;left:2px;top:-2px}
+.ta{width:100%;min-height:76px;margin-top:10px;border:2px solid var(--ink);padding:9px;font:12px/1.6 var(--sans);resize:none;background:var(--cell)}
+.ta::placeholder{color:var(--ink2)}
+.ft{display:flex;gap:8px;margin-top:12px}
+.ft .btn{flex:1;text-align:center}
+.recips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.recips span{display:flex;gap:5px;align-items:center;font-size:12px;border:1px solid var(--ink2);padding:3px 6px}
+.recips b{font-family:var(--mono);font-size:12px;background:var(--teal);color:var(--cell);padding:0 4px}
+
+/* 动效：硬切填入 */
+.fill{animation:fill .12s linear both;animation-delay:var(--d,0ms)}
+@keyframes fill{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+html.full .desk{padding:0;background:var(--bone);align-items:flex-start}
+html.full .phone{height:auto;max-height:none;border:0;box-shadow:none}
+html.full .scroll{overflow:visible}
+@media (max-width:300px){
+  .bar{flex-wrap:wrap}
+  .chip{flex:1 1 46%}
+  .grid2{grid-template-columns:1fr}
+  .cell.wide{grid-column:1}
+  .kpi{grid-template-columns:1fr 1fr}
+  .kpi button:nth-child(2){border-right:0}
+  .mat{grid-template-columns:1fr 1fr}
+  .tabbar{flex-wrap:wrap}
+  .tabbar button{flex:1 1 33.33%}
+}
+@media (max-width:430px){
+  .desk{padding:0;background:var(--bone);min-height:0}
+  .phone{width:100%;height:100vh;height:100dvh;border:0;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="desk">
+
+<div class="phone" id="app">
+  <header class="top">
+    <span class="mark">明</span><span class="nm">运营工作台 · 今天</span>
+    <span class="sp"><span class="bell">▤<b>2</b></span><span class="role">运营</span></span>
+  </header>
+  <div class="scroll" id="scroller">
+    <div class="head">
+      <div class="h1">运营工作台 · 今天</div>
+      <div class="ln">运营 · 小林（我）　待办第一 · 早班先消化昨晚夜场</div>
+    </div>
+    <div class="bar">
+      <button class="chip" data-shift="am" aria-pressed="true">早班 7:30-16:30</button>
+      <button class="chip" data-shift="pm" aria-pressed="false">晚班 16:30-01:30</button>
+      <button class="send" id="openCompose">群发通知</button>
+    </div>
+
+    <div class="grid2" id="todos">
+      <div class="cell wide fill" style="--d:0ms" id="e1">
+        <div class="who">昨晚 11 场 <em>自动摘要 · AI 汇总的 3 条</em></div>
+        <div class="tags"><span class="tag lv-ok">正常</span><span class="tag lv-risk">异常</span><span class="tag lv-ok">正常</span></div>
+        <p>合计 34.2 万 · 比上周 <em>+2.4%</em>　｜　老K <em>1.1 万</em> · 14 天最低 · 22 点档大场分流　｜　茉莉第 2 场 · 涨粉 <em>86</em></p>
+        <div class="acts"><button class="btn pri" data-digest="e1">标记已消化</button><button class="btn">去复盘</button><span class="note"></span></div>
+      </div>
+
+      <div class="cell fill" style="--d:40ms" id="e2">
+        <span class="cut"></span>
+        <div class="who">老K<em>盯场复盘</em></div>
+        <div class="tags"><span class="tag src">预警</span><span class="tag lv-risk">有风险</span></div>
+        <p>音浪 <em>1.1 万</em> · 上周 −<em>42%</em> · 22:00 档 2 个大场分流</p>
+        <div class="acts"><button class="btn pri">去复盘</button><button class="btn">看详情</button></div>
+      </div>
+
+      <div class="cell fill" style="--d:80ms" id="e3">
+        <span class="cut"></span>
+        <div class="who">阿哲<em>流水跟踪</em></div>
+        <div class="tags"><span class="tag src">预警</span><span class="tag lv-risk">有风险</span></div>
+        <p>连续 <em>3</em> 天下滑 · 近 7 天 <em>−16%</em> · 停留 <em>38→26 秒</em></p>
+        <div class="acts"><button class="btn pri">去复盘</button><button class="btn">看详情</button></div>
+      </div>
+
+      <div class="cell fill" style="--d:120ms" id="e4">
+        <span class="cut follow"></span>
+        <div class="who">晓晓<em>话术节奏</em></div>
+        <div class="tags"><span class="tag src">预警</span><span class="tag lv-follow">待跟进</span></div>
+        <p>话术两周未换 · 峰值只剩上周 <em>7 成</em></p>
+        <div class="acts"><button class="btn pri">生成规划</button><button class="btn">看详情</button></div>
+      </div>
+
+      <div class="cell fill" style="--d:160ms" id="e5">
+        <span class="cut follow"></span>
+        <div class="who">麦子<em>新人孵化</em></div>
+        <div class="tags"><span class="tag src">记录</span><span class="tag lv-follow">待跟进</span></div>
+        <p>新人第 <em>6</em> 天 · 明天结业评估 · 首场排早场</p>
+        <div class="acts"><button class="btn">看详情</button><button class="btn">发消息</button></div>
+      </div>
+
+      <div class="cell fill" style="--d:200ms" id="e6">
+        <span class="cut follow"></span>
+        <div class="who">茉莉<em>风险合规</em></div>
+        <div class="tags"><span class="tag src">预警</span><span class="tag lv-follow">待跟进</span></div>
+        <p>自检「背景」未过 · 出现品牌标识 · <em>21:00</em> 前撤掉</p>
+        <div class="acts"><button class="btn pri">转视觉</button><button class="btn">发消息</button></div>
+      </div>
+
+      <div class="cell wide fill" style="--d:240ms" id="e7">
+        <div class="who">话术沉淀<em>草稿 · 采纳才入库</em></div>
+        <div class="tags"><span class="tag src draft">草稿</span><span class="tag">待拍板</span></div>
+        <p>要点 收尾连唱 2 首 ＋ 唱完报下次歌单　｜　佐证 该段停留 <em>41 秒</em>（全场最高）</p>
+        <div class="acts">
+          <button class="btn pri" data-draft="yes">采纳</button>
+          <button class="btn" data-draft="edit">修改</button>
+          <button class="btn weak" data-draft="no">不用</button>
+          <span class="note" data-note-text></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2" id="todosPm" hidden>
+      <div class="cell fill" style="--d:0ms">
+        <div class="who">老K<em>盯场复盘 · 记录</em></div>
+        <div class="tags"><span class="tag src">记录</span><span class="tag">今晚 22:00</span></div>
+        <p>开播前过六项自检 灯光／背景／妆容／服装／机位／道具 · 昨晚机位偏半格</p>
+        <div class="acts"><button class="btn">看详情</button><button class="btn">发消息</button></div>
+      </div>
+      <div class="cell wide fill" style="--d:30ms">
+        <div class="who">晓晓<em>话术节奏 · 草稿 · 采纳才生效</em></div>
+        <div class="tags"><span class="tag src draft">草稿</span><span class="tag">今晚 21:00 场</span><span class="tag lv-follow">待拍板</span></div>
+        <p>要点 评论区热词起头 · 30 秒内点一次歌　｜　目标 峰值拉回上周 <em>9 成</em></p>
+        <div class="acts"><button class="btn pri" data-draft="yes">采纳</button><button class="btn" data-draft="edit">修改</button><button class="btn weak" data-draft="no">不用</button><span class="note" data-note-text></span></div>
+      </div>
+      <div class="cell fill" style="--d:60ms">
+        <div class="who">栗子<em>新人孵化 · 记录</em></div>
+        <div class="tags"><span class="tag src">记录</span><span class="tag lv-follow">待跟进</span></div>
+        <p>新人第 <em>9</em> 天 · 19:30 场盯前 30 分钟 · 进房率健康线 <em>20-25%</em></p>
+        <div class="acts"><button class="btn">看详情</button><button class="btn">发消息</button></div>
+      </div>
+      <div class="cell fill" style="--d:90ms">
+        <div class="who">茉莉<em>风险合规 · 记录</em></div>
+        <div class="tags"><span class="tag src">记录</span><span class="tag lv-follow">待跟进</span></div>
+        <p>开播前撤背景标识 · 视觉组工单已转 · <em>19:00</em> 前回传</p>
+        <div class="acts"><button class="btn">看详情</button><button class="btn weak">催一下</button></div>
+      </div>
+    </div>
+
+    <div class="kpi">
+      <button data-drill="13"><span class="n">13</span><span class="k">在管主播<em>可下钻</em></span></button>
+      <button><span class="n">10</span><span class="k">今日应播<em>&nbsp;</em></span></button>
+      <button data-drill="6"><span class="n">6</span><span class="k">已开播<em>3 个在播</em></span></button>
+      <button data-drill="18.8"><span class="n">18.8<i>万</i></span><span class="k">今日音浪<em>3 场在播</em></span></button>
+    </div>
+
+    <div class="sec"><b>今日开播 · 10 场 · 3 个在播</b><span class="tap" id="tabDone">已处理 1</span></div>
+    <div class="sec" id="secDone" hidden><b>已处理 1</b><span class="tap" id="tabTodo">回到待办</span></div>
+    <div class="mat" id="mat">
+      <div class="m"><span class="cut follow"></span><div class="n">栗子</div><div class="t">19:30-22:30</div>
+        <div class="rk">新人 9 天换 2 个时段</div><span class="band dash"></span></div>
+      <div class="m"><div class="n">茉莉</div><div class="t">21:00-24:00</div>
+        <div class="rk quiet">背景待撤 · 21:00 前</div><span class="band"></span></div>
+      <div class="m"><div class="n">晓晓</div><div class="t">21:00-23:30</div>
+        <div class="rk">峰值剩 7 成</div><span class="band dash"></span></div>
+      <div class="m"><div class="n">老K</div><div class="t">22:00-01:00</div>
+        <div class="rk">−42% · 大场分流</div><span class="band dash"></span></div>
+      <div class="m"><div class="n">阿哲</div><div class="t">18:00-21:00</div>
+        <div class="rk">停留 38→26 秒</div><span class="band off"></span></div>
+      <div class="m"><span class="cut"></span><div class="n">小雨</div><div class="t">20:00-23:00</div>
+        <div class="rk quiet">无风险</div><span class="band"></span></div>
+      <div class="m"><div class="n">大乔</div><div class="t">19:00-22:00</div>
+        <div class="rk quiet">无风险</div><span class="band"></span></div>
+      <div class="m"><div class="n">甜甜</div><div class="t">21:00-24:00</div>
+        <div class="rk quiet">无风险</div><span class="band off"></span></div>
+      <div class="m"><div class="n">九九</div><div class="t">20:00-23:00</div>
+        <div class="rk quiet">无风险</div><span class="band off"></span></div>
+    </div>
+
+    <div class="mat" id="matAll" hidden>
+      <div class="m dou"><div class="n">豆豆</div><div class="t">10-15 返岗</div>
+        <div class="rk quiet">请假已批 · 今天 09:12</div><span class="band hatch"></span></div>
+      <div class="m"><div class="n">麦子</div><div class="t">新人第 6 天</div>
+        <div class="rk quiet">新人 · 待首播</div><span class="band double"></span></div>
+      <div class="m"><div class="n">喵喵</div><div class="t">连续 2 天未播</div>
+        <div class="rk">今日未播 · 消息回得慢</div><span class="band dot"></span></div>
+      <div class="m"><div class="n">安琪</div><div class="t">&nbsp;</div>
+        <div class="rk quiet">排休</div><span class="band hatch"></span></div>
+    </div>
+
+    <div class="sec" style="border-top:2px solid var(--ink)"><b>这里的 13 个人</b><span class="tap" id="tabAll">只看今日开播</span></div>
+    <div id="delivered"></div>
+    <div class="tail"></div>
+  </div>
+
+  <nav class="tabbar">
+    <button aria-current="page">今天</button><button>我的主播</button><button>交接</button><button>我的</button><button>助理</button>
+  </nav>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <div class="sheet" id="sheetKpi" hidden>
+    <div class="hd"><b id="kpiTitle">在管主播 13</b><button class="x" data-close>关闭</button></div>
+    <div class="bd" id="kpiBody"></div>
+  </div>
+  <div class="sheet" id="sheetCompose" hidden>
+    <div class="hd"><b>群发通知</b><button class="x" data-close>关闭</button></div>
+    <div class="bd">
+      <div style="font-size:12px;color:var(--ink2)">选人、写通知，送达状态逐人可见 · 已选 <span id="pickCount">0</span> 人</div>
+      <div class="pick" id="pickList"></div>
+      <textarea class="ta" id="msgText" placeholder="比如：今晚全员提前十分钟开播"></textarea>
+      <div class="ft"><button class="btn" data-close>取消</button><button class="btn pri" id="doSend" disabled>发送</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- P13 经营大盘：数字格 -->
+<div class="phone" id="p13" hidden>
+  <header class="top"><span class="mark">明</span><span class="nm">经营大盘</span>
+    <span class="sp"><span class="bell">▤<b>2</b></span><span class="role">老板</span></span></header>
+  <div class="scroll">
+    <div class="head"><div class="h1">经营大盘</div>
+      <div class="ln">公会老板 · 星曜传媒</div>
+      <div class="ln">今天谁在播、赚多少、谁有风险</div></div>
+    <div class="bar"><button class="send" style="margin-left:0">生成经营周报</button></div>
+    <div class="kpi">
+      <button><span class="n">86</span><span class="k">主播规模<em>较上月 +5</em></span></button>
+      <button><span class="n">61</span><span class="k">活跃主播<em>10 有效天</em></span></button>
+      <button data-drill="1560"><span class="n">1560<i>万</i></span><span class="k">本月音浪<em>↑6.4%</em></span></button>
+      <button data-drill="71"><span class="n">71<i>%</i></span><span class="k">今日开播率<em>61/86 人在播</em></span></button>
+    </div>
+    <div class="sec"><b>本月平台任务</b><span>官方口径自动算</span></div>
+    <div class="grid2" style="grid-template-columns:1fr 1fr">
+      <div class="cell" style="min-height:96px"><div class="who" style="font-size:14px">拉新主播</div>
+        <p><em>12/20</em> · 还差 8 人</p><div class="bar-track" data-task="60"></div></div>
+      <div class="cell" style="min-height:96px"><div class="who" style="font-size:14px">活跃主播</div>
+        <p><em>61/75</em> · 还差 14 人</p><div class="bar-track" data-task="81"></div></div>
+      <div class="cell wide" style="min-height:80px"><div class="who" style="font-size:14px">月音浪 <em>1560/3500 万</em> · 还差 1940 万</div>
+        <div class="bar-track" data-task="45"></div></div>
+    </div>
+    <div class="sec"><b>异常 · 要处理 2</b><span>预警自动生成</span></div>
+    <div class="grid2" style="grid-template-columns:1fr 1fr">
+      <div class="cell"><span class="cut"></span><div class="who">阿哲</div>
+        <div class="tags"><span class="tag src">预警</span><span class="tag lv-risk">有风险</span></div>
+        <p>连续 3 天流水下滑 · 近 7 天少 <em>16%</em></p>
+        <div class="acts"><button class="btn pri">去处理</button></div></div>
+      <div class="cell"><span class="cut follow"></span><div class="who">喵喵</div>
+        <div class="tags"><span class="tag src">预警</span><span class="tag lv-follow">待跟进</span></div>
+        <p>连续 2 天没开播 · 消息回得慢</p>
+        <div class="acts"><button class="btn pri">去处理</button></div></div>
+    </div>
+    <div class="sec"><b>公会 vs 行业基准</b><span>同一把尺</span></div>
+    <div class="grid2" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="cell" style="min-height:88px"><div class="who" style="font-size:13px">开播率</div>
+        <p><em>71%</em> / 65%</p><span class="tag lv-ok">高于基准</span></div>
+      <div class="cell" style="min-height:88px"><div class="who" style="font-size:13px">活跃率</div>
+        <p><em>71%</em> / 62%</p><span class="tag lv-ok">高于基准</span></div>
+      <div class="cell" style="min-height:88px"><div class="who" style="font-size:13px">新人留存</div>
+        <p><em>74%</em> / 76%</p><span class="tag lv-follow">低 2 个点</span></div>
+    </div>
+    <div class="tail"></div>
+  </div>
+  <nav class="tabbar"><button aria-current="page">今天</button><button>主播</button><button>预警</button><button>我的</button><button>助理</button></nav>
+</div>
+
+<section class="phone" id="forms" hidden style="overflow-y:auto"></section>
+</div>
+
+<script>
+(function(){
+  var q = new URLSearchParams(location.search), state = q.get('state') || 'app';
+  var app = document.getElementById('app'), p13 = document.getElementById('p13'), forms = document.getElementById('forms');
+  if (state === 'full') document.documentElement.classList.add('full');
+
+  document.querySelectorAll('.bar-track').forEach(function(t){
+    t.style.cssText = 'height:10px;margin-top:6px;background:var(--grid);border:1px solid var(--ink);position:relative';
+    var i = document.createElement('i');
+    i.style.cssText = 'position:absolute;inset:0 auto 0 0;background:var(--ink);width:' + t.dataset.task + '%';
+    t.appendChild(i);
+  });
+
+  if (state === 'p13') { app.hidden = true; p13.hidden = false; return; }
+  if (state === 'forms') {
+    app.hidden = true; forms.hidden = false; forms.style.background = 'var(--bone)';
+    forms.insertAdjacentHTML('afterbegin', '<div class="head"><div class="h1">卡形态 · 三张代表卡</div><div class="ln">自动摘要格 / 预警格 / 草稿格</div></div>');
+    var wrap = document.createElement('div'); wrap.className = 'grid2'; wrap.style.gridTemplateColumns = '1fr';
+    forms.appendChild(wrap);
+    ['e1','e2','e7'].forEach(function(id){ wrap.appendChild(document.getElementById(id)); });
+    return;
+  }
+
+  // 班次 + 页签（矩阵互换 + 全员矩阵）
+  var shift = 'am', tab = 'todo', showAll = false;
+  function apply(){
+    document.getElementById('todos').hidden = shift === 'pm' || tab === 'done';
+    document.getElementById('todosPm').hidden = shift !== 'pm' || tab !== 'todo';
+    var all = document.getElementById('matAll');
+    all.classList.toggle('doneonly', tab === 'done');
+    document.getElementById('mat').hidden = tab === 'done' || showAll;
+    all.hidden = !(tab === 'done' || showAll);
+    document.getElementById('secDone').hidden = tab !== 'done';
+    document.getElementById('tabAll').textContent = showAll ? '只看今日开播' : '这里的 13 个人';
+    var g = document.getElementById('todos');
+    g.classList.remove('fill'); void g.offsetWidth; g.classList.add('fill');
+  }
+  apply();
+  document.querySelectorAll('[data-shift]').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      shift = chip.dataset.shift; tab = 'todo'; showAll = false;
+      document.querySelectorAll('[data-shift]').forEach(function(c){ c.setAttribute('aria-pressed', String(c === chip)); });
+      apply();
+    });
+  });
+  document.getElementById('tabDone').addEventListener('click', function(){ tab = 'done'; showAll = true; apply(); });
+  document.getElementById('tabTodo').addEventListener('click', function(){ tab = 'todo'; apply(); });
+  document.getElementById('tabAll').addEventListener('click', function(){ showAll = !showAll; apply(); });
+
+  // 草稿：采纳 = 整格填入墨青
+  document.querySelectorAll('[data-draft]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var cell = b.closest('.cell'), kind = b.dataset.draft;
+      cell.querySelectorAll('[data-draft]').forEach(function(x){ x.disabled = true; });
+      if (kind === 'yes') {
+        cell.classList.add('adopted');
+        var tag = cell.querySelector('.tag.src'); if (tag) { tag.textContent = '已入库'; tag.className = 'tag'; }
+        cell.querySelector('.note').textContent = '已入库 · 生效';
+      } else if (kind === 'edit') {
+        cell.querySelector('.note').textContent = '等你的修改';
+      } else {
+        cell.classList.add('struck');
+        cell.querySelector('.note').textContent = '不入库';
+      }
+    });
+  });
+  document.querySelectorAll('[data-digest]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var cell = b.closest('.cell'); if (cell.dataset.done) return; cell.dataset.done = 1;
+      cell.classList.add('struck'); b.disabled = true; b.textContent = '已消化';
+      cell.querySelector('.note').textContent = '已记一笔';
+    });
+  });
+
+  // 弹层
+  var scrim = document.getElementById('scrim'), sheets = { kpi: document.getElementById('sheetKpi'), compose: document.getElementById('sheetCompose') };
+  function open(w){ scrim.hidden = false; requestAnimationFrame(function(){ scrim.classList.add('on'); sheets[w].hidden = false; requestAnimationFrame(function(){ sheets[w].classList.add('on'); }); }); }
+  function close(){ scrim.classList.remove('on'); Object.keys(sheets).forEach(function(k){ sheets[k].classList.remove('on'); });
+    setTimeout(function(){ scrim.hidden = true; Object.keys(sheets).forEach(function(k){ sheets[k].hidden = true; }); }, 180); }
+  scrim.addEventListener('click', close);
+  document.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', close); });
+  var kpi = {
+    '13': { t:'在管主播 13', rows:[['直播中 3','小雨 · 大乔 · 茉莉'],['已下播 3','甜甜 · 阿哲 · 九九'],['未开播 3','栗子 · 晓晓 · 老K'],['请假 1','豆豆 · 10-15 返岗'],['新人 1','麦子 · 第 6 天'],['今日未播 1','喵喵'],['排休 1','安琪']] },
+    '6': { t:'已开播 6 · 3 个在播', rows:[['直播中 3','小雨 · 大乔 · 茉莉'],['已播完 3','甜甜 · 阿哲 · 九九'],['待播 4','10 场里还剩 4 场']] },
+    '18.8': { t:'今日音浪 18.8 万', rows:[['在播 3 场','小雨 · 大乔 · 茉莉'],['已播完 3 场','甜甜 · 阿哲 · 九九'],['待播 4','10 场里还剩 4 场']] },
+    '1560': { t:'本月音浪 1560 万', rows:[['本月平台任务','1560/3500 万 · 还差 1940 万'],['口径','官方口径自动算']] },
+    '71': { t:'今日开播率 71%', rows:[['已开播','61 人'],['主播规模','86 人']] }
+  };
+  document.querySelectorAll('[data-drill]').forEach(function(cell){
+    cell.addEventListener('click', function(){
+      var d = kpi[cell.dataset.drill]; if (!d) return;
+      document.getElementById('kpiTitle').textContent = d.t;
+      document.getElementById('kpiBody').innerHTML = d.rows.map(function(r){ return '<div class="kv"><b>' + r[0] + '</b><span>' + r[1] + '</span></div>'; }).join('');
+      open('kpi');
+    });
+  });
+  var names = ['小雨','大乔','甜甜','茉莉','阿哲','九九','栗子','晓晓','老K','麦子','豆豆','喵喵','安琪'];
+  var list = document.getElementById('pickList');
+  list.innerHTML = names.map(function(n){ return '<label><input type="checkbox" value="' + n + '">' + n + '</label>'; }).join('');
+  var doSend = document.getElementById('doSend'), ta = document.getElementById('msgText'), cnt = document.getElementById('pickCount');
+  function sync(){ var n = list.querySelectorAll('input:checked').length; cnt.textContent = n; doSend.disabled = !(n && ta.value.trim()); }
+  list.addEventListener('change', sync); ta.addEventListener('input', sync);
+  document.getElementById('openCompose').addEventListener('click', function(){ open('compose'); });
+  doSend.addEventListener('click', function(){
+    var picked = [].slice.call(list.querySelectorAll('input:checked')).map(function(i){ return i.value; }), text = ta.value.trim();
+    document.getElementById('delivered').innerHTML =
+      '<div class="grid2" style="grid-template-columns:1fr"><div class="cell" style="min-height:80px">' +
+        '<div class="who">群发通知 <em>我发出 · ' + picked.length + ' 人 · 已送达</em></div>' +
+        '<p>' + text + '</p><div class="recips">' + picked.map(function(n){ return '<span>' + n + ' <b>已送达</b></span>'; }).join('') + '</div>' +
+      '</div></div>';
+    close(); document.getElementById('scroller').scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>

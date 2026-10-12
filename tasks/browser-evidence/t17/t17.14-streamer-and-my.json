@@ -1,0 +1,85 @@
+{
+  "task": "T17.14",
+  "date": "2026-10-11",
+  "source": "http://127.0.0.1:8791/明镜产品原型.html",
+  "viewports": {
+    "320x568": {
+      "routes": [
+        {"route":"P80","screen":[318,318],"body":[318,318],"bodyHeight":[433,967],"scrollbarWidth":"none","scrollWorks":true,"bottomNavWithinScreen":true},
+        {"route":"P81","screen":[318,318],"body":[318,318],"bodyHeight":[433,698],"scrollbarWidth":"none","scrollWorks":true,"bottomNavWithinScreen":true},
+        {"route":"P82","screen":[318,318],"body":[318,318],"bodyHeight":[433,735],"scrollbarWidth":"none","scrollWorks":true,"bottomNavWithinScreen":true},
+        {"route":"P83","screen":[318,318],"body":[318,318],"bodyHeight":[433,433],"scrollbarWidth":"none","internalScrollerCount":3,"allScrollerBarsHidden":true,"bottomNavWithinScreen":true},
+        {"route":"P84","screen":[318,318],"body":[318,318],"bodyHeight":[433,481],"scrollbarWidth":"none","scrollWorks":true,"bottomNavWithinScreen":true},
+        {"route":"P85","screen":[318,318],"body":[318,318],"bodyHeight":[433,433],"scrollbarWidth":"none","bottomNavWithinScreen":true}
+      ],
+      "P80SelfCheck": {
+        "dialogRect": [1, 319, 102.9, 567],
+        "footerButtonRect": [217, 307, 513, 561],
+        "viewport": [320, 568],
+        "scrollbarWidth": "none",
+        "allSixItemsCompleted": true,
+        "result": "六项完成后状态变为已回传，按钮仍可见。"
+      },
+      "P83Keyboard": {
+        "screenRect": [1, 1, 319, 567],
+        "inputRect": [509, 553],
+        "sendButtonRect": [259, 507, 307, 555],
+        "focusedNavDisplay": "none",
+        "blurNavTop": 499,
+        "blurSendBottom": 487,
+        "noOverlapAfterBlur": true,
+        "bodyScrollWidth": 318,
+        "scrollbarWidth": "none"
+      }
+    },
+    "390x844": {
+      "routes": [
+        {"route":"P80","screen":[388,388],"body":[388,388],"bodyHeight":[709,985],"scrollbarWidth":"none","scrollWorks":true,"bottomNavWithinScreen":true},
+        {"route":"P81","screen":[388,388],"body":[388,388],"bodyHeight":[709,709],"scrollbarWidth":"none","bottomNavWithinScreen":true},
+        {"route":"P82","screen":[388,388],"body":[388,388],"bodyHeight":[709,741],"scrollbarWidth":"none","scrollWorks":true,"bottomNavWithinScreen":true},
+        {"route":"P83","screen":[388,388],"body":[388,388],"bodyHeight":[709,709],"scrollbarWidth":"none","internalScrollerCount":1,"allScrollerBarsHidden":true,"bottomNavWithinScreen":true},
+        {"route":"P84","screen":[388,388],"body":[388,388],"bodyHeight":[709,709],"scrollbarWidth":"none","bottomNavWithinScreen":true},
+        {"route":"P85","screen":[388,388],"body":[388,388],"bodyHeight":[709,709],"scrollbarWidth":"none","bottomNavWithinScreen":true}
+      ]
+    }
+  },
+  "identityMyFlows": {
+    "method": "In the live browser, clicked each P00 identity row, then clicked the visible bottom tab labelled 我的.",
+    "viewport": "390x844",
+    "results": [
+      {"role":"boss","landing":"P16","scope":"查看全公司经营数据与结算","workEntries":["经营看板","主播档案","风险预警"]},
+      {"role":"yunying","landing":"MY","scope":"查看自己名下主播与工作事项","workEntries":[],"identitySwitch":"single row; no duplicate shortcuts"},
+      {"role":"jingji","landing":"MY","scope":"查看自己负责的主播与招募线索","workEntries":["今日回访","招募线索","关怀跟进"]},
+      {"role":"peixun","landing":"MY","scope":"查看在训学员、成长任务与考核","workEntries":["培训工作台","成长任务","考核记录"]},
+      {"role":"zhuangzao","landing":"MY","scope":"查看视觉服务单与直播间排期","workEntries":["服务排期","妆造单","直播间调试"]},
+      {"role":"biandao","landing":"MY","scope":"查看选题与脚本任务","workEntries":["内容工作台","脚本任务"]},
+      {"role":"jianji","landing":"MY","scope":"查看分配给自己的剪辑需求单","workEntries":["剪辑需求单"]},
+      {"role":"caiwu","landing":"MY","scope":"查看平台账期与主播账单","workEntries":["结算工作台","主播账单"]},
+      {"role":"zongjian","landing":"MY","scope":"查看各运营组经营情况与组织分组","workEntries":["经营看板","组织分组"]},
+      {"role":"zuzhang","landing":"MY","scope":"查看本组主播、待办与协作记录","workEntries":["组务工作台"]},
+      {"role":"zhubo","landing":"P84","scope":"主播收益、排班、资料与账号权益视图","workEntries":["收益与身份","我的排班","资料与账户"]},
+      {"role":"plat","landing":"MY","organization":"明镜平台","scope":"查看平台入驻、公会与经营信息","workEntries":["入驻审核","公会管理","平台看板"]}
+    ],
+    "widths": "All twelve landings measured screen/body width 388px and scrollWidth 388px; computed scrollbar-width was none."
+  },
+  "businessFlows": [
+    "P80: checked all six pre-live self-check items; completion displayed 6/6 and 已回传. The 320x568 modal's footer action stayed within the screen.",
+    "P81: confirmed the current plan; its state changed to 已确认 and the action became disabled. Opened historical plans and returned to the current-plan tab.",
+    "P82: opened data evidence and historical reviews; returned using the existing today navigation.",
+    "P84: switched among 收益与身份, 我的排班, and 资料与账户; month/currency, weekly schedule, streamer identity and guild details remained visible.",
+    "P85: viewed guild account activation/benefits, switched to independent basic account, checked membership eligibility, and switched back to the guild account. No membership purchase action was triggered.",
+    "P83: focusing the streamer assistant input adds keyboard-open and hides the bottom navigation; Tab moves focus to 发送, clears the state, and restores navigation. At 320x568, the input and send action remain inside the screen without overlap."
+  ],
+  "console": {"route":"P83","viewport":"320x568","errors":0,"warnings":0,"messages":[]},
+  "automatedChecks": {
+    "targeted": "node --test tasks/streamer-flow.test.mjs tasks/role-profile-pages.test.mjs tasks/operations-refinements.test.mjs; 21/21 passed",
+    "fullSuite": "node --test tasks/*.test.mjs; 121/121 passed",
+    "staticCheck": "node tasks/check-prototype.mjs passed",
+    "diffCheck": "T17.14 files passed git diff --check"
+  },
+  "screenshots": {"viewed":false,"archived":false,"note":"This task's evidence is live browser accessibility snapshots, DOM geometry, computed styles, and actual clicks; no PNG is archived."},
+  "limitations": [
+    "Chrome DevTools mobile emulation verified focus/blur layout, not a physical operating-system keyboard.",
+    "The screenshot tool was not used for this task; visual evidence is recorded through live DOM and computed geometry."
+  ]
+}

@@ -1,0 +1,7995 @@
+{
+  "task": "T17.16",
+  "date": "2026-10-11",
+  "target": "http://127.0.0.1:8791/明镜产品原型.html",
+  "browser": "Chrome DevTools isolated page, mobile/touch emulation",
+  "captureContext": "Screenshots capture the browser viewport directly; no reviewer side panel is included in the image. Phone canvas client size is listed per screenshot.",
+  "dimensions": [
+    [
+      320,
+      844
+    ],
+    [
+      360,
+      844
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      430,
+      844
+    ],
+    [
+      320,
+      568
+    ],
+    [
+      360,
+      480
+    ]
+  ],
+  "summary": {
+    "viewports": [
+      {
+        "viewport": [
+          320,
+          844
+        ],
+        "routeCount": 49,
+        "routeFailures": 0,
+        "rootHorizontalOverflow": 0,
+        "visibleScrollbarFailures": 0,
+        "scrollFailures": 0,
+        "clippedControls": 0,
+        "navBoundsFailures": 0,
+        "horizontalScrollRoutes": [
+          "P21"
+        ],
+        "unexpectedHorizontalScrollRoutes": []
+      },
+      {
+        "viewport": [
+          360,
+          844
+        ],
+        "routeCount": 49,
+        "routeFailures": 0,
+        "rootHorizontalOverflow": 0,
+        "visibleScrollbarFailures": 0,
+        "scrollFailures": 0,
+        "clippedControls": 0,
+        "navBoundsFailures": 0,
+        "horizontalScrollRoutes": [
+          "P21"
+        ],
+        "unexpectedHorizontalScrollRoutes": []
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "routeCount": 49,
+        "routeFailures": 0,
+        "rootHorizontalOverflow": 0,
+        "visibleScrollbarFailures": 0,
+        "scrollFailures": 0,
+        "clippedControls": 0,
+        "navBoundsFailures": 0,
+        "horizontalScrollRoutes": [
+          "P21"
+        ],
+        "unexpectedHorizontalScrollRoutes": []
+      },
+      {
+        "viewport": [
+          430,
+          844
+        ],
+        "routeCount": 49,
+        "routeFailures": 0,
+        "rootHorizontalOverflow": 0,
+        "visibleScrollbarFailures": 0,
+        "scrollFailures": 0,
+        "clippedControls": 0,
+        "navBoundsFailures": 0,
+        "horizontalScrollRoutes": [],
+        "unexpectedHorizontalScrollRoutes": []
+      },
+      {
+        "viewport": [
+          320,
+          568
+        ],
+        "routeCount": 49,
+        "routeFailures": 0,
+        "rootHorizontalOverflow": 0,
+        "visibleScrollbarFailures": 0,
+        "scrollFailures": 0,
+        "clippedControls": 0,
+        "navBoundsFailures": 0,
+        "horizontalScrollRoutes": [
+          "P21"
+        ],
+        "unexpectedHorizontalScrollRoutes": []
+      },
+      {
+        "viewport": [
+          360,
+          480
+        ],
+        "routeCount": 49,
+        "routeFailures": 0,
+        "rootHorizontalOverflow": 0,
+        "visibleScrollbarFailures": 0,
+        "scrollFailures": 0,
+        "clippedControls": 0,
+        "navBoundsFailures": 0,
+        "horizontalScrollRoutes": [
+          "P21"
+        ],
+        "unexpectedHorizontalScrollRoutes": []
+      }
+    ],
+    "pairCount": 294
+  },
+  "keyboard": {
+    "route": "#P20",
+    "viewport": [
+      320,
+      568
+    ],
+    "focusRegion": "main .mbody; role=region, tabindex=0",
+    "pageDown": {
+      "scrollTopBefore": 0,
+      "scrollTopAfter": 362
+    },
+    "space": {
+      "scrollTopBefore": 0,
+      "scrollTopAfter": 362
+    },
+    "shiftSpace": {
+      "scrollTopAfter": 0
+    },
+    "focusIndicator": {
+      "outline": "solid 2px"
+    },
+    "scrollbarWidth": "none"
+  },
+  "keyBehavior": "PageDown/PageUp, ArrowUp/Down, Home/End, Space and Shift+Space move the focused main content region; focused child controls and modal-open content are not intercepted.",
+  "specialCases": {
+    "P21": "At 320/360/390 widths, partially clipped filter chips are hidden behind the edge cue; remaining visible labels/counts fit fully. At 430 all five fit with no horizontal scroll.",
+    "P83": "At all six sizes, send control is 64×48px and its label remains one line."
+  },
+  "screenshots": [
+    {
+      "family": "identity-entry",
+      "hash": "#P00",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-identity-entry-390x844.webp"
+    },
+    {
+      "family": "platform-organization",
+      "hash": "#P01",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-platform-organization-390x844.webp"
+    },
+    {
+      "family": "identity-onboarding",
+      "hash": "#P10",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-identity-onboarding-390x844.webp"
+    },
+    {
+      "family": "business-management",
+      "hash": "#P13",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-business-management-390x844.webp"
+    },
+    {
+      "family": "operations-risk",
+      "hash": "#P15",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-operations-risk-390x844.webp"
+    },
+    {
+      "family": "operations-workbench",
+      "hash": "#P20",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-operations-workbench-390x844.webp"
+    },
+    {
+      "family": "streamer-roster",
+      "hash": "#P21",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-streamer-roster-390x844.webp"
+    },
+    {
+      "family": "streamer-detail",
+      "hash": "#P22",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-streamer-detail-390x844.webp"
+    },
+    {
+      "family": "planning-review",
+      "hash": "#P23",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-planning-review-390x844.webp"
+    },
+    {
+      "family": "recruitment-care",
+      "hash": "#P30",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-recruitment-care-390x844.webp"
+    },
+    {
+      "family": "training",
+      "hash": "#P40",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-training-390x844.webp"
+    },
+    {
+      "family": "service-schedule",
+      "hash": "#P50",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-service-schedule-390x844.webp"
+    },
+    {
+      "family": "service-workorder",
+      "hash": "#P51",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-service-workorder-390x844.webp"
+    },
+    {
+      "family": "content-editing",
+      "hash": "#P60",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-content-editing-390x844.webp"
+    },
+    {
+      "family": "settlement-billing",
+      "hash": "#P70",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-settlement-billing-390x844.webp"
+    },
+    {
+      "family": "streamer-home",
+      "hash": "#P80",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-streamer-home-390x844.webp"
+    },
+    {
+      "family": "streamer-assistant",
+      "hash": "#P83",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-streamer-assistant-390x844.webp"
+    },
+    {
+      "family": "messages-assistant",
+      "hash": "#P90",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-messages-assistant-390x844.webp"
+    },
+    {
+      "family": "organization-management",
+      "hash": "#P93",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-organization-management-390x844.webp"
+    },
+    {
+      "family": "personal-center",
+      "hash": "#MY",
+      "viewport": [
+        390,
+        844
+      ],
+      "phoneCanvas": [
+        388,
+        842
+      ],
+      "file": "t17.16-personal-center-390x844.webp"
+    }
+  ],
+  "measurements": [
+    {
+      "viewport": [
+        320,
+        844
+      ],
+      "routes": [
+        {
+          "id": "P00",
+          "hash": "#P00",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P01",
+          "hash": "#P01",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P02",
+          "hash": "#P02",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P03",
+          "hash": "#P03",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P10",
+          "hash": "#P10",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P11",
+          "hash": "#P11",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P12",
+          "hash": "#P12",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P13",
+          "hash": "#P13",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P14",
+          "hash": "#P14",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P15",
+          "hash": "#P15",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P16",
+          "hash": "#P16",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P20",
+          "hash": "#P20",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P21",
+          "hash": "#P21",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "horizontalScrollRoutes": "P21",
+          "p21": [
+            {
+              "text": "全部\n13",
+              "fullyVisible": true
+            },
+            {
+              "text": "在播\n3",
+              "fullyVisible": true
+            },
+            {
+              "text": "未播\n5",
+              "fullyVisible": true
+            }
+          ]
+        },
+        {
+          "id": "P22",
+          "hash": "#P22",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P23",
+          "hash": "#P23",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P24",
+          "hash": "#P24",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P25",
+          "hash": "#P25",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30",
+          "hash": "#P30",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30D",
+          "hash": "#P30D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P31",
+          "hash": "#P31",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P32",
+          "hash": "#P32",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P33",
+          "hash": "#P33",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P40",
+          "hash": "#P40",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41",
+          "hash": "#P41",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41D",
+          "hash": "#P41D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P42",
+          "hash": "#P42",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P50",
+          "hash": "#P50",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P51",
+          "hash": "#P51",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P52",
+          "hash": "#P52",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P60",
+          "hash": "#P60",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P61",
+          "hash": "#P61",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P62",
+          "hash": "#P62",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P70",
+          "hash": "#P70",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P71",
+          "hash": "#P71",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P80",
+          "hash": "#P80",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P81",
+          "hash": "#P81",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P82",
+          "hash": "#P82",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P83",
+          "hash": "#P83",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "p83Send": {
+            "rect": [
+              64,
+              48
+            ],
+            "text": "发送",
+            "scrollHeight": 46,
+            "whiteSpace": "nowrap"
+          }
+        },
+        {
+          "id": "P84",
+          "hash": "#P84",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P85",
+          "hash": "#P85",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P90",
+          "hash": "#P90",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P91",
+          "hash": "#P91",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P92",
+          "hash": "#P92",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P93",
+          "hash": "#P93",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P94",
+          "hash": "#P94",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P95",
+          "hash": "#P95",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P96",
+          "hash": "#P96",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "AI",
+          "hash": "#AI",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "MY",
+          "hash": "#MY",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        }
+      ]
+    },
+    {
+      "viewport": [
+        360,
+        844
+      ],
+      "routes": [
+        {
+          "id": "P00",
+          "hash": "#P00",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P01",
+          "hash": "#P01",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P02",
+          "hash": "#P02",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P03",
+          "hash": "#P03",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P10",
+          "hash": "#P10",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P11",
+          "hash": "#P11",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P12",
+          "hash": "#P12",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P13",
+          "hash": "#P13",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P14",
+          "hash": "#P14",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P15",
+          "hash": "#P15",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P16",
+          "hash": "#P16",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P20",
+          "hash": "#P20",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P21",
+          "hash": "#P21",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "horizontalScrollRoutes": "P21",
+          "p21": [
+            {
+              "text": "全部\n13",
+              "fullyVisible": true
+            },
+            {
+              "text": "在播\n3",
+              "fullyVisible": true
+            },
+            {
+              "text": "未播\n5",
+              "fullyVisible": true
+            },
+            {
+              "text": "风险\n5",
+              "fullyVisible": true
+            }
+          ]
+        },
+        {
+          "id": "P22",
+          "hash": "#P22",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P23",
+          "hash": "#P23",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P24",
+          "hash": "#P24",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P25",
+          "hash": "#P25",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30",
+          "hash": "#P30",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30D",
+          "hash": "#P30D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P31",
+          "hash": "#P31",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P32",
+          "hash": "#P32",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P33",
+          "hash": "#P33",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P40",
+          "hash": "#P40",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41",
+          "hash": "#P41",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41D",
+          "hash": "#P41D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P42",
+          "hash": "#P42",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P50",
+          "hash": "#P50",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P51",
+          "hash": "#P51",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P52",
+          "hash": "#P52",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P60",
+          "hash": "#P60",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P61",
+          "hash": "#P61",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P62",
+          "hash": "#P62",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P70",
+          "hash": "#P70",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P71",
+          "hash": "#P71",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P80",
+          "hash": "#P80",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P81",
+          "hash": "#P81",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P82",
+          "hash": "#P82",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P83",
+          "hash": "#P83",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "p83Send": {
+            "rect": [
+              64,
+              48
+            ],
+            "text": "发送",
+            "scrollHeight": 46,
+            "whiteSpace": "nowrap"
+          }
+        },
+        {
+          "id": "P84",
+          "hash": "#P84",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P85",
+          "hash": "#P85",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P90",
+          "hash": "#P90",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P91",
+          "hash": "#P91",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P92",
+          "hash": "#P92",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P93",
+          "hash": "#P93",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P94",
+          "hash": "#P94",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P95",
+          "hash": "#P95",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P96",
+          "hash": "#P96",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "AI",
+          "hash": "#AI",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "MY",
+          "hash": "#MY",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        }
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "routes": [
+        {
+          "id": "P00",
+          "hash": "#P00",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P01",
+          "hash": "#P01",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P02",
+          "hash": "#P02",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P03",
+          "hash": "#P03",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P10",
+          "hash": "#P10",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P11",
+          "hash": "#P11",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P12",
+          "hash": "#P12",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P13",
+          "hash": "#P13",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P14",
+          "hash": "#P14",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P15",
+          "hash": "#P15",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P16",
+          "hash": "#P16",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P20",
+          "hash": "#P20",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P21",
+          "hash": "#P21",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "horizontalScrollRoutes": "P21",
+          "p21": [
+            {
+              "text": "全部\n13",
+              "fullyVisible": true
+            },
+            {
+              "text": "在播\n3",
+              "fullyVisible": true
+            },
+            {
+              "text": "未播\n5",
+              "fullyVisible": true
+            },
+            {
+              "text": "风险\n5",
+              "fullyVisible": true
+            }
+          ]
+        },
+        {
+          "id": "P22",
+          "hash": "#P22",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P23",
+          "hash": "#P23",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P24",
+          "hash": "#P24",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P25",
+          "hash": "#P25",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30",
+          "hash": "#P30",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30D",
+          "hash": "#P30D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P31",
+          "hash": "#P31",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P32",
+          "hash": "#P32",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P33",
+          "hash": "#P33",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P40",
+          "hash": "#P40",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41",
+          "hash": "#P41",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41D",
+          "hash": "#P41D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P42",
+          "hash": "#P42",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P50",
+          "hash": "#P50",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P51",
+          "hash": "#P51",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P52",
+          "hash": "#P52",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P60",
+          "hash": "#P60",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P61",
+          "hash": "#P61",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P62",
+          "hash": "#P62",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P70",
+          "hash": "#P70",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P71",
+          "hash": "#P71",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P80",
+          "hash": "#P80",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P81",
+          "hash": "#P81",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P82",
+          "hash": "#P82",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P83",
+          "hash": "#P83",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "p83Send": {
+            "rect": [
+              64,
+              48
+            ],
+            "text": "发送",
+            "scrollHeight": 46,
+            "whiteSpace": "nowrap"
+          }
+        },
+        {
+          "id": "P84",
+          "hash": "#P84",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P85",
+          "hash": "#P85",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P90",
+          "hash": "#P90",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P91",
+          "hash": "#P91",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P92",
+          "hash": "#P92",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P93",
+          "hash": "#P93",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P94",
+          "hash": "#P94",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P95",
+          "hash": "#P95",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P96",
+          "hash": "#P96",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "AI",
+          "hash": "#AI",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "MY",
+          "hash": "#MY",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            388,
+            388
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            388,
+            388
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        }
+      ]
+    },
+    {
+      "viewport": [
+        430,
+        844
+      ],
+      "routes": [
+        {
+          "id": "P00",
+          "hash": "#P00",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P01",
+          "hash": "#P01",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P02",
+          "hash": "#P02",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P03",
+          "hash": "#P03",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P10",
+          "hash": "#P10",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P11",
+          "hash": "#P11",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P12",
+          "hash": "#P12",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P13",
+          "hash": "#P13",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P14",
+          "hash": "#P14",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P15",
+          "hash": "#P15",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P16",
+          "hash": "#P16",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P20",
+          "hash": "#P20",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P21",
+          "hash": "#P21",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "p21": [
+            {
+              "text": "全部\n13",
+              "fullyVisible": true
+            },
+            {
+              "text": "在播\n3",
+              "fullyVisible": true
+            },
+            {
+              "text": "未播\n5",
+              "fullyVisible": true
+            },
+            {
+              "text": "风险\n5",
+              "fullyVisible": true
+            },
+            {
+              "text": "新人\n2",
+              "fullyVisible": true
+            }
+          ]
+        },
+        {
+          "id": "P22",
+          "hash": "#P22",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P23",
+          "hash": "#P23",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P24",
+          "hash": "#P24",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P25",
+          "hash": "#P25",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30",
+          "hash": "#P30",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30D",
+          "hash": "#P30D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P31",
+          "hash": "#P31",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P32",
+          "hash": "#P32",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P33",
+          "hash": "#P33",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P40",
+          "hash": "#P40",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41",
+          "hash": "#P41",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41D",
+          "hash": "#P41D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P42",
+          "hash": "#P42",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P50",
+          "hash": "#P50",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P51",
+          "hash": "#P51",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P52",
+          "hash": "#P52",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P60",
+          "hash": "#P60",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P61",
+          "hash": "#P61",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P62",
+          "hash": "#P62",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P70",
+          "hash": "#P70",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P71",
+          "hash": "#P71",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P80",
+          "hash": "#P80",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P81",
+          "hash": "#P81",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P82",
+          "hash": "#P82",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P83",
+          "hash": "#P83",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "p83Send": {
+            "rect": [
+              64,
+              48
+            ],
+            "text": "发送",
+            "scrollHeight": 46,
+            "whiteSpace": "nowrap"
+          }
+        },
+        {
+          "id": "P84",
+          "hash": "#P84",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P85",
+          "hash": "#P85",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P90",
+          "hash": "#P90",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P91",
+          "hash": "#P91",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P92",
+          "hash": "#P92",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P93",
+          "hash": "#P93",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P94",
+          "hash": "#P94",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P95",
+          "hash": "#P95",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P96",
+          "hash": "#P96",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "AI",
+          "hash": "#AI",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "MY",
+          "hash": "#MY",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            428,
+            428
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            428,
+            428
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        }
+      ]
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "routes": [
+        {
+          "id": "P00",
+          "hash": "#P00",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P01",
+          "hash": "#P01",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P02",
+          "hash": "#P02",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P03",
+          "hash": "#P03",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P10",
+          "hash": "#P10",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P11",
+          "hash": "#P11",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P12",
+          "hash": "#P12",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P13",
+          "hash": "#P13",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P14",
+          "hash": "#P14",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P15",
+          "hash": "#P15",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P16",
+          "hash": "#P16",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P20",
+          "hash": "#P20",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P21",
+          "hash": "#P21",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "horizontalScrollRoutes": "P21",
+          "p21": [
+            {
+              "text": "全部\n13",
+              "fullyVisible": true
+            },
+            {
+              "text": "在播\n3",
+              "fullyVisible": true
+            },
+            {
+              "text": "未播\n5",
+              "fullyVisible": true
+            }
+          ]
+        },
+        {
+          "id": "P22",
+          "hash": "#P22",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P23",
+          "hash": "#P23",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P24",
+          "hash": "#P24",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P25",
+          "hash": "#P25",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30",
+          "hash": "#P30",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30D",
+          "hash": "#P30D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P31",
+          "hash": "#P31",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P32",
+          "hash": "#P32",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P33",
+          "hash": "#P33",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P40",
+          "hash": "#P40",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41",
+          "hash": "#P41",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41D",
+          "hash": "#P41D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P42",
+          "hash": "#P42",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P50",
+          "hash": "#P50",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P51",
+          "hash": "#P51",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P52",
+          "hash": "#P52",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P60",
+          "hash": "#P60",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P61",
+          "hash": "#P61",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P62",
+          "hash": "#P62",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P70",
+          "hash": "#P70",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P71",
+          "hash": "#P71",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P80",
+          "hash": "#P80",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P81",
+          "hash": "#P81",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P82",
+          "hash": "#P82",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P83",
+          "hash": "#P83",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "p83Send": {
+            "rect": [
+              64,
+              48
+            ],
+            "text": "发送",
+            "scrollHeight": 46,
+            "whiteSpace": "nowrap"
+          }
+        },
+        {
+          "id": "P84",
+          "hash": "#P84",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P85",
+          "hash": "#P85",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P90",
+          "hash": "#P90",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P91",
+          "hash": "#P91",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P92",
+          "hash": "#P92",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P93",
+          "hash": "#P93",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P94",
+          "hash": "#P94",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P95",
+          "hash": "#P95",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P96",
+          "hash": "#P96",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "AI",
+          "hash": "#AI",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "MY",
+          "hash": "#MY",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            318,
+            318
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            318,
+            318
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        }
+      ]
+    },
+    {
+      "viewport": [
+        360,
+        480
+      ],
+      "routes": [
+        {
+          "id": "P00",
+          "hash": "#P00",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P01",
+          "hash": "#P01",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P02",
+          "hash": "#P02",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P03",
+          "hash": "#P03",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P10",
+          "hash": "#P10",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P11",
+          "hash": "#P11",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P12",
+          "hash": "#P12",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P13",
+          "hash": "#P13",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P14",
+          "hash": "#P14",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P15",
+          "hash": "#P15",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P16",
+          "hash": "#P16",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P20",
+          "hash": "#P20",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P21",
+          "hash": "#P21",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "horizontalScrollRoutes": "P21",
+          "p21": [
+            {
+              "text": "全部\n13",
+              "fullyVisible": true
+            },
+            {
+              "text": "在播\n3",
+              "fullyVisible": true
+            },
+            {
+              "text": "未播\n5",
+              "fullyVisible": true
+            },
+            {
+              "text": "风险\n5",
+              "fullyVisible": true
+            }
+          ]
+        },
+        {
+          "id": "P22",
+          "hash": "#P22",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P23",
+          "hash": "#P23",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P24",
+          "hash": "#P24",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P25",
+          "hash": "#P25",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30",
+          "hash": "#P30",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P30D",
+          "hash": "#P30D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P31",
+          "hash": "#P31",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P32",
+          "hash": "#P32",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P33",
+          "hash": "#P33",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P40",
+          "hash": "#P40",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41",
+          "hash": "#P41",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P41D",
+          "hash": "#P41D",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P42",
+          "hash": "#P42",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P50",
+          "hash": "#P50",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P51",
+          "hash": "#P51",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P52",
+          "hash": "#P52",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P60",
+          "hash": "#P60",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P61",
+          "hash": "#P61",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P62",
+          "hash": "#P62",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P70",
+          "hash": "#P70",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P71",
+          "hash": "#P71",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P80",
+          "hash": "#P80",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P81",
+          "hash": "#P81",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P82",
+          "hash": "#P82",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P83",
+          "hash": "#P83",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": [],
+          "p83Send": {
+            "rect": [
+              64,
+              48
+            ],
+            "text": "发送",
+            "scrollHeight": 46,
+            "whiteSpace": "nowrap"
+          }
+        },
+        {
+          "id": "P84",
+          "hash": "#P84",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P85",
+          "hash": "#P85",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P90",
+          "hash": "#P90",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P91",
+          "hash": "#P91",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P92",
+          "hash": "#P92",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P93",
+          "hash": "#P93",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P94",
+          "hash": "#P94",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P95",
+          "hash": "#P95",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "P96",
+          "hash": "#P96",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "AI",
+          "hash": "#AI",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        },
+        {
+          "id": "MY",
+          "hash": "#MY",
+          "routeMatches": true,
+          "nonBlank": true,
+          "screen": [
+            358,
+            358
+          ],
+          "rootOverflow": false,
+          "bodyWidths": [
+            358,
+            358
+          ],
+          "bodyScrollWorks": true,
+          "bodyRegion": {
+            "tabIndex": 0,
+            "role": "region",
+            "label": "页面内容"
+          },
+          "scrollTestsPass": true,
+          "allScrollerBarsHidden": true,
+          "navWithin": true,
+          "clippedControls": []
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Touch and wheel hardware gestures were not directly injected; mobile/touch emulation was enabled and scrollable regions were verified with real browser scroll dimensions and hidden scrollbar styles.",
+    "Screenshots are 390×844 browser viewport; phone screen client area is 388×842."
+  ]
+}

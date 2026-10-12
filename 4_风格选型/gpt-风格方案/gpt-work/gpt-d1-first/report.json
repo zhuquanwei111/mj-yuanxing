@@ -1,0 +1,25 @@
+[
+  {
+    "file": "idle.png",
+    "state": "idle",
+    "size": "390x844",
+    "zoom": 1,
+    "issues": [
+      "加载错误：Failed to load resource: the server responded with a status of 404 (Not Found) http://127.0.0.1:65470/favicon.ico"
+    ]
+  },
+  {
+    "file": "draft.png",
+    "state": "draft",
+    "size": "390x844",
+    "zoom": 1,
+    "issues": []
+  },
+  {
+    "file": "p13.png",
+    "state": "p13",
+    "size": "390x844",
+    "zoom": 1,
+    "issues": []
+  }
+]

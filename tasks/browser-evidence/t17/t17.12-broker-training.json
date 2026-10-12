@@ -1,0 +1,54 @@
+{
+  "task": "T17.12",
+  "date": "2026-10-11",
+  "scope": ["P30", "P30D", "P31", "P32", "P33", "P40", "P41", "P41D", "P42"],
+  "viewports": {
+    "320x568": {
+      "routes": [
+        {"route":"P30","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1010,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P30D/miaomiao","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":616,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true,"emotionLeftBorderWidth":"0px"},
+        {"route":"P31","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1399,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true,"leadRows":"divider list"},
+        {"route":"P32","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":956,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P33","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1365,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true,"careRows":"divider list"},
+        {"route":"P40","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1151,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P41","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1284,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P41D/maizi","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1565,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true,"taskRecords":"divider list"},
+        {"route":"P42","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":470,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true}
+      ]
+    },
+    "390x844": {
+      "routes": [
+        {"route":"P30","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":1010,"scrollbarWidth":"none","visibleScrollbarCount":0,"copy":"回访第一：情绪、结业、激活三类今天必须碰；主播留存的第一道防线"},
+        {"route":"P30D/miaomiao","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":709,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P31","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":1287,"scrollbarWidth":"none","visibleScrollbarCount":0,"leadRows":"divider list"},
+        {"route":"P32","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":878,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P33","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":1319,"scrollbarWidth":"none","visibleScrollbarCount":0,"careRows":"divider list"},
+        {"route":"P40","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":1019,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P41","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":1200,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P41D/maizi","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":1571,"scrollbarWidth":"none","visibleScrollbarCount":0,"taskRecords":"divider list"},
+        {"route":"P42","pageWidth":388,"pageScrollWidth":388,"bodyClientHeight":709,"bodyScrollHeight":709,"scrollbarWidth":"none","visibleScrollbarCount":0}
+      ]
+    }
+  },
+  "businessCopy": {
+    "P30 product text": ["回访第一：情绪、结业、激活三类今天必须碰", "主播留存的第一道防线"],
+    "review-only copy excluded": ["今日回访名单＝已签约未开播＋新签7天内", "今天该联系谁，一眼能找到"]
+  },
+  "browserFlows": [
+    "P30 opened 记沟通 for 喵喵; modal showed channel, content, next action, and next contact time; cancel closed it.",
+    "P31 opened 桃桃's invitation copy; the panel included source and current stage; close returned to the lead list.",
+    "P32 registered the missing bank card; the row advanced from missing material to 开播准备 and the completion toast matched.",
+    "P42 scored 栗子's pending 破冰话术 at 88; the page showed an 88-point pass result. The existing 74-point failed exam then scheduled a second attempt and confirmed the queue update.",
+    "P31 no-match search showed its empty state and kept focus in the search field.",
+    "P33 no-match search showed its empty state and kept focus in the search field."
+  ],
+  "visualEvidence": {
+    "P30 390x844": "Viewed inline; screenshot file could not be archived because the browser tool rejected workspace paths.",
+    "P31": "DOM and computed-style verification completed; the subsequent screenshot call stalled and was cancelled."
+  },
+  "consoleEvidence": [
+    {"viewport":"320x568","routes":"all nine routes in scope","errors":0,"warnings":0,"messages":[]},
+    {"viewport":"390x844","routes":"P31 initial load","errors":0,"warnings":0,"messages":[]}
+  ],
+  "limitations": ["No 360px, 430px, or short-screen popup matrix was repeated in T17.12; prior checks remain in earlier task evidence."]
+}

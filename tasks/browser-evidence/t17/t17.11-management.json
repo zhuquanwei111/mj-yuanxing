@@ -1,0 +1,32 @@
+{
+  "task": "T17.11 P13–P16、P93–P96 经营与管理页面",
+  "date": "2026-10-11",
+  "browser": "Chrome DevTools MCP, local prototype at http://127.0.0.1:8791/明镜产品原型.html",
+  "viewports": [
+    { "width": 320, "height": 568, "deviceScaleFactor": 1, "mobile": true },
+    { "width": 390, "height": 844, "deviceScaleFactor": 1, "mobile": true }
+  ],
+  "pageChecks": {
+    "P13": { "viewport": "320x568", "alerts": 2, "leftEdge": "none", "riskDot": "red 8px", "pageWidth": 318, "scrollWidth": 318, "bodyClientHeight": 433, "bodyScrollHeight": 1269, "scrollbar": "hidden", "scrollStillWorks": true },
+    "P14": { "viewport": "320x568", "assets": 86, "pageWidth": 318, "scrollWidth": 318, "bodyClientHeight": 433, "bodyScrollHeight": 6398, "scrollbar": "hidden", "scrollStillWorks": true },
+    "P15": { "viewport": "320x568", "warnings": 5, "riskDots": 5, "cardLeftEdge": "neutral 1px divider", "pageWidth": 318, "scrollWidth": 318, "bodyClientHeight": 433, "bodyScrollHeight": 1757, "scrollbar": "hidden", "scrollStillWorks": true },
+    "P16": { "viewport": "320x568", "usage": "96,000 calls / 9.6万 of 12.0万; October 2026", "pageWidth": 318, "scrollWidth": 318, "bodyClientHeight": 433, "bodyScrollHeight": 993, "scrollbar": "hidden", "scrollStillWorks": true },
+    "P93": { "viewport": "320x568", "riskDecisionItems": 5, "riskDots": 5, "riskCardLeftEdge": "neutral 1px divider", "crossGroupRows": 7, "teamRiskThresholdRowsInFixture": 0, "pageWidth": 318, "scrollWidth": 318, "bodyClientHeight": 433, "bodyScrollHeight": 1465, "scrollbar": "hidden", "scrollStillWorks": true },
+    "P94": { "viewport": "320x568", "pendingItems": 5, "riskDots": 5, "focusCardLeftEdge": "neutral 1px divider", "queueRowLeftEdge": "none", "teamRevenue": "18.8万 through 10-14 22:00", "teamMembers": 13, "pageWidth": 318, "scrollWidth": 318, "bodyClientHeight": 433, "bodyScrollHeight": 1272, "scrollbar": "hidden", "scrollStillWorks": true },
+    "P95": { "viewport": "320x568", "groups": 7, "riskGroupDots": 4, "firstGroupMembers": 13, "firstMemberRoute": "#P22/xiaoyu", "pageWidth": 318, "scrollWidth": 318, "bodyClientHeight": 433, "bodyScrollHeight": 789, "scrollbar": "hidden", "scrollStillWorks": true },
+    "P96": { "viewport": "320x568", "capabilities": 4, "tools": 10, "workflowSteps": 5, "overviewCards": 4, "allViewsFitWidth": true, "scrollbar": "hidden", "scrollStillWorks": true }
+  },
+  "flows": [
+    { "from": "P13 first warning action", "to": "#P15/w1", "result": "passed" },
+    { "from": "P93 first risk action", "to": "#P15/w1", "result": "passed" },
+    { "from": "P95 first group", "to": "13-member group detail", "then": "#P22/xiaoyu", "result": "passed" },
+    { "from": "P96 overview", "through": ["capabilities", "tools", "workflow", "overview"], "result": "passed" }
+  ],
+  "console": { "errorAndWarningMessages": 0, "routesChecked": ["P13", "P15", "P93", "P94", "P95", "P96"] },
+  "validation": {
+    "focusedTests": "35/35 passed",
+    "fullSuite": "115/115 passed",
+    "prototypeStaticCheck": "passed: two inline scripts compile and viewport metadata is present"
+  },
+  "screenshot": { "captured": false, "reason": "No screenshot was saved; browser evidence is recorded from DOM, computed styles, accessibility snapshots, interactions, and scroll measurements." }
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>明镜移动端｜10种色彩搭配</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #171717;
+      background: #fff;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #fff; }
+    .page { max-width: 1240px; margin: 0 auto; padding: 32px 28px 48px; }
+    .intro { margin: 0 0 24px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; letter-spacing: -.035em; }
+    .intro p { max-width: 780px; margin: 9px 0 0; color: #666; font-size: 14px; line-height: 1.65; }
+    .legend { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 14px; color: #666; font-size: 11px; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 9px; height: 9px; border-radius: 50%; }
+    .grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 18px; row-gap: 10px; }
+    .palette { min-width: 0; padding: 18px 2px 22px; border-bottom: 1px solid #e8e5e4; }
+    .palette-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .palette h2 { margin: 0; font-size: 15px; line-height: 1.35; font-weight: 700; }
+    .mood { margin: 3px 0 0; color: #666; font-size: 11px; line-height: 1.45; }
+    .letter { display: inline-grid; width: 22px; height: 22px; margin-right: 5px; place-items: center; border: 1px solid #e1dedc; border-radius: 50%; color: #555; font-size: 10px; font-weight: 600; vertical-align: -1px; }
+    .chips { display: flex; gap: 5px; margin-top: 11px; flex-wrap: wrap; }
+    .chip { display: inline-flex; align-items: center; gap: 5px; padding: 0; color: #555; font-size: 9px; white-space: nowrap; }
+    .swatch { width: 10px; height: 10px; border: 1px solid rgba(0,0,0,.08); border-radius: 50%; }
+    .identity { display: grid; grid-template-columns: 38px minmax(0,1fr); align-items: center; gap: 9px; min-height: 84px; margin-top: 13px; padding: 9px 2px; background: transparent; }
+    .avatar { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 50%; background: var(--soft); color: var(--brand); font-size: 14px; font-weight: 700; }
+    .copy { min-width: 0; }
+    .eyebrow { color: #666; font-size: 9px; line-height: 1.45; }
+    .copy strong { display: block; margin: 1px 0 2px; color: #171717; font-size: 15px; line-height: 1.25; }
+    .copy p { margin: 0; color: #555; font-size: 10px; line-height: 1.4; }
+    .org { grid-column: 2; margin-top: -4px; color: var(--secondary); font-size: 10px; font-weight: 650; }
+    .nav-sample { display: flex; align-items: flex-end; justify-content: center; gap: 12px; height: 36px; margin: 7px 2px 0; border-bottom: 1px solid #ece9e7; color: #777; font-size: 9px; }
+    .nav-current { position: relative; padding: 0 3px 8px; color: var(--strong); font-weight: 700; }
+    .nav-current::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 2px; border-radius: 2px; background: var(--brand); content: ""; }
+    .recipe { margin: 8px 0 0; color: #707070; font-size: 10px; line-height: 1.5; }
+    .palette[data-mode="soft"] .identity { padding: 11px 10px; border-radius: 12px; background: var(--soft); }
+    .palette[data-mode="soft"] .avatar { background: transparent; color: var(--brand); }
+    .palette[data-mode="edge"] .identity { padding-left: 10px; border-left: 2px solid var(--brand); }
+    .palette[data-mode="dot"] .avatar { background: var(--brand); color: #fff; }
+    .palette[data-mode="dual"] .org, .palette[data-mode="dual"] .nav-current { color: var(--secondary); }
+    .palette[data-mode="dual"] .nav-current::after { background: var(--secondary); }
+    .palette[data-mode="title"] .copy strong { color: var(--brand); }
+    @media (max-width: 1100px) { .grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
+    @media (max-width: 850px) { .grid { grid-template-columns: repeat(3,minmax(0,1fr)); column-gap: 14px; } }
+    @media (max-width: 620px) { .page { padding: 24px 16px 36px; } h1 { font-size: 23px; } .grid { grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 14px; } }
+    @media (max-width: 370px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="intro">
+      <h1>10 种轻量色彩搭配</h1>
+      <p>已废弃 K 的浓紫整块实色卡方案。本轮改为白底与黑色正文，只在头像、身份名称、当前导航和少量状态位置使用颜色；部分选项带浅色局部衬底，方便比较不同用色气质。本页仅供选色，不会修改现有原型。</p>
+      <div class="legend" aria-label="页面统一规则">
+        <span><i style="background:#fff;border:1px solid #ddd"></i>页面背景纯白</span>
+        <span><i style="background:#70517C"></i>彩色集中在身份与选中提示</span>
+        <span><i style="background:#F3EFF6"></i>浅色只作局部辅助面</span>
+      </div>
+    </header>
+    <section class="grid" id="palette-grid" aria-label="十种配色预览"></section>
+  </main>
+  <script>
+    const palettes = [
+      { id:"A", name:"灰紫丁香", mood:"安静、耐看，强调不抢眼", brand:"#70517C", strong:"#60446B", soft:"#F3EFF6", secondary:"#806A89", mode:"soft", recipe:"保留方向：淡薰衣草局部衬底，紫色用于头像与选中态" },
+      { id:"F", name:"葡萄紫古金", mood:"沉稳、带一点复古精致感", brand:"#533851", strong:"#493044", soft:"#F2EDF3", secondary:"#806216", mode:"dual", recipe:"保留方向：葡萄紫作主强调，古金只点缀身份辅助信息" },
+      { id:"D", name:"朱砂暖粉", mood:"醒目、热情，保持白底轻盈", brand:"#A33D3D", strong:"#8F3035", soft:"#F8EEEE", secondary:"#A33D3D", mode:"edge", recipe:"保留方向：朱砂色用于身份名称与细线，不铺满卡面" },
+      { id:"N", name:"莓果洋红", mood:"活泼、现代，红紫识别鲜明", brand:"#8F2857", strong:"#701C42", soft:"#F8EAF0", secondary:"#B13D70", mode:"dot", recipe:"新方向：莓果头像配玫粉状态点，正文仍用黑色" },
+      { id:"O", name:"覆盆子紫", mood:"大胆、偏时尚，色相更鲜亮", brand:"#702C70", strong:"#551F55", soft:"#F3E7F2", secondary:"#8A4388", mode:"title", recipe:"新方向：只强调身份标题与当前导航，内容面保持白色" },
+      { id:"P", name:"夜幕葡萄", mood:"深邃、有层次，视觉较克制", brand:"#3B254B", strong:"#2C193A", soft:"#EEE7F2", secondary:"#6F4B83", mode:"edge", recipe:"新方向：深葡萄色细侧标搭浅丁香头像底" },
+      { id:"Q", name:"红宝石酒红", mood:"成熟、稳重，暖色辨识明确", brand:"#642B3C", strong:"#4C1E2C", soft:"#F2E8E9", secondary:"#804050", mode:"soft", recipe:"新方向：身份区用极浅玫瑰底，酒红只标关键文字" },
+      { id:"R", name:"黑樱桃玫粉", mood:"年轻、鲜明，深浅对比明显", brand:"#482344", strong:"#351831", soft:"#F2E8EF", secondary:"#9C3D71", mode:"dual", recipe:"新方向：黑樱桃作为主强调，玫粉用于当前导航线" },
+      { id:"S", name:"深琥珀鎏金", mood:"温暖、少见，和紫红系拉开距离", brand:"#735A00", strong:"#594500", soft:"#F5F0D9", secondary:"#735A00", mode:"dot", recipe:"新方向：深金色头像与选中线，奶油黄只作小面积衬底" },
+      { id:"T", name:"梅子丁香", mood:"柔亮、含蓄，带轻柔粉紫感", brand:"#62334F", strong:"#49243A", soft:"#F3EAF0", secondary:"#76516D", mode:"soft", recipe:"新方向：梅子色身份文字配丁香粉紫浅底" }
+    ];
+    const grid = document.getElementById("palette-grid");
+    grid.innerHTML = palettes.map(p => `
+      <article class="palette" data-mode="${p.mode}" style="--brand:${p.brand};--strong:${p.strong};--soft:${p.soft};--secondary:${p.secondary}">
+        <div class="palette-top"><div><h2><span class="letter">${p.id}</span>${p.name}</h2><p class="mood">${p.mood}</p></div></div>
+        <div class="chips">
+          <span class="chip"><i class="swatch" style="background:var(--brand)"></i>${p.brand}</span>
+          <span class="chip"><i class="swatch" style="background:var(--soft)"></i>${p.soft}</span>
+          <span class="chip"><i class="swatch" style="background:var(--secondary)"></i>${p.secondary}</span>
+        </div>
+        <section class="identity" aria-label="当前工作身份预览">
+          <div class="avatar">林</div>
+          <div class="copy"><span class="eyebrow">当前工作身份</span><strong>运营</strong><p>我带的主播今天谁在播、要跟进什么</p></div>
+          <span class="org">星耀传媒</span>
+        </section>
+        <div class="nav-sample"><span>今天</span><span>我的主播</span><span>交接</span><span class="nav-current">我的</span><span>助理</span></div>
+        <p class="recipe">搭配：${p.recipe}</p>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>

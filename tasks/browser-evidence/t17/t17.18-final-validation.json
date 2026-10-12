@@ -1,0 +1,142 @@
+{
+  "task": "T17.18",
+  "date": "2026-10-11",
+  "prototype": "http://127.0.0.1:8791/明镜产品原型.html#P20",
+  "browser": {
+    "tool": "Chrome DevTools",
+    "pageId": 4,
+    "context": "t17.15-route-smoke (isolated)",
+    "viewport": "320x568 CSS px",
+    "mobileEmulation": true,
+    "touchEmulation": true
+  },
+  "keyboard": {
+    "pageBody": {
+      "selector": ".mbody",
+      "clientHeight": 426,
+      "scrollHeight": 1687,
+      "maxScrollTop": 1261,
+      "scrollbarWidth": "none",
+      "webkitScrollbarDisplay": "none",
+      "keyTransitions": [
+        { "key": "Home", "scrollTop": 0 },
+        { "key": "PageDown", "scrollTop": 362 },
+        { "key": "Space", "scrollTop": 724 },
+        { "key": "Shift+Space", "scrollTop": 362 },
+        { "key": "End", "scrollTop": 1261 },
+        { "key": "Home", "scrollTop": 0 },
+        { "key": "ArrowDown", "scrollTop": 48 },
+        { "key": "ArrowUp", "scrollTop": 0 }
+      ]
+    },
+    "segmentedTabs": {
+      "arrowKeys": "ArrowRight selected the next P20 view; ArrowLeft returned to the preceding view.",
+      "space": "Space selected the focused 今日开播 radio and updated the visible view."
+    },
+    "enter": {
+      "control": "P20 阿哲 priority item 看详情",
+      "result": "#P22/azhe"
+    },
+    "modalFocusTrap": {
+      "dialog": "P22 更多操作 · 老K",
+      "initialFocus": "关闭弹窗",
+      "sequence": [
+        { "key": "Tab", "focus": "生成规划" },
+        { "key": "Shift+Tab", "focus": "关闭弹窗" },
+        { "key": "Shift+Tab", "focus": "看 TA 的成长阶段与资料 (wrap to last)" },
+        { "key": "Tab", "focus": "关闭弹窗 (wrap to first)" }
+      ],
+      "escape": {
+        "maskDisplay": "none",
+        "phase": "closed",
+        "focusRestoredTo": "更多操作"
+      }
+    },
+    "focusVisible": {
+      "control": "今日开播 9",
+      "matchesFocusVisible": true,
+      "outline": "2px solid rgb(17, 17, 17)"
+    },
+    "modalInnerScroll": {
+      "dialog": "群发通知",
+      "scrollContainer": {
+        "tag": "DIV",
+        "clientHeight": 150,
+        "scrollHeight": 269,
+        "maxScrollTop": 119,
+        "scrollbarWidth": "none",
+        "webkitScrollbarDisplay": "none"
+      },
+      "focusedControl": "first recipient checkbox",
+      "pageDown": { "scrollTopBefore": 0, "scrollTopAfter": 119 },
+      "pageBodyScrollTopAfter": 0,
+      "escape": {
+        "maskDisplay": "none",
+        "focusRestoredTo": "群发通知"
+      }
+    },
+    "p20BodyScrollAfterModal": {
+      "pageDown": { "scrollTopBefore": 0, "scrollTopAfter": 362 },
+      "scrollbarWidth": "none",
+      "webkitScrollbarDisplay": "none"
+    }
+  },
+  "flows": [
+    {
+      "name": "运营待办、主播详情、复盘与返回",
+      "steps": ["P20 todo", "P22/azhe", "P24/azhe", "P22/azhe", "P20"],
+      "result": "pass",
+      "activation": "Enter on 看详情 also navigated to P22/azhe."
+    },
+    {
+      "name": "交接回执",
+      "steps": ["P25 received handoff 茉莉 · 视觉", "办完并回执"],
+      "result": "pass",
+      "state": "处理中 3→2; 已回执 2→3; row now says 已回执 and confirms receipt to 视觉组 · 阿灿."
+    },
+    {
+      "name": "经纪沟通",
+      "steps": ["P30 喵喵记沟通", "empty submit", "enter communication and next follow-up", "save"],
+      "result": "pass",
+      "state": "Empty submit showed 先写点内容; save reduced today follow-ups 4→3 and displayed the completed record with the saved next step."
+    },
+    {
+      "name": "培训评分",
+      "steps": ["P42 栗子 · 破冰话术 · 第2次补考", "save score 88"],
+      "result": "pass",
+      "state": "Result shows 考核通过, 88分; pending count 2→1."
+    },
+    {
+      "name": "内容审核与剪辑交付",
+      "steps": ["P61/k2 大乔脚本采纳", "提交运营审核", "P60通过并派剪辑", "P62领取需求", "交付回传"],
+      "result": "pass",
+      "state": "Script moved to 待运营审核 then approval; created P62 task moved 待领→进行中→已交付."
+    },
+    {
+      "name": "账期差异",
+      "steps": ["P70登记活动返点差异", "确认账期"],
+      "result": "pass",
+      "state": "Difference changed to 已登记待跟进申诉; period then changed to 已核对."
+    }
+  ],
+  "touchFeedback": {
+    "computedTouchAction": "manipulation",
+    "tapHighlight": "rgba(0, 0, 0, 0)",
+    "activeSelectorsPresent": [
+      ".btn:active, .fchip:active, .segview button:active",
+      "#app button:active:not(:disabled), #mask button:active:not(:disabled)",
+      ".p20-overview-metrics button:active, .p20-live-now:active, .p20-risk-row:active, .p20-next-step:active"
+    ],
+    "hardwareTest": "No physical touchscreen was available; only mobile/touch emulation and CSS feedback rules were checked."
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "cleanup": "Local UI flow state was reset by reloading the isolated browser context. The broadcast modal was only opened and dismissed; no message was sent.",
+  "limitations": [
+    "No physical touch input was available.",
+    "No system mouse-wheel device input was available.",
+    "Real iOS/Android soft keyboard behavior was not available in the browser emulator."
+  ]
+}

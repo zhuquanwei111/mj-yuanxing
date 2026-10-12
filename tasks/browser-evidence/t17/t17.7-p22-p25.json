@@ -1,0 +1,51 @@
+{
+  "task": "T17.7 P22–P25 单主播与交接流程",
+  "date": "2026-10-11",
+  "source": "http://127.0.0.1:8791/明镜产品原型.html",
+  "environment": {
+    "browser": "Chrome DevTools attached local preview",
+    "viewport": "390x844 mobile emulation",
+    "screenshots": {
+      "viewed": false,
+      "archived": false,
+      "note": "浏览器截图调用挂起，未获得可查看截图或项目 PNG；只记录已执行的点击/页面状态。"
+    }
+  },
+  "flows": [
+    {
+      "path": "P20 看详情 → P22/laok",
+      "result": "通过。详情显示主播头像、身份/状态、阶段指标及概况、趋势、规划复盘、协作记录入口；完整依据留在详情内容中。"
+    },
+    {
+      "path": "P22 规划复盘 → P24/laok → 编辑保存 → 确认 → 推给主播 → 复盘史",
+      "result": "通过。保存后焦点回到重绘后的对应编辑操作；修改后必须重新确认，确认后才可推送，推送项出现在主播复盘史。"
+    },
+    {
+      "path": "P22 规划入口 → P23/laok → 生成 → 编辑保存 → 确认 → 发给主播 → 规划史",
+      "result": "通过。编辑字段及规划目标仍按主播隔离；保存后焦点恢复到对应编辑操作；确认和发送反馈保留，历史记录显示修改后的目标与内容。"
+    },
+    {
+      "path": "P21 小雨 → P22/xiaoyu → 返回",
+      "result": "通过。对象身份延续，返回主播名单后13行仍可见；列表正文保持可滚动且滚动条隐藏。"
+    },
+    {
+      "path": "P25 全部/我收到及状态分组 → 完成并回执 → P20",
+      "result": "通过。总单据数为5（0待接单、3处理中、2已回执）；收件范围为1、全部范围为5。回执后生成对应工作台待办。"
+    }
+  ],
+  "focus_regression": {
+    "cause": "P23/P24 保存会重绘当前页面，原编辑触发按钮被替换，焦点原先落到 body。",
+    "fix": "编辑器记录触发元素；元素被重绘后用主播 ID 对应的 data-focus-key 找到新按钮并恢复焦点。",
+    "verified": ["P23 编辑保存后恢复焦点", "P24 编辑保存后恢复焦点"]
+  },
+  "incidental_fix": {
+    "issue": "预览页曾发起 /favicon.ico 并得到404。",
+    "change": "添加内联 SVG 明镜图标，不增加文件或运行时依赖。",
+    "verification": "忽略缓存重新加载 P20 得到 HTTP 200；head 中有 data URI SVG 图标；Network 仅见文档请求，无 favicon.ico；控制台无消息。"
+  },
+  "automated_checks": {
+    "command": "node --test tasks/*.test.mjs",
+    "result": "112/112 passed"
+  },
+  "static_check": "node tasks/check-prototype.mjs passed; git diff --check passed"
+}

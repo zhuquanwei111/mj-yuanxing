@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ds2 · 灰度骨架并排（阶段一自检）</title>
+<style>
+  :root{ --ink:#101010; --line:#c9c9c9; --dim:#6a6a6a; }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e9e9;color:var(--ink);
+    font:14px/1.6 "Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;padding:26px 24px 60px}
+  .head{max-width:1360px}
+  h1{margin:0 0 6px;font-size:19px;letter-spacing:.01em}
+  .head p{margin:0 0 4px;color:#3c3c3c;font-size:13px}
+  .head .rule{height:3px;background:#101010;margin:16px 0 22px;max-width:1360px}
+  .row{display:flex;gap:20px;align-items:flex-start;min-width:1340px}
+  .col{width:234px;flex:none}
+  .cap{margin:0 0 8px;padding-bottom:9px;border-bottom:2px solid #101010}
+  .cap b{display:block;font-size:15px}
+  .cap span{display:block;font-size:11.5px;color:#4d4d4d;line-height:1.5}
+  .cap a{display:inline-block;margin-top:5px;font-size:11.5px;color:#101010}
+  .win{width:234px;height:720px;overflow:hidden;position:relative;background:#fff;
+    box-shadow:0 0 0 1px #b5b5b5}
+  .win .sk{width:390px;height:1200px;transform:scale(.6);transform-origin:top left;background:#fff}
+  .win .fade{position:absolute;left:0;right:0;bottom:0;height:26px;background:linear-gradient(#ffffff00,#e9e9e9e6)}
+
+  /* ============ w1 台账（表格化） ============ */
+  .w1{background:#fff;padding:0}
+  .w1 .h{padding:14px 14px 10px;border-bottom:3px double #1c1c1c}
+  .w1 .h .t{font-family:"Songti SC",SimSun,serif;font-size:17px;font-weight:700;letter-spacing:.06em}
+  .w1 .h .s{font-size:11px;color:#5f5f5f;margin-top:3px;letter-spacing:.02em}
+  .w1 .bar{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid #c9c9c9}
+  .w1 .chip{font-size:11.5px;padding:4px 9px;border:1px solid #4a4a4a}
+  .w1 .chip.on{background:#1c1c1c;color:#fff;border-color:#1c1c1c}
+  .w1 .btn{margin-left:auto;font-size:11.5px;padding:4px 9px;border:1px solid #1c1c1c;font-weight:700}
+  .w1 .sum{display:flex;border-bottom:3px double #1c1c1c}
+  .w1 .sum div{flex:1;padding:8px 9px;border-right:1px solid #dcdcdc}
+  .w1 .sum div:last-child{border-right:0}
+  .w1 .sum b{display:block;font-family:ui-monospace,Consolas,monospace;font-size:21px;letter-spacing:-.02em}
+  .w1 .sum span{font-size:10.5px;color:#5f5f5f}
+  .w1 .tabs{display:flex;gap:16px;padding:9px 14px 7px;border-bottom:1px solid #1c1c1c;font-size:12.5px}
+  .w1 .tabs b{border-bottom:2px solid #1c1c1c;padding-bottom:3px}
+  .w1 .tabs i{font-style:normal;color:#6a6a6a}
+  .w1 .thead{display:grid;grid-template-columns:26px 88px 1fr 44px;gap:0;padding:6px 14px;
+    font-size:10.5px;color:#5f5f5f;border-bottom:1px solid #a3a3a3;letter-spacing:.04em}
+  .w1 .tr{display:grid;grid-template-columns:26px 88px 1fr 44px;padding:9px 14px;border-bottom:1px solid #dcdcdc}
+  .w1 .tr .no{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#5f5f5f}
+  .w1 .tr .cat{font-size:12.5px;font-weight:700}
+  .w1 .tr .cat em{display:block;font-style:normal;font-weight:400;font-size:10.5px;color:#5f5f5f}
+  .w1 .tr p{margin:0 0 3px;font-size:11.5px;line-height:1.5}
+  .w1 .tr p em{font-family:ui-monospace,Consolas,monospace;font-style:normal;font-weight:700}
+  .w1 .stamp{display:inline-block;font-size:10px;padding:0 4px;border:1px solid #4a4a4a;color:#4a4a4a;margin-left:4px}
+  .w1 .stamp.r{background:#1c1c1c;color:#fff;border-color:#1c1c1c}
+  .w1 .stamp.h{background:#dcdcdc;border-color:#8c8c8c;color:#333}
+  .w1 .act{display:flex;flex-direction:column;gap:4px}
+  .w1 .act b{font-size:11px;padding:3px 0;text-align:center;border:1px solid #1c1c1c}
+  .w1 .act b.s{background:#1c1c1c;color:#fff}
+  .w1 .act u{font-size:10.5px;text-align:center;text-decoration:none;color:#5f5f5f}
+  .w1 .foot{padding:7px 14px;font-size:10.5px;color:#5f5f5f;background:#f2f2f2;border-bottom:1px solid #dcdcdc}
+  .w1 .tabbar{display:flex;border-top:1px solid #1c1c1c;margin-top:8px}
+  .w1 .tabbar div{flex:1;text-align:center;font-size:11px;padding:11px 0 12px;color:#6a6a6a}
+  .w1 .tabbar div.on{color:#101010;font-weight:700;box-shadow:inset 0 2px 0 #1c1c1c}
+
+  /* ============ w2 时刻（共享时间坐标） ============ */
+  .w2{background:#fff;color:#1c1c1c;padding:0}
+  .w2 .h{padding:12px 14px 10px;border-bottom:1px solid #c9c9c9}
+  .w2 .h .t{font-size:15px;font-weight:700;letter-spacing:.02em}
+  .w2 .h .s{font-size:10.5px;color:#5f5f5f;margin-top:2px}
+  .w2 .bar{display:flex;align-items:center;gap:6px;padding:8px 14px;border-bottom:1px solid #c9c9c9}
+  .w2 .chip{font-size:11px;padding:3px 8px;border:1px solid #9a9a9a;color:#444444}
+  .w2 .chip.on{background:#1c1c1c;color:#fff;border-color:#1c1c1c}
+  .w2 .btn{margin-left:auto;font-size:11px;padding:4px 8px;border:1px solid #1c1c1c;font-weight:700}
+  .w2 .kpi{display:flex;gap:0;padding:8px 14px 6px;font-family:ui-monospace,Consolas,monospace}
+  .w2 .kpi div{flex:1}
+  .w2 .kpi b{font-size:17px}
+  .w2 .kpi span{display:block;font-size:10px;color:#5f5f5f;font-family:inherit}
+  .w2 .ruler{margin:2px 14px 8px;position:relative;height:26px;border-top:1px solid #1c1c1c;
+    background-image:repeating-linear-gradient(90deg,#c9c9c9 0 1px,transparent 1px 12px);
+    background-size:100% 7px;background-repeat:no-repeat}
+  .w2 .ruler em{position:absolute;top:-1px;font-size:9.5px;font-style:normal;color:#5f5f5f;background:#fff;padding:0 2px}
+  .w2 .ruler i{position:absolute;top:11px;font-size:9.5px;font-style:normal;color:#1c1c1c;font-weight:700}
+  .w2 .sec{display:flex;justify-content:space-between;align-items:baseline;padding:6px 14px;
+    font-size:10.5px;color:#5f5f5f;border-bottom:1px solid #1c1c1c}
+  .w2 .sec b{font-size:12px;color:#1c1c1c}
+  .w2 .trow{display:grid;grid-template-columns:16px 54px 1fr 62px;gap:6px;align-items:center;
+    padding:8px 14px;border-bottom:1px solid #dedede}
+  .w2 .trow .n{font-family:ui-monospace,Consolas,monospace;font-size:11px;color:#5f5f5f}
+  .w2 .trow .tm{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;color:#1c1c1c;line-height:1.35}
+  .w2 .trow .mid b{font-size:12.5px}
+  .w2 .trow .mid em{font-style:normal;font-size:10px;color:#5f5f5f;border:1px solid #c9c9c9;padding:0 3px;margin-left:4px}
+  .w2 .trow .mid p{margin:2px 0 0;font-size:11px;line-height:1.45}
+  .w2 .trow .act{text-align:right}
+  .w2 .trow .act b{font-size:10.5px;padding:3px 7px;border:1px solid #1c1c1c;display:inline-block}
+  .w2 .trow .act u{display:block;font-size:10px;color:#5f5f5f;text-decoration:none;margin-top:3px}
+  .w2 .flag{display:inline-block;font-size:9.5px;padding:0 4px;margin-right:4px;border:1px solid #1c1c1c}
+  .w2 .flag.d{background:#1c1c1c;color:#fff;border-color:#1c1c1c}
+  .w2 .flag.w{background-image:repeating-linear-gradient(45deg,#a3a3a3 0 3px,#fff 3px 6px);border-color:#a3a3a3}
+  .w2 .track{position:relative;height:9px;background:#f2f2f2;border:1px solid #c9c9c9;margin-top:3px}
+  .w2 .track i{position:absolute;top:0;bottom:0;background:#767676;opacity:.85}
+  .w2 .track i.d{background:#1c1c1c}
+  .w2 .tabbar{display:flex;border-top:1px solid #1c1c1c;margin-top:6px}
+  .w2 .tabbar div{flex:1;text-align:center;font-size:11px;padding:11px 0 12px;color:#5f5f5f}
+  .w2 .tabbar div.on{color:#fff;background:#1c1c1c}
+
+  /* ============ w3 灯盘（泳道：按谁动手分段） ============ */
+  .w3{background:#101010;color:#e8e8e8;padding:0}
+  .w3 .h{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #3a3a3a;
+    font-size:11px;color:#a8a8a8}
+  .w3 .h b{font-size:13px;color:#fff}
+  .w3 .h .bg{margin-left:auto;border:1px solid #6a6a6a;padding:1px 6px;font-size:10px}
+  .w3 .ph{padding:10px 12px;border-bottom:1px solid #3a3a3a}
+  .w3 .ph .t{font-size:14px;font-weight:700;color:#fff}
+  .w3 .ph .s{font-size:10.5px;color:#9a9a9a;margin-top:3px;letter-spacing:.04em}
+  .w3 .bar{display:flex;gap:6px;padding:8px 12px;border-bottom:1px solid #3a3a3a}
+  .w3 .chip{font-size:11px;padding:3px 8px;border:1px solid #5c5c5c;color:#c9c9c9}
+  .w3 .chip.on{background:#e8e8e8;color:#101010;border-color:#e8e8e8}
+  .w3 .btn{margin-left:auto;font-size:11px;padding:3px 8px;border:1px solid #8a8a8a}
+  .w3 .read{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 12px}
+  .w3 .read div{border:1px solid #4a4a4a;box-shadow:inset 0 1px 0 #5c5c5c;padding:5px 6px;background:#181818}
+  .w3 .read b{font-family:ui-monospace,Consolas,monospace;font-size:16px;display:block}
+  .w3 .read span{font-size:9.5px;color:#9a9a9a}
+  .w3 .lane{display:flex;align-items:center;gap:7px;padding:7px 12px;background:#181818;
+    border-top:1px solid #4a4a4a;border-bottom:1px solid #2c2c2c;font-size:11.5px;letter-spacing:.06em}
+  .w3 .lane b{font-size:12.5px;letter-spacing:.02em}
+  .w3 .lane .ct{margin-left:auto;font-family:ui-monospace,Consolas,monospace;font-size:11px;color:#a8a8a8}
+  .w3 .lamp{width:9px;height:9px;border-radius:50%;border:1px solid #dcdcdc;flex:none}
+  .w3 .lamp.on{background:#e8e8e8;box-shadow:0 0 0 2px #ffffff26}
+  .w3 .lamp.mid{width:7px;height:7px;background:#9a9a9a;border-color:#9a9a9a}
+  .w3 .lamp.off{width:6px;height:6px;border-color:#5c5c5c;background:#242424}
+  .w3 .card{margin:0 12px 8px;border:1px solid #3f3f3f;background:#141414}
+  .w3 .card .top{display:flex;align-items:center;gap:6px;padding:7px 9px;border-bottom:1px solid #2c2c2c}
+  .w3 .card .top .src{font-size:10px;letter-spacing:.08em;border:1px solid #6a6a6a;padding:1px 5px;color:#c9c9c9}
+  .w3 .card .top .lv{margin-left:auto;font-size:10px;color:#dcdcdc;display:flex;align-items:center;gap:5px}
+  .w3 .card .top .strip{position:absolute;left:0;right:0;height:3px;background:#e8e8e8;display:none}
+  .w3 .card.onrisk{border-color:#e8e8e8}
+  .w3 .card.onrisk .top{border-bottom-color:#e8e8e8;box-shadow:inset 0 3px 0 #e8e8e8}
+  .w3 .card .bd{padding:8px 9px}
+  .w3 .card .bd h4{margin:0 0 5px;font-size:13px}
+  .w3 .card .bd p{margin:0 0 4px;font-size:11px;line-height:1.5;color:#c9c9c9}
+  .w3 .card .bd p em{font-family:ui-monospace,Consolas,monospace;font-style:normal;color:#fff;font-weight:700}
+  .w3 .rowline{display:flex;gap:6px;align-items:center;font-size:11px;color:#c9c9c9;margin-bottom:4px}
+  .w3 .rowline .k{color:#8a8a8a;min-width:34px}
+  .w3 .split{display:flex;gap:8px;border-top:1px solid #2c2c2c;padding:6px 9px;font-size:10px;color:#9a9a9a}
+  .w3 .split span{flex:1}
+  .w3 .acts{display:flex;gap:6px;padding:0 9px 9px}
+  .w3 .acts b{font-size:11px;border:1px solid #8a8a8a;padding:5px 10px}
+  .w3 .acts b.p{background:#e8e8e8;color:#101010;border-color:#e8e8e8}
+  .w3 .acts u{font-size:10.5px;color:#8a8a8a;text-decoration:none;padding:5px 4px}
+  .w3 .chan{margin:10px 12px 0;border:1px solid #3f3f3f}
+  .w3 .chan .ch{display:flex;justify-content:space-between;padding:6px 9px;background:#181818;font-size:11px}
+  .w3 .chan .cr{display:grid;grid-template-columns:12px 46px 1fr 52px;gap:6px;align-items:center;
+    padding:5px 9px;border-top:1px solid #2c2c2c;font-size:11px}
+  .w3 .chan .cr .tm{font-family:ui-monospace,Consolas,monospace;font-size:9.5px;color:#9a9a9a}
+  .w3 .chan .cr .st{text-align:right;font-size:10px;color:#a8a8a8}
+  .w3 .chan .seg{display:flex;gap:2px;align-items:center}
+  .w3 .chan .seg i{flex:1;height:5px;background:#2c2c2c}
+  .w3 .chan .seg i.f{background:#8a8a8a}
+  .w3 .tabbar{display:flex;border-top:1px solid #3a3a3a;margin-top:10px;background:#141414}
+  .w3 .tabbar div{flex:1;text-align:center;font-size:10.5px;padding:11px 0 12px;color:#8a8a8a}
+  .w3 .tabbar div.on{color:#fff;background:#1c1c1c;box-shadow:inset 0 2px 0 #e8e8e8}
+
+  /* ============ w4 人阵（网格 / 热力） ============ */
+  .w4{background:#fff;color:#141414;padding:0}
+  .w4 .h{padding:12px 12px 9px}
+  .w4 .h .t{font-size:16px;font-weight:900;letter-spacing:-.01em}
+  .w4 .h .s{font-size:10.5px;color:#5c5c5c;margin-top:3px}
+  .w4 .bar{display:flex;gap:6px;align-items:center;padding:0 12px 9px}
+  .w4 .chip{font-size:11px;padding:4px 9px;border:2px solid #141414}
+  .w4 .chip.on{background:#141414;color:#fff}
+  .w4 .btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 9px;border:2px solid #141414}
+  .w4 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#141414;border-top:2px solid #141414;
+    border-bottom:2px solid #141414}
+  .w4 .grid2 .cell{background:#fff;padding:8px 9px;position:relative;min-height:104px}
+  .w4 .grid2 .cell.wide{grid-column:1/-1;min-height:74px}
+  .w4 .cell .who{font-size:16px;font-weight:900;letter-spacing:-.01em}
+  .w4 .cell .who em{font-style:normal;font-size:10px;font-weight:400;color:#5c5c5c;margin-left:5px;letter-spacing:0}
+  .w4 .cell .tag{display:inline-block;font-size:9.5px;border:1px solid #141414;padding:0 4px;margin-top:4px}
+  .w4 .cell .src{position:absolute;top:8px;right:9px;font-size:9.5px;border:1px solid #8c8c8c;padding:0 3px;color:#4a4a4a}
+  .w4 .cell p{margin:5px 0 0;font-size:11px;line-height:1.45}
+  .w4 .cell p em{font-family:ui-monospace,Consolas,monospace;font-style:normal;font-weight:700}
+  .w4 .cell .cut{position:absolute;right:0;top:0;width:0;height:0;border-top:15px solid #141414;border-left:15px solid transparent}
+  .w4 .cell .cut.h{width:15px;height:15px;border:0;background:#c9c9c9}
+  .w4 .cell .act{margin-top:6px;display:flex;gap:6px}
+  .w4 .cell .act b{font-size:10.5px;padding:4px 8px;border:2px solid #141414;font-weight:700}
+  .w4 .cell .act b.s{background:#141414;color:#fff}
+  .w4 .cell .act u{font-size:10px;color:#5c5c5c;text-decoration:none;padding:5px 2px}
+  .w4 .kpi{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid #141414;border-bottom:2px solid #141414}
+  .w4 .kpi div{padding:8px 9px;border-right:1px solid #c9c9c9}
+  .w4 .kpi div:last-child{border-right:0}
+  .w4 .kpi b{display:block;font-size:22px;font-weight:900;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .w4 .kpi span{font-size:10px;color:#5c5c5c}
+  .w4 .mat{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#141414;border-bottom:2px solid #141414}
+  .w4 .mat .m{background:#fff;padding:7px 8px;min-height:82px;position:relative}
+  .w4 .mat .m .n{font-size:13px;font-weight:900}
+  .w4 .mat .m .t{font-family:ui-monospace,Consolas,monospace;font-size:9.5px;color:#5c5c5c}
+  .w4 .mat .m .rk{font-size:9.5px;color:#141414;margin-top:4px;border-top:1px solid #141414;padding-top:3px}
+  .w4 .mat .m .band{position:absolute;left:0;right:0;bottom:0;height:5px;background:#141414}
+  .w4 .mat .m .band.l{background:#c9c9c9}
+  .w4 .mat .m .band.d{background:repeating-linear-gradient(90deg,#141414 0 3px,#fff 3px 6px)}
+  .w4 .mat .m .band.p{background:repeating-linear-gradient(90deg,#c9c9c9 0 2px,#fff 2px 5px)}
+  .w4 .sec{display:flex;justify-content:space-between;padding:6px 12px;font-size:11px;border-bottom:1px solid #141414}
+  .w4 .tabbar{display:flex;border-top:2px solid #141414;margin-top:9px}
+  .w4 .tabbar div{flex:1;text-align:center;font-size:10.5px;padding:10px 0 11px;color:#5c5c5c;border-right:1px solid #c9c9c9}
+  .w4 .tabbar div:last-child{border-right:0}
+  .w4 .tabbar div.on{background:#141414;color:#fff;font-weight:700}
+
+  /* ============ w5 标图（图上作业：坐标 + 引线编号） ============ */
+  .w5{background:#3a3a3a;color:#f0f0f0;padding:0}
+  .w5 .h{padding:12px;border-bottom:1px solid #6a6a6a}
+  .w5 .h .t{font-size:15px;font-weight:700;letter-spacing:.02em;display:flex;align-items:baseline;gap:7px}
+  .w5 .h .t i{font-style:normal;font-size:9.5px;font-family:ui-monospace,Consolas,monospace;border:1px solid #9a9a9a;padding:1px 4px}
+  .w5 .h .s{font-size:10.5px;color:#c9c9c9;margin-top:3px}
+  .w5 .bar{display:flex;gap:6px;align-items:center;padding:8px 12px;border-bottom:1px solid #6a6a6a}
+  .w5 .chip{font-size:11px;padding:3px 8px;border:1px solid #b5b5b5}
+  .w5 .chip.on{background:#fff;color:#101010;border-color:#fff}
+  .w5 .btn{margin-left:auto;font-size:11px;padding:3px 8px;border:1px solid #e8e8e8}
+  .w5 .tb{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #9a9a9a;margin:9px 12px 0}
+  .w5 .tb div{padding:5px 7px;border-right:1px solid #9a9a9a}
+  .w5 .tb div:last-child{border-right:0}
+  .w5 .tb b{display:block;font-family:ui-monospace,Consolas,monospace;font-size:16px}
+  .w5 .tb span{font-size:9.5px;color:#c9c9c9}
+  .w5 .sheet{margin:9px 12px 0;border:1px solid #b5b5b5;position:relative;padding:9px 9px 6px}
+  .w5 .sheet .cap{font-size:10px;color:#dcdcdc;letter-spacing:.08em;margin-bottom:6px}
+  .w5 .plot{position:relative;height:196px;border-left:1px solid #dcdcdc;border-bottom:1px solid #dcdcdc}
+  .w5 .plot .axis{position:absolute;left:0;right:0;border-top:1px dashed #9a9a9a}
+  .w5 .plot .tick{position:absolute;left:-1px;width:4px;border-top:1px solid #dcdcdc}
+  .w5 .plot .tick em{position:absolute;left:-34px;top:-7px;font-family:ui-monospace,Consolas,monospace;
+    font-size:9px;font-style:normal;color:#dcdcdc}
+  .w5 .dot{position:absolute;width:7px;height:7px;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
+  .w5 .ring{position:absolute;width:22px;height:22px;border-radius:50%;border:1.5px solid #fff;transform:translate(-50%,-50%)}
+  .w5 .ring.d{border-width:2.5px;width:26px;height:26px}
+  .w5 .ring.w{border-style:dashed}
+  .w5 .lead{position:absolute;font-size:9.5px;color:#fff;background:#3a3a3a;padding:0 3px;white-space:nowrap}
+  .w5 .note{margin-top:7px;border-top:1px dashed #9a9a9a;padding-top:5px;font-size:10px;color:#e0e0e0;display:flex;gap:10px}
+  .w5 .nrow{display:grid;grid-template-columns:20px 1fr 62px;gap:6px;align-items:center;padding:7px 12px;
+    border-bottom:1px solid #6a6a6a}
+  .w5 .nrow .no{font-family:ui-monospace,Consolas,monospace;font-size:11px}
+  .w5 .nrow b{font-size:11.5px}
+  .w5 .nrow em{font-style:normal;font-size:9.5px;color:#d0d0d0;border:1px solid #9a9a9a;padding:0 3px;margin-left:4px}
+  .w5 .nrow p{margin:2px 0 0;font-size:10.5px;line-height:1.45;color:#e8e8e8}
+  .w5 .nrow .act{text-align:right}
+  .w5 .nrow .act b{font-size:10px;border:1px solid #e8e8e8;padding:3px 6px;display:inline-block}
+  .w5 .base{padding:6px 12px;font-size:10px;color:#c9c9c9;border-bottom:1px solid #6a6a6a}
+  .w5 .brow{display:grid;grid-template-columns:44px 1fr 1fr 46px;gap:5px;padding:5px 12px;font-size:10px;
+    border-bottom:1px solid #555}
+  .w5 .brow .mono{font-family:ui-monospace,Consolas,monospace;color:#dcdcdc}
+  .w5 .tabbar{display:flex;border-top:1px solid #9a9a9a;margin-top:8px}
+  .w5 .tabbar div{flex:1;text-align:center;font-size:10.5px;padding:10px 0 11px;color:#c9c9c9}
+  .w5 .tabbar div.on{border-top:2px solid #fff;color:#fff;margin-top:-1px}
+</style>
+</head>
+<body>
+<div class="head">
+  <h1>明镜 · P20「运营工作台 · 今天」· ds2 灰度骨架并排</h1>
+  <p>阶段一自检：五个方向先用黑白灰画骨架，唯一的问题是——它们像不像同一个页面的几套配色。</p>
+  <p>判断口径：骨架（待办怎么排）与首屏主角（第一眼落在哪）至少有一项不同；灰色深浅只用来区分深底方向与浅底方向，不算色彩。</p>
+  <div class="rule"></div>
+</div>
+
+<div class="row">
+
+  <!-- ============================== d1 ============================== -->
+  <div class="col">
+    <div class="cap"><b>d1 台账</b>
+      <span>骨架：账本横栏表（表头＋栏线）<br>主角：条目与数字</span>
+      <a href="ds2-d1-台账.html">打开上色小样 d1 台账 →</a></div>
+    <div class="win"><div class="sk w1">
+      <div class="h">
+        <div class="t">运营工作台 · 今天</div>
+        <div class="s">运营 · 小林（我）　经手：早班</div>
+        <div class="s">待办第一 · 早班先消化昨晚夜场</div>
+      </div>
+      <div class="bar">
+        <span class="chip on">早班 7:30-16:30</span><span class="chip">晚班 16:30-01:30</span>
+        <span class="btn">群发通知</span>
+      </div>
+      <div class="sum">
+        <div><b>13</b><span>在管主播</span></div>
+        <div><b>10</b><span>今日应播</span></div>
+        <div><b>6</b><span>已开播 3 个在播</span></div>
+        <div><b>18.8万</b><span>今日音浪 3 场在播</span></div>
+      </div>
+      <div class="tabs"><b>待办 7</b><i>已处理 1</i></div>
+      <div class="thead"><span>No.</span><span>事由</span><span>依据</span><span>级</span></div>
+      <div class="tr">
+        <div class="no">01</div>
+        <div class="cat">盯场复盘<em>自动摘要</em></div>
+        <div>
+          <p><em>11 场 · 34.2 万 · +2.4%</em><span class="stamp">正常</span></p>
+          <p><em>老K 1.1 万 · 14 天最低 · 22 点档大场分流</em><span class="stamp r">异常</span></p>
+          <p><em>茉莉第 2 场 · 涨粉 86 · 上周 2 倍</em><span class="stamp">正常</span></p>
+          <p style="color:#5f5f5f">AI 汇总 11 场数据 ｜ 人：正常标记消化，异常往下走</p>
+        </div>
+        <div class="act"><b class="s">标记已消化</b><u>去复盘</u></div>
+      </div>
+      <div class="tr">
+        <div class="no">02</div>
+        <div class="cat">盯场复盘<em>预警</em></div>
+        <div>
+          <p>老K ｜ 音浪 <em>1.1 万</em> · 上周同期 <em>−42%</em></p>
+          <p><em>22:00-01:00</em> 场 · 同赛道 22 点档 2 个大场分流</p>
+        </div>
+        <div class="act"><b class="s">去复盘</b><u>看详情</u></div>
+      </div>
+      <div class="tr">
+        <div class="no">03</div>
+        <div class="cat">流水跟踪<em>预警</em></div>
+        <div>
+          <p>阿哲 ｜ 连续 <em>3</em> 天下滑 · 近 7 天 <em>−16%</em></p>
+          <p>停留 <em>38→26 秒</em> · 18 点档 2 个同类场分流</p>
+        </div>
+        <div class="act"><b class="s">去复盘</b><u>看详情</u></div>
+      </div>
+      <div class="foot">今日开播 · 10 场 · 3 个在播　｜　AI 逐人比对近 7 天 ｜ 人：查详情或发消息</div>
+      <div class="tabbar"><div class="on">今天</div><div>我的主播</div><div>交接</div><div>我的</div><div>助理</div></div>
+    </div><div class="fade"></div></div>
+  </div>
+
+  <!-- ============================== d2 ============================== -->
+  <div class="col">
+    <div class="cap"><b>d2 时刻</b>
+      <span>骨架：共享时间坐标的条带<br>主角：时间（现在与时限）</span>
+      <a href="ds2-d2-时刻.html">打开上色小样 d2 时刻 →</a></div>
+    <div class="win"><div class="sk w2">
+      <div class="h">
+        <div class="t">运营工作台 · 今天</div>
+        <div class="s">运营 · 小林（我）　待办第一 · 早班先消化昨晚夜场</div>
+      </div>
+      <div class="bar">
+        <span class="chip on">早班 7:30-16:30</span><span class="chip">晚班 16:30-01:30</span>
+        <span class="btn">群发通知</span>
+      </div>
+      <div class="kpi">
+        <div><b>13</b><span>在管主播</span></div>
+        <div><b>10</b><span>今日应播</span></div>
+        <div><b>6</b><span>已开播</span></div>
+        <div><b>18.8万</b><span>今日音浪</span></div>
+      </div>
+      <div class="ruler">
+        <em style="left:0">现在 7:30</em><em style="left:44%">16:30</em><em style="left:78%">22:00</em><em style="right:0">01:30</em>
+        <i style="left:52%">茉莉 21:00 前撤</i><i style="left:30%">栗子 19:30 盯场</i>
+      </div>
+      <div class="sec"><b>待办 7</b><span>已处理 1 · 按"要不要现在动"排</span></div>
+      <div class="trow">
+        <div class="n">01</div><div class="tm">随时</div>
+        <div class="mid"><span class="flag">汇总</span><b>盯场复盘</b><em>自动摘要</em>
+          <p>11 场 · 34.2 万 · +2.4% ｜ 老K 1.1 万 22 点档分流 ｜ 茉莉涨粉 86</p></div>
+        <div class="act"><b>标记已消化</b><u>去复盘</u></div>
+      </div>
+      <div class="trow">
+        <div class="n">02</div><div class="tm">22:00<br>场前</div>
+        <div class="mid"><span class="flag d">有风险</span><b>老K</b><em>盯场复盘</em>
+          <p>音浪 1.1 万 · 上周同期 −42% · 22 点档 2 个大场分流</p>
+          <div class="track"><i class="d" style="left:53%;width:40%"></i></div></div>
+        <div class="act"><b>去复盘</b><u>看详情</u></div>
+      </div>
+      <div class="trow">
+        <div class="n">03</div><div class="tm">18:00<br>场后</div>
+        <div class="mid"><span class="flag d">有风险</span><b>阿哲</b><em>流水跟踪</em>
+          <p>连续 3 天下滑 · 近 7 天 −16% · 停留 38→26 秒</p>
+          <div class="track"><i class="d" style="left:0;width:40%"></i></div></div>
+        <div class="act"><b>去复盘</b><u>看详情</u></div>
+      </div>
+      <div class="trow">
+        <div class="n">04</div><div class="tm">21:00<br>场前</div>
+        <div class="mid"><span class="flag w">待跟进</span><b>晓晓</b><em>话术节奏</em>
+          <p>开场 30 秒话术两周未换 · 峰值只剩上周 7 成</p>
+          <div class="track"><i style="left:40%;width:33%"></i></div></div>
+        <div class="act"><b>生成规划</b><u>看详情</u></div>
+      </div>
+      <div class="trow">
+        <div class="n">05</div><div class="tm">明天<br>结业</div>
+        <div class="mid"><span class="flag w">待跟进</span><b>麦子</b><em>新人孵化</em>
+          <p>新人第 6 天 · 培训组明天出评估 · 结业后首场排早场</p></div>
+        <div class="act"><u>看详情</u><u>发消息</u></div>
+      </div>
+      <div class="trow">
+        <div class="n">06</div><div class="tm">21:00<br>开播前</div>
+        <div class="mid"><span class="flag w">待跟进</span><b>茉莉</b><em>风险合规</em>
+          <p>画面自检「背景」未过 · 出现品牌标识 · 开播前要撤掉</p>
+          <div class="track"><i style="left:40%;width:40%"></i></div></div>
+        <div class="act"><b>转视觉</b><u>发消息</u></div>
+      </div>
+      <div class="trow">
+        <div class="n">07</div><div class="tm">昨晚<br>打样</div>
+        <div class="mid"><span class="flag">草稿</span><b>话术沉淀</b><em>待拍板</em>
+          <p>收尾连唱 2 首 ＋ 报下次歌单 · 佐证停留 41 秒全场最高</p></div>
+        <div class="act"><b>采纳</b><u>修改 · 不用</u></div>
+      </div>
+      <div class="sec"><b>今日开播</b><span>10 场 · 3 个在播 · 18:00 → 01:30</span></div>
+      <div class="trow">
+        <div class="n"></div><div class="tm">18:00<br>21:00</div>
+        <div class="mid"><b>阿哲</b><em>已下播</em>
+          <div class="track"><i class="d" style="left:0;width:40%"></i></div></div>
+        <div class="act"><u>停留 38→26 秒</u></div>
+      </div>
+      <div class="trow">
+        <div class="n"></div><div class="tm">20:00<br>23:00</div>
+        <div class="mid"><b>小雨</b><em>直播中</em>
+          <div class="track"><i style="left:27%;width:40%"></i></div></div>
+        <div class="act"><u>无风险</u></div>
+      </div>
+      <div class="trow">
+        <div class="n"></div><div class="tm">22:00<br>01:00</div>
+        <div class="mid"><b>老K</b><em>未开播</em>
+          <div class="track"><i class="d" style="left:53%;width:40%"></i></div></div>
+        <div class="act"><u>−42% · 大场分流</u></div>
+      </div>
+      <div class="tabbar"><div class="on">今天</div><div>我的主播</div><div>交接</div><div>我的</div><div>助理</div></div>
+    </div><div class="fade"></div></div>
+  </div>
+
+  <!-- ============================== d3 ============================== -->
+  <div class="col">
+    <div class="cap"><b>d3 灯盘</b>
+      <span>骨架：按"谁动手"分段的泳道＋灯<br>主角：AI 参与态</span>
+      <a href="ds2-d3-灯盘.html">打开上色小样 d3 灯盘 →</a></div>
+    <div class="win"><div class="sk w3">
+      <div class="h"><span>明</span><b>运营工作台 · 今天</b><span>铃 2</span><span class="bg">运营</span></div>
+      <div class="ph"><div class="t">早班 7:30-16:30 · 小林</div><div class="s">待办第一 · 先消化昨晚夜场</div></div>
+      <div class="bar"><span class="chip on">早班 7:30-16:30</span><span class="chip">晚班 16:30-01:30</span><span class="btn">群发通知</span></div>
+      <div class="read">
+        <div><b>13</b><span>在管主播</span></div><div><b>10</b><span>今日应播</span></div>
+        <div><b>6</b><span>已开播 3 在播</span></div><div><b>18.8万</b><span>音浪 3 场在播</span></div>
+      </div>
+      <div class="lane"><span class="lamp on"></span><b>等你拍板</b><span>AI 出草稿 · 点了才生效</span><span class="ct">1</span></div>
+      <div class="card">
+        <div class="top"><span class="src">稿 · 草稿</span><span class="lv"><span class="lamp off"></span>待拍板</span></div>
+        <div class="bd"><h4>话术沉淀</h4>
+          <div class="rowline"><span class="k">要点</span>收尾连唱 2 首 ＋ 唱完报下次歌单</div>
+          <div class="rowline"><span class="k">佐证</span>该段停留 <em>41 秒</em> · 全场最高</div></div>
+        <div class="split"><span>AI 按昨晚场次写草稿</span><span>人：采纳才入库</span></div>
+        <div class="acts"><b class="p">采纳</b><b>修改</b><u>不用</u></div>
+      </div>
+      <div class="lane"><span class="lamp mid"></span><b>机器有结论</b><span>AI 比对完，人只看结果</span><span class="ct">5</span></div>
+      <div class="card">
+        <div class="top"><span class="src">机 · 自动摘要</span><span class="lv"><span class="lamp off"></span>看一眼</span></div>
+        <div class="bd"><h4>盯场复盘 · 昨晚 11 场</h4>
+          <div class="rowline"><span class="k">合计</span><em>34.2 万</em> · 比上周 <em>+2.4%</em><span class="lamp off"></span></div>
+          <div class="rowline"><span class="k">老K</span><em>1.1 万</em> · 14 天最低 · 22 点档大场分流<span class="lamp mid"></span></div>
+          <div class="rowline"><span class="k">茉莉</span>第 2 场 · 涨粉 <em>86</em> · 上周 2 倍<span class="lamp off"></span></div></div>
+        <div class="split"><span>AI 汇总 11 场</span><span>人：正常消化，异常下推</span></div>
+        <div class="acts"><b class="p">标记已消化</b><b>去复盘</b></div>
+      </div>
+      <div class="card onrisk">
+        <div class="top"><span class="src">警 · 预警</span><span class="lv"><span class="lamp on"></span>有风险</span></div>
+        <div class="bd"><h4>老K</h4>
+          <div class="rowline"><span class="k">信号</span>音浪 <em>1.1 万</em> · 上周同期 <em>−42%</em></div>
+          <div class="rowline"><span class="k">原因</span>22:00-01:00 场 · 22 点档 2 个大场分流</div></div>
+        <div class="split"><span>AI 比对近 7 天</span><span>人：复盘</span></div>
+        <div class="acts"><b class="p">去复盘</b><b>看详情</b></div>
+      </div>
+      <div class="lane"><span class="lamp off"></span><b>我经手</b><span>人办的事 · 记一笔</span><span class="ct">1</span></div>
+      <div class="card">
+        <div class="top"><span class="src">记 · 记录</span><span class="lv"><span class="lamp mid"></span>待跟进</span></div>
+        <div class="bd"><h4>麦子 · 新人第 6 天</h4>
+          <div class="rowline"><span class="k">背景</span>培训组明天出评估 · 结业首场排早场</div></div>
+        <div class="acts"><b>看详情</b><b>发消息</b></div>
+      </div>
+      <div class="chan">
+        <div class="ch"><b>今日开播</b><span>10 场 · 3 个在播</span></div>
+        <div class="cr"><span class="lamp on"></span><span>小雨</span><span class="seg"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span><span class="tm">20-23</span><span class="st">直播中</span></div>
+        <div class="cr"><span class="lamp off"></span><span>甜甜</span><span class="seg"><i class="f"></i><i class="f"></i><i></i></span><span class="tm">21-24</span><span class="st">已下播</span></div>
+        <div class="cr"><span class="lamp on"></span><span>老K</span><span class="seg"><i class="f"></i><i class="f"></i><i></i><i></i></span><span class="tm">22-01</span><span class="st">未开播</span></div>
+      </div>
+      <div class="tabbar"><div class="on">今天</div><div>我的主播</div><div>交接</div><div>我的</div><div>助理</div></div>
+    </div><div class="fade"></div></div>
+  </div>
+
+  <!-- ============================== d4 ============================== -->
+  <div class="col">
+    <div class="cap"><b>d4 人阵</b>
+      <span>骨架：网格／热力（待办大格＋人矩阵）<br>主角：人</span>
+      <a href="ds2-d4-人阵.html">打开上色小样 d4 人阵 →</a></div>
+    <div class="win"><div class="sk w4">
+      <div class="h"><div class="t">运营工作台 · 今天</div>
+        <div class="s">运营 · 小林（我）　待办第一 · 早班先消化昨晚夜场</div></div>
+      <div class="bar"><span class="chip on">早班 7:30-16:30</span><span class="chip">晚班 16:30-01:30</span><span class="btn">群发通知</span></div>
+      <div class="grid2">
+        <div class="cell wide"><span class="src">自动摘要</span>
+          <div class="who" style="font-size:13px">昨晚 11 场 · 34.2 万 <em>+2.4%</em></div>
+          <p>老K <em>1.1 万</em> · 14 天最低 · 22 点档大场分流　｜　茉莉第 2 场 · 涨粉 <em>86</em> · 上周 2 倍</p>
+          <div class="act"><b class="s">标记已消化</b><b>去复盘</b></div></div>
+        <div class="cell"><span class="src">预警</span><div class="cut"></div>
+          <div class="who">老K<em>盯场复盘</em></div>
+          <p>音浪 <em>1.1 万</em> · 上周同期 <em>−42%</em> · 22:00 场 2 个大场分流</p>
+          <div class="act"><b class="s">去复盘</b><b>看详情</b></div></div>
+        <div class="cell"><span class="src">预警</span><div class="cut"></div>
+          <div class="who">阿哲<em>流水跟踪</em></div>
+          <p>连续 <em>3</em> 天下滑 · 近 7 天 <em>−16%</em> · 停留 <em>38→26 秒</em></p>
+          <div class="act"><b class="s">去复盘</b><b>看详情</b></div></div>
+        <div class="cell"><span class="src">预警</span><div class="cut h"></div>
+          <div class="who">晓晓<em>话术节奏</em></div>
+          <p>开场 30 秒话术两周未换 · 峰值只剩上周 <em>7 成</em></p>
+          <div class="act"><b class="s">生成规划</b><b>看详情</b></div></div>
+        <div class="cell"><span class="src">记录</span><div class="cut h"></div>
+          <div class="who">麦子<em>新人孵化</em></div>
+          <p>新人第 <em>6</em> 天 · 明天结业评估 · 结业首场排早场</p>
+          <div class="act"><b>看详情</b><b>发消息</b></div></div>
+        <div class="cell"><span class="src">预警</span><div class="cut h"></div>
+          <div class="who">茉莉<em>风险合规</em></div>
+          <p>画面自检「背景」未过 · 出现品牌标识 · <em>21:00</em> 前撤掉</p>
+          <div class="act"><b class="s">转视觉</b><b>发消息</b></div></div>
+        <div class="cell wide"><span class="src">草稿</span>
+          <div class="who" style="font-size:13px">话术沉淀 · 建议入库</div>
+          <p>要点：收尾连唱 2 首 ＋ 报下次歌单　｜　佐证：停留 <em>41 秒</em>（全场最高）</p>
+          <div class="act"><b class="s">采纳</b><b>修改</b><u>不用</u></div></div>
+      </div>
+      <div class="kpi">
+        <div><b>13</b><span>在管主播</span></div><div><b>10</b><span>今日应播</span></div>
+        <div><b>6</b><span>已开播 3 在播</span></div><div><b>18.8万</b><span>今日音浪</span></div>
+      </div>
+      <div class="sec"><b>今日开播 · 10 场 · 3 个在播</b><span>AI 逐人比对近 7 天</span></div>
+      <div class="mat">
+        <div class="m"><div class="n">小雨</div><div class="t">20:00-23:00</div><div class="band"></div></div>
+        <div class="m"><div class="n">大乔</div><div class="t">19:00-22:00</div><div class="band"></div></div>
+        <div class="m"><div class="n">甜甜</div><div class="t">21:00-24:00</div><div class="band l"></div></div>
+        <div class="m"><div class="n">茉莉</div><div class="t">21:00-24:00</div><div class="band"></div></div>
+        <div class="m"><div class="n">阿哲</div><div class="t">18:00-21:00</div><div class="rk">停留 38→26 秒</div><div class="band l"></div></div>
+        <div class="m"><div class="n">九九</div><div class="t">20:00-23:00</div><div class="band l"></div></div>
+        <div class="m"><div class="n">栗子</div><div class="t">19:30-22:30</div><div class="rk">新人 9 天换 2 时段</div><div class="band d"></div></div>
+        <div class="m"><div class="n">晓晓</div><div class="t">21:00-23:30</div><div class="rk">峰值剩 7 成</div><div class="band d"></div></div>
+        <div class="m"><div class="n">老K</div><div class="t">22:00-01:00</div><div class="rk">−42% · 大场分流</div><div class="band d"></div></div>
+      </div>
+      <div class="tabbar"><div class="on">今天</div><div>我的主播</div><div>交接</div><div>我的</div><div>助理</div></div>
+    </div><div class="fade"></div></div>
+  </div>
+
+  <!-- ============================== d5 ============================== -->
+  <div class="col">
+    <div class="cap"><b>d5 标图</b>
+      <span>骨架：图上作业（坐标＋引线编号）<br>主角：风险所在的位置</span>
+      <a href="ds2-d5-标图.html">打开上色小样 d5 标图 →</a></div>
+    <div class="win"><div class="sk w5">
+      <div class="h"><div class="t">运营工作台 · 今天 <i>P20</i></div>
+        <div class="s">运营 · 小林（我）　待办第一 · 早班先消化昨晚夜场</div></div>
+      <div class="bar"><span class="chip on">早班 7:30-16:30</span><span class="chip">晚班 16:30-01:30</span><span class="btn">群发通知</span></div>
+      <div class="tb">
+        <div><b>13</b><span>在管主播</span></div><div><b>10</b><span>今日应播</span></div>
+        <div><b>6</b><span>已开播 3 在播</span></div><div><b>18.8万</b><span>今日音浪 3 场在播</span></div>
+      </div>
+      <div class="sheet">
+        <div class="cap">今日作业图 · 18:00 → 01:30 · 横轴＝偏离基准</div>
+        <div class="plot">
+          <div class="tick" style="top:0"><em>18:00</em></div>
+          <div class="tick" style="top:56px"><em>20:00</em></div>
+          <div class="tick" style="top:112px"><em>22:00</em></div>
+          <div class="tick" style="top:168px"><em>24:00</em></div>
+          <div class="axis" style="left:50%;top:0;height:100%"></div>
+          <div class="dot" style="left:16%;top:14px"></div><div class="ring d" style="left:16%;top:14px"></div>
+          <div class="lead" style="left:22%;top:6px">③ 阿哲 −16% · 停留 38→26 秒</div>
+          <div class="dot" style="left:56%;top:44px"></div>
+          <div class="dot" style="left:34%;top:58px"></div><div class="ring w" style="left:34%;top:58px"></div>
+          <div class="lead" style="left:40%;top:50px">④ 栗子 新人换 2 时段</div>
+          <div class="dot" style="left:70%;top:64px"></div>
+          <div class="dot" style="left:62%;top:88px"></div>
+          <div class="dot" style="left:44%;top:96px"></div><div class="ring w" style="left:44%;top:96px"></div>
+          <div class="lead" style="left:50%;top:88px">⑥ 茉莉 背景未过</div>
+          <div class="dot" style="left:30%;top:112px"></div><div class="ring w" style="left:30%;top:112px"></div>
+          <div class="lead" style="left:36%;top:104px">⑤ 晓晓 峰值剩 7 成</div>
+          <div class="dot" style="left:12%;top:140px"></div><div class="ring d" style="left:12%;top:140px"></div>
+          <div class="lead" style="left:18%;top:132px">② 老K −42% · 大场分流</div>
+          <div class="dot" style="left:78%;top:120px"></div><div class="dot" style="left:52%;top:150px"></div>
+        </div>
+        <div class="note"><span>◎ 有风险（双圈）</span><span>◌ 待跟进（虚线圈）</span><span>· 无风险</span><span>点＝今日场次</span>
+          <span style="margin-left:auto">① 汇总 ｜ ⑦ 草稿见下方表</span></div>
+      </div>
+      <div class="nrow"><div class="no">01</div><div><span>盯场复盘</span><em>自动摘要</em>
+        <p>11 场 · 34.2 万 · +2.4% ｜ 老K 1.1 万 · 茉莉涨粉 86</p></div>
+        <div class="act"><b>标记已消化</b></div></div>
+      <div class="nrow"><div class="no">02</div><div><span class="flag" style="border:1px solid #fff;padding:0 3px">◎</span><span> 老K</span><em>盯场复盘</em>
+        <p>音浪 1.1 万 · 上周同期 −42% · 22 点档 2 个大场分流</p></div>
+        <div class="act"><b>去复盘</b></div></div>
+      <div class="nrow"><div class="no">03</div><div><span>阿哲</span><em>流水跟踪</em>
+        <p>连续 3 天下滑 · 近 7 天 −16% · 停留 38→26 秒</p></div>
+        <div class="act"><b>去复盘</b></div></div>
+      <div class="base">底表 · 今日开播 10 场 · 3 个在播　｜　AI 逐人比对近 7 天</div>
+      <div class="brow"><span>阿哲</span><span class="mono">18:00-21:00</span><span>停留 38→26 秒</span><span>已下播</span></div>
+      <div class="brow"><span>小雨</span><span class="mono">20:00-23:00</span><span>无风险</span><span>直播中</span></div>
+      <div class="brow"><span>老K</span><span class="mono">22:00-01:00</span><span>−42% · 大场分流</span><span>未开播</span></div>
+      <div class="tabbar"><div class="on">今天</div><div>我的主播</div><div>交接</div><div>我的</div><div>助理</div></div>
+    </div><div class="fade"></div></div>
+  </div>
+
+</div>
+</body>
+</html>

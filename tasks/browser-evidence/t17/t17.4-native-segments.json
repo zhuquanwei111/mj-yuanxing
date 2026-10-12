@@ -1,0 +1,44 @@
+{
+  "task": "T17.4",
+  "url": "http://127.0.0.1:8791/明镜产品原型.html#P20",
+  "checkedAt": "2026-10-11",
+  "runtime": {
+    "ionicScriptReferences": 0,
+    "ionicCustomElements": 0,
+    "vendorFilesDeleted": false,
+    "note": "The local Ionic files remain untouched but are no longer referenced by the prototype."
+  },
+  "nativeSegmentChecks": {
+    "P20": {
+      "pointerClick": { "value": "live", "selectedAfterClick": true },
+      "arrowRight": { "from": "work", "to": "live", "selectedAfterKey": true },
+      "space": { "to": "overview", "selectedAfterKey": true },
+      "tabExitAndShiftTabReturn": true,
+      "focusOutline": "2px solid",
+      "touchTarget": { "width": 106, "height": 48 }
+    },
+    "P30": { "arrowRight": { "from": "today", "to": "hist", "selectedAfterKey": true } },
+    "P41": {
+      "route": "#P41",
+      "viewport": { "width": 320, "height": 568, "mobile": true, "touch": true },
+      "group": "训练阶段",
+      "wrapped": true,
+      "columns": [147, 147],
+      "allLabelsFit": true,
+      "endKeySelectsLastOption": true,
+      "spaceSelectsFocusedOption": true,
+      "scrollbar": "none"
+    }
+  },
+  "allRouteRegression": {
+    "routes": 49,
+    "scrollbarStyleChecks": 295,
+    "radioGroups": 15,
+    "failures": 0,
+    "P20VerticalScrollMoved": true,
+    "P21HorizontalFilterScrollMoved": true,
+    "horizontalPageOverflow": false
+  },
+  "tests": { "uiComponentLibrary": "6/6 passed", "allTests": "104/104 passed", "prototypeStaticCheck": "passed" },
+  "screenshot": { "saved": false, "note": "DOM, keyboard, pointer, and layout metrics were checked in the live browser; no screenshot is claimed as archived." }
+}

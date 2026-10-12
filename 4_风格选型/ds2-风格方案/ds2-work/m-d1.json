@@ -1,0 +1,47 @@
+{
+ "file": "ds2-d1-台账.html",
+ "state": "app",
+ "viewport": "390x844",
+ "zoom": 1,
+ "cjk": 614,
+ "longText": [],
+ "overflow": [],
+ "smallCjk": [],
+ "hit": [
+  {
+   "w": 126,
+   "h": 31,
+   "t": "早班 7:30-16:3",
+   "at": "div#app>div#scroller>div.shift>button.chip"
+  },
+  {
+   "w": 132,
+   "h": 31,
+   "t": "晚班 16:30-01:",
+   "at": "div#app>div#scroller>div.shift>button.chip"
+  },
+  {
+   "w": 72,
+   "h": 35,
+   "t": "群发通知",
+   "at": "div#app>div#scroller>div.shift>button#openCompose"
+  },
+  {
+   "w": 37,
+   "h": 32,
+   "t": "待办7",
+   "at": "div#app>div#scroller>nav#tabs>button.on"
+  },
+  {
+   "w": 50,
+   "h": 32,
+   "t": "已处理1",
+   "at": "div#app>div#scroller>nav#tabs>button"
+  }
+ ],
+ "doc": {
+  "w": 390,
+  "h": 844,
+  "vw": 390
+ }
+}

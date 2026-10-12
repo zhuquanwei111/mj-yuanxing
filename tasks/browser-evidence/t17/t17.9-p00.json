@@ -1,0 +1,49 @@
+{
+  "task": "T17.9",
+  "route": "#P00",
+  "verificationDate": "2026-10-11",
+  "browser": "Chrome DevTools mobile emulation",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "identities": 12,
+      "namesInOrder": ["公会老板", "运营", "经纪人", "培训", "妆造视觉", "编导", "剪辑", "财务", "运营总监", "运营组长", "主播", "平台运营"],
+      "rowMinHeight": 68,
+      "rowBorder": "bottom divider only",
+      "rowBorderRadius": 0,
+      "bodyScrollHeight": 1007,
+      "bodyClientHeight": 780,
+      "scrollbarWidth": "none"
+    },
+    {
+      "width": 320,
+      "height": 720,
+      "identities": 12,
+      "documentClientWidth": 320,
+      "documentScrollWidth": 320,
+      "screenClientWidth": 318,
+      "screenScrollWidth": 318,
+      "bodyClientWidth": 318,
+      "bodyScrollWidth": 318,
+      "bodyScrollHeight": 1064,
+      "bodyClientHeight": 656,
+      "scrollbarWidth": "none",
+      "scrollTopChangedAfterProgrammaticScroll": true
+    }
+  ],
+  "interaction": {
+    "selectedRole": "培训",
+    "homeRoute": "#P41",
+    "identitySwitch": "#MY → #P00",
+    "pickerAfterReturn": "选身份"
+  },
+  "a11y": {
+    "eachRowHasAccessibleWorkspaceAndDescriptionLabel": true,
+    "all12RowsAppearInRoleRegistryOrder": true
+  },
+  "visualCapture": {
+    "archived": false,
+    "reason": "Chrome DevTools screenshot call did not return; evidence records DOM snapshot and measured styles, not an image."
+  }
+}

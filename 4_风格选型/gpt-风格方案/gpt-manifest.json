@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "lang": "zh",
+  "project": "明镜 · 三种工作方式",
+  "brief": "P20 运营工作台 · 今天｜同一份业务内容，三种信息骨架。推荐 d1 信号台；可切换班次、处理草稿、下钻指标与群发通知。P13 延展从「我的 → 查看经营大盘」进入。",
+  "round": "gpt · 01",
+  "candidates": [
+    {
+      "id": "d1",
+      "name": "信号台",
+      "concept": "把昨晚读清，把风险接住，再推进今天。",
+      "typography": "系统黑体 13/16/22px，等宽数字，紧凑分级",
+      "palette": [
+        "#102B30",
+        "#65E0C3",
+        "#FFB0A5",
+        "#E8C778"
+      ],
+      "traits": [
+        "深青监测队列",
+        "分层只读摘要",
+        "发光信号点与实心操作"
+      ],
+      "kind": "html",
+      "source": "gpt-d1-信号台.html",
+      "interactive": true
+    },
+    {
+      "id": "d2",
+      "name": "值班簿",
+      "concept": "沿着一条值班线，逐件读、逐件办、逐件留痕。",
+      "typography": "宋体标题 17/24px，黑体正文 13px，衬线时间数字",
+      "palette": [
+        "#F5F0E5",
+        "#733C29",
+        "#304E44",
+        "#B54534"
+      ],
+      "traits": [
+        "贯穿式编号时间轴",
+        "暖纸与棕色活页签",
+        "衬线标题与行间批注"
+      ],
+      "kind": "html",
+      "source": "gpt-d2-值班簿.html",
+      "interactive": true
+    },
+    {
+      "id": "d3",
+      "name": "签收台",
+      "concept": "机器把材料备齐，生效的一步始终留给我。",
+      "typography": "微软雅黑粗体标题 16/24px，系统正文 13px，Arial 数字",
+      "palette": [
+        "#EEF1FA",
+        "#284ECB",
+        "#E1E8FF",
+        "#AD4433"
+      ],
+      "traits": [
+        "左右分工票据",
+        "蓝白硬边签收区",
+        "草稿虚线与人工作业实线"
+      ],
+      "kind": "html",
+      "source": "gpt-d3-签收台.html",
+      "interactive": true
+    }
+  ]
+}

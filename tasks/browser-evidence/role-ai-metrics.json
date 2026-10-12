@@ -1,0 +1,336 @@
+[
+  {
+    "role": "boss",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 公会老板",
+    "width": 360
+  },
+  {
+    "role": "boss",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 公会老板",
+    "width": 389
+  },
+  {
+    "role": "boss",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 公会老板",
+    "width": 430
+  },
+  {
+    "role": "yunying",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 运营",
+    "width": 360
+  },
+  {
+    "role": "yunying",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 运营",
+    "width": 389
+  },
+  {
+    "role": "yunying",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 运营",
+    "width": 430
+  },
+  {
+    "role": "jingji",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 经纪人",
+    "width": 360
+  },
+  {
+    "role": "jingji",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 经纪人",
+    "width": 389
+  },
+  {
+    "role": "jingji",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 经纪人",
+    "width": 430
+  },
+  {
+    "role": "peixun",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 培训",
+    "width": 360
+  },
+  {
+    "role": "peixun",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 培训",
+    "width": 389
+  },
+  {
+    "role": "peixun",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 培训",
+    "width": 430
+  },
+  {
+    "role": "zhuangzao",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 妆造视觉",
+    "width": 360
+  },
+  {
+    "role": "zhuangzao",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 妆造视觉",
+    "width": 389
+  },
+  {
+    "role": "zhuangzao",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 妆造视觉",
+    "width": 430
+  },
+  {
+    "role": "biandao",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 编导",
+    "width": 360
+  },
+  {
+    "role": "biandao",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 编导",
+    "width": 389
+  },
+  {
+    "role": "biandao",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 编导",
+    "width": 430
+  },
+  {
+    "role": "jianji",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 剪辑",
+    "width": 360
+  },
+  {
+    "role": "jianji",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 剪辑",
+    "width": 389
+  },
+  {
+    "role": "jianji",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 剪辑",
+    "width": 430
+  },
+  {
+    "role": "caiwu",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 财务",
+    "width": 360
+  },
+  {
+    "role": "caiwu",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 财务",
+    "width": 389
+  },
+  {
+    "role": "caiwu",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 财务",
+    "width": 430
+  },
+  {
+    "role": "zongjian",
+    "notApplicable": "此角色底栏没有助理入口"
+  },
+  {
+    "role": "zuzhang",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 运营组长",
+    "width": 360
+  },
+  {
+    "role": "zuzhang",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 运营组长",
+    "width": 389
+  },
+  {
+    "role": "zuzhang",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 运营组长",
+    "width": 430
+  },
+  {
+    "role": "zhubo",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 4 主播",
+    "width": 360
+  },
+  {
+    "role": "zhubo",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 4 主播",
+    "width": 389
+  },
+  {
+    "role": "zhubo",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 4 主播",
+    "width": 430
+  },
+  {
+    "role": "plat",
+    "size": "360,800",
+    "height": 800,
+    "overflow": [],
+    "rootScroll": 360,
+    "technical": [],
+    "title": "明 明镜助理 2 平台运营",
+    "width": 360
+  },
+  {
+    "role": "plat",
+    "size": "390,844",
+    "height": 844,
+    "overflow": [],
+    "rootScroll": 389,
+    "technical": [],
+    "title": "明 明镜助理 2 平台运营",
+    "width": 389
+  },
+  {
+    "role": "plat",
+    "size": "430,932",
+    "height": 932,
+    "overflow": [],
+    "rootScroll": 430,
+    "technical": [],
+    "title": "明 明镜助理 2 平台运营",
+    "width": 430
+  }
+]

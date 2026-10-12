@@ -1,0 +1,49 @@
+[
+  {
+    "size": "360,800",
+    "backgroundInert": true,
+    "backgroundLock": true,
+    "contained": true,
+    "footerVisible": true,
+    "length": 2691,
+    "textareaHeight": 562.6090087890625,
+    "textareaScroll": 5136
+  },
+  {
+    "size": "390,844",
+    "backgroundInert": true,
+    "backgroundLock": true,
+    "contained": true,
+    "footerVisible": true,
+    "length": 2691,
+    "textareaHeight": 606.7950439453125,
+    "textareaScroll": 5136
+  },
+  {
+    "size": "430,932",
+    "backgroundInert": true,
+    "backgroundLock": true,
+    "contained": true,
+    "footerVisible": true,
+    "length": 2691,
+    "textareaHeight": 695.1671142578125,
+    "textareaScroll": 5136
+  },
+  {
+    "size": "360,480",
+    "backgroundInert": true,
+    "backgroundLock": true,
+    "contained": true,
+    "footerVisible": true,
+    "length": 2691,
+    "textareaHeight": 242.8415679931641,
+    "textareaScroll": 5136
+  },
+  {
+    "afterEscape": {
+      "backgroundInert": false,
+      "focused": "修改",
+      "maskHidden": true
+    }
+  }
+]

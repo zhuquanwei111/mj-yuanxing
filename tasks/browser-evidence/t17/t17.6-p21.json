@@ -1,0 +1,48 @@
+{
+  "task": "T17.6",
+  "url": "http://127.0.0.1:8791/明镜产品原型.html#P21",
+  "checkedAt": "2026-10-11",
+  "viewports": [
+    { "width": 320, "height": 568, "filterViewport": 286, "filterContent": 366, "maxScroll": 80 },
+    { "width": 360, "height": 800, "filterViewport": 326, "filterContent": 366, "maxScroll": 40 },
+    { "width": 390, "height": 844, "filterViewport": 348, "filterContent": 366, "maxScroll": 18 },
+    { "width": 430, "height": 932, "filterViewport": 388, "filterContent": 388, "maxScroll": 0 }
+  ],
+  "roster": {
+    "items": 13,
+    "avatar": { "width": 32, "height": 32, "source": "first character placeholder", "photoAssetsAvailable": false, "border": "1px neutral" },
+    "statusRiskNewcomer": "separate visible fields",
+    "messageAction": { "label": "发消息", "element": "button", "minHeight": 44, "visualTreatment": "transparent text" }
+  },
+  "filters": {
+    "counts": { "全部": 13, "在播": 3, "未播": 5, "风险": 5, "新人": 2 },
+    "singleRow": true,
+    "scrollbar": "none",
+    "edgeCue": { "atStart": "right hint", "middle": "left and right hints", "atEnd": "left hint", "noOverflow": "hidden" },
+    "selectionPreservesScrollPosition": true,
+    "touchAction": "pan-x",
+    "horizontalScrollLeftMaxima": [80, 40, 18, 0]
+  },
+  "checks": {
+    "emptySearch": true,
+    "activitySiblingView": true,
+    "activityGroupsAndCountsVisible": true,
+    "rowOpensP22": "#P22/xiaoyu",
+    "messageOpensExistingComposer": true,
+    "rootHorizontalOverflow": false,
+    "allVisibleScrollbars": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0
+  },
+  "screenshots": {
+    "capturedAndVisuallyReviewed": true,
+    "archived": false,
+    "note": "The final 360x800 screen was returned and reviewed inline. The browser screenshot tool rejected writes to the project and configured visualization paths; no PNG archive is claimed."
+  },
+  "tests": {
+    "rosterRefinements": "4/4 passed",
+    "fullSuite": "109/109 passed",
+    "prototypeStaticCheck": "passed",
+    "navigation": "2/2 passed"
+  }
+}

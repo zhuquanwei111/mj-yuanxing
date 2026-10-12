@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kimi2 · 灰度骨架并排（阶段一）</title>
+<style>
+/* 阶段一纪律：只允许黑白灰。任何色相出现都算违规。 */
+:root{
+  --bg:#e8e8e8;
+  --panel:#ffffff;
+  --panel-2:#f4f4f4;
+  --line:#d4d4d4;
+  --line-2:#bababa;
+  --ink:#1a1a1a;
+  --ink-2:#555555;
+  --ink-3:#909090;
+  --sans:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  --mono:"SF Mono","JetBrains Mono","Consolas",monospace;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:var(--sans);color:var(--ink);padding:26px}
+h1{font-size:18px;font-weight:800;letter-spacing:.04em}
+.sub{font-size:12px;color:var(--ink-2);margin:6px 0 20px}
+.row{display:flex;gap:20px;align-items:flex-start}
+.dir{flex:0 0 390px;background:var(--panel);border:1px solid var(--line-2)}
+.dir-head{display:flex;align-items:baseline;justify-content:space-between;padding:10px 14px;border-bottom:2px solid var(--ink);background:var(--panel-2)}
+.dir-head b{font-size:15px;font-weight:800}
+.dir-head span{font-size:11px;color:var(--ink-2);font-family:var(--mono)}
+.phone{height:760px;overflow:hidden;position:relative;padding:12px 12px 0}
+.wbar{height:34px;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:11px;color:var(--ink-2);background:var(--panel)}
+.wtag{font-size:10px;border:1px solid var(--ink-2);padding:1px 6px;color:var(--ink-2)}
+.wsec-label{font-size:10px;color:var(--ink-3);letter-spacing:.14em;margin:10px 0 5px}
+.box{border:1px solid var(--line-2);background:var(--panel)}
+.boxfill{background:var(--ink);color:#fff}
+.boxmid{background:#dedede}
+.skel-line{height:8px;background:#e2e2e2;border-radius:2px;margin:5px 0}
+.skel-line.dark{background:#c2c2c2}
+.skel-line.short{width:55%}
+.note{font-size:10.5px;color:var(--ink-2);padding:9px 14px;border-top:1px dashed var(--line-2);line-height:1.6;background:var(--panel)}
+.legend{margin-top:22px;font-size:11px;color:var(--ink-2);line-height:1.8;max-width:1200px}
+.legend b{color:var(--ink)}
+
+/* ============ d1 条带：时间轴 + 表格化 ============ */
+.d1 .band{height:64px;border:1px solid var(--ink);display:flex;align-items:stretch;position:relative;background:var(--panel)}
+.d1 .band i{flex:1;border-right:1px solid #efefef;position:relative}
+.d1 .band i b{position:absolute;left:0;right:0;top:6px;height:22px;margin:0 3px;background:#cfcfcf}
+.d1 .band i b.live{background:var(--ink)}
+.d1 .band i b.risk{box-shadow:inset 0 0 0 2px var(--ink)}
+.d1 .band .tick{position:absolute;bottom:2px;left:0;font-size:8px;color:var(--ink-3);font-family:var(--mono)}
+.d1 .kpirow{display:flex;gap:6px;margin-top:8px}
+.d1 .kpirow div{flex:1;border:1px solid var(--line-2);padding:6px;font-family:var(--mono);font-size:13px;font-weight:700}
+.d1 .kpirow div span{display:block;font-size:9px;color:var(--ink-3);font-weight:400;margin-top:2px}
+.d1 table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px}
+.d1 td,.d1 th{border-top:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:middle}
+.d1 th{font-size:9px;color:var(--ink-3);font-weight:600;letter-spacing:.08em}
+.d1 .lv{width:10px;height:10px;display:inline-block}
+.d1 .lv.r{background:var(--ink)}
+.d1 .lv.f{border:2px solid var(--ink)}
+.d1 .lv.n{border:1px solid var(--line-2)}
+.d1 .act{border:1px solid var(--ink);font-size:10px;padding:3px 8px;white-space:nowrap;font-weight:700}
+.d1 .act.p{background:var(--ink);color:#fff}
+.d1 .split{display:grid;grid-template-columns:1.2fr .8fr;border:1.5px dashed var(--ink-2);margin-top:6px}
+.d1 .split>div{padding:7px 8px;font-size:10.5px}
+.d1 .split>div+div{border-left:1.5px dashed var(--ink-2)}
+
+/* ============ d2 值更：收件箱优先级 + 大读数 ============ */
+.d2 .alert{background:var(--ink);color:#fff;padding:11px 12px;margin-top:8px}
+.d2 .alert .big{font-size:30px;font-weight:800;font-family:var(--mono);letter-spacing:-.02em}
+.d2 .alert .who{font-size:12px;font-weight:700}
+.d2 .alert .why{font-size:10px;opacity:.72;margin-top:2px}
+.d2 .alert2{background:#333;color:#fff;padding:9px 12px;margin-top:6px;display:flex;align-items:center;gap:10px}
+.d2 .alert2 .big{font-size:22px;font-weight:800;font-family:var(--mono)}
+.d2 .queue{margin-top:10px;border-top:2px solid var(--ink)}
+.d2 .queue .q{display:flex;align-items:center;gap:8px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:11.5px}
+.d2 .queue .q i{width:8px;height:8px;border:1px solid var(--ink);flex:0 0 auto}
+.d2 .queue .q.hot i{background:var(--ink)}
+.d2 .queue .q b{font-weight:700}
+.d2 .queue .q .b{margin-left:auto;border:1px solid var(--ink);font-size:10px;padding:2.5px 8px;font-weight:700}
+.d2 .dots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.d2 .dots div{aspect-ratio:1.5;border:1px solid var(--line-2);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.d2 .dots div i{width:6px;height:6px;margin-top:4px;background:#c9c9c9}
+.d2 .dots div.on i{background:var(--ink)}
+.d2 .dots div.risk{box-shadow:inset 0 0 0 2px var(--ink)}
+
+/* ============ d3 排印：编号清单 + 字号阶梯 ============ */
+.d3 .todo{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.d3 .todo .no{font-family:var(--serif);font-size:22px;font-weight:900;line-height:1;width:30px;flex:0 0 auto}
+.d3 .todo.hot{border-left:4px solid var(--ink);padding-left:8px}
+.d3 .todo .tt{font-size:13.5px;font-weight:800;line-height:1.45}
+.d3 .todo .ds{font-size:11px;color:var(--ink-2);margin-top:2px;line-height:1.5}
+.d3 .todo .ds b{color:var(--ink);font-family:var(--mono)}
+.d3 .todo .st{margin-left:auto;flex:0 0 auto;font-size:9.5px;padding:2px 6px;align-self:flex-start}
+.d3 .st.r{background:var(--ink);color:#fff}
+.d3 .st.f{border:1.5px solid var(--ink)}
+.d3 .st.n{border:1px solid var(--line-2);color:var(--ink-3)}
+.d3 .summary{border:2px solid var(--ink);padding:10px 12px;margin-top:6px}
+.d3 .summary .r{display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0}
+.d3 .summary .r b{font-family:var(--mono)}
+.d3 .draftbox{border:1.5px dashed var(--ink-2);padding:9px;margin-top:6px;position:relative}
+.d3 .draftbox::after{content:"未生效";position:absolute;top:-8px;right:10px;background:var(--panel);font-size:9px;padding:0 6px;letter-spacing:.2em;color:var(--ink-2)}
+.d3 .kpi4{display:flex;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin-top:10px}
+.d3 .kpi4 div{flex:1;padding:8px 4px;text-align:center}
+.d3 .kpi4 div+div{border-left:1px solid var(--line)}
+.d3 .kpi4 .v{font-family:var(--serif);font-size:24px;font-weight:900}
+.d3 .kpi4 .l{font-size:9px;color:var(--ink-2);margin-top:2px}
+.d3 .rows9{font-size:11px;margin-top:6px}
+.d3 .rows9 div{display:flex;gap:8px;padding:4.5px 0;border-bottom:1px dotted var(--line-2)}
+.d3 .rows9 .nm{width:34px;font-weight:700}
+.d3 .rows9 .tm{font-family:var(--mono);color:var(--ink-2);font-size:10px}
+.d3 .rows9 .sg{margin-left:auto;font-size:10px;color:var(--ink-2)}
+.d3 .rows9 .hot .sg{color:var(--ink);font-weight:800}
+
+/* ============ d4 泳道：职能分道 + KPI 矩阵 ============ */
+.d4 .kpi2x2{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.d4 .kpi2x2 div{border:1.5px solid var(--ink);padding:8px 10px}
+.d4 .kpi2x2 .v{font-size:26px;font-weight:900;font-family:var(--mono);line-height:1.1}
+.d4 .kpi2x2 .l{font-size:9.5px;color:var(--ink-2);margin-top:2px}
+.d4 .lane{margin-top:8px}
+.d4 .lane-h{display:flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:5px 10px;font-size:11px;font-weight:700}
+.d4 .lane-h .c{margin-left:auto;font-family:var(--mono);font-size:10px;opacity:.8}
+.d4 .lane-b{border:1.5px solid var(--ink);border-top:0;padding:6px 8px;display:flex;flex-direction:column;gap:5px}
+.d4 .lane-b .it{display:flex;align-items:center;gap:7px;font-size:11px}
+.d4 .lane-b .it .lv{width:8px;height:8px;flex:0 0 auto}
+.d4 .lane-b .it .lv.r{background:var(--ink)}
+.d4 .lane-b .it .lv.f{border:1.5px solid var(--ink)}
+.d4 .lane-b .it .lv.n{border:1px solid var(--line-2)}
+.d4 .lane-b .it .b{margin-left:auto;font-size:9.5px;border:1px solid var(--ink);padding:2px 7px;font-weight:700}
+.d4 .lane-b .it .b.p{background:var(--ink);color:#fff}
+.d4 .grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}
+.d4 .grid9 div{border:1px solid var(--line-2);padding:5px 6px;font-size:10.5px;font-weight:700;display:flex;align-items:center;gap:5px}
+.d4 .grid9 i{width:7px;height:7px;flex:0 0 auto;background:#c9c9c9}
+.d4 .grid9 .on i{background:var(--ink)}
+.d4 .grid9 .risk{box-shadow:inset 0 0 0 1.5px var(--ink)}
+</style>
+</head>
+<body>
+<h1>kimi2 · 灰度骨架并排 — 阶段一自检</h1>
+<p class="sub">同一页 P20 的四种组织方式。纯黑白灰：这一轮只看结构，不看配色。点击下方方向名可进入上色小样。</p>
+<div class="row">
+
+<!-- d1 条带 -->
+<section class="dir d1">
+  <header class="dir-head"><a href="kimi2-d1-条带.html" style="text-decoration:none;color:inherit"><b>d1 · 条带 →</b></a><span>时间轴+表格 · 主角=时间</span></header>
+  <div class="phone">
+    <div class="wbar"><span>明 · 运营工作台</span><span class="wtag">群发通知</span></div>
+    <p class="wsec-label">今日时间带 18:00–01:00</p>
+    <div class="band">
+      <i><b></b><span class="tick">18</span></i><i><b class="live"></b><span class="tick">19</span></i><i><b></b><span class="tick">20</span></i><i><b class="risk"></b><span class="tick">21</span></i><i><b class="live"></b><span class="tick">22</span></i><i><b class="live"></b><span class="tick">23</span></i><i><b></b><span class="tick">00</span></i><i><b class="risk"></b><span class="tick">01</span></i>
+    </div>
+    <div class="kpirow"><div>13<span>在管</span></div><div>10<span>应播</span></div><div>6<span>已开播</span></div><div>18.8万<span>音浪</span></div></div>
+    <p class="wsec-label">待办 · 表格化</p>
+    <table>
+      <tr><th></th><th>对象/信号</th><th>数值</th><th></th></tr>
+      <tr><td><i class="lv n"></i></td><td>昨晚夜场小结</td><td>34.2万 +2.4%</td><td><span class="act p">标记已消化</span></td></tr>
+      <tr><td><i class="lv r"></i></td><td>老K 昨晚</td><td>1.1万 −42%</td><td><span class="act p">去复盘</span></td></tr>
+      <tr><td><i class="lv r"></i></td><td>阿哲 近7天</td><td>−16%</td><td><span class="act p">去复盘</span></td></tr>
+      <tr><td><i class="lv f"></i></td><td>晓晓 开场话术</td><td>峰值剩7成</td><td><span class="act p">生成规划</span></td></tr>
+      <tr><td><i class="lv f"></i></td><td>麦子 新人第6天</td><td>明天评估</td><td><span class="act">看详情</span></td></tr>
+      <tr><td><i class="lv f"></i></td><td>茉莉 背景标识</td><td>21:00前撤</td><td><span class="act p">转视觉</span></td></tr>
+    </table>
+    <div class="split"><div>小雨 · 收尾连唱 2 首＋报歌单<br>佐证 停留41秒·全场最高</div><div>采纳｜修改｜不用</div></div>
+  </div>
+  <p class="note">结构主张：10 场直播先画在时间带上（谁占哪个档、哪个档在出事），待办压成字段行。阅读顺序：时间带 → 表格 → 草稿双栏。</p>
+</section>
+
+<!-- d2 值更 -->
+<section class="dir d2">
+  <header class="dir-head"><a href="kimi2-d2-值更.html" style="text-decoration:none;color:inherit"><b>d2 · 值更 →</b></a><span>收件箱优先级 · 主角=风险</span></header>
+  <div class="phone">
+    <div class="wbar"><span>明 · 运营工作台</span><span class="wtag">群发通知</span></div>
+    <p class="wsec-label">先处理 · 按严重度</p>
+    <div class="alert"><div class="big">−42%</div><div class="who">老K · 昨晚音浪 1.1万</div><div class="why">22:00-01:00 场 · 22点档大场分流</div></div>
+    <div class="alert2"><div class="big">−16%</div><div><div class="who" style="font-weight:700">阿哲 · 连续3天流水下滑</div><div class="why" style="font-size:10px;opacity:.72">停留 38秒→26秒</div></div></div>
+    <p class="wsec-label">队列 · 其余待办</p>
+    <div class="queue">
+      <div class="q hot"><i></i><b>晓晓</b> 峰值连降一周<span class="b">生成规划</span></div>
+      <div class="q hot"><i></i><b>茉莉</b> 背景标识未撤<span class="b">转视觉</span></div>
+      <div class="q"><i></i><b>麦子</b> 新人第6天 明天评估<span class="b">看详情</span></div>
+      <div class="q"><i></i><b>夜场小结</b> 11场 34.2万 +2.4%<span class="b">标记已消化</span></div>
+      <div class="q"><i></i><b>小雨</b> 收尾连唱草稿待拍板<span class="b">采纳/修改/不用</span></div>
+    </div>
+    <p class="wsec-label">今日开播 · 状态点阵</p>
+    <div class="dots">
+      <div class="on"><span>小雨</span><i></i></div><div class="on"><span>大乔</span><i></i></div><div><span>甜甜</span><i></i></div>
+      <div class="on"><span>茉莉</span><i></i></div><div class="risk"><span>阿哲</span><i></i></div><div><span>九九</span><i></i></div>
+      <div class="risk"><span>栗子</span><i></i></div><div class="risk"><span>晓晓</span><i></i></div><div class="risk"><span>老K</span><i></i></div>
+    </div>
+  </div>
+  <p class="note">结构主张：风险按严重度用大读数置顶（−42% 比 −16% 大），没风险的收进队列；9 个主播收成 3×3 点阵，安全的不抢注意力。</p>
+</section>
+
+<!-- d3 排印 -->
+<section class="dir d3">
+  <header class="dir-head"><a href="kimi2-d3-排印.html" style="text-decoration:none;color:inherit"><b>d3 · 排印 →</b></a><span>编号清单 · 主角=动作（零彩色方向）</span></header>
+  <div class="phone">
+    <div class="wbar"><span>明 · 运营工作台</span><span class="wtag">群发通知</span></div>
+    <div class="summary">
+      <div class="r"><span>夜场 11 场 · 音浪</span><b>34.2万 +2.4%</b></div>
+      <div class="r"><span>老K · 14天最低</span><b>1.1万</b></div>
+      <div class="r"><span>茉莉 · 上周2倍</span><b>涨粉86</b></div>
+    </div>
+    <p class="wsec-label">待办 · 按序处理</p>
+    <div class="todo hot"><span class="no">01</span><div><div class="tt">老K 昨晚 1.1万 −42%</div><div class="ds">22:00-01:00 场 · <b>22点档大场分流</b></div></div><span class="st r">有风险</span></div>
+    <div class="todo hot"><span class="no">02</span><div><div class="tt">阿哲 连续3天流水下滑</div><div class="ds">近7天 <b>−16%</b> · 停留 38秒→26秒</div></div><span class="st r">有风险</span></div>
+    <div class="todo"><span class="no">03</span><div><div class="tt">晓晓 开场话术两周没换</div><div class="ds">峰值连降一周 · 只剩 <b>7 成</b></div></div><span class="st f">待跟进</span></div>
+    <div class="todo"><span class="no">04</span><div><div class="tt">麦子 新人第6天</div><div class="ds">明天结业评估 · 首场建议早场</div></div><span class="st f">待跟进</span></div>
+    <div class="todo"><span class="no">05</span><div><div class="tt">茉莉 背景有品牌标识</div><div class="ds">21:00 开播 · 开播前撤掉</div></div><span class="st f">待跟进</span></div>
+    <div class="draftbox">06 · 小雨 收尾连唱 2 首＋报下次歌单 ｜ 佐证 停留 41 秒 · 全场最高 → 采纳 / 修改 / 不用</div>
+    <div class="kpi4"><div><div class="v">13</div><div class="l">在管主播</div></div><div><div class="v">10</div><div class="l">今日应播</div></div><div><div class="v">6</div><div class="l">已开播</div></div><div><div class="v">18.8万</div><div class="l">今日音浪</div></div></div>
+    <div class="rows9">
+      <div><span class="nm">小雨</span><span class="tm">20:00-23:00</span><span class="sg">直播中</span></div>
+      <div class="hot"><span class="nm">老K</span><span class="tm">22:00-01:00</span><span class="sg">未开播 · −42%</span></div>
+      <div><span class="nm">大乔</span><span class="tm">19:00-22:00</span><span class="sg">直播中</span></div>
+    </div>
+  </div>
+  <p class="note">结构主张：值班单式编号清单，字号阶梯（22/13.5/11/10）和 1px 线承担全部层级；风险靠左粗黑条＋实心徽章，不靠颜色。零彩色配额方向。</p>
+</section>
+
+<!-- d4 泳道 -->
+<section class="dir d4">
+  <header class="dir-head"><a href="kimi2-d4-泳道.html" style="text-decoration:none;color:inherit"><b>d4 · 泳道 →</b></a><span>职能分道 · 主角=数字</span></header>
+  <div class="phone">
+    <div class="wbar"><span>明 · 运营工作台</span><span class="wtag">群发通知</span></div>
+    <div class="kpi2x2">
+      <div><div class="v">13</div><div class="l">在管主播 ›</div></div>
+      <div><div class="v">10</div><div class="l">今日应播</div></div>
+      <div><div class="v">6</div><div class="l">已开播 · 3在播 ›</div></div>
+      <div><div class="v">18.8万</div><div class="l">今日音浪 ›</div></div>
+    </div>
+    <p class="wsec-label">按摊活分道</p>
+    <div class="lane"><div class="lane-h">盯场复盘<span class="c">2</span></div><div class="lane-b">
+      <div class="it"><i class="lv n"></i>夜场小结 11场 34.2万 +2.4%<span class="b p">标记已消化</span></div>
+      <div class="it"><i class="lv r"></i>老K 昨晚 1.1万 −42%<span class="b p">去复盘</span></div>
+    </div></div>
+    <div class="lane"><div class="lane-h">流水跟踪<span class="c">1</span></div><div class="lane-b">
+      <div class="it"><i class="lv r"></i>阿哲 近7天 −16% · 停留 38→26秒<span class="b p">去复盘</span></div>
+    </div></div>
+    <div class="lane"><div class="lane-h">话术<span class="c">2</span></div><div class="lane-b">
+      <div class="it"><i class="lv f"></i>晓晓 峰值连降一周<span class="b p">生成规划</span></div>
+      <div class="it"><i class="lv f"></i>小雨 收尾连唱草稿<span class="b">采纳/修改/不用</span></div>
+    </div></div>
+    <div class="lane"><div class="lane-h">新人与合规<span class="c">2</span></div><div class="lane-b">
+      <div class="it"><i class="lv f"></i>麦子 第6天 明天评估<span class="b">看详情</span></div>
+      <div class="it"><i class="lv f"></i>茉莉 背景标识 21:00前撤<span class="b p">转视觉</span></div>
+    </div></div>
+    <p class="wsec-label">今日开播</p>
+    <div class="grid9">
+      <div class="on"><i></i>小雨</div><div class="on"><i></i>大乔</div><div><i></i>甜甜</div>
+      <div class="on"><i></i>茉莉</div><div class="risk"><i></i>阿哲</div><div><i></i>九九</div>
+      <div class="risk"><i></i>栗子</div><div class="risk"><i></i>晓晓</div><div class="risk"><i></i>老K</div>
+    </div>
+  </div>
+  <p class="note">结构主张：7 件待办按"几摊活"收成 4 条泳道（复盘/流水/话术/新人合规），每道报件数；KPI 2×2 大数字矩阵先答"赚多少"。</p>
+</section>
+
+</div>
+<div class="legend">
+<b>自检结论（上色前）</b>：四个骨架首屏主角互不相同（时间 / 风险 / 动作 / 数字），信息骨架互不相同（时间轴+表格 / 优先级收件箱 / 编号清单 / 泳道）。眯眼看明暗块面：d1 顶部一条横带、d2 顶部两块深色大读数、d3 全页细线清单、d4 顶部 2×2 矩阵——块面分布互不相似，不是同一页面的几套配色。九轴核对见 kimi2-方向卡.md。
+</div>
+</body>
+</html>

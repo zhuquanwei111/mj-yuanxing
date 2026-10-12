@@ -1,0 +1,28 @@
+{
+  "task": "T17.3",
+  "url": "http://127.0.0.1:8791/明镜产品原型.html#P20",
+  "checkedAt": "2026-10-11",
+  "reviewViewport": { "width": 929, "height": 861 },
+  "routes": [
+    { "hash": "#P20", "page": "P20", "selectedTab": "待办", "primary": "#111111", "risk": "rgb(163, 61, 61)", "priorityCardRadius": "8px", "primaryTaskActionBackground": "transparent", "scrollbar": "none", "scrollable": true, "horizontalOverflow": false },
+    { "hash": "#P21", "page": "P21", "heading": "主播名单", "selectedTab": "主播名单 13", "scrollbar": "none", "scrollable": true, "horizontalOverflow": false },
+    { "hash": "#P25", "page": "P25", "heading": "处理中", "selectedTab": "我收到的 1", "scrollbar": "none", "scrollable": false, "horizontalOverflow": false },
+    { "hash": "#AI", "page": "AI", "heading": "运营业务助手", "assistantPromptRadius": "6px", "scrollbar": "none", "scrollable": false, "horizontalOverflow": false }
+  ],
+  "network": { "prototype": 200, "ionicBundle": 200, "favicon": 404 },
+  "console": [
+    "The local preview requested /favicon.ico and received 404.",
+    "Chrome reported one form field without id or name; record for T17.18 accessibility review."
+  ],
+  "allRouteScrollbarCheck": {
+    "routeCount": 49,
+    "scrollbarStyleChecks": 295,
+    "failures": 0,
+    "requiredStyles": { "scrollbarWidth": "none", "webkitDisplay": "none", "webkitWidth": "0px", "webkitHeight": "0px" },
+    "scrollability": {
+      "P20VerticalContent": { "maxScroll": 1038, "programmaticScrollMoved": true },
+      "P21HorizontalFilters": { "maxScroll": 32, "programmaticScrollMoved": true }
+    }
+  },
+  "screenshot": { "saved": false, "note": "DevTools denied writes under the configured workspace path; inline capture exceeded the tool session wait and was terminated. No screenshot is claimed as archived." }
+}

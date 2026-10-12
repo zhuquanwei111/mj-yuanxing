@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>明镜 · 阶段二按钮样例</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #F3F3F3;
+      --surface: #fff;
+      --accent-100: #EAEAEA;
+      --accent-600: #171717;
+      --accent-700: #000000;
+      --neutral-100: #F2F2F2;
+      --neutral-700: #444444;
+      --ink-900: #171717;
+      --ink-700: #555555;
+      --ink-600: #707070;
+      --line-control: #858585;
+      --line-soft: #D8D8D8;
+      --focus: #111111;
+      --danger: #111111;
+      --danger-soft: #E5E5E5;
+      --success-soft: #EEEEEE;
+      --shadow: 0 14px 40px rgba(55, 55, 55,.10);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink-900);
+      background: var(--canvas);
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; padding: 24px 16px calc(28px + env(safe-area-inset-bottom)); }
+    main { width: min(100%, 440px); margin: 0 auto; }
+    .device { overflow: hidden; border: 1px solid rgba(55, 55, 55,.08); border-radius: 30px; background: var(--canvas); box-shadow: var(--shadow); }
+    .top { padding: 26px 22px 20px; background: linear-gradient(145deg, #e7e7e7 0%, #f7f7f7 72%); }
+    .eyebrow { color: var(--accent-600); font-size: 12px; font-weight: 650; letter-spacing: .04em; }
+    h1 { margin: 8px 0 5px; font-size: 24px; line-height: 1.25; letter-spacing: -.02em; }
+    .lead { max-width: 34ch; margin: 0; color: var(--ink-700); font-size: 14px; line-height: 1.55; }
+    .demo-note { display: flex; gap: 9px; align-items: flex-start; margin-top: 18px; padding: 11px 12px; border: 1px solid rgba(108, 108, 108,.12); border-radius: 14px; background: rgba(255, 255, 255,.78); color: var(--ink-700); font-size: 12px; line-height: 1.5; }
+    .note-dot { flex: 0 0 8px; height: 8px; margin-top: 4px; border-radius: 50%; background: var(--accent-600); }
+    .content { display: grid; gap: 12px; padding: 14px; }
+    section { padding: 17px 16px 16px; border: 1px solid var(--line-soft); border-radius: 19px; background: var(--surface); }
+    h2 { margin: 0; font-size: 16px; line-height: 1.35; font-weight: 650; }
+    .sub { margin: 4px 0 14px; color: var(--ink-600); font-size: 12px; line-height: 1.5; }
+    .row { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+    button { appearance: none; border: 1px solid transparent; font: inherit; font-size: 14px; font-weight: 600; line-height: 1.2; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease; }
+    button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+    button:active:not(:disabled) { filter: brightness(.94); }
+    .btn { display: inline-flex; min-width: 48px; min-height: 48px; align-items: center; justify-content: center; gap: 8px; padding: 0 17px; border-radius: 14px; white-space: normal; text-align: center; }
+    .primary { border-color: var(--accent-600); background: var(--accent-600); color: #fff; }
+    .primary:hover { background: var(--accent-700); border-color: var(--accent-700); }
+    .secondary { border-color: var(--line-control); background: var(--surface); color: var(--ink-900); }
+    .secondary:active:not(:disabled) { background: var(--accent-100); }
+    .tonal { background: var(--accent-100); color: var(--accent-700); }
+    .tonal:active:not(:disabled) { background: #cccccc; }
+    .text { padding-inline: 12px; background: transparent; color: var(--accent-700); }
+    .danger { border-color: var(--danger); background: #fff; color: var(--danger); }
+    .disabled { background: #dedede; color: #666666; cursor: not-allowed; }
+    .soft { background: var(--neutral-100); color: var(--neutral-700); }
+    .icon { width: 48px; min-width: 48px; padding: 0; border-radius: 15px; background: #f7f7f7; color: var(--ink-900); font-size: 21px; font-weight: 450; }
+    .icon.add { background: var(--accent-100); color: var(--accent-700); font-size: 24px; }
+    .focus-demo { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .chip { min-height: 44px; padding: 0 14px; border-color: var(--line-control); border-radius: 999px; background: #fff; color: var(--ink-700); font-size: 13px; }
+    .chip.on { border-color: var(--accent-600); background: var(--accent-100); color: var(--accent-700); font-weight: 650; }
+    .segments { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 16px; background: #ededed; }
+    .segment { min-width: 0; min-height: 48px; padding: 8px 10px; border-radius: 12px; background: transparent; color: var(--ink-700); }
+    .segment.on { background: #fff; color: var(--accent-700); box-shadow: 0 1px 3px rgba(42, 42, 42,.10); }
+    .state-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .state-cell { display: grid; gap: 8px; align-content: start; min-width: 0; }
+    .state-label { color: var(--ink-600); font-size: 12px; }
+    .state-cell .btn { width: 100%; }
+    .nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin: 0 -4px -5px; padding-top: 9px; border-top: 1px solid var(--line-soft); }
+    .nav button { display: grid; min-width: 0; min-height: 52px; justify-items: center; align-content: center; gap: 3px; padding: 2px; border-radius: 12px; background: transparent; color: var(--ink-600); font-size: 11px; font-weight: 500; }
+    .nav .glyph { font-size: 19px; line-height: 1; }
+    .nav .selected { color: var(--accent-700); font-weight: 650; }
+    .nav .selected .glyph { display: grid; width: 30px; height: 26px; place-items: center; border-radius: 12px; background: var(--accent-100); }
+    .bottom-line { margin: 0 40px; height: 4px; border-radius: 99px; background: #2a2a2a; }
+    .foot { padding: 0 20px 15px; color: var(--ink-600); font-size: 11px; line-height: 1.5; text-align: center; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    @media (max-width: 360px) { body { padding: 12px 8px calc(18px + env(safe-area-inset-bottom)); } .device { border-radius: 24px; } .top { padding: 22px 17px 17px; } .content { padding: 9px; } section { padding: 15px 12px 14px; } .btn { padding-inline: 12px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <article class="device" aria-label="明镜移动端按钮视觉样例">
+      <header class="top">
+        <div class="eyebrow">明镜 · 移动端设计系统 / 阶段二</div>
+        <h1>按钮，重新变得轻盈</h1>
+        <p class="lead">黑色承接主要操作，白色与浅灰建立页面层次；每种操作一眼可辨，也方便手指点中。</p>
+        <div class="demo-note"><span class="note-dot" aria-hidden="true"></span><span>这是独立的视觉样例。正式套用后，原型中每个按钮的动作、导航、权限与结果保持原样。</span></div>
+      </header>
+      <div class="content">
+        <section>
+          <h2>按钮层级</h2>
+          <p class="sub">一个操作区只突出一个主动作，其他入口安静但仍清楚。</p>
+          <div class="row">
+            <button type="button" class="btn primary">保存修改</button>
+            <button type="button" class="btn secondary">取消</button>
+            <button type="button" class="btn tonal">查看详情</button>
+            <button type="button" class="btn text">了解更多</button>
+          </div>
+        </section>
+        <section>
+          <h2>危险与柔和强调</h2>
+          <p class="sub">危险操作用黑色描边保持醒目，轻强调使用浅灰底，状态仍有清晰文字。</p>
+          <div class="row">
+            <button type="button" class="btn danger">确认停用</button>
+            <button type="button" class="btn soft">今日提醒</button>
+          </div>
+        </section>
+        <section>
+          <h2>图标操作</h2>
+          <p class="sub">图形保持简洁，点击范围按48px留足；图标含义由原型语义决定。</p>
+          <div class="row">
+            <button type="button" class="btn icon" aria-label="返回">‹</button>
+            <button type="button" class="btn icon add" aria-label="新增">＋</button>
+            <button type="button" class="btn icon" aria-label="更多操作">···</button>
+            <button type="button" class="btn icon" aria-label="发送">↗</button>
+          </div>
+        </section>
+        <section>
+          <h2>筛选与切换</h2>
+          <p class="sub">通过浅灰底、深色文字和边界表达选择；主要操作使用黑底白字。</p>
+          <div class="row" style="margin-bottom:12px">
+            <button type="button" class="chip on" aria-pressed="true">全部 13</button>
+            <button type="button" class="chip" aria-pressed="false">在播 4</button>
+            <button type="button" class="chip" aria-pressed="false">需关注 2</button>
+          </div>
+          <div class="segments" role="group" aria-label="样例视图">
+            <button type="button" class="segment on" aria-pressed="true">主播名单</button>
+            <button type="button" class="segment" aria-pressed="false">主播动态</button>
+          </div>
+        </section>
+        <section>
+          <h2>焦点与禁用状态</h2>
+          <p class="sub">状态只调整外观；正式页面沿用原有焦点顺序和禁用逻辑。</p>
+          <div class="state-row">
+            <div class="state-cell"><span class="state-label">键盘焦点</span><button type="button" class="btn primary focus-demo">确认提交</button></div>
+            <div class="state-cell"><span class="state-label">禁用</span><button type="button" class="btn disabled" disabled>暂不可用</button></div>
+          </div>
+        </section>
+        <section>
+          <h2>底部导航选中态</h2>
+          <p class="sub">图标和文字共同标明当前位置，布局留出安全区域。</p>
+          <nav class="nav" aria-label="样例底部导航">
+            <button type="button" class="selected" aria-current="page"><span class="glyph" aria-hidden="true">⌂</span><span>工作台</span></button>
+            <button type="button"><span class="glyph" aria-hidden="true">▦</span><span>任务</span></button>
+            <button type="button"><span class="glyph" aria-hidden="true">◷</span><span>排期</span></button>
+            <button type="button"><span class="glyph" aria-hidden="true">◯</span><span>我的</span></button>
+          </nav>
+        </section>
+        <div class="foot">样例只展示阶段二视觉规范，不连接生产业务流程。</div>
+      </div>
+      <div class="bottom-line" aria-hidden="true"></div>
+    </article>
+  </main>
+</body>
+</html>

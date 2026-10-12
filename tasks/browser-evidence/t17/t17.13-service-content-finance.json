@@ -1,0 +1,52 @@
+{
+  "task": "T17.13",
+  "date": "2026-10-11",
+  "scope": ["P50", "P51", "P52", "P60", "P61", "P62", "P70", "P71/xiaoyu"],
+  "viewports": {
+    "320x568": {
+      "viewportWidth": 320,
+      "routes": [
+        {"route":"P50","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":767,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P51/j2","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1099,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P52/j1","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":680,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P60","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1027,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P61/k1","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":1181,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P62","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":701,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P70","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":791,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true},
+        {"route":"P71/xiaoyu","pageWidth":318,"pageScrollWidth":318,"bodyClientHeight":433,"bodyScrollHeight":917,"scrollbarWidth":"none","visibleScrollbarCount":0,"scrollWorks":true}
+      ]
+    },
+    "390x844": {
+      "viewportWidth": 390,
+      "routes": [
+        {"route":"P50","pageWidth":388,"pageScrollWidth":388,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P51/j2","pageWidth":388,"pageScrollWidth":388,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P52/j1","pageWidth":388,"pageScrollWidth":388,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P60","pageWidth":388,"pageScrollWidth":388,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P61/k1","pageWidth":388,"pageScrollWidth":388,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P62","pageWidth":388,"pageScrollWidth":388,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P70","pageWidth":388,"pageScrollWidth":388,"scrollbarWidth":"none","visibleScrollbarCount":0},
+        {"route":"P71/xiaoyu","pageWidth":388,"pageScrollWidth":388,"scrollbarWidth":"none","visibleScrollbarCount":0}
+      ]
+    }
+  },
+  "longTextStress": [
+    {"route":"P70","viewport":"320x568","input":"50-digit currency amount","bodyWidth":318,"bodyScrollWidth":318,"differenceWidth":268,"differenceScrollWidth":266,"amountWidth":125.8,"amountScrollWidth":126,"horizontalOverflow":false},
+    {"route":"P71/xiaoyu","viewport":"320x568","input":"50-digit bill amount and repeated long calculation copy","bodyWidth":318,"bodyScrollWidth":318,"amountPanelWidth":268,"amountPanelScrollWidth":268,"amountWidth":215.4,"amountScrollWidth":215,"calculationWidth":268,"calculationScrollWidth":268,"horizontalOverflow":false,"verticalScrollWorks":true,"scrollbarWidth":"none"}
+  ],
+  "businessFlows": [
+    "P51/j2 changed the appointment to 10-16 17:30, confirmed the change, and returned to P50 with the new date selected.",
+    "P61/k1 adopted the script and submitted it for operations review; the review progress view was opened, then the script was approved and assigned to editing. P62 showed the linked clip task for 阿哲 with owner 小雷 and deadline 10月15日18:00.",
+    "P70 registered a settlement difference, confirmed the period, and showed 本期已核对; opening 小雨's P71 bill and confirming it changed the action to 已确认账单."
+  ],
+  "consoleEvidence": [
+    {"route":"P71/xiaoyu","viewport":"320x568","errors":0,"warnings":0,"messages":[]}
+  ],
+  "visualEvidence": {
+    "screenshot":"The DevTools screenshot call did not return within the wait window and was cancelled; no PNG is archived. Evidence here is based on live DOM dimensions, computed styles, and interaction results."
+  },
+  "limitations": [
+    "No new screenshots were archived for this task.",
+    "The narrow-width long-text stress uses synthetic DOM text only and does not modify prototype data or formulas."
+  ]
+}

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>明镜移动端｜业务位置用色对照</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #171717;
+      background: #fff;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      --risk: #873c44;
+      --risk-soft: #f8ecee;
+      --follow: #826317;
+      --follow-soft: #f6f0df;
+      --success: #2f765f;
+      --success-soft: #e8f2ed;
+      --muted: #777;
+      --line: #e9e7e4;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #fff; }
+    .page { max-width: 1640px; margin: 0 auto; padding: 34px 30px 52px; }
+    .intro { max-width: 940px; margin-bottom: 22px; }
+    .eyebrow { margin: 0 0 8px; color: #716878; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+    h1 { margin: 0; font-size: clamp(26px, 3vw, 36px); line-height: 1.16; letter-spacing: -.035em; }
+    .intro-copy { margin: 10px 0 0; color: #565656; font-size: 15px; line-height: 1.65; }
+    .semantics { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px; margin-top: 16px; }
+    .semantics-label { color: #777; font-size: 12px; }
+    .semantic { display: inline-flex; align-items: center; gap: 6px; color: #333; font-size: 12px; font-weight: 650; }
+    .semantic i { width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+    .semantic.risk { color: var(--risk); }
+    .semantic.follow { color: var(--follow); }
+    .semantic.success { color: var(--success); }
+    .comparison { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+    .direction {
+      --brand: #70517c;
+      --strong: #60446b;
+      --soft: #f3eff6;
+      --series-1: #70517c;
+      --series-2: #9a83a4;
+      --series-3: #c2b1ca;
+      --series-4: #2f765f;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid #e7e4e2;
+      border-radius: 17px;
+      background: #fff;
+    }
+    .direction-head { min-height: 128px; padding: 16px 15px 13px; border-top: 4px solid var(--brand); }
+    .direction-title { display: flex; align-items: flex-start; gap: 9px; }
+    .direction-index { display: grid; width: 25px; height: 25px; flex: 0 0 auto; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: #555; font-size: 11px; font-weight: 700; }
+    .direction h2 { margin: 0; font-size: 15px; line-height: 1.35; }
+    .direction-note { margin: 4px 0 0; color: #686868; font-size: 11px; line-height: 1.45; }
+    .swatches { display: flex; flex-wrap: wrap; gap: 6px 9px; margin: 11px 0 0 34px; }
+    .swatch { display: inline-flex; align-items: center; gap: 4px; color: #686868; font-size: 9px; white-space: nowrap; }
+    .swatch i { width: 9px; height: 9px; border: 1px solid rgba(0,0,0,.1); border-radius: 50%; background: var(--brand); }
+    .swatch.soft i { background: var(--soft); }
+    .swatch.green i { background: var(--success); }
+    .sample { padding: 12px 14px 13px; border-top: 1px solid #eeecea; }
+    .sample-label { margin: 0 0 8px; color: #777; font-size: 10px; line-height: 1.3; }
+    .sample-label b { color: #303030; font-size: 11px; font-weight: 700; }
+    .work-head { display: flex; align-items: center; gap: 7px; min-width: 0; }
+    .mark { display: grid; width: 23px; height: 23px; flex: 0 0 auto; place-items: center; border-radius: 50%; background: var(--brand); color: #fff; font-size: 10px; font-weight: 750; }
+    .work-title { min-width: 0; color: #1d1d1d; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .active-tab { margin-left: auto; padding: 4px 0 5px; border-bottom: 2px solid var(--brand); color: var(--strong); font-size: 10px; font-weight: 700; white-space: nowrap; }
+    .status-line { display: flex; flex-wrap: wrap; gap: 6px 11px; margin-top: 10px; }
+    .status { display: inline-flex; align-items: center; gap: 4px; color: #333; font-size: 10px; white-space: nowrap; }
+    .status::before { width: 6px; height: 6px; border-radius: 50%; background: currentColor; content: ""; }
+    .status.risk { color: var(--risk); }
+    .status.follow { color: var(--follow); }
+    .status.success { color: var(--success); }
+    .metric-line { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+    .metric-line span { color: #505050; font-size: 11px; }
+    .metric-line strong { color: var(--strong); font-size: 19px; line-height: 1; font-variant-numeric: tabular-nums; }
+    .bar-chart { display: flex; align-items: flex-end; gap: 7px; height: 52px; margin-top: 9px; padding-bottom: 1px; border-bottom: 1px solid #dedbd8; }
+    .bar-chart i { display: block; width: 19px; height: var(--bar-height); border-radius: 4px 4px 0 0; background: var(--bar-color); }
+    .chart-labels { display: flex; justify-content: space-between; gap: 3px; margin-top: 5px; color: #777; font-size: 8px; }
+    .care-types { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 6px; }
+    .care-type { display: inline-flex; align-items: center; gap: 5px; min-width: 0; color: #292929; font-size: 10px; line-height: 1.3; white-space: nowrap; }
+    .care-type i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: var(--brand); }
+    .care-type.risk i { background: var(--risk); }
+    .care-type.follow i { background: var(--follow); }
+    .care-type.support i { background: var(--success); }
+    .care-type.tone i { background: var(--series-2); }
+    .calendar-days { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; text-align: center; }
+    .day { position: relative; padding: 4px 0 5px; color: #777; font-size: 9px; line-height: 1.25; }
+    .day b { display: block; margin-bottom: 2px; color: #202020; font-size: 12px; font-weight: 650; }
+    .day.selected { border-bottom: 2px solid var(--brand); color: var(--strong); }
+    .day.selected b { color: var(--strong); }
+    .day i { position: absolute; right: calc(50% - 2px); bottom: 1px; width: 4px; height: 4px; border-radius: 50%; background: var(--brand); }
+    .appointment { display: flex; align-items: center; gap: 7px; margin-top: 8px; color: #333; font-size: 10px; }
+    .appointment i { width: 3px; height: 23px; flex: 0 0 auto; border-radius: 3px; background: var(--brand); }
+    .appointment span { min-width: 0; }
+    .conflict { margin-left: auto; color: var(--follow); font-size: 9px; font-weight: 700; white-space: nowrap; }
+    .workflow { display: flex; align-items: flex-start; justify-content: space-between; gap: 2px; }
+    .step { position: relative; display: grid; justify-items: center; gap: 4px; min-width: 0; flex: 1; color: #777; font-size: 9px; text-align: center; }
+    .step:not(:last-child)::after { position: absolute; top: 4px; left: calc(50% + 7px); width: calc(100% - 14px); height: 1px; background: #dedbd8; content: ""; }
+    .step i { z-index: 1; width: 9px; height: 9px; border: 2px solid #c9c7c4; border-radius: 50%; background: #fff; }
+    .step.done i { border-color: var(--success); background: var(--success); }
+    .step.current { color: var(--strong); font-weight: 700; }
+    .step.current i { border-color: var(--brand); background: var(--brand); box-shadow: 0 0 0 3px var(--soft); }
+    .difference { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 9px; border-left: 3px solid var(--follow); background: var(--follow-soft); color: #28241b; font-size: 10px; line-height: 1.35; }
+    .difference strong { flex: 0 0 auto; color: var(--risk); font-size: 12px; font-variant-numeric: tabular-nums; }
+    .payout { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-top: 7px; font-size: 10px; }
+    .payout span { color: #666; }
+    .payout b { color: var(--strong); font-size: 13px; }
+    .assistant-note { padding-left: 9px; border-left: 2px solid var(--brand); color: #333; font-size: 10px; line-height: 1.5; }
+    .assistant-note strong { color: var(--strong); font-weight: 700; }
+    .decision-note { margin: 18px 0 0; padding-top: 13px; border-top: 1px solid var(--line); color: #666; font-size: 12px; line-height: 1.65; }
+    .decision-note strong { color: #222; }
+    @media (max-width: 1250px) { .comparison { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 760px) { .page { padding: 24px 16px 38px; } .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .direction-head { min-height: 128px; } }
+    @media (max-width: 500px) { .comparison { grid-template-columns: 1fr; } .direction-head { min-height: 0; } .sample { padding-inline: 16px; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="intro">
+      <p class="eyebrow">明镜 · 移动端视觉试样</p>
+      <h1>把颜色放进业务里，再选方向</h1>
+      <p class="intro-copy">同一组移动端业务片段并排对照：保留当前雾紫与绿色作基准，并加入矿物青、莓果玫瑰、暖陶棕、橄榄青柠四个新方向。页面底色保持纯白，颜色只落在有语义的图表、状态和选中位置；此页不改动主原型。</p>
+      <div class="semantics" aria-label="各方案统一的状态语义">
+        <span class="semantics-label">所有方案共用的状态语义</span>
+        <span class="semantic risk"><i></i>风险 · 暗红</span>
+        <span class="semantic follow"><i></i>待跟进 · 古金</span>
+        <span class="semantic success"><i></i>已完成 · 深绿</span>
+      </div>
+    </header>
+    <section class="comparison" id="comparison" aria-label="五种色彩方向在关键业务位置的对照"></section>
+    <p class="decision-note"><strong>怎么看：</strong>先横向比较经营图表、日期选中和内容进度的主色表现，再看它是否能和固定的暗红、古金、深绿状态色共存。关怀分类里的风险、介入、持续关怀和稳定支持按业务含义区分，不能只为配色而调换状态级别。</p>
+  </main>
+  <script>
+    const directions = [
+      { id: "A", name: "雾紫 × 深绿", note: "当前选中 · 对照基准", brand: "#70517C", strong: "#60446B", soft: "#F3EFF6", series: ["#70517C", "#9A83A4", "#C2B1CA", "#2F765F"] },
+      { id: "T", name: "矿物青", note: "沉静清透 · 青绿矿石感", brand: "#28676C", strong: "#205356", soft: "#EAF3F2", series: ["#28676C", "#57938C", "#8BB8AD", "#C1D9CF"] },
+      { id: "R", name: "莓果玫瑰", note: "有温度 · 识别鲜明", brand: "#8C3D60", strong: "#76324F", soft: "#F7EDF1", series: ["#8C3D60", "#B65C7B", "#D49AAF", "#796486"] },
+      { id: "C", name: "暖陶棕", note: "柔暖克制 · 带一点陶土质感", brand: "#995444", strong: "#814434", soft: "#F7EEEA", series: ["#995444", "#BD735E", "#D9A18E", "#D5BD98"] },
+      { id: "O", name: "橄榄青柠", note: "自然有力 · 明亮点色", brand: "#66732A", strong: "#525E1E", soft: "#F1F3E2", series: ["#66732A", "#879542", "#A9B65D", "#BDCB59"] },
+    ];
+    const sections = [
+      {
+        route: "P20 · P33",
+        title: "待办与关怀状态",
+        body: `<div class="work-head"><span class="mark">明</span><span class="work-title">运营工作台 · 今天</span><span class="active-tab">待办</span></div>
+          <div class="status-line"><span class="status risk">有风险</span><span class="status follow">待跟进</span><span class="status success">已稳定</span></div>
+          <div class="care-types" style="margin-top:10px"><span class="care-type risk"><i></i>越界风险</span><span class="care-type follow"><i></i>控制干扰</span><span class="care-type tone"><i></i>情绪依赖</span><span class="care-type support"><i></i>稳定支持</span></div>`
+      },
+      {
+        route: "P13 · P93",
+        title: "经营指标与趋势图",
+        body: `<div class="metric-line"><span>本周开播率</span><strong>71%</strong></div>
+          <div class="bar-chart" aria-label="四周趋势"><i style="--bar-height:34%;--bar-color:var(--series-1)"></i><i style="--bar-height:49%;--bar-color:var(--series-2)"></i><i style="--bar-height:62%;--bar-color:var(--series-3)"></i><i style="--bar-height:78%;--bar-color:var(--series-4)"></i></div>
+          <div class="chart-labels"><span>第1周</span><span>第2周</span><span>第3周</span><span>本周</span></div>`
+      },
+      {
+        route: "P50",
+        title: "日期选择与排期提醒",
+        body: `<div class="calendar-days"><span class="day"><b>12</b>周一</span><span class="day"><b>13</b>周二<i></i></span><span class="day selected"><b>14</b>周三<i></i></span><span class="day"><b>15</b>周四<i></i></span><span class="day"><b>16</b>周五</span></div>
+          <div class="appointment"><i></i><span>妆造排期 · 15:30</span><span class="conflict">撞档待处理</span></div>`
+      },
+      {
+        route: "P60 · P61 · P62",
+        title: "内容制作进度",
+        body: `<div class="workflow"><span class="step done"><i></i>选题</span><span class="step current"><i></i>脚本</span><span class="step"><i></i>剪辑</span><span class="step"><i></i>成片</span></div>`
+      },
+      {
+        route: "P70 · P71",
+        title: "账单差异与收益",
+        body: `<div class="difference"><span>平台与自算有差异 · 待核对</span><strong>−¥1,240</strong></div>
+          <div class="payout"><span>本期应发</span><b>¥12,480</b></div>`
+      },
+      {
+        route: "P83 · AI",
+        title: "助理建议提示",
+        body: `<div class="assistant-note"><strong>明镜建议</strong>：结合近 7 天数据，今晚优先调整开场节奏。</div>`
+      }
+    ];
+    const grid = document.getElementById("comparison");
+    grid.innerHTML = directions.map(d => `
+      <article class="direction" style="--brand:${d.brand};--strong:${d.strong};--soft:${d.soft};--series-1:${d.series[0]};--series-2:${d.series[1]};--series-3:${d.series[2]};--series-4:${d.series[3]}">
+        <header class="direction-head">
+          <div class="direction-title"><span class="direction-index">${d.id}</span><div><h2>${d.name}</h2><p class="direction-note">${d.note}</p></div></div>
+          <div class="swatches"><span class="swatch"><i></i>${d.brand}</span><span class="swatch soft"><i></i>${d.soft}</span><span class="swatch green"><i></i>#2F765F</span></div>
+        </header>
+        ${sections.map(s => `<section class="sample" aria-label="${s.route} ${s.title}"><p class="sample-label"><b>${s.route}</b>　${s.title}</p>${s.body}</section>`).join("")}
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "task": "T17.5",
+  "url": "http://127.0.0.1:8791/明镜产品原型.html#P20",
+  "checkedAt": "2026-10-11",
+  "viewports": [
+    { "width": 320, "height": 568 },
+    { "width": 360, "height": 800 },
+    { "width": 390, "height": 844 },
+    { "width": 430, "height": 932 },
+    { "width": 360, "height": 480 }
+  ],
+  "views": ["work", "live", "overview"],
+  "layout": {
+    "priorityTaskRemainsSingleCard": true,
+    "ordinaryTodosRemainSeparatedRows": true,
+    "allMeasuredViewsFitViewportWidth": true,
+    "visibleScrollbar": "none",
+    "verticalScrollingWorks": { "scrollTopBefore": 0, "scrollTopAfter": 120, "maxScroll": 1038 },
+    "duplicateRiskActionCopy": false
+  },
+  "actions": {
+    "overviewRiskRow": { "name": "阿哲", "target": "openOpsTodo('a3')", "result": "P20 work view focused on 阿哲's matching todo" },
+    "primary": { "label": "去复盘", "target": "#P24/azhe" },
+    "secondary": { "label": "看详情", "target": "#P22/azhe" },
+    "taskCount": "11 件"
+  },
+  "console": { "errors": 0, "warnings": 0 },
+  "screenshots": {
+    "capturedAndVisuallyReviewed": true,
+    "archived": false,
+    "note": "The browser returned a live 360x800 screenshot for review, but rejected file writes to the project and configured visualization paths. No PNG archive is claimed."
+  },
+  "tests": {
+    "operationsRefinements": "7/7 passed",
+    "fullSuite": "105/105 passed",
+    "prototypeStaticCheck": "passed",
+    "navigation": "2/2 passed"
+  }
+}

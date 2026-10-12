@@ -1,0 +1,2006 @@
+{
+  "task": "T17.17",
+  "result": "passed",
+  "viewportMatrix": "320x568 baseline; 360x480 short-screen representative checks",
+  "inventory": {
+    "directModalBuilders": 42,
+    "activeSharedSheetEntrances": 6,
+    "uniqueReachableEntrypoints": 48,
+    "directModalBuilderNames": [
+      "broadcastModal",
+      "drillNew",
+      "drillRoster",
+      "drillLive",
+      "drillVoice",
+      "drillRate",
+      "editP23",
+      "editP24",
+      "openP80Checkin",
+      "assignModal",
+      "editTaskEvidence",
+      "editSubject",
+      "openResched",
+      "openBizModal",
+      "aiEdit",
+      "dirTaskModal",
+      "assign41Modal",
+      "addGroupModal",
+      "moveModal",
+      "toastMember",
+      "p81HistoryDetail",
+      "scoreExam",
+      "addLead",
+      "openLeadInvite",
+      "careModal",
+      "newReq",
+      "topicLink",
+      "newTopicModal",
+      "p61Edit",
+      "taskDetail62",
+      "openRevision62",
+      "auditTimeline",
+      "rejectApp",
+      "planModal",
+      "stopModal",
+      "noticeModal",
+      "monthReport",
+      "p84Exp",
+      "editTodo",
+      "openMsg",
+      "openHandoff",
+      "openComm"
+    ],
+    "sharedSheetEntrances": [
+      "todoItem",
+      "p20Analysis",
+      "broadcastReceipt",
+      "p22More",
+      "p94More",
+      "P31 阶段筛选面板"
+    ],
+    "excludedUnreferenced": [
+      "todoMore（没有页面调用）"
+    ]
+  },
+  "baseline320x568": {
+    "caseRows": 32,
+    "allOpened": true,
+    "allDialogSemantics": true,
+    "allWithinViewport": true,
+    "allClosed": true,
+    "modalScrollbarsHidden": true,
+    "cases": [
+      {
+        "case": {
+          "route": "P02",
+          "role": "plat",
+          "handler": "planModal"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "调套餐 · 星曜传媒",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          156.5,
+          411.5
+        ],
+        "scroll": [
+          255,
+          255
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P02",
+          "role": "plat",
+          "handler": "stopModal"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "停用 · 星曜传媒",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          156.5,
+          411.5
+        ],
+        "scroll": [
+          255,
+          255
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P13",
+          "role": "boss",
+          "handler": "drillNew"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "拉新 12 人 · 贡献名单",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          73.25,
+          494.75
+        ],
+        "scroll": [
+          422,
+          422
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P13",
+          "role": "boss",
+          "handler": "drillRoster"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "主播规模 · 构成",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          39.5,
+          528.5
+        ],
+        "scroll": [
+          489,
+          489
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P13",
+          "role": "boss",
+          "handler": "drillRate",
+          "match": "active"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "本月活跃主播 · 摘要",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          168.25,
+          399.75
+        ],
+        "scroll": [
+          232,
+          232
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P13",
+          "role": "boss",
+          "handler": "drillRate",
+          "match": "drillRate()"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "今日开播率 · 摘要",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          168.25,
+          399.75
+        ],
+        "scroll": [
+          232,
+          232
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P13",
+          "role": "boss",
+          "handler": "drillVoice"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "本月音浪 · 摘要",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          157,
+          411
+        ],
+        "scroll": [
+          254,
+          254
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P15",
+          "role": "boss",
+          "handler": "assignModal"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "派人处理 · 阿哲",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          274.5,
+          567
+        ],
+        "scroll": [
+          293,
+          293
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P20",
+          "role": "yunying",
+          "handler": "broadcastModal"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "群发通知",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          63.75,
+          504.25
+        ],
+        "scroll": [
+          441,
+          441
+        ],
+        "scrollables": 1,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P20",
+          "role": "yunying",
+          "handler": "todoItem",
+          "match": "a3"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "阿哲：连续3天流水下滑，近7天比前7天少16%",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          295.5,
+          567
+        ],
+        "scroll": [
+          272,
+          272
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P20",
+          "role": "yunying",
+          "handler": "todoItem",
+          "match": "p2"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "晓晓：今晚21:00场，开场话术换新版",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          243.5,
+          567
+        ],
+        "scroll": [
+          324,
+          324
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P21",
+          "role": "yunying",
+          "handler": "openMsg"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "发消息给小雨",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          17,
+          551
+        ],
+        "scroll": [
+          534,
+          534
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P22",
+          "role": "yunying",
+          "handler": "p22More"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "更多操作 · 小雨",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          208.5,
+          567
+        ],
+        "scroll": [
+          359,
+          359
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P24",
+          "role": "yunying",
+          "handler": "editP24"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "修改阿哲的复盘",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          17,
+          551
+        ],
+        "scroll": [
+          534,
+          534
+        ],
+        "scrollables": 1,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P30",
+          "role": "jingji",
+          "handler": "openComm"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "记一条沟通 · 喵喵",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          17,
+          551
+        ],
+        "scroll": [
+          534,
+          534
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P31",
+          "role": "jingji",
+          "handler": "addLead"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "录入线索",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          67.25,
+          500.75
+        ],
+        "scroll": [
+          434,
+          434
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P31",
+          "role": "jingji",
+          "handler": "openSheet"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "筛选线索阶段",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          147,
+          567
+        ],
+        "scroll": [
+          420,
+          420
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P31",
+          "role": "jingji",
+          "handler": "openLeadInvite"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "邀约话术 · 桃桃",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          260.9375,
+          567
+        ],
+        "scroll": [
+          306,
+          306
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P33",
+          "role": "jingji",
+          "handler": "careModal"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "记录关怀 · 椰果",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          17,
+          551
+        ],
+        "scroll": [
+          534,
+          534
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P40",
+          "role": "peixun",
+          "handler": "scoreExam"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "打分 · 栗子 破冰话术",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          156.5,
+          411.5
+        ],
+        "scroll": [
+          255,
+          255
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P41D",
+          "role": "peixun",
+          "handler": "editTaskEvidence"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "补充验收证据",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          17,
+          551
+        ],
+        "scroll": [
+          534,
+          534
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P51",
+          "role": "zhuangzao",
+          "handler": "openResched"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "改期 · 小雨 妆造跟场",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          107,
+          461
+        ],
+        "scroll": [
+          354,
+          354
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P61",
+          "role": "biandao",
+          "handler": "p61Edit"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "改脚本草稿",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          17,
+          551
+        ],
+        "scroll": [
+          534,
+          534
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P62",
+          "role": "jianji",
+          "handler": "newReq"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "新剪辑需求",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          77,
+          491
+        ],
+        "scroll": [
+          414,
+          414
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P62",
+          "role": "jianji",
+          "handler": "taskDetail62"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "需求单 · 大乔",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          17,
+          551
+        ],
+        "scroll": [
+          550,
+          534
+        ],
+        "scrollables": 1,
+        "barsHidden": true,
+        "scrollWorks": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P70",
+          "role": "caiwu",
+          "handler": "monthReport"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "10月月度报表 · 预览",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          87.5,
+          480.5
+        ],
+        "scroll": [
+          393,
+          393
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P80",
+          "role": "zhubo",
+          "handler": "openP80Checkin"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "开播前画面自检",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          102.890625,
+          567
+        ],
+        "scroll": [
+          552,
+          464
+        ],
+        "scrollables": 1,
+        "barsHidden": true,
+        "scrollWorks": true,
+        "footerWithin": false,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P84",
+          "role": "zhubo",
+          "handler": "p84Exp"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "10 月收益计算",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          168.625,
+          567
+        ],
+        "scroll": [
+          398,
+          398
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P90",
+          "role": "yunying",
+          "handler": "openBizModal"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "发业务卡",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          225.5,
+          567
+        ],
+        "scroll": [
+          342,
+          342
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P94",
+          "role": "zuzhang",
+          "handler": "p94More"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "老K · 昨晚比上周同期低42%，22点档有大场分流",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          269,
+          567
+        ],
+        "scroll": [
+          298,
+          298
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P94",
+          "role": "zuzhang",
+          "handler": "assign41Modal"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "分配任务给本组主播",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          107,
+          461
+        ],
+        "scroll": [
+          354,
+          354
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      },
+      {
+        "case": {
+          "route": "P95",
+          "role": "zongjian",
+          "handler": "addGroupModal"
+        },
+        "reachable": true,
+        "opened": true,
+        "title": "新建运营组",
+        "role": "dialog",
+        "ariaModal": "true",
+        "within": true,
+        "screen": [
+          1,
+          567
+        ],
+        "modal": [
+          116.75,
+          451.25
+        ],
+        "scroll": [
+          335,
+          335
+        ],
+        "scrollables": 0,
+        "barsHidden": true,
+        "footerWithin": true,
+        "closed": true
+      }
+    ]
+  },
+  "additionalReachability": {
+    "flows": [
+      {
+        "id": "editSubject",
+        "path": "P41 › 课目管理 › 改名",
+        "title": "课目改名",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          156.5,
+          411.5
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n保存",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "保存"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "dirTaskModal",
+        "path": "dirTaskModal(",
+        "title": "下达任务给组长",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          107,
+          461
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n下达",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "下达"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "moveModal",
+        "path": "P95 › 组详情 › 调人进来",
+        "title": "调人进「运营一组 · 小林」",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          317,
+          567
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n确认调入",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "确认调入"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "p81HistoryDetail",
+        "path": "P81 › 历史规划 › 查看内容",
+        "title": "周六大场：翻唱连打＋两场连麦",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          251.125,
+          567
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "知道了",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "知道了"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "topicLink",
+        "path": "P60 › 选题池 › 链路",
+        "title": "内容链路 · 粉丝连麦点唱夜",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          84.75,
+          483.25
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "关闭",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "关闭"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "newTopicModal",
+        "path": "P60 › 选题池 › 新建选题",
+        "title": "新选题",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          77,
+          491
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n提案",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "提案"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "auditTimeline",
+        "path": "P01 › 申请详情 › 查看审核时间线",
+        "title": "审核时间线 · 北岸传媒",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          96.5,
+          471.5
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "关闭",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "关闭"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "rejectApp",
+        "path": "P01 › 申请详情 › 驳回申请",
+        "title": "驳回申请",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          266.21875,
+          567
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n确认驳回",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "确认驳回"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "noticeModal",
+        "path": "P03 › 平台公告 › 发布公告",
+        "title": "发平台公告",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          156.5,
+          411.5
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n发布",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "发布"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "editTodo",
+        "path": "P20 › 待办列表 › 话术沉淀 › 修改",
+        "title": "改草稿",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          17,
+          551
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n保存修改",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "保存修改"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "openHandoff",
+        "path": "P22 › 更多操作 › 转交",
+        "title": "转交 · 小雨",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          67.25,
+          500.75
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n发出转交",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "发出转交"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "aiEdit",
+        "path": "AI › 常用问题 › 编辑问题",
+        "title": "调整问题",
+        "role": "dialog",
+        "ariaModal": "true",
+        "bounds": [
+          221.125,
+          567
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "取消\n生成新回复",
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "生成新回复"
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "handler": "p20Analysis",
+        "route": "P20",
+        "role": "dialog",
+        "path": "经营概况 › 经营分析",
+        "title": "经营分析",
+        "ariaModal": "true",
+        "bounds": [
+          172.5,
+          479
+        ],
+        "screen": [
+          1,
+          479
+        ],
+        "within": true,
+        "rows": [
+          {
+            "label": "主播规模与构成",
+            "top": 257,
+            "bottom": 309,
+            "within": true
+          },
+          {
+            "label": "此刻在播名单",
+            "top": 309,
+            "bottom": 361,
+            "within": true
+          },
+          {
+            "label": "今日音浪构成",
+            "top": 361,
+            "bottom": 413,
+            "within": true
+          },
+          {
+            "label": "本月音浪摘要",
+            "top": 413,
+            "bottom": 465,
+            "within": true
+          }
+        ],
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "handler": "broadcastReceipt",
+        "route": "P20",
+        "role": "yunying",
+        "path": "群发通知 › 发送通知 › 群发通知回执",
+        "title": "群发通知回执",
+        "actions": [
+          "小雨 · 已送达",
+          "大乔 · 已送达"
+        ],
+        "reachable": true,
+        "bounds": [
+          416.5,
+          567
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollbarsHidden": true,
+        "closed": true
+      },
+      {
+        "handler": "drillLive",
+        "route": "P20",
+        "role": "yunying",
+        "path": "经营概况 › 经营分析 › 此刻在播名单",
+        "title": "此刻在播 · 12 人",
+        "actions": [
+          "关闭"
+        ],
+        "reachable": true,
+        "bounds": [
+          17,
+          551
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollbarsHidden": true,
+        "closed": true
+      },
+      {
+        "handler": "editP23",
+        "route": "P23/xiaoyu",
+        "role": "yunying",
+        "path": "开始生成 › 修改",
+        "title": "修改小雨的规划",
+        "actions": [
+          "取消",
+          "保存修改"
+        ],
+        "reachable": true,
+        "bounds": [
+          17,
+          551
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollables": [
+          {
+            "name": "p23-edit-fields",
+            "range": 166,
+            "atEnd": true,
+            "scrollbarsHidden": true
+          }
+        ],
+        "footerWithinAfterScroll": true,
+        "closed": true
+      },
+      {
+        "handler": "toastMember",
+        "route": "P85",
+        "role": "zhubo",
+        "path": "会员权益 › 切换为独立使用 › 会员权益 › 开通会员",
+        "title": "开通明镜会员",
+        "actions": [
+          "暂不开通",
+          "确认开通"
+        ],
+        "reachable": true,
+        "bounds": [
+          282.5,
+          567
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollbarsHidden": true,
+        "closed": true
+      },
+      {
+        "handler": "openRevision62",
+        "route": "P62",
+        "role": "jianji",
+        "path": "进行中任务 › 交付回传 › 发起返修",
+        "title": "发起返修 · 甜甜",
+        "actions": [
+          "取消",
+          "提交返修"
+        ],
+        "reachable": true,
+        "bounds": [
+          17,
+          551
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "scrollbarsHidden": true,
+        "closed": true
+      }
+    ],
+    "p20AnalysisActions": [
+      {
+        "needle": "drillRoster()",
+        "title": "主播规模 · 构成",
+        "bounds": [
+          17,
+          463
+        ],
+        "buttons": [],
+        "bars": "none"
+      },
+      {
+        "needle": "drillVoice()",
+        "title": "今日音浪 · 构成",
+        "bounds": [
+          17,
+          463
+        ],
+        "buttons": [
+          "关闭"
+        ],
+        "bars": "none"
+      }
+    ],
+    "monthRevenueVariant": [
+      {
+        "id": "drillVoice-month-via-P20Analysis",
+        "path": "P20 › 经营概况 › 经营分析 › 本月音浪摘要",
+        "title": "本月音浪 · 摘要",
+        "buttons": [
+          "×",
+          "关闭"
+        ],
+        "bounds": [
+          157,
+          411
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "bars": "none",
+        "closed": true
+      },
+      {
+        "id": "drillVoice-month-via-P13",
+        "path": "P13 › 本月音浪指标",
+        "title": "本月音浪 · 摘要",
+        "buttons": [
+          "×",
+          "关闭"
+        ],
+        "bounds": [
+          157,
+          411
+        ],
+        "screen": [
+          1,
+          567
+        ],
+        "within": true,
+        "bars": "none",
+        "closed": true
+      }
+    ]
+  },
+  "shortScreen360x480": {
+    "allWithinViewport": true,
+    "allScrollableRegionsCanReachEnd": true,
+    "stickyActionFooterReachable": true,
+    "scrollbarsHidden": true,
+    "cases": [
+      {
+        "id": "broadcastModal-360x480",
+        "title": "群发通知",
+        "initialBounds": [
+          19.75,
+          460.25
+        ],
+        "bounds": [
+          19.75,
+          460.25
+        ],
+        "screen": [
+          1,
+          479
+        ],
+        "within": true,
+        "scrollables": [
+          {
+            "name": "DIV",
+            "range": 64,
+            "atEnd": true,
+            "bars": "none"
+          }
+        ],
+        "footer": {
+          "text": "取消\n发送",
+          "top": 368.25,
+          "bottom": 440.25,
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "发送"
+        ],
+        "modalBars": "none",
+        "closed": true
+      },
+      {
+        "id": "editP23-360x480",
+        "title": "修改小雨的规划",
+        "initialBounds": [
+          17,
+          463
+        ],
+        "bounds": [
+          17,
+          463
+        ],
+        "screen": [
+          1,
+          479
+        ],
+        "within": true,
+        "scrollables": [
+          {
+            "name": "p23-edit-fields",
+            "range": 254,
+            "atEnd": true,
+            "bars": "none"
+          },
+          {
+            "name": "TEXTAREA",
+            "range": 11,
+            "atEnd": true,
+            "bars": "none"
+          }
+        ],
+        "footer": {
+          "text": "取消\n保存修改",
+          "top": 371,
+          "bottom": 443,
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "保存修改"
+        ],
+        "modalBars": "none",
+        "closed": true
+      },
+      {
+        "id": "editP24-360x480",
+        "title": "修改阿哲的复盘",
+        "initialBounds": [
+          17,
+          463
+        ],
+        "bounds": [
+          17,
+          463
+        ],
+        "screen": [
+          1,
+          479
+        ],
+        "within": true,
+        "scrollables": [
+          {
+            "name": "p24-edit-fields",
+            "range": 150,
+            "atEnd": true,
+            "bars": "none"
+          }
+        ],
+        "footer": {
+          "text": "取消\n保存修改",
+          "top": 371,
+          "bottom": 443,
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "取消",
+          "保存修改"
+        ],
+        "modalBars": "none",
+        "closed": true
+      },
+      {
+        "id": "openP80Checkin-360x480",
+        "title": "开播前画面自检",
+        "initialBounds": [
+          87.046875,
+          479
+        ],
+        "bounds": [
+          87.046875,
+          479
+        ],
+        "screen": [
+          1,
+          479
+        ],
+        "within": true,
+        "scrollables": [
+          {
+            "name": "modal sheet",
+            "range": 160,
+            "atEnd": true,
+            "bars": "none"
+          }
+        ],
+        "footer": {
+          "text": "稍后继续",
+          "top": 393.046875,
+          "bottom": 465.046875,
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "稍后继续"
+        ],
+        "modalBars": "none",
+        "closed": true
+      },
+      {
+        "id": "taskDetail62-360x480",
+        "title": "需求单 · 大乔",
+        "initialBounds": [
+          17,
+          463
+        ],
+        "bounds": [
+          17,
+          463
+        ],
+        "screen": [
+          1,
+          479
+        ],
+        "within": true,
+        "scrollables": [
+          {
+            "name": "modal",
+            "range": 82,
+            "atEnd": true,
+            "bars": "none"
+          }
+        ],
+        "footer": {
+          "text": "关闭",
+          "top": 370.5,
+          "bottom": 442.5,
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "关闭"
+        ],
+        "modalBars": "none",
+        "closed": true
+      },
+      {
+        "id": "drillNew-360x480",
+        "title": "拉新 12 人 · 贡献名单",
+        "initialBounds": [
+          39,
+          441
+        ],
+        "bounds": [
+          39,
+          441
+        ],
+        "screen": [
+          1,
+          479
+        ],
+        "within": true,
+        "scrollables": [],
+        "footer": {
+          "text": "关闭",
+          "top": 349,
+          "bottom": 421,
+          "within": true
+        },
+        "buttons": [
+          "×",
+          "关闭"
+        ],
+        "modalBars": "none",
+        "closed": true
+      }
+    ]
+  },
+  "sharedSheetScroll": {
+    "cases": [
+      {
+        "id": "p22More-sheet",
+        "path": "P22 › 更多操作",
+        "title": "更多操作 · 小雨",
+        "rowCount": 5,
+        "initialFirst": {
+          "text": "去复盘",
+          "top": 205,
+          "bottom": 257
+        },
+        "initialLast": {
+          "text": "看 TA 的成长阶段与资料",
+          "top": 413,
+          "bottom": 465
+        },
+        "afterScroll": {
+          "text": "看 TA 的成长阶段与资料",
+          "top": 413,
+          "bottom": 465,
+          "within": true
+        },
+        "scrolls": [],
+        "closeVisible": true,
+        "closed": true
+      },
+      {
+        "id": "p94More-sheet",
+        "path": "P94 › 待处理",
+        "title": "老K · 昨晚比上周同期低42%，22点档有大场分流",
+        "rowCount": 3,
+        "initialFirst": {
+          "text": "看档案",
+          "top": 309,
+          "bottom": 361
+        },
+        "initialLast": {
+          "text": "发消息",
+          "top": 413,
+          "bottom": 465
+        },
+        "afterScroll": {
+          "text": "发消息",
+          "top": 413,
+          "bottom": 465,
+          "within": true
+        },
+        "scrolls": [],
+        "closeVisible": true,
+        "closed": true
+      },
+      {
+        "id": "lead-filter-sheet",
+        "path": "P31 › 阶段筛选",
+        "title": "筛选线索阶段",
+        "rowCount": 7,
+        "initialFirst": {
+          "text": "全部 · 4",
+          "top": 129.046875,
+          "bottom": 181.046875
+        },
+        "initialLast": {
+          "text": "无效 · 0",
+          "top": 441.046875,
+          "bottom": 493.046875
+        },
+        "afterScroll": {
+          "text": "无效 · 0",
+          "top": 413.046875,
+          "bottom": 465.046875,
+          "within": true
+        },
+        "scrolls": [
+          {
+            "name": "modal sheet",
+            "max": 28,
+            "top": 28,
+            "bars": "none"
+          }
+        ],
+        "closeVisible": true,
+        "closed": true
+      },
+      {
+        "id": "broadcastReceipt-sheet",
+        "path": "P20 › 群发通知回执",
+        "title": "群发通知回执",
+        "rowCount": 2,
+        "initialFirst": {
+          "text": "小雨 · 已送达",
+          "top": 361,
+          "bottom": 413
+        },
+        "initialLast": {
+          "text": "大乔 · 已送达",
+          "top": 413,
+          "bottom": 465
+        },
+        "afterScroll": {
+          "text": "大乔 · 已送达",
+          "top": 413,
+          "bottom": 465,
+          "within": true
+        },
+        "scrolls": [],
+        "closeVisible": true,
+        "closed": true
+      },
+      {
+        "id": "todoItem-sheet",
+        "path": "P20 › 待办话术草稿",
+        "title": "小雨：昨晚收尾连唱打法有效，建议沉淀进话术库",
+        "actions": [
+          {
+            "label": "采纳",
+            "top": 309,
+            "bottom": 361,
+            "within": true
+          },
+          {
+            "label": "修改",
+            "top": 361,
+            "bottom": 413,
+            "within": true
+          },
+          {
+            "label": "不用",
+            "top": 413,
+            "bottom": 465,
+            "within": true
+          }
+        ],
+        "closeLabel": "关闭弹窗",
+        "scrollbarsHidden": true,
+        "closed": true
+      }
+    ],
+    "selectionAndActionChecks": [
+      {
+        "id": "P31-filter-choice",
+        "chosen": "已签约 · 1",
+        "selected": null,
+        "modalClosed": true,
+        "pageText": "线索推进\n线索\n邀约\n试播\n签约\n线索池\n录入线索\n搜索昵称、赛道或来源\n阶段筛选\n已签约\n⌄\n当前线索\n1 / 4 条\n小\n小鹿\n才艺唱歌\n已签约\n来源：直播广场\n负责人：经纪人 · 大周\n招募进度\n4 / 4\n下一步：查看签约进度\n查看签约进度"
+      },
+      {
+        "id": "P94-more-last-action",
+        "chosen": "发消息",
+        "handler": "closeModal();go('P91/laok')",
+        "dialog": "老K · 昨晚比上周同期低42%，22点档有大场分流",
+        "closed": true
+      }
+    ],
+    "p20AnalysisSheet": {
+      "title": "经营分析",
+      "role": "dialog",
+      "ariaModal": "true",
+      "bounds": [
+        172.5,
+        479
+      ],
+      "screen": [
+        1,
+        479
+      ],
+      "within": true,
+      "rows": [
+        {
+          "label": "主播规模与构成",
+          "top": 257,
+          "bottom": 309,
+          "within": true
+        },
+        {
+          "label": "此刻在播名单",
+          "top": 309,
+          "bottom": 361,
+          "within": true
+        },
+        {
+          "label": "今日音浪构成",
+          "top": 361,
+          "bottom": 413,
+          "within": true
+        },
+        {
+          "label": "本月音浪摘要",
+          "top": 413,
+          "bottom": 465,
+          "within": true
+        }
+      ],
+      "bars": "none",
+      "closed": true
+    }
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

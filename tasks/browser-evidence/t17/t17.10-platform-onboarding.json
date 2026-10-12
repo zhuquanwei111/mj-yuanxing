@@ -1,0 +1,71 @@
+{
+  "task": "T17.10",
+  "verificationDate": "2026-10-11",
+  "browser": "Chrome DevTools mobile emulation",
+  "routes": [
+    {
+      "route": "#P01",
+      "viewport": [320, 720],
+      "states": ["申请列表", "待审核详情", "资料与审核记录", "审批通过", "进入开通向导"],
+      "shortViewport": [320, 568],
+      "bodySize": [318, 318, 433, 677],
+      "scrollbarWidth": "none"
+    },
+    {
+      "route": "#P02",
+      "viewport": [320, 720],
+      "states": ["公会概况", "全部公会", "待审公会不显示套餐控制", "回到匹配的申请详情"],
+      "overviewBodySize": [318, 318, 585, 724],
+      "scrollbarWidth": "none"
+    },
+    {
+      "route": "#P03",
+      "viewport": [320, 720],
+      "state": "经营概况；待关注项位于平台指标之前并可下钻",
+      "bodySize": [318, 318, 585, 639],
+      "scrollbarWidth": "none"
+    },
+    {
+      "route": "#P10",
+      "viewport": [320, 720],
+      "states": ["空名称显示行内错误并聚焦名称", "保留名称后进入第二步", "联系人字段获得焦点"],
+      "stepOneBodySize": [318, 318, 585, 585],
+      "stepTwoBodySize": [318, 318, 585, 786],
+      "shortViewport": [320, 568],
+      "shortStepTwoBodySize": [318, 318, 433, 786],
+      "scrollbarWidth": "none"
+    },
+    {
+      "route": "#P11",
+      "viewport": [320, 720],
+      "states": ["审核前进入条件", "建部门", "邀请员工", "导入主播"],
+      "stepTwoBodySize": [318, 318, 585, 1023],
+      "stepThreeBodySize": [318, 318, 585, 611],
+      "shortViewport": [320, 568],
+      "shortStepThreeBodySize": [318, 318, 433, 611],
+      "scrollbarWidth": "none"
+    },
+    {
+      "route": "#P12",
+      "viewport": [320, 720],
+      "states": ["角色权限", "部门与人数"],
+      "roleViewBodySize": [318, 318, 585, 698],
+      "shortViewport": [320, 568],
+      "departmentViewBodySize": [318, 318, 433, 640],
+      "departmentCount": 6,
+      "employeeCount": 17,
+      "streamerCount": 86,
+      "scrollbarWidth": "none"
+    }
+  ],
+  "actionsAndPermissions": {
+    "approvalRejectionAndReason": "covered by platform-onboarding.test.mjs",
+    "planStopAndResume": "covered by platform-onboarding.test.mjs",
+    "sensitivePermissionConfirmation": "covered by platform-onboarding.test.mjs",
+    "p85ActivationPageModified": false
+  },
+  "visualCapture": {
+    "archived": false,
+    "reason": "Chrome DevTools screenshot call did not return; evidence records live snapshots and measured layout, not an image."
+  }
+}

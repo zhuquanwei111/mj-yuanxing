@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>明镜 · 运营工作台 · 今天（ds2-d1 台账）</title>
+<style>
+/* ds2-d1 台账 —— 铅印账簿：零彩色，靠栏线、字重、反白块分级
+   色板：纸 #FFFFFF / 底纹 #F2F2F2 / 次级底 #E6E6E6 / 墨 #111111 / 次级墨 #4A4A4A / 弱墨 #8C8C8C
+        栏线 #C9C9C9 / 浅栏线 #DEDEDE / 台面 #262626   （全部为灰阶，无彩色） */
+:root{
+  --paper:#ffffff; --p2:#f2f2f2; --p3:#e6e6e6;
+  --ink:#111111; --ink2:#4a4a4a; --ink3:#6f6f6f;
+  --rule:#111111; --rule2:#c9c9c9; --rule3:#dedede;
+  --serif:"Songti SC","Noto Serif SC",SimSun,STSong,serif;
+  --sans:"Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"DejaVu Sans Mono",monospace;
+  --stagger:40ms;
+}
+[hidden]{display:none!important}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{background:var(--desk);font-family:var(--sans);color:var(--ink);font-size:13px;line-height:1.6}
+:root{--desk:#262626}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.desk{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 20px;
+  background:var(--desk);background-image:linear-gradient(#2e2e2e 1px,transparent 1px);background-size:100% 96px}
+.phone{position:relative;width:390px;height:844px;background:var(--paper);overflow:hidden;
+  border:1px solid #4a4a4a;border-radius:3px;box-shadow:0 0 0 9px #1c1c1c,0 26px 54px -18px #000;display:flex;flex-direction:column}
+.phone[hidden]{display:none}
+
+/* ---------- 壳 ---------- */
+.top{display:flex;align-items:center;gap:9px;padding:0 12px;height:46px;border-bottom:3px double var(--rule);flex:none}
+.top .mark{width:22px;height:22px;background:var(--ink);color:#fff;display:grid;place-items:center;
+  font-family:var(--serif);font-size:14px;font-weight:700}
+.top .name{font-family:var(--serif);font-size:15px;font-weight:700;letter-spacing:.06em}
+.top .sp{margin-left:auto;display:flex;align-items:center;gap:7px}
+.top .bell{position:relative;width:26px;height:26px;border:1px solid var(--rule);display:grid;place-items:center;font-size:12px}
+.top .bell b{position:absolute;top:-5px;right:-5px;background:var(--ink);color:#fff;font-size:9.5px;
+  font-family:var(--mono);min-width:14px;height:14px;display:grid;place-items:center;padding:0 2px}
+.top .role{font-family:var(--serif);font-size:12px;border:1px solid var(--rule);padding:2px 6px;letter-spacing:.08em}
+.scroll{flex:1;overflow-y:auto;overscroll-behavior:contain}
+.tabbar{display:flex;border-top:1px solid var(--rule);flex:none;background:var(--paper)}
+.tabbar button{flex:1;padding:12px 0 13px;font-size:12px;color:var(--ink3);position:relative;min-height:44px}
+.tabbar button+button{border-left:1px solid var(--rule3)}
+.tabbar button[aria-current="page"]{color:var(--ink);font-weight:700;box-shadow:inset 0 3px 0 var(--rule),inset 0 0 0 0 transparent}
+
+/* ---------- 页头（会计头） ---------- */
+.head{padding:13px 14px 10px;border-bottom:1px solid var(--rule2)}
+.head .h1{font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.08em;line-height:1.35}
+.head .ln{margin-top:3px;font-size:12px;color:var(--ink2);letter-spacing:.02em}
+.head .ln:last-child{color:var(--ink3)}
+.shift{display:flex;align-items:center;gap:7px;padding:9px 14px;border-bottom:1px solid var(--rule2)}
+.chip{font-size:12px;border:1px solid var(--ink2);padding:9px;min-height:40px;letter-spacing:.02em;
+  font-family:var(--mono)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.send{margin-left:auto;font-size:12px;border:1px solid var(--rule);padding:9px 10px;min-height:40px;font-weight:700;letter-spacing:.04em}
+
+/* ---------- 合计行（KPI） ---------- */
+.sum{display:flex;border-bottom:3px double var(--rule)}
+.sum .c{flex:1;padding:9px 8px 8px;border-right:1px solid var(--rule3);text-align:left;position:relative}
+.sum .c:last-child{border-right:0}
+.sum .n{font-family:var(--mono);font-size:23px;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sum .n i{font-style:normal;font-size:12.5px;font-weight:400;margin-left:1px}
+.sum .k{display:block;font-size:12px;color:var(--ink2);margin-top:1px}
+.sum .k em{display:block;font-style:normal;color:var(--ink3);font-family:var(--mono);font-size:12px}
+.sum .c[data-drill] .n{border-bottom:1px dotted var(--ink3)}
+.sum .c[data-drill] .n::after{content:"▾";font-size:12px;color:var(--ink3);margin-left:3px;vertical-align:2px}
+.sum .c:active{background:var(--p2)}
+
+/* ---------- 页签 ---------- */
+.tabs{position:relative;display:flex;gap:20px;padding:10px 14px 8px;border-bottom:1px solid var(--rule)}
+.tabs button{font-size:13px;color:var(--ink3);letter-spacing:.02em;padding:6px 0 4px;min-height:40px}
+.tabs button.on{color:var(--ink);font-weight:700}
+.tabs button i{font-style:normal;font-family:var(--mono);font-size:12px;margin-left:3px}
+.tabs .ind{position:absolute;bottom:-1px;left:14px;height:2px;background:var(--rule);
+  transition:transform .18s cubic-bezier(.2,.8,.2,1),width .18s cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- 台账条目 ---------- */
+.entries{padding:0 14px}
+.entry{border-bottom:1px solid var(--rule3);padding:11px 0 10px;position:relative}
+.entry.lead{border-bottom:1px solid var(--rule)}
+.entry .meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.entry .no{font-family:var(--mono);font-size:12px;color:var(--ink3);width:16px;flex:none}
+.entry .cat{font-family:var(--serif);font-size:13.5px;font-weight:700;letter-spacing:.06em}
+.src{font-size:12px;border:1px solid var(--ink2);padding:1px 5px;letter-spacing:.06em;color:var(--ink2)}
+.src.machine{border-style:solid}
+.src.draft{border-style:dashed;color:var(--ink);border-color:var(--ink)}
+.src.human{border-width:2px;color:var(--ink);border-color:var(--ink)}
+.lv{margin-left:auto;font-size:12px;border:1px solid var(--ink2);padding:1px 5px;color:var(--ink2);letter-spacing:.06em}
+.lv.risk{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.lv.follow{background:var(--p3);border-color:var(--ink3);color:var(--ink)}
+.entry .lines{margin:6px 0 0}
+.entry .l{display:flex;align-items:baseline;gap:6px;font-size:12px;line-height:1.55;padding:1px 0}
+.entry .l .k{flex:none;color:var(--ink2)}
+.entry .l .dots{flex:1;border-bottom:1px dotted var(--rule2);transform:translateY(-3px);min-width:8px}
+.entry .l .v{font-family:var(--mono);font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;flex:none}
+.entry .l .u{font-family:var(--mono);font-size:12px;color:var(--ink2);flex:none}
+.entry .l .m{flex:none}
+.mark{font-size:12px;padding:0 4px;border:1px solid var(--ink3);color:var(--ink2);letter-spacing:.04em}
+.mark.risk{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.mark.follow{background:var(--p3);border-color:var(--ink2);color:var(--ink)}
+.mark.ok{color:var(--ink3)}
+.film{font-family:var(--mono);font-size:12px;color:var(--ink2);border:1px solid var(--rule3);padding:0 4px}
+.entry .split{display:flex;gap:10px;margin-top:7px;padding-top:6px;border-top:1px solid var(--rule3);
+  font-size:12px;color:var(--ink3)}
+.entry .split span{flex:1}
+.entry .split span+span{text-align:right}
+.acts{display:flex;align-items:center;gap:7px;margin-top:9px;flex-wrap:wrap}
+.btn{border:1px solid var(--rule);padding:9px 12px;min-height:40px;font-size:12px;font-weight:700;letter-spacing:.03em;
+  transition:transform 80ms ease-out,background 120ms linear,color 120ms linear}
+.btn.solid{background:var(--ink);color:#fff}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn.weak{border-style:dotted;color:var(--ink2);font-weight:400;min-height:40px;padding:9px 10px}
+.btn[disabled]{opacity:.45;cursor:default}
+.acts .note{margin-left:auto;font-size:12px;color:var(--ink2);font-family:var(--mono)}
+.struck{position:relative}
+.struck::after{content:"";position:absolute;left:0;right:0;top:11px;height:1px;background:var(--ink);
+  transform-origin:left;animation:strike .22s cubic-bezier(.3,.7,.2,1) both}
+@keyframes strike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.entry.settled .cat,.entry.settled .lines{color:var(--ink3)}
+.stampin{display:inline-block;animation:stamp .18s cubic-bezier(.2,.9,.1,1) both}
+@keyframes stamp{from{transform:translateY(-7px) scale(1.5) rotate(-7deg);opacity:0}to{transform:none;opacity:1}}
+
+/* ---------- 今日开播（明细表） ---------- */
+.tbl{margin:14px 14px 4px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.tbl .cap{display:flex;align-items:baseline;gap:8px;padding:8px 0 7px;border-bottom:1px solid var(--rule2)}
+.tbl .cap b{font-family:var(--serif);font-size:13.5px;letter-spacing:.06em}
+.tbl .cap span{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.tbl .th{display:grid;grid-template-columns:52px 84px 1fr 54px;gap:6px;padding:6px 0;
+  font-size:12px;color:var(--ink3);letter-spacing:.06em;border-bottom:1px solid var(--rule3)}
+.tbl .tr{display:grid;grid-template-columns:52px 84px 1fr 54px;gap:6px;padding:7px 0;border-bottom:1px solid var(--rule3);
+  font-size:12px;min-height:36px;align-items:center}
+.tbl .tr:last-child{border-bottom:0}
+.tbl .tr .nm{font-family:var(--serif);font-size:12.5px;font-weight:700}
+.tbl .tr .tm{font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.tbl .tr .rk{font-size:12px;color:var(--ink2)}
+.tbl .tr .rk.none{color:var(--ink3)}
+.tbl .tr .st{font-size:12px;text-align:center;border:1px solid var(--ink3);padding:2px 0;color:var(--ink2)}
+.tbl .tr .st.live{border-color:var(--ink);color:var(--ink);font-weight:700}
+.tbl .tr .st.done{background:var(--p2)}
+.tbl .foot{padding:7px 0 9px;font-size:12px;color:var(--ink3);border-top:1px solid var(--rule3);display:flex;gap:10px}
+.tbl .foot span+span{margin-left:auto;text-align:right}
+.tail{height:22px}
+
+/* ---------- 弹层 ---------- */
+.scrim{position:absolute;inset:0;background:#11111155;opacity:0;transition:opacity .18s linear}
+.scrim[hidden]{display:none}
+.scrim.on{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--paper);border-top:3px double var(--rule);
+  transform:translateY(101%);transition:transform .24s cubic-bezier(.2,.8,.2,1);max-height:82%;display:flex;flex-direction:column}
+.sheet.on{transform:none}
+.sheet .hd{display:flex;align-items:center;gap:8px;padding:12px 14px 9px;border-bottom:1px solid var(--rule2)}
+.sheet .hd b{font-family:var(--serif);font-size:14.5px;letter-spacing:.06em}
+.sheet .hd .x{margin-left:auto;font-size:12px;border:1px solid var(--rule2);padding:5px 9px;color:var(--ink2);min-height:40px;display:flex;align-items:center}
+.sheet .bd{padding:10px 14px 14px;overflow-y:auto}
+.kv{display:flex;align-items:baseline;gap:8px;font-size:12px;padding:5px 0;border-bottom:1px solid var(--rule3)}
+.kv b{font-family:var(--mono);font-size:12px;min-width:44px}
+.kv span{flex:1;color:var(--ink2)}
+.kv em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--ink3)}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;margin:6px 0 0}
+.pick label{display:flex;align-items:center;gap:7px;padding:8px 0;font-size:12px;border-bottom:1px solid var(--rule3);min-height:38px}
+.pick input{appearance:none;width:16px;height:16px;border:1px solid var(--ink2);flex:none;display:grid;place-items:center}
+.pick input:checked{border-color:var(--ink);background:var(--ink)}
+.pick input:checked::after{content:"✓";color:#fff;font-size:12px;line-height:1}
+.ta{width:100%;min-height:74px;margin-top:12px;border:1px solid var(--rule2);padding:9px;font:12px/1.6 var(--sans);
+  resize:none;color:var(--ink);background:var(--paper);
+  background-image:repeating-linear-gradient(var(--paper) 0 23px,var(--rule3) 23px 24px)}
+.ta::placeholder{color:var(--ink3)}
+.sheet .ft{display:flex;gap:8px;padding:0 14px 16px}
+.sheet .ft .btn{flex:1;text-align:center}
+.recips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.recips span{font-size:12px;border:1px solid var(--rule3);padding:3px 6px;color:var(--ink2);display:flex;gap:5px;align-items:center}
+.recips span b{font-family:var(--mono);font-size:12px;border:1px solid var(--ink);color:var(--ink);padding:0 3px}
+.recips span b.ok{background:var(--ink);color:#fff}
+
+/* ---------- 出场 ---------- */
+.rise{animation:rise .34s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0ms)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+html.full .desk{padding:0;background:#fff;background-image:none;align-items:flex-start}
+html.full .phone{height:auto;max-height:none;border:0;box-shadow:none}
+html.full .scroll{overflow:visible}
+html.full .tabbar{position:static}
+@media (max-width:300px){
+  .shift{flex-wrap:wrap}
+  .chip{flex:1 1 46%}
+  .sum{flex-wrap:wrap}
+  .sum .c{flex:1 1 100%;border-right:0;border-top:1px solid var(--rule3)}
+  .sum .n{font-size:21px}
+  .entry .l{flex-wrap:wrap;align-items:flex-start}
+  .entry .l .dots{display:none}
+  .entry .l .k{flex:1 1 100%;min-width:0;overflow-wrap:anywhere}
+  .entry .l .v,.entry .l .u,.entry .l .m{flex:1 1 auto}
+  .tbl .th,.tbl .tr{grid-template-columns:1fr 1fr}
+  .acts{flex-wrap:wrap}
+  .acts .note{margin-left:0}
+  .tabbar{flex-wrap:wrap}
+  .tabbar button{flex:1 1 33.33%}
+  .head .h1{font-size:17px}
+}
+@media (max-width:430px){
+  .desk{padding:0;background:var(--paper);background-image:none;min-height:0}
+  .phone{width:100%;height:100vh;height:100dvh;border:0;border-radius:0;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="desk">
+
+<!-- ==================== P20 运营工作台 ==================== -->
+<div class="phone" id="app">
+  <header class="top">
+    <span class="mark">明</span><span class="name">明镜</span>
+    <span class="sp">
+      <span class="bell" title="消息">◔<b>2</b></span>
+      <span class="role">运营</span>
+    </span>
+  </header>
+
+  <div class="scroll" id="scroller">
+    <div class="head">
+      <div class="h1">运营工作台 · 今天</div>
+      <div class="ln">运营 · 小林（我）　经手：<span id="shiftWho">早班</span></div>
+      <div class="ln">待办第一 · 早班先消化昨晚夜场</div>
+    </div>
+
+    <div class="shift">
+      <button class="chip" data-shift="am" aria-pressed="true">早班 7:30-16:30</button>
+      <button class="chip" data-shift="pm" aria-pressed="false">晚班 16:30-01:30</button>
+      <button class="send" id="openCompose">群发通知</button>
+    </div>
+
+    <div class="sum">
+      <button class="c" data-drill="13"><span class="n" data-count="13">13</span><span class="k">在管主播<em>可下钻</em></span></button>
+      <button class="c"><span class="n" data-count="10">10</span><span class="k">今日应播<em>&nbsp;</em></span></button>
+      <button class="c" data-drill="6"><span class="n" data-count="6">6</span><span class="k">已开播<em>3 个在播</em></span></button>
+      <button class="c" data-drill="18.8"><span class="n" data-count="18.8">18.8<i>万</i></span><span class="k">今日音浪<em>3 场在播</em></span></button>
+    </div>
+
+    <nav class="tabs" id="tabs">
+      <button class="on" data-tab="todo">待办<i>7</i></button>
+      <button data-tab="done">已处理<i>1</i></button>
+      <span class="ind" id="ind"></span>
+    </nav>
+
+    <!-- 送达卡（发送后插入） -->
+    <div class="entries" id="delivered"></div>
+
+    <section class="entries" id="panel-todo">
+      <article class="entry lead rise" style="--d:0ms" id="e1">
+        <div class="meta"><span class="no">01</span><span class="cat">盯场复盘</span><span class="src machine">自动摘要</span><span class="lv">昨晚</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">11 场开播 · 合计</span><i class="dots"></i><span class="v">34.2 万</span><span class="u">+2.4%</span><span class="m mark ok">正常</span></div>
+          <div class="l"><span class="k">老K · 14 天最低</span><i class="dots"></i><span class="v">1.1 万</span><span class="u">22 点档大场分流</span><span class="m mark risk">异常</span></div>
+          <div class="l"><span class="k">茉莉第 2 场 · 涨粉</span><i class="dots"></i><span class="v">86</span><span class="u">上周 2 倍</span><span class="m mark ok">正常</span></div>
+        </div>
+        <div class="split"><span>AI 汇总 11 场数据</span><span>人：正常消化 · 异常下推</span></div>
+        <div class="acts">
+          <button class="btn solid" data-digest="e1">标记已消化</button>
+          <button class="btn">去复盘</button>
+          <span class="note" data-note="e1"></span>
+        </div>
+      </article>
+
+      <article class="entry rise" style="--d:40ms" id="e2">
+        <div class="meta"><span class="no">02</span><span class="cat">盯场复盘</span><span class="src machine">预警</span><span class="lv risk">有风险</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">老K ｜ 音浪</span><i class="dots"></i><span class="v">1.1 万</span><span class="u">比上周同期 −42%</span></div>
+          <div class="l"><span class="k">22:00-01:00 场 ｜ 同赛道 22 点档</span><i class="dots"></i><span class="u">2 个大场分流</span></div>
+        </div>
+        <div class="split"><span>AI 比对近 7 天数据</span><span>人：复盘 · 看详情</span></div>
+        <div class="acts"><button class="btn solid">去复盘</button><button class="btn">看详情</button></div>
+      </article>
+
+      <article class="entry rise" style="--d:80ms" id="e3">
+        <div class="meta"><span class="no">03</span><span class="cat">流水跟踪</span><span class="src machine">预警</span><span class="lv risk">有风险</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">阿哲 ｜ 连续 3 天下滑</span><i class="dots"></i><span class="v">近 7 天 −16%</span></div>
+          <div class="l"><span class="k">停留 38→26 秒</span><i class="dots"></i><span class="u">↓31%</span><span class="u">18 点档 2 个同类场分流</span></div>
+        </div>
+        <div class="split"><span>AI 比对近 7 天数据</span><span>人：复盘 · 看详情</span></div>
+        <div class="acts"><button class="btn solid">去复盘</button><button class="btn">看详情</button></div>
+      </article>
+
+      <article class="entry rise" style="--d:120ms" id="e4">
+        <div class="meta"><span class="no">04</span><span class="cat">话术节奏</span><span class="src machine">预警</span><span class="lv follow">待跟进</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">晓晓 ｜ 开场 30 秒话术两周未换</span><i class="dots"></i><span class="v">峰值连降</span></div>
+          <div class="l"><span class="k">峰值只剩上周</span><i class="dots"></i><span class="v">7 成</span><span class="u">已连降一周</span></div>
+        </div>
+        <div class="split"><span>AI 逐场比对峰值</span><span>人：生成规划 · 看详情</span></div>
+        <div class="acts"><button class="btn solid">生成规划</button><button class="btn">看详情</button></div>
+      </article>
+
+      <article class="entry rise" style="--d:160ms" id="e5">
+        <div class="meta"><span class="no">05</span><span class="cat">新人孵化</span><span class="src human">记录</span><span class="lv follow">待跟进</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">麦子 ｜ 新人第</span><i class="dots"></i><span class="v">6 天</span><span class="u">明天结业评估</span></div>
+          <div class="l"><span class="k">结业后首场建议排早场避开晚高峰</span><i class="dots"></i><span class="u">培训组明天出评估</span></div>
+        </div>
+        <div class="split"><span>人：记一笔，明天接评估</span><span>&nbsp;</span></div>
+        <div class="acts"><button class="btn">看详情</button><button class="btn">发消息</button></div>
+      </article>
+
+      <article class="entry rise" style="--d:200ms" id="e6">
+        <div class="meta"><span class="no">06</span><span class="cat">风险合规</span><span class="src machine">预警</span><span class="lv follow">待跟进</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">茉莉 ｜ 昨晚画面自检「背景」未过</span><i class="dots"></i><span class="v" >出现品牌标识</span></div>
+          <div class="l"><span class="k">她 21:00 开播</span><i class="dots"></i><span class="v">开播前要撤掉</span><span class="u">转视觉组</span></div>
+        </div>
+        <div class="split"><span>AI 逐场过六项自检</span><span>人：转视觉 · 发消息</span></div>
+        <div class="acts"><button class="btn solid">转视觉</button><button class="btn">发消息</button></div>
+      </article>
+
+      <article class="entry rise" style="--d:240ms" id="e7">
+        <div class="meta"><span class="no">07</span><span class="cat">话术沉淀</span><span class="src draft">草稿</span><span class="lv">待拍板</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">昨晚「收尾连唱」打法有效 · 建议入库</span><i class="dots"></i><span class="u">未生效</span></div>
+          <div class="l"><span class="k">要点 收尾连唱 2 首 ＋ 唱完报下次歌单</span><i class="dots"></i><span class="v">?</span></div>
+          <div class="l"><span class="k">佐证 该段进场停留</span><i class="dots"></i><span class="v">41 秒</span><span class="u">全场最高</span></div>
+        </div>
+        <div class="split"><span>AI 按昨晚场次写草稿</span><span>人：采纳才入库</span></div>
+        <div class="acts">
+          <button class="btn solid" data-draft="yes" data-note="e7">采纳</button>
+          <button class="btn" data-draft="edit" data-note="e7">修改</button>
+          <button class="btn weak" data-draft="no" data-note="e7">不用</button>
+          <span class="note" data-note-text="e7"></span>
+        </div>
+      </article>
+    </section>
+
+    <section class="entries" id="panel-done" hidden>
+      <article class="entry lead">
+        <div class="meta"><span class="no">D1</span><span class="cat">人事</span><span class="src human">已办</span><span class="lv">已归档</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">豆豆 · 请假申请已批</span><i class="dots"></i><span class="v">10-15 返岗</span></div>
+        </div>
+        <div class="split"><span>人：审批（🖐 人操作才发生）</span><span>今天 09:12</span></div>
+      </article>
+    </section>
+
+    <!-- 晚班四条（切换后替换待办流） -->
+    <section class="entries" id="panel-pm" hidden>
+      <article class="entry lead">
+        <div class="meta"><span class="no">01</span><span class="cat">盯场复盘</span><span class="src human">记录</span><span class="lv">今晚</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">老K · 22:00 场开播前画面自检六项</span><i class="dots"></i><span class="u">灯光／背景／妆容／服装／机位／道具</span></div>
+          <div class="l"><span class="k">昨晚他机位偏了半格</span><i class="dots"></i><span class="u">重点补机位</span></div>
+        </div>
+        <div class="split"><span>人：开播前过一遍</span><span>人：看详情 · 发消息</span></div>
+        <div class="acts"><button class="btn">看详情</button><button class="btn">发消息</button></div>
+      </article>
+      <article class="entry">
+        <div class="meta"><span class="no">02</span><span class="cat">话术节奏</span><span class="src draft">草稿</span><span class="lv">待拍板</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">晓晓 · 今晚 21:00 场开场话术换新版</span><i class="dots"></i><span class="u">未生效</span></div>
+          <div class="l"><span class="k">要点 用评论区热词起头 · 30 秒内点一次歌</span><i class="dots"></i><span class="v">?</span></div>
+          <div class="l"><span class="k">目标 峰值拉回上周</span><i class="dots"></i><span class="v">9 成</span></div>
+        </div>
+        <div class="split"><span>AI 按昨晚评论写草稿</span><span>人：采纳才生效</span></div>
+        <div class="acts">
+          <button class="btn solid" data-draft="yes" data-note="pm2">采纳</button>
+          <button class="btn" data-draft="edit" data-note="pm2">修改</button>
+          <button class="btn weak" data-draft="no" data-note="pm2">不用</button>
+          <span class="note" data-note-text="pm2"></span>
+        </div>
+      </article>
+      <article class="entry">
+        <div class="meta"><span class="no">03</span><span class="cat">新人孵化</span><span class="src human">记录</span><span class="lv follow">待跟进</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">栗子 · 新人第</span><i class="dots"></i><span class="v">9 天</span><span class="u">19:30 场</span></div>
+          <div class="l"><span class="k">盯前 30 分钟 ｜ 进房率健康线</span><i class="dots"></i><span class="v">20-25%</span><span class="u">低于 20% 调开场</span></div>
+        </div>
+        <div class="split"><span>人：现场盯前 30 分钟</span><span>人：看详情 · 发消息</span></div>
+        <div class="acts"><button class="btn">看详情</button><button class="btn">发消息</button></div>
+      </article>
+      <article class="entry">
+        <div class="meta"><span class="no">04</span><span class="cat">风险合规</span><span class="src human">记录</span><span class="lv follow">待跟进</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">茉莉 · 开播前把背景标识撤掉</span><i class="dots"></i><span class="v">19:00 前回传</span></div>
+          <div class="l"><span class="k">视觉组工单</span><i class="dots"></i><span class="u">已转</span></div>
+        </div>
+        <div class="split"><span>AI 生成工单</span><span>人：催一下 · 看详情</span></div>
+        <div class="acts"><button class="btn">看详情</button><button class="btn weak">催一下</button></div>
+      </article>
+    </section>
+
+    <div class="tbl">
+      <div class="cap"><b>今日开播</b><span>10 场 · 3 个在播</span></div>
+      <div class="th"><span>昵称</span><span>时段</span><span>风险信号</span><span>状态</span></div>
+      <div class="tr"><span class="nm">小雨</span><span class="tm">20:00-23:00</span><span class="rk none">无</span><span class="st live">直播中</span></div>
+      <div class="tr"><span class="nm">大乔</span><span class="tm">19:00-22:00</span><span class="rk none">无</span><span class="st live">直播中</span></div>
+      <div class="tr"><span class="nm">甜甜</span><span class="tm">21:00-24:00</span><span class="rk none">无</span><span class="st done">已下播</span></div>
+      <div class="tr"><span class="nm">茉莉</span><span class="tm">21:00-24:00</span><span class="rk none">无</span><span class="st live">直播中</span></div>
+      <div class="tr"><span class="nm">阿哲</span><span class="tm">18:00-21:00</span><span class="rk">连续 3 天流水下滑；停留 <span class="film">38→26 秒</span></span><span class="st done">已下播</span></div>
+      <div class="tr"><span class="nm">九九</span><span class="tm">20:00-23:00</span><span class="rk none">无</span><span class="st done">已下播</span></div>
+      <div class="tr"><span class="nm">栗子</span><span class="tm">19:30-22:30</span><span class="rk">新人期 9 天换了 <span class="film">2</span> 个时段</span><span class="st">未开播</span></div>
+      <div class="tr"><span class="nm">晓晓</span><span class="tm">21:00-23:30</span><span class="rk">峰值连降一周，只剩 <span class="film">7 成</span></span><span class="st">未开播</span></div>
+      <div class="tr"><span class="nm">老K</span><span class="tm">22:00-01:00</span><span class="rk">昨晚比上周 <span class="film">−42%</span>；22 点档有大场分流</span><span class="st">未开播</span></div>
+      <div class="foot"><span>AI 逐人比对近 7 天数据</span><span>人：查详情或发消息</span></div>
+    </div>
+    <div class="tail"></div>
+  </div>
+
+  <nav class="tabbar">
+    <button aria-current="page">今天</button><button>我的主播</button><button>交接</button><button>我的</button><button>助理</button>
+  </nav>
+
+  <!-- 下钻弹层 -->
+  <div class="scrim" id="scrim" hidden></div>
+  <div class="sheet" id="sheetKpi" hidden>
+    <div class="hd"><b id="kpiTitle">在管主播 13</b><button class="x" data-close>关闭</button></div>
+    <div class="bd" id="kpiBody"></div>
+  </div>
+  <div class="sheet" id="sheetCompose" hidden>
+    <div class="hd"><b>群发通知</b><button class="x" data-close>关闭</button></div>
+    <div class="bd">
+      <div class="ln" style="font-size:12px;color:var(--ink2)">选人、写通知，送达状态逐人可见 · 已选 <span id="pickCount">0</span> 人</div>
+      <div class="pick" id="pickList"></div>
+      <textarea class="ta" id="msgText" placeholder="比如：今晚全员提前十分钟开播"></textarea>
+      <div class="ft" style="padding:12px 0 0">
+        <button class="btn" data-close>取消</button>
+        <button class="btn solid" id="doSend" disabled>发送</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== P13 经营大盘（同一套 token 的静态延展） ==================== -->
+<div class="phone" id="p13" hidden>
+  <header class="top">
+    <span class="mark">明</span><span class="name">明镜</span>
+    <span class="sp"><span class="bell" title="消息">◔<b>2</b></span><span class="role">老板</span></span>
+  </header>
+  <div class="scroll">
+    <div class="head">
+      <div class="h1">经营大盘</div>
+      <div class="ln">公会老板 · 星曜传媒</div>
+      <div class="ln">今天谁在播、赚多少、谁有风险</div>
+    </div>
+    <div class="shift"><button class="send" style="margin-left:0">生成经营周报</button></div>
+    <div class="sum">
+      <button class="c"><span class="n">86</span><span class="k">主播规模<em>较上月 +5</em></span></button>
+      <button class="c"><span class="n">61</span><span class="k">活跃主播<em>10 有效天</em></span></button>
+      <button class="c" data-drill="1560"><span class="n">1560<i>万</i></span><span class="k">本月音浪<em>↑6.4%</em></span></button>
+      <button class="c" data-drill="71"><span class="n">71<i>%</i></span><span class="k">今日开播率<em>61/86 人在播</em></span></button>
+    </div>
+    <div class="entries">
+      <div class="th" style="display:grid;grid-template-columns:1fr 96px;gap:8px;padding:9px 0 6px;font-size:12px;color:var(--ink3);border-bottom:1px solid var(--rule3)">
+        <span>本月平台任务 · 官方口径自动算</span><span style="text-align:right">进度</span></div>
+      <div class="entry" style="padding:9px 0">
+        <div class="l"><span class="k">拉新主播</span><i class="dots"></i><span class="v">12/20</span><span class="u">还差 8 人</span></div>
+        <div class="l"><span class="k">活跃主播</span><i class="dots"></i><span class="v">61/75</span><span class="u">还差 14 人</span></div>
+        <div class="l"><span class="k">月音浪</span><i class="dots"></i><span class="v">1560/3500 万</span><span class="u">还差 1940 万</span></div>
+      </div>
+      <div class="entry" style="padding:9px 0">
+        <div class="l"><span class="k">本月账单已出</span><i class="dots"></i><span class="u">主播收益页可查</span></div>
+      </div>
+      <div class="entry lead">
+        <div class="meta"><span class="no">01</span><span class="cat">阿哲</span><span class="src machine">预警</span><span class="lv risk">有风险</span></div>
+        <div class="lines"><div class="l"><span class="k">连续 3 天流水下滑，近 7 天少</span><i class="dots"></i><span class="v">16%</span></div></div>
+        <div class="acts"><button class="btn solid">去处理</button></div>
+      </div>
+      <div class="entry">
+        <div class="meta"><span class="no">02</span><span class="cat">喵喵</span><span class="src machine">预警</span><span class="lv follow">待跟进</span></div>
+        <div class="lines"><div class="l"><span class="k">连续 2 天没开播，消息回得慢</span><i class="dots"></i><span class="u">今日未播</span></div></div>
+        <div class="acts"><button class="btn solid">去处理</button></div>
+      </div>
+      <div class="entry">
+        <div class="meta"><span class="cat">公会 vs 行业基准</span><span class="lv">对表</span></div>
+        <div class="lines">
+          <div class="l"><span class="k">开播率</span><i class="dots"></i><span class="v">71% / 65%</span><span class="u">高于基准</span></div>
+          <div class="l"><span class="k">活跃率</span><i class="dots"></i><span class="v">71% / 62%</span><span class="u">高于基准</span></div>
+          <div class="l"><span class="k">新人 30 天留存</span><i class="dots"></i><span class="v">74% / 76%</span><span class="u">低 2 个点</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tail"></div>
+  </div>
+  <nav class="tabbar">
+    <button aria-current="page">今天</button><button>主播</button><button>预警</button><button>我的</button><button>助理</button>
+  </nav>
+</div>
+
+<!-- 卡形态检视（?state=forms 时把三张代表卡搬进来） -->
+<section class="phone" id="forms" hidden style="overflow-y:auto"></section>
+</div>
+
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  var state = q.get('state') || 'app';
+  var app = document.getElementById('app'), p13 = document.getElementById('p13'), forms = document.getElementById('forms');
+  if (state === 'full') document.documentElement.classList.add('full');
+  if (state === 'p13') { app.hidden = true; p13.hidden = false; return; }
+  if (state === 'forms') {
+    app.hidden = true;
+    forms.hidden = false;
+    forms.style.background = 'var(--paper)';
+    forms.insertAdjacentHTML('afterbegin', '<div class="head"><div class="h1">卡形态 · 三张代表卡</div><div class="ln">自动摘要卡 / 预警卡 / 草稿卡</div></div>');
+    ['e1','e2','e7'].forEach(function(id){ forms.appendChild(document.getElementById(id)); });
+    var s = forms.querySelectorAll('.entry'); for (var i=0;i<s.length;i++) s[i].style.borderBottom = '1px solid var(--rule)';
+    document.querySelectorAll('.entries').forEach(function(x){ x.style.paddingLeft='14px'; });
+    return;
+  }
+
+  // ---- 页签 + 班次（一套状态，互不覆盖）
+  var tabs = document.getElementById('tabs'), ind = document.getElementById('ind');
+  var panels = { todo: document.getElementById('panel-todo'), done: document.getElementById('panel-done'), pm: document.getElementById('panel-pm') };
+  var tab = 'todo', shift = 'am';
+  function moveInd(btn){ ind.style.width = btn.offsetWidth + 'px'; ind.style.transform = 'translateX(' + (btn.offsetLeft - 14) + 'px)'; }
+  function apply(){
+    panels.todo.hidden = !(shift === 'am' && tab === 'todo');
+    panels.pm.hidden = !(shift === 'pm' && tab === 'todo');
+    panels.done.hidden = tab !== 'done';
+    tabs.querySelectorAll('button').forEach(function(b){ if (b.dataset.tab === tab) { b.classList.add('on'); moveInd(b); } else b.classList.remove('on'); });
+  }
+  tabs.addEventListener('click', function(e){ var b = e.target.closest('button[data-tab]'); if (!b) return; tab = b.dataset.tab; apply(); });
+  apply();
+  window.addEventListener('resize', apply);
+  document.querySelectorAll('[data-shift]').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      shift = chip.dataset.shift; tab = 'todo';
+      document.querySelectorAll('[data-shift]').forEach(function(c){ c.setAttribute('aria-pressed', String(c === chip)); });
+      document.getElementById('shiftWho').textContent = shift === 'pm' ? '晚班' : '早班';
+      apply();
+      var box = panels[shift === 'pm' ? 'pm' : 'todo'];
+      box.style.transition = 'none'; box.style.opacity = '.35';
+      requestAnimationFrame(function(){ box.style.transition = 'opacity .18s linear'; box.style.opacity = 1; });
+    });
+  });
+
+  // ---- 草稿三动作
+  document.querySelectorAll('[data-draft]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var entry = b.closest('.entry'), kind = b.dataset.draft, slot = entry.querySelector('.note');
+      var lv = entry.querySelector('.lv'), src = entry.querySelector('.src');
+      entry.querySelectorAll('[data-draft]').forEach(function(x){ x.disabled = true; });
+      if (kind === 'yes') {
+        lv.textContent = '已采纳'; lv.className = 'lv';
+        src.textContent = '已入库'; src.className = 'src human';
+        entry.querySelectorAll('.u').forEach(function(u){ if (u.textContent === '未生效') u.textContent = '已生效'; });
+        slot.innerHTML = '<span class="stampin">已入库 · 生效</span>';
+      } else if (kind === 'edit') {
+        lv.textContent = '改一改'; slot.innerHTML = '<span class="stampin">等你的修改</span>';
+      } else {
+        lv.textContent = '不用'; lv.className = 'lv follow';
+        entry.querySelectorAll('.u').forEach(function(u){ if (u.textContent === '未生效') u.textContent = '作废'; });
+        slot.innerHTML = '<span class="stampin">不入库</span>';
+      }
+    });
+  });
+
+  // ---- 标记已消化（划线）
+  document.querySelectorAll('[data-digest]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var entry = b.closest('.entry');
+      if (entry.classList.contains('settled')) return;
+      entry.classList.add('settled');
+      var head = entry.querySelector('.cat');
+      head.classList.add('struck');
+      b.disabled = true; b.textContent = '已消化';
+      entry.querySelector('.note').innerHTML = '<span class="stampin">已记一笔</span>';
+    });
+  });
+
+  // ---- 弹层
+  var scrim = document.getElementById('scrim');
+  var sheets = { kpi: document.getElementById('sheetKpi'), compose: document.getElementById('sheetCompose') };
+  function open(which){ scrim.hidden = false; requestAnimationFrame(function(){ scrim.classList.add('on'); }); sheets[which].hidden = false; requestAnimationFrame(function(){ sheets[which].classList.add('on'); }); }
+  function close(){ scrim.classList.remove('on'); Object.keys(sheets).forEach(function(k){ sheets[k].classList.remove('on'); });
+    setTimeout(function(){ scrim.hidden = true; Object.keys(sheets).forEach(function(k){ sheets[k].hidden = true; }); }, 200); }
+  scrim.addEventListener('click', close);
+  document.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', close); });
+
+  // ---- KPI 下钻
+  var kpi = {
+    '13': { t:'在管主播 13', rows: [
+      ['直播中 3','小雨 · 大乔 · 茉莉'],
+      ['已下播 3','甜甜 · 阿哲 · 九九'],
+      ['未开播 3','栗子 · 晓晓 · 老K'],
+      ['请假 1','豆豆 · 10-15 返岗'],
+      ['新人 1','麦子 · 第 6 天'],
+      ['今日未播 1','喵喵'],
+      ['排休 1','安琪']]},
+    '6': { t:'已开播 6 · 3 个在播', rows: [
+      ['直播中 3','小雨 · 大乔 · 茉莉 · 3 个在播'],
+      ['已播完 3','甜甜 · 阿哲 · 九九'],
+      ['待播 4','10 场里还剩 4 场']]},
+    '18.8': { t:'今日音浪 18.8 万', rows: [
+      ['在播 3 场','小雨 · 大乔 · 茉莉'],
+      ['已播完 3 场','甜甜 · 阿哲 · 九九'],
+      ['待播 4 场','10 场里还剩 4 场']]},
+    '1560': { t:'本月音浪 1560 万', rows: [['本月平台任务','1560/3500 万 · 还差 1940 万'],['口径','官方口径自动算']] },
+    '71': { t:'今日开播率 71%', rows: [['在播 + 已播','61 人'],['主播规模','86 人']] }
+  };
+  document.querySelectorAll('[data-drill]').forEach(function(cell){
+    cell.addEventListener('click', function(){
+      var d = kpi[cell.dataset.drill]; if (!d) return;
+      document.getElementById('kpiTitle').textContent = d.t;
+      document.getElementById('kpiBody').innerHTML = d.rows.map(function(r){ return '<div class="kv"><b>' + r[0] + '</b><span>' + r[1] + '</span></div>'; }).join('');
+      open('kpi');
+    });
+  });
+
+  // ---- 群发通知
+  var names = ['小雨','大乔','甜甜','茉莉','阿哲','九九','栗子','晓晓','老K','麦子','豆豆','喵喵','安琪'];
+  var list = document.getElementById('pickList');
+  list.innerHTML = names.map(function(n, i){ return '<label><input type="checkbox" value="' + n + '">' + n + '</label>'; }).join('');
+  var doSend = document.getElementById('doSend'), ta = document.getElementById('msgText'), cnt = document.getElementById('pickCount');
+  function sync(){ var n = list.querySelectorAll('input:checked').length; cnt.textContent = n; doSend.disabled = !(n && ta.value.trim()); }
+  list.addEventListener('change', sync); ta.addEventListener('input', sync);
+  document.getElementById('openCompose').addEventListener('click', function(){ open('compose'); });
+  doSend.addEventListener('click', function(){
+    var picked = [].slice.call(list.querySelectorAll('input:checked')).map(function(i){ return i.value; });
+    var text = ta.value.trim();
+    document.getElementById('delivered').innerHTML =
+      '<article class="entry lead">' +
+        '<div class="meta"><span class="no">群</span><span class="cat">群发通知</span><span class="src human">我发出</span><span class="lv">' + picked.length + ' 人 · 已送达</span></div>' +
+        '<div class="lines"><div class="l"><span class="k">' + text + '</span><i class="dots"></i><span class="u">刚刚</span></div></div>' +
+        '<div class="recips">' + picked.map(function(n){ return '<span>' + n + ' <b class="ok">已送达</b></span>'; }).join('') + '</div>' +
+      '</article>';
+    close();
+    document.getElementById('scroller').scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ---- 首次出场：合计行数字落笔
+  document.querySelectorAll('[data-count]').forEach(function(el, i){
+    var target = parseFloat(el.dataset.count), dec = (el.dataset.count.indexOf('.') >= 0) ? 1 : 0;
+    var unit = el.querySelector('i') ? el.querySelector('i').outerHTML : '';
+    var t0 = performance.now(), dur = 240 + i * 40;
+    (function step(now){
+      var p = Math.min(1, (now - t0) / dur), v = target * (1 - Math.pow(1 - p, 3));
+      el.innerHTML = v.toFixed(dec) + unit;
+      if (p < 1) requestAnimationFrame(step); else el.innerHTML = (dec ? target.toFixed(dec) : target) + unit;
+    })(t0);
+  });
+})();
+</script>
+</body>
+</html>
