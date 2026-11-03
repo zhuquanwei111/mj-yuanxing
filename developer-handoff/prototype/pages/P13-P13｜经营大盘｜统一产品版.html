@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>P13｜经营大盘｜统一产品版</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            app: '#F5F7F8',
+            surface: '#FFFFFF',
+            'surface-muted': '#EDF1F3',
+            border: '#DDE3E8',
+            'text-primary': '#26313A',
+            'text-secondary': '#65717B',
+            brand: '#F88440',
+            'brand-pressed': '#D96A31',
+            'brand-soft': '#FCF4EC',
+            success: '#047857',
+            'success-soft': '#ECFDF5',
+            pending: '#B45309',
+            'pending-soft': '#FFFBEB',
+            danger: '#EF4444',
+            'danger-soft': '#FEF2F2'
+          },
+          fontFamily: {
+            sans: ['Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hide scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-200 flex items-center justify-center min-h-screen m-0 p-0 font-sans antialiased select-none">
+
+  <!-- Mobile Container (390 x 884 CSS px) -->
+  <div class="relative w-[390px] h-[884px] max-h-[884px] bg-app flex flex-col overflow-hidden text-text-primary shadow-2xl">
+
+    <!-- Fixed Header (56px) -->
+    <header class="h-[56px] min-h-[56px] bg-surface border-b border-border px-4 flex items-center justify-between z-30 shrink-0">
+      <!-- Left Slot (44x44) for Title Balance in Root Screen -->
+      <div class="w-[44px] h-[44px] flex items-center justify-start">
+        <span class="text-xs font-medium text-text-secondary px-1.5 py-0.5 rounded bg-surface-muted">老板端</span>
+      </div>
+      
+      <!-- Center Title -->
+      <div class="flex-1 text-center">
+        <h1 class="text-[17px] font-semibold text-text-primary leading-tight">经营大盘</h1>
+        <p class="text-[11px] text-text-secondary leading-tight mt-0.5">公会范围 · 在册 86 位</p>
+      </div>
+
+      <!-- Right Action Slot (44x44) -->
+      <div class="w-[44px] h-[44px] flex items-center justify-end">
+        <a href="#P92" data-page="P92" data-role="owner" class="w-9 h-9 rounded-full flex items-center justify-center text-text-secondary hover:text-brand hover:bg-surface-muted transition-colors active:scale-95" title="通知消息">
+          <span class="material-symbols-outlined text-[22px]">notifications</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Scrollable Content Area -->
+    <main id="mainContent" class="flex-1 min-h-0 overflow-y-auto no-scrollbar pb-8 space-y-3.5 pt-3 px-3.5">
+
+      <!-- Section: 需要跟进 (Risk Warnings Preview) -->
+      <section class="bg-surface rounded-xl border border-border p-3.5 shadow-sm">
+        <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-border">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-danger animate-pulse"></span>
+            <span class="text-[14px] font-semibold text-text-primary">需要跟进</span>
+            <span class="text-[12px] font-medium text-danger bg-danger-soft px-1.5 py-0.5 rounded">2 条在跟</span>
+          </div>
+          <a href="#P15" data-page="P15" data-role="owner" class="text-[12px] font-medium text-brand hover:text-brand-pressed flex items-center gap-0.5 group">
+            查看全部预警
+            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+          </a>
+        </div>
+
+        <!-- Follow-up Items -->
+        <div class="space-y-2.5">
+          <!-- Item 1: 阿哲 -->
+          <div class="p-2.5 rounded-lg bg-surface-muted/60 border border-border/80 flex items-start justify-between gap-2.5">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[13px] font-semibold text-text-primary">阿哲</span>
+                <span class="text-[11px] font-medium px-1.5 py-0.2 rounded bg-danger-soft text-danger border border-danger/20">有风险 · 待分派</span>
+              </div>
+              <p class="text-[12px] text-text-secondary leading-snug">
+                连续 3 天流水下滑，近 7 天比前 7 天少 16%；18 点档被同类新场分流
+              </p>
+            </div>
+            <a href="#P15" data-page="P15" data-subject="阿哲" data-warning="w1" class="shrink-0 mt-0.5 px-2.5 py-1.5 rounded-lg text-[12px] font-medium text-brand bg-brand-soft hover:bg-brand hover:text-white transition-all active:scale-95">
+              去处置
+            </a>
+          </div>
+
+          <!-- Item 2: 喵喵 -->
+          <div class="p-2.5 rounded-lg bg-surface-muted/60 border border-border/80 flex items-start justify-between gap-2.5">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[13px] font-semibold text-text-primary">喵喵</span>
+                <span class="text-[11px] font-medium px-1.5 py-0.2 rounded bg-pending-soft text-pending border border-pending/20">待跟进 · 处理中</span>
+              </div>
+              <p class="text-[12px] text-text-secondary leading-snug">
+                连续 2 天没开播，消息回得慢；经纪人已回访但风险判定未完结
+              </p>
+            </div>
+            <a href="#P15" data-page="P15" data-subject="喵喵" data-warning="w2" class="shrink-0 mt-0.5 px-2.5 py-1.5 rounded-lg text-[12px] font-medium text-brand bg-brand-soft hover:bg-brand hover:text-white transition-all active:scale-95">
+              去查看
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: 主营核心数据 (Flat 2-column Metrics) -->
+      <section class="bg-surface rounded-xl border border-border p-3.5 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-[14px] font-semibold text-text-primary">经营概览</span>
+          <span class="text-[11px] text-text-secondary">口径更新至 22:00</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <!-- Metric 1: 主播规模 -->
+          <div class="p-3 rounded-lg bg-surface-muted/50 border border-border/60">
+            <div class="text-[11px] text-text-secondary">主播规模（在册）</div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-[22px] font-bold text-text-primary tracking-tight">86</span>
+              <span class="text-[11px] text-text-secondary">位</span>
+            </div>
+            <div class="text-[11px] text-success font-medium mt-1">较上月 +5</div>
+          </div>
+
+          <!-- Metric 2: 本月活跃 -->
+          <div class="p-3 rounded-lg bg-surface-muted/50 border border-border/60">
+            <div class="text-[11px] text-text-secondary">本月活跃主播</div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-[22px] font-bold text-text-primary tracking-tight">61</span>
+              <span class="text-[11px] text-text-secondary">位</span>
+            </div>
+            <div class="text-[11px] text-text-secondary mt-1">≥10有效天 · 目标75差14</div>
+          </div>
+
+          <!-- Metric 3: 本月音浪 -->
+          <div class="p-3 rounded-lg bg-surface-muted/50 border border-border/60">
+            <div class="text-[11px] text-text-secondary">本月总音浪</div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-[22px] font-bold text-brand tracking-tight">1560</span>
+              <span class="text-[11px] text-text-secondary">万</span>
+            </div>
+            <div class="text-[11px] text-text-secondary mt-1">目标 3500万 · 完成 45%</div>
+          </div>
+
+          <!-- Metric 4: 今日开播率 -->
+          <div class="p-3 rounded-lg bg-surface-muted/50 border border-border/60">
+            <div class="text-[11px] text-text-secondary">今日开播率</div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-[22px] font-bold text-text-primary tracking-tight">71%</span>
+            </div>
+            <div class="text-[11px] text-text-secondary mt-1">在播 61 / 在册 86</div>
+          </div>
+        </div>
+
+        <!-- 财务账单快捷入口 (只读测算) -->
+        <div class="mt-3 pt-3 border-t border-border flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-brand text-[18px]">receipt_long</span>
+            <span class="text-[12px] text-text-secondary">10月账期已出 · 主播测算收益可查</span>
+          </div>
+          <a href="#P70" data-page="P70" data-role="owner" class="text-[12px] font-medium text-brand hover:text-brand-pressed">
+            查看测算账单 →
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: 平台任务进度 -->
+      <section class="bg-surface rounded-xl border border-border p-3.5 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-1.5">
+            <span class="text-[14px] font-semibold text-text-primary">本月平台任务</span>
+            <span class="text-[10px] text-text-secondary px-1.5 py-0.5 rounded bg-surface-muted">按官方口径计算</span>
+          </div>
+          <span class="text-[11px] text-brand font-medium">保级目标进行中</span>
+        </div>
+
+        <div class="space-y-2.5">
+          <!-- Task 1: 拉新主播 -->
+          <div>
+            <div class="flex items-center justify-between text-[12px] mb-1">
+              <span class="text-text-primary">拉新主播</span>
+              <span class="font-medium text-text-primary">12 / 20 人 <span class="text-text-secondary font-normal">(还差 8 人)</span></span>
+            </div>
+            <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+              <div class="h-full bg-brand rounded-full" style="width: 60%"></div>
+            </div>
+          </div>
+
+          <!-- Task 2: 活跃主播 -->
+          <div>
+            <div class="flex items-center justify-between text-[12px] mb-1">
+              <span class="text-text-primary">活跃主播</span>
+              <span class="font-medium text-text-primary">61 / 75 人 <span class="text-text-secondary font-normal">(还差 14 人)</span></span>
+            </div>
+            <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+              <div class="h-full bg-brand rounded-full" style="width: 81.3%"></div>
+            </div>
+          </div>
+
+          <!-- Task 3: 月音浪 -->
+          <div>
+            <div class="flex items-center justify-between text-[12px] mb-1">
+              <span class="text-text-primary">月总音浪</span>
+              <span class="font-medium text-text-primary">1560 / 3500 万 <span class="text-text-secondary font-normal">(还差 1940 万)</span></span>
+            </div>
+            <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+              <div class="h-full bg-brand rounded-full" style="width: 44.5%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: 行业基准对标 (只读数据行) -->
+      <section class="bg-surface rounded-xl border border-border p-3.5 shadow-sm">
+        <div class="flex items-center justify-between mb-2 pb-2 border-b border-border">
+          <span class="text-[14px] font-semibold text-text-primary">行业基准对标</span>
+          <span class="text-[11px] text-text-secondary">公会实际 vs 行业基准</span>
+        </div>
+
+        <div class="divide-y divide-border/60">
+          <div class="py-2 flex items-center justify-between text-[13px]">
+            <span class="text-text-secondary">开播率</span>
+            <div class="flex items-center gap-3">
+              <span class="font-semibold text-text-primary">71%</span>
+              <span class="text-xs text-text-secondary font-normal">基准 65%</span>
+              <span class="text-[11px] font-medium text-success bg-success-soft px-1.5 py-0.5 rounded">+6%</span>
+            </div>
+          </div>
+
+          <div class="py-2 flex items-center justify-between text-[13px]">
+            <span class="text-text-secondary">活跃率</span>
+            <div class="flex items-center gap-3">
+              <span class="font-semibold text-text-primary">71%</span>
+              <span class="text-xs text-text-secondary font-normal">基准 62%</span>
+              <span class="text-[11px] font-medium text-success bg-success-soft px-1.5 py-0.5 rounded">+9%</span>
+            </div>
+          </div>
+
+          <div class="py-2 flex items-center justify-between text-[13px]">
+            <span class="text-text-secondary">新人 30 天留存</span>
+            <div class="flex items-center gap-3">
+              <span class="font-semibold text-text-primary">74%</span>
+              <span class="text-xs text-text-secondary font-normal">基准 76%</span>
+              <span class="text-[11px] font-medium text-danger bg-danger-soft px-1.5 py-0.5 rounded">-2%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: 经营分析与周报操作 -->
+      <section class="bg-surface rounded-xl border border-border p-3.5 shadow-sm">
+        <div class="flex items-center justify-between mb-2.5">
+          <span class="text-[14px] font-semibold text-text-primary">经营周报与复盘</span>
+          <span class="text-[11px] text-text-secondary">本周周期进行中</span>
+        </div>
+
+        <p class="text-[12px] text-text-secondary leading-relaxed mb-3">
+          聚合各组运营日报、主播音浪波动与流失预警，生成本周经营诊断及下周重点计划。
+        </p>
+
+        <button id="openReportBtn" type="button" class="w-full h-[46px] rounded-xl bg-brand text-white font-medium text-[14px] flex items-center justify-center gap-1.5 hover:bg-brand-pressed active:scale-[0.99] transition-all shadow-sm">
+          <span class="material-symbols-outlined text-[20px]">assignment</span>
+          生成经营周报（本地预览）
+        </button>
+
+        <p class="text-[11px] text-text-secondary text-center mt-2.5">
+          * 统计为演示数据，不代表真实对外报送或不可撤销结算
+        </p>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (68px) - 公会老板端五项 -->
+    <nav class="h-[68px] min-h-[68px] bg-surface border-t border-border grid grid-cols-5 z-30 shrink-0 px-1">
+      <!-- 1. 今天 (Active) -->
+      <a href="#P13" data-page="P13" data-role="owner" class="flex flex-col items-center justify-center text-brand transition-colors">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px] fill">home</span>
+        </div>
+        <span class="text-[11px] font-semibold mt-1 leading-none">今天</span>
+      </a>
+
+      <!-- 2. 主播 -->
+      <a href="#P14" data-page="P14" data-role="owner" class="flex flex-col items-center justify-center text-text-secondary hover:text-brand transition-colors">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">groups</span>
+        </div>
+        <span class="text-[11px] font-normal mt-1 leading-none">主播</span>
+      </a>
+
+      <!-- 3. 预警 -->
+      <a href="#P15" data-page="P15" data-role="owner" class="flex flex-col items-center justify-center text-text-secondary hover:text-brand transition-colors relative">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">warning_amber</span>
+        </div>
+        <span class="text-[11px] font-normal mt-1 leading-none">预警</span>
+        <!-- Optional notification dot -->
+        <span class="absolute top-2.5 right-4 w-2 h-2 rounded-full bg-danger"></span>
+      </a>
+
+      <!-- 4. 我的 -->
+      <a href="#P16" data-page="P16" data-role="owner" class="flex flex-col items-center justify-center text-text-secondary hover:text-brand transition-colors">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">person_outline</span>
+        </div>
+        <span class="text-[11px] font-normal mt-1 leading-none">我的</span>
+      </a>
+
+      <!-- 5. 助理 -->
+      <a href="#AI" data-page="AI" data-role="owner" class="flex flex-col items-center justify-center text-text-secondary hover:text-brand transition-colors">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">support_agent</span>
+        </div>
+        <span class="text-[11px] font-normal mt-1 leading-none">助理</span>
+      </a>
+    </nav>
+
+    <!-- Overlay Drawer: 经营周报本地展示 (参考 IMG-ACDD5FA251BC92) -->
+    <div id="reportDrawer" class="absolute inset-0 bg-black/40 z-50 backdrop-blur-sm hidden flex flex-col justify-end transition-opacity duration-200">
+      <div class="w-full bg-surface rounded-t-2xl border-t border-border max-h-[85%] flex flex-col shadow-2xl animate-in slide-in-from-bottom duration-200">
+        
+        <!-- Drawer Header -->
+        <div class="px-4 py-3.5 border-b border-border flex items-center justify-between shrink-0">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-brand text-[20px]">analytics</span>
+            <div>
+              <h3 class="text-[15px] font-semibold text-text-primary">经营周报 · 本周简报</h3>
+              <p class="text-[11px] text-text-secondary">本地演示 · 实时计算预览</p>
+            </div>
+          </div>
+          <button id="closeReportBtn" type="button" class="w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:bg-surface-muted transition-colors">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+
+        <!-- Drawer Body (Scrollable) -->
+        <div class="p-4 space-y-4 overflow-y-auto no-scrollbar text-[13px]">
+          
+          <!-- 本周要点 -->
+          <div class="p-3 bg-surface-muted/60 rounded-xl border border-border/80">
+            <div class="text-[12px] font-semibold text-text-primary mb-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-brand">flag</span>
+              本周核心指标
+            </div>
+            <ul class="space-y-1 text-text-secondary text-[12px]">
+              <li>• 月音浪：<strong class="text-text-primary">1560 / 3500 万</strong> (进度 45%)</li>
+              <li>• 活跃主播：<strong class="text-text-primary">61 / 75 人</strong> (达标率 81.3%)</li>
+              <li>• 流失预警：<strong class="text-danger">2 条在跟</strong> (阿哲、喵喵正在推进)</li>
+            </ul>
+          </div>
+
+          <!-- 环比变化 -->
+          <div class="p-3 bg-surface-muted/60 rounded-xl border border-border/80">
+            <div class="text-[12px] font-semibold text-text-primary mb-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-success">trending_up</span>
+              环比变化与异动
+            </div>
+            <p class="text-[12px] text-text-secondary leading-snug">
+              公会总音浪较上周同期 <strong class="text-success">↑ 6.4%</strong>；活跃主播数 <strong class="text-pending">↓ 3 人</strong>（3人进入休眠观察池，主要受排班冲突与心态波动影响）。
+            </p>
+          </div>
+
+          <!-- 下周关注 -->
+          <div class="p-3 bg-surface-muted/60 rounded-xl border border-border/80">
+            <div class="text-[12px] font-semibold text-text-primary mb-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-brand">checklist</span>
+              下周落地行动计划
+            </div>
+            <ul class="space-y-1 text-text-secondary text-[12px] leading-snug">
+              <li>• <span class="text-text-primary font-medium">阿哲复盘跟进落地</span>：督导运营小林针对 18 点档错峰换歌；</li>
+              <li>• <span class="text-text-primary font-medium">麦子结业转首播</span>：第 6 天培训待结业，转入首播排班筹备；</li>
+              <li>• <span class="text-text-primary font-medium">新人招募补口</span>：协同经纪人组补齐 8 人月度指标缺口。</li>
+            </ul>
+          </div>
+
+          <!-- 风险预警摘要与一键跳转 -->
+          <div class="p-3 rounded-xl border border-danger/30 bg-danger-soft/40 flex items-center justify-between">
+            <div class="text-[12px]">
+              <span class="font-semibold text-danger">流失预警快速通道</span>
+              <p class="text-text-secondary text-[11px] mt-0.5">当前存在 2 条待处置高优预警</p>
+            </div>
+            <a href="#P15" data-page="P15" data-role="owner" class="px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-danger hover:bg-red-600 transition-colors">
+              前往处置 →
+            </a>
+          </div>
+
+          <!-- 导出说明 -->
+          <div class="text-center pt-1 pb-2">
+            <button type="button" disabled class="w-full h-10 rounded-xl border border-border text-text-secondary/60 text-xs font-medium cursor-not-allowed bg-surface-muted/40">
+              导出周报（尚未开放）
+            </button>
+            <p class="text-[11px] text-text-secondary mt-1.5">
+              周报导出功能正在灰度内测，当前支持全屏与截图演示
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Drawer Footer Action -->
+        <div class="p-3 border-t border-border shrink-0 bg-surface">
+          <button id="closeReportBtn2" type="button" class="w-full h-11 rounded-xl bg-surface-muted text-text-primary font-medium text-[13px] hover:bg-border transition-colors">
+            关闭周报预览
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('openReportBtn');
+      const closeBtn = document.getElementById('closeReportBtn');
+      const closeBtn2 = document.getElementById('closeReportBtn2');
+      const reportDrawer = document.getElementById('reportDrawer');
+
+      // Open Weekly Report Drawer
+      if (openBtn && reportDrawer) {
+        openBtn.addEventListener('click', () => {
+          reportDrawer.classList.remove('hidden');
+        });
+      }
+
+      // Close Weekly Report Drawer
+      const closeDrawer = () => {
+        if (reportDrawer) {
+          reportDrawer.classList.add('hidden');
+        }
+      };
+
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (closeBtn2) closeBtn2.addEventListener('click', closeDrawer);
+
+      // Close when clicking overlay backdrop
+      if (reportDrawer) {
+        reportDrawer.addEventListener('click', (e) => {
+          if (e.target === reportDrawer) {
+            closeDrawer();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

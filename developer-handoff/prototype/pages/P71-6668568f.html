@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>P71｜主播账单详情｜统一产品版</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            app: '#F5F7F8',
+            surface: '#FFFFFF',
+            'surface-muted': '#EDF1F3',
+            border: '#DDE3E8',
+            'text-primary': '#26313A',
+            'text-secondary': '#65717B',
+            brand: '#F88440',
+            'brand-pressed': '#D96A31',
+            'brand-soft': '#FCF4EC',
+            success: '#047857',
+            'success-soft': '#ECFDF5',
+            pending: '#B45309',
+            'pending-soft': '#FFFBEB',
+            danger: '#EF4444',
+            'danger-soft': '#FEF2F2'
+          },
+          fontFamily: {
+            sans: ['"Noto Sans SC"', '-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html, body {
+      width: 390px;
+      height: 884px;
+      margin: 0;
+      padding: 0;
+      background-color: #F5F7F8;
+      overflow: hidden;
+      font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #26313A;
+    }
+    #app-container {
+      width: 390px;
+      height: 884px;
+      position: relative;
+      background-color: #F5F7F8;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* 自定义滚动条 */
+    .content-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .content-scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-app select-none">
+<div id="app-container">
+<!-- 顶栏 (固定 56px) -->
+<header class="h-[56px] min-h-[56px] w-full bg-surface border-b border-border px-4 flex items-center justify-between z-30 shrink-0">
+<a class="w-11 h-11 flex items-center justify-center -ml-2 text-text-primary active:opacity-70 transition-opacity" data-page="P70" data-role="finance" data-view="bills" href="#P70" title="返回财务账单">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</a>
+<h1 class="text-[17px] font-semibold text-text-primary tracking-tight">主播账单详情</h1>
+<div class="flex items-center gap-1"><span class="text-[12px] font-medium text-text-secondary bg-surface-muted px-2.5 py-1 rounded-full border border-border">2026年10月</span></div>
+</header>
+<!-- 中间独立滚动区 (main) -->
+<main class="flex-1 min-h-0 overflow-y-auto content-scroll px-4 py-3 space-y-3 pb-24">
+<!-- 对象切换 Tab 胶囊 -->
+<section class="bg-surface-muted p-1 rounded-xl flex items-center gap-1 text-[13px] font-medium"><button class="flex-1 py-1.5 rounded-lg text-center transition-all bg-surface text-brand font-semibold shadow-xs" id="tab-xiaoyu" onclick="switchSubject('xiaoyu')">小雨 · 分成明细</button><button class="flex-1 py-1.5 rounded-lg text-center transition-all text-text-secondary hover:text-text-primary" id="tab-maizi" onclick="switchSubject('maizi')">麦子 · 保底规则</button></section>
+<!-- 视图 A：小雨 10月分成测算 (默认) -->
+<div class="space-y-3" id="view-xiaoyu">
+<!-- 主信息卡片 (单一白色平面分节) -->
+<div class="bg-surface rounded-2xl border border-border p-4">
+<div class="flex items-start justify-between pb-3 border-b border-border">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-brand-soft text-brand flex items-center justify-center font-semibold text-[15px] border border-brand/20">
+                雨
+              </div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-[17px] font-semibold text-text-primary">10月账单明细 · 小雨</h2>
+</div>
+<p class="text-[12px] text-text-secondary mt-0.5">签约赛道：才艺唱歌 · 活跃在播</p>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface-muted text-text-secondary border border-border">
+              演示测算 / 只读
+            </span>
+</div>
+<!-- 核心实发金额 -->
+<div class="py-3">
+<div class="text-[12px] font-medium text-text-secondary">本期预计实发 (测算)</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-[18px] font-semibold text-brand tracking-tight">¥</span>
+<span class="text-[32px] font-bold text-brand tracking-tight leading-none">3.87</span>
+<span class="text-[14px] font-medium text-brand">万</span>
+<span class="text-[12px] text-text-secondary ml-2">(约合 ¥38,680)</span>
+</div>
+<p class="text-[12px] text-text-secondary mt-1.5 leading-relaxed">
+              数据来源：小雨近14天声浪聚合估算；折流水按 ¥0.1/声浪；分成比例取当前有效合同。
+            </p>
+</div>
+</div>
+<!-- 纵向两步计算公式拆解 -->
+<div class="bg-surface rounded-2xl border border-border p-4">
+<h3 class="text-[14px] font-semibold text-text-primary pb-3 border-b border-border flex items-center justify-between">
+<span>归因计算拆解</span>
+<span class="text-[12px] font-normal text-text-secondary">依合同 40% 分成约定</span>
+</h3>
+<div class="divide-y divide-border text-[13px]">
+<!-- 步骤 1 -->
+<div class="py-3 flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-surface-muted text-text-secondary flex items-center justify-center text-[11px] font-semibold shrink-0 mt-0.5">
+                1
+              </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-medium text-text-primary">本月聚合声浪</span>
+<span class="font-semibold text-text-primary">96.7 万声浪</span>
+</div>
+<div class="text-[12px] text-text-secondary mt-0.5 flex items-center justify-between">
+<span>折算换算流水 (¥0.1 / 声浪)</span>
+<span class="font-medium text-text-primary">¥9.67 万流水</span>
+</div>
+<div class="text-[11px] text-text-secondary/80 mt-1 bg-surface-muted/60 p-2 rounded-lg">
+                  公式：96.7万声浪 × ¥0.1/声浪 = ¥9.67万流水 (¥96,700)
+                </div>
+</div>
+</div>
+<!-- 步骤 2 -->
+<div class="py-3 flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-surface-muted text-text-secondary flex items-center justify-center text-[11px] font-semibold shrink-0 mt-0.5">
+                2
+              </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-medium text-text-primary">合同分成比例</span>
+<span class="font-semibold text-text-primary">40.0%</span>
+</div>
+<div class="text-[12px] text-text-secondary mt-0.5 flex items-center justify-between">
+<span>分成后预计实发</span>
+<span class="font-bold text-brand">¥3.87 万 (¥38,680)</span>
+</div>
+<div class="text-[11px] text-text-secondary/80 mt-1 bg-surface-muted/60 p-2 rounded-lg">公式：¥96,700 流水 × 40% = ¥38,680 (约 ¥3.87万)</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 业务说明与口径 -->
+<div class="bg-surface rounded-2xl border border-border p-4 space-y-2.5 text-[12px] text-text-secondary leading-relaxed">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-text-secondary shrink-0 mt-0.5">info</span>
+<div>
+<span class="font-medium text-text-primary">备注条款：</span>全勤奖 ¥500 元已包含；平台通道费在分成前扣除。
+            </div>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-pending shrink-0 mt-0.5">warning</span>
+<div>
+<span class="font-medium text-text-primary">测算说明：</span>本页仅为财务前端测算演示例，预计实发 ≠ 实际到账，不代表平台最终结算或已付款。
+            </div>
+</div>
+</div>
+<!-- 单个规范返回入口 (44px 触控高度) -->
+<div class="pt-1">
+<a class="w-full h-11 rounded-xl bg-surface border border-border text-text-primary text-[14px] font-medium flex items-center justify-center gap-1 hover:bg-surface-muted active:bg-border/40 transition-colors" data-page="P70" data-role="finance" data-view="bills" href="#P70"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span>返回主播账单</span></a>
+</div>
+</div>
+<!-- 视图 B：麦子 保底预发规则 -->
+<div class="space-y-3 hidden" id="view-maizi">
+<!-- 麦子主信息卡片 -->
+<div class="bg-surface rounded-2xl border border-border p-4">
+<div class="flex items-start justify-between pb-3 border-b border-border">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-surface-muted text-text-primary flex items-center justify-center font-semibold text-[15px] border border-border">
+                麦
+              </div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-[17px] font-semibold text-text-primary">10月保底预发规则 · 麦子</h2>
+</div>
+<p class="text-[12px] text-text-secondary mt-0.5">带教孵化期 · 第6天学员</p>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-pending-soft text-pending border border-pending/20">规则口径 / 只读</span>
+</div>
+<!-- 预发额度规范 -->
+<div class="py-3">
+<div class="text-[12px] font-medium text-text-secondary">新人保底预发额度</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-[18px] font-semibold text-brand tracking-tight">¥</span>
+<span class="text-[32px] font-bold text-brand tracking-tight leading-none">0.8</span>
+<span class="text-[14px] font-medium text-brand">万 / 月</span>
+</div>
+<p class="text-[12px] text-text-secondary mt-1.5 leading-relaxed">
+              合同分成比例未配置时，默认适用此新人月度保底规则，不叠加其他分成。
+            </p>
+</div>
+</div>
+<!-- 详细规则条款拆解 -->
+<div class="bg-surface rounded-2xl border border-border p-4 space-y-3"><h3 class="text-[14px] font-semibold text-text-primary pb-2 border-b border-border flex items-center justify-between"><span>保底规则适用说明</span><span class="text-[12px] font-normal text-text-secondary">规则口径说明</span></h3><div class="space-y-3 text-[13px] text-text-primary"><div class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand shrink-0 mt-2"></span><div><p class="font-medium text-text-primary">适用条件与口径</p><p class="text-[12px] text-text-secondary mt-0.5 leading-relaxed">当期合同分成比例未配置时，默认适用此新人月度保底口径，不叠加其他分成计算。</p></div></div><div class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-brand shrink-0 mt-2"></span><div><p class="font-medium text-text-primary">发放核算说明</p><p class="text-[12px] text-text-secondary mt-0.5 leading-relaxed">本规则仅供财务对账口径参考，非应付或已发放承诺。具体发放金额以实际财务审批结果为准。</p></div></div></div></div>
+<!-- 只读合同说明入口 -->
+<div class="bg-surface rounded-2xl border border-border p-4">
+<div class="flex items-center justify-between text-[13px]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">description</span>
+<span class="font-medium text-text-primary">查看合同分成规则说明</span>
+</div>
+<span class="text-[12px] text-text-secondary">待转正后配置</span>
+</div>
+</div>
+<!-- 单个规范返回入口 (44px 触控高度) -->
+<div class="pt-1">
+<a class="w-full h-11 rounded-xl bg-surface border border-border text-text-primary text-[14px] font-medium flex items-center justify-center gap-1 hover:bg-surface-muted active:bg-border/40 transition-colors" data-page="P70" data-role="finance" data-view="bills" href="#P70"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span>返回主播账单</span></a>
+</div>
+</div>
+<!-- 底部原型客观说明 -->
+<div class="text-center py-2 text-[11px] text-text-secondary/70">财务对账测算与规则说明 · 预计实发不代表实际到账</div>
+</main>
+<!-- 底部固定导航栏 (固定 68px, 财务角色 5 项) -->
+<footer class="h-[68px] min-h-[68px] w-full bg-surface border-t border-border px-2 flex items-center justify-around z-30 shrink-0">
+<!-- 今天 (P70 账期) -->
+<a class="flex-1 h-full flex flex-col items-center justify-center text-text-secondary hover:text-text-primary active:opacity-70 transition-colors" data-page="P70" data-role="finance" href="#P70" title="财务工作台">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[12px] mt-1 leading-none">今天</span>
+</a>
+<!-- 我的主播 (高亮选中，对应当前账单所在角色线) -->
+<a class="flex-1 h-full flex flex-col items-center justify-center text-brand font-medium active:opacity-70 transition-colors" data-page="P70" data-role="finance" data-view="bills" href="#P70" title="主播账单列表">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+<span class="text-[12px] mt-1 leading-none font-semibold">我的主播</span>
+</a>
+<!-- 交接 (P25) -->
+<a class="flex-1 h-full flex flex-col items-center justify-center text-text-secondary hover:text-text-primary active:opacity-70 transition-colors" data-page="P25" data-role="finance" href="#P25" title="交接中心">
+<span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+<span class="text-[12px] mt-1 leading-none">交接</span>
+</a>
+<!-- 我的 (MY) -->
+<a class="flex-1 h-full flex flex-col items-center justify-center text-text-secondary hover:text-text-primary active:opacity-70 transition-colors" data-page="MY" data-role="finance" href="#MY" title="我的">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="text-[12px] mt-1 leading-none">我的</span>
+</a>
+<!-- 助理 (AI) -->
+<a class="flex-1 h-full flex flex-col items-center justify-center text-text-secondary hover:text-text-primary active:opacity-70 transition-colors" data-page="AI" data-role="finance" href="#AI" title="助理">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+<span class="text-[12px] mt-1 leading-none">助理</span>
+</a>
+</footer>
+</div>
+<script>
+    let currentSubject = 'xiaoyu';
+
+    function switchSubject(subject) {
+      currentSubject = subject;
+      const viewXiaoyu = document.getElementById('view-xiaoyu');
+      const viewMaizi = document.getElementById('view-maizi');
+      const tabXiaoyu = document.getElementById('tab-xiaoyu');
+      const tabMaizi = document.getElementById('tab-maizi');
+      const toggleLabel = document.getElementById('toggle-label');
+
+      if (subject === 'xiaoyu') {
+        viewXiaoyu.classList.remove('hidden');
+        viewMaizi.classList.add('hidden');
+        tabXiaoyu.className = 'flex-1 py-1.5 rounded-lg text-center transition-all bg-surface text-brand font-semibold shadow-xs';
+        tabMaizi.className = 'flex-1 py-1.5 rounded-lg text-center transition-all text-text-secondary hover:text-text-primary';
+        toggleLabel.textContent = '切至麦子';
+      } else {
+        viewXiaoyu.classList.add('hidden');
+        viewMaizi.classList.remove('hidden');
+        tabMaizi.className = 'flex-1 py-1.5 rounded-lg text-center transition-all bg-surface text-brand font-semibold shadow-xs';
+        tabXiaoyu.className = 'flex-1 py-1.5 rounded-lg text-center transition-all text-text-secondary hover:text-text-primary';
+        toggleLabel.textContent = '切至小雨';
+      }
+    }
+
+    document.getElementById('toggle-subject-btn').addEventListener('click', () => {
+      switchSubject(currentSubject === 'xiaoyu' ? 'maizi' : 'xiaoyu');
+    });
+
+    // 支持 URL hash 动态指定 subject: #P71?subject=maizi 或 subject=xiaoyu
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash || '';
+      if (hash.includes('maizi') || hash.includes('subject=maizi')) {
+        switchSubject('maizi');
+      }
+    });
+  </script>
+</body>
+</html>

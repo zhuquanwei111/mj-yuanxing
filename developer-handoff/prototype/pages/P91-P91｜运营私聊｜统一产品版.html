@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=390, height=884, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>运营私聊 - 小雨 · 才艺唱歌</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols Outlined Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#F5F7F8',
+            surface: '#FFFFFF',
+            subtle: '#EDF1F3',
+            hairline: '#DDE3E8',
+            primaryText: '#26313A',
+            secondaryText: '#65717B',
+            brand: '#F88440',
+            brandPressed: '#D96A31',
+            brandLight: '#FCF4EC',
+            statusSuccess: '#047857',
+            statusPending: '#B45309',
+            statusDanger: '#EF4444'
+          }
+        }
+      }
+    };
+  </script>
+<!-- BEGIN: Custom Layout & System Styles -->
+<style data-purpose="viewport-lock">
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 390px;
+      height: 884px;
+      overflow: hidden;
+      background-color: #F5F7F8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 24px;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style data-purpose="toast-animations">
+    .toast-container {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<!-- END: Custom Layout & System Styles -->
+</head>
+<body class="flex flex-col h-[884px] w-[390px] relative bg-canvas text-primaryText overflow-hidden mx-auto shadow-sm">
+<!-- BEGIN: MainHeader -->
+<header class="h-[56px] min-h-[56px] max-h-[56px] bg-surface border-b border-hairline flex items-center justify-between px-2 z-30 shrink-0">
+<!-- Back Button to P22 -->
+<a aria-label="返回主播详情" class="w-[44px] h-[44px] flex items-center justify-center text-primaryText active:opacity-60 transition-opacity" data-subject="xiaoyu" href="#P22">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+<!-- Title & Status Subtitle -->
+<div class="flex flex-col items-center justify-center text-center">
+<h1 class="text-[17px] font-bold tracking-tight text-primaryText leading-snug">小雨 · 才艺唱歌</h1>
+<span class="text-[11px] text-secondaryText leading-none mt-0.5">运营沟通 · 小林</span>
+</div>
+<!-- Right Balanced Spacer -->
+<div aria-hidden="true" class="w-[44px] h-[44px] pointer-events-none"></div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: ContextReviewHeader (复盘问答紧凑隔离栏) -->
+<section class="bg-subtle/80 border-b border-hairline px-3 py-2 flex items-center justify-between z-20 shrink-0">
+<div class="flex items-center space-x-1.5 overflow-hidden">
+<span class="material-symbols-outlined text-brand text-[18px]">history_edu</span>
+<div class="flex items-center text-[12px] truncate space-x-1 text-secondaryText">
+<span class="font-medium text-primaryText">关联复盘</span>
+<span>·</span>
+<span>10月13日</span>
+<span class="truncate">比前晚多涨2万，赢在收尾连唱</span>
+</div>
+</div>
+<a class="text-[12px] text-brand font-medium shrink-0 ml-2 active:underline flex items-center" data-subject="xiaoyu" href="#P82">
+      查看复盘
+      <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</section>
+<!-- END: ContextReviewHeader -->
+<!-- BEGIN: MessageScrollArea -->
+<main class="flex-1 overflow-y-auto hide-scrollbar p-3.5 space-y-4" id="chat-scroller">
+<!-- Date Badge: 昨天 -->
+<div class="flex justify-center items-center my-2">
+<span class="text-[11px] font-medium text-secondaryText bg-subtle px-2.5 py-0.5 rounded-full">
+        昨天 20:00
+      </span>
+</div>
+<!-- Message Bubble: 运营发出的规划卡片 (Right) -->
+<div class="flex items-start justify-end space-x-2">
+<div class="flex flex-col items-end max-w-[80%]">
+<!-- Compact Plan Card Bubble -->
+<div class="bg-brandLight border border-brand/30 rounded-2xl rounded-tr-xs p-3 shadow-xs">
+<div class="flex items-center justify-between gap-3 mb-1.5">
+<span class="text-[11px] font-semibold text-brand tracking-wide">任务规划消息</span>
+<span class="text-[10px] px-1.5 py-0.2 text-statusPending bg-amber-100 rounded">执行中</span>
+</div>
+<p class="text-[13px] font-medium text-primaryText leading-relaxed">
+            周五晚场冲刺 · 目标音浪4.5万
+          </p>
+<div class="mt-2.5 pt-2 border-t border-brand/15 flex justify-end">
+<a class="text-[12px] font-semibold text-brand inline-flex items-center hover:opacity-80 active:opacity-60 transition" data-subject="xiaoyu" href="#P81">
+              查看规划
+              <span class="material-symbols-outlined text-[16px] ml-0.5">open_in_new</span>
+</a>
+</div>
+</div>
+<span class="text-[10px] text-secondaryText mt-1 mr-1">小林</span>
+</div>
+<!-- Operator Avatar (Material Icon placeholder) -->
+<div class="w-8 h-8 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0 text-brand">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+</div>
+<!-- Date / Time Stamp -->
+<div class="flex justify-center items-center my-1">
+<span class="text-[10px] text-secondaryText">昨天 20:05</span>
+</div>
+<!-- Message Bubble: 主播回复 (Left) -->
+<div class="flex items-start justify-start space-x-2">
+<!-- Streamer Avatar (Material Icon placeholder) -->
+<div class="w-8 h-8 rounded-full bg-subtle border border-hairline flex items-center justify-center shrink-0 text-secondaryText">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+<div class="flex flex-col items-start max-w-[76%]">
+<div class="bg-surface border border-hairline rounded-2xl rounded-tl-xs px-3.5 py-2.5 text-[14px] text-primaryText leading-relaxed shadow-xs">
+          收到，今晚照这个走
+        </div>
+<span class="text-[10px] text-secondaryText mt-1 ml-1">小雨</span>
+</div>
+</div>
+<!-- Date Badge: 今天 -->
+<div class="flex justify-center items-center my-2">
+<span class="text-[11px] font-medium text-secondaryText bg-subtle px-2.5 py-0.5 rounded-full">
+        今天 09:30
+      </span>
+</div>
+<!-- Message Bubble: 运营发出业务指示 (Right) -->
+<div class="flex items-start justify-end space-x-2">
+<div class="flex flex-col items-end max-w-[76%]">
+<div class="bg-brandLight border border-brand/30 rounded-2xl rounded-tr-xs px-3.5 py-2.5 text-[14px] text-primaryText leading-relaxed shadow-xs">
+          昨晚4.6万，收尾连唱那两首留着，今晚再用一次
+        </div>
+<span class="text-[10px] text-secondaryText mt-1 mr-1">小林</span>
+</div>
+<!-- Operator Avatar -->
+<div class="w-8 h-8 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0 text-brand">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+</div>
+<!-- Dynamic Messages injected here -->
+<div class="space-y-4" id="dynamic-messages"></div>
+<!-- Prototype Non-persistence Notice Banner -->
+<div class="pt-4 pb-2 px-4 text-center">
+<p class="text-[10px] text-secondaryText/70 tracking-tight">
+        当前为本地原型会话演示，不代表服务端真实送达或持久化
+      </p>
+</div>
+<div id="scroll-anchor"></div>
+</main>
+<!-- END: MessageScrollArea -->
+<!-- BEGIN: ChatInputBar -->
+<footer class="h-[60px] min-h-[60px] max-h-[60px] bg-surface border-t border-hairline px-3 flex items-center gap-2 z-30 shrink-0">
+<div class="flex-1 relative flex items-center">
+<input autocomplete="off" class="w-full h-[42px] bg-canvas border border-hairline rounded-full px-4 text-[14px] text-primaryText placeholder-secondaryText focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand" id="chat-input" placeholder="发消息给小雨…" type="text">
+</div>
+<button aria-label="发送消息" class="h-[44px] px-4 min-w-[64px] bg-brand hover:bg-brandPressed active:bg-brandPressed text-surface font-semibold text-[14px] rounded-full flex items-center justify-center shrink-0 transition-colors shadow-xs" id="send-btn" type="button">
+      发送
+    </button>
+</footer>
+<!-- END: ChatInputBar -->
+<!-- BEGIN: FiveItemNavBar -->
+<nav class="h-[68px] min-h-[68px] max-h-[68px] bg-surface border-t border-hairline flex items-center justify-around px-1 z-30 shrink-0">
+<!-- Item 1: 今天 (Active) -->
+<a class="flex flex-col items-center justify-center w-[64px] h-full text-brand transition-colors" href="#P20">
+<div class="h-[24px] flex items-center justify-center">
+<span class="material-symbols-outlined fill-icon text-[24px]">home</span>
+</div>
+<span class="text-[12px] font-semibold mt-1 leading-none">今天</span>
+</a>
+<!-- Item 2: 我的主播 -->
+<a class="flex flex-col items-center justify-center w-[64px] h-full text-secondaryText hover:text-primaryText transition-colors" href="#P21">
+<div class="h-[24px] flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+</div>
+<span class="text-[12px] font-normal mt-1 leading-none">我的主播</span>
+</a>
+<!-- Item 3: 交接 -->
+<a class="flex flex-col items-center justify-center w-[64px] h-full text-secondaryText hover:text-primaryText transition-colors" href="#P25">
+<div class="h-[24px] flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+</div>
+<span class="text-[12px] font-normal mt-1 leading-none">交接</span>
+</a>
+<!-- Item 4: 助理 -->
+<a class="flex flex-col items-center justify-center w-[64px] h-full text-secondaryText hover:text-primaryText transition-colors" href="#AI">
+<div class="h-[24px] flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+</div>
+<span class="text-[12px] font-normal mt-1 leading-none">助理</span>
+</a>
+<!-- Item 5: 我的 -->
+<a class="flex flex-col items-center justify-center w-[64px] h-full text-secondaryText hover:text-primaryText transition-colors" href="#MY">
+<div class="h-[24px] flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+</div>
+<span class="text-[12px] font-normal mt-1 leading-none">我的</span>
+</a>
+</nav>
+<!-- END: FiveItemNavBar -->
+<!-- Toast Element -->
+<div class="toast-container fixed top-16 left-1/2 transform -translate-x-1/2 bg-[#26313A]/90 text-surface text-[12px] py-1.5 px-3.5 rounded-full shadow-lg opacity-0 z-50 pointer-events-none transition-opacity duration-200" id="toast">
+    提示信息
+  </div>
+<!-- BEGIN: Interactive Logic Script -->
+<script data-purpose="chat-interaction">
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputEl = document.getElementById('chat-input');
+      const sendBtn = document.getElementById('send-btn');
+      const dynamicContainer = document.getElementById('dynamic-messages');
+      const scroller = document.getElementById('chat-scroller');
+      const toastEl = document.getElementById('toast');
+      let toastTimer = null;
+
+      function showToast(message) {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastEl.textContent = message;
+        toastEl.classList.remove('opacity-0');
+        toastEl.classList.add('opacity-100');
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove('opacity-100');
+          toastEl.classList.add('opacity-0');
+        }, 1800);
+      }
+
+      function scrollToBottom() {
+        requestAnimationFrame(() => {
+          scroller.scrollTop = scroller.scrollHeight;
+        });
+      }
+
+      function handleSendMessage() {
+        const text = inputEl.value.trim();
+        if (!text) {
+          showToast('请输入消息内容后再发送');
+          inputEl.focus();
+          return;
+        }
+
+        // Format current time as HH:mm
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const timeStr = `${hours}:${minutes}`;
+
+        // Create DOM element for operator message
+        const msgWrapper = document.createElement('div');
+        msgWrapper.className = 'flex items-start justify-end space-x-2';
+        msgWrapper.innerHTML = `
+          <div class="flex flex-col items-end max-w-[76%]">
+            <div class="bg-brandLight border border-brand/30 rounded-2xl rounded-tr-xs px-3.5 py-2.5 text-[14px] text-primaryText leading-relaxed shadow-xs break-words">
+              ${escapeHtml(text)}
+            </div>
+            <div class="flex items-center space-x-1 mt-1 mr-1">
+              <span class="text-[9px] text-secondaryText">${timeStr}</span>
+              <span class="text-[10px] text-secondaryText">· 小林</span>
+            </div>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0 text-brand">
+            <span class="material-symbols-outlined text-[20px]">person_outline</span>
+          </div>
+        `;
+
+        dynamicContainer.appendChild(msgWrapper);
+        inputEl.value = '';
+        showToast('已添加到当前会话（本地演示）');
+        scrollToBottom();
+      }
+
+      function escapeHtml(str) {
+        return str
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      sendBtn.addEventListener('click', handleSendMessage);
+      inputEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSendMessage();
+        }
+      });
+      
+      // Auto scroll to initial latest message
+      scrollToBottom();
+    });
+  </script>
+<!-- END: Interactive Logic Script -->
+</body></html>

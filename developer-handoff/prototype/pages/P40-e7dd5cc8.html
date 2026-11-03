@@ -1,0 +1,313 @@
+<!DOCTYPE html><html class="h-full bg-[#F5F7F8]" lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>P40｜培训工作台｜统一产品版</title>
+<!-- Tailwind CSS v3 with forms & container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#F88440',
+              pressed: '#D96A31',
+              light: '#FCF4EC'
+            },
+            surface: {
+              DEFAULT: '#FFFFFF',
+              subtle: '#EDF1F3',
+              border: '#DDE3E8'
+            },
+            content: {
+              primary: '#26313A',
+              secondary: '#65717B'
+            },
+            status: {
+              alert: '#EF4444',
+              alertBg: '#FEF2F2',
+              pending: '#B45309',
+              pendingBg: '#FFFBEB',
+              success: '#047857',
+              successBg: '#ECFDF5'
+            }
+          },
+          fontFamily: {
+            sans: ['"Noto Sans SC"', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+<!-- Google Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style data-purpose="custom-typography">
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+    }
+  </style>
+<style data-purpose="mobile-viewport-lock">
+    /* 强制在 390 CSS px 设备下以标准单列纵向满高渲染 */
+    body {
+      width: 100%;
+      max-width: 390px;
+      min-height: 884px;
+      margin: 0 auto;
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    /* 解决 iOS 底部安全区内边距 */
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 16px);
+    }
+  </style>
+</head>
+<body class="flex flex-col h-full bg-[#F5F7F8] text-[#26313A] antialiased selection:bg-brand-light">
+<!-- BEGIN: TopBar -->
+<!-- 固定 56px 顶栏与上下文 -->
+<header class="fixed top-0 left-0 right-0 max-w-[390px] mx-auto z-40 bg-white border-b border-[#DDE3E8] h-14 flex items-center justify-between px-4" data-purpose="app-header">
+<!-- 左侧占位对称插槽 (44x44px 热区) -->
+<div class="w-11 h-11 flex items-center justify-start text-[#65717B]">
+<span class="sr-only">根页面无返回</span>
+</div>
+<!-- 中间主标题 -->
+<div class="flex flex-col items-center justify-center text-center">
+<h1 class="text-[17px] font-semibold text-[#26313A] leading-tight tracking-tight">培训工作台</h1>
+<span class="text-[11px] text-[#65717B] font-normal leading-none mt-0.5">培训师 · 安姐 · 当前带教 2 人</span>
+</div>
+<!-- 右侧通知入口 (44x44px 热区) -->
+<a class="w-11 h-11 flex items-center justify-end text-[#26313A] active:opacity-70 transition-opacity" data-page="P92" href="#P92" title="通知消息">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</a>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: MainContent -->
+<!-- 滚动主体区，保证短页自然留白，底部留有足够的边距避免被底栏遮挡 -->
+<main class="flex-1 overflow-y-auto mt-14 mb-[68px] px-4 pt-4 pb-12 space-y-4" data-purpose="main-scroll-view">
+<!-- BEGIN: PrimaryFocusCard -->
+<!-- 首要任务看板：聚焦麦子完整首秀彩排 -->
+<section class="bg-white border border-[#DDE3E8] rounded-xl p-4 shadow-none" data-purpose="primary-task-card">
+<!-- 学员基本上下文标识 -->
+<div class="flex items-center justify-between pb-3 border-b border-[#EDF1F3]">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B]">
+<span class="material-symbols-outlined text-[18px]">person_outline</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="text-sm font-semibold text-[#26313A]">麦子</span>
+<span class="text-xs text-[#65717B]">· 带教第6天</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#FFFBEB] text-[#B45309]">
+          进行中
+        </span>
+</div>
+<!-- 任务详情与演练状态 -->
+<div class="pt-3">
+<h2 class="text-lg font-bold text-[#26313A] tracking-tight">完整首秀彩排</h2>
+<!-- 进度与指标 -->
+<div class="mt-2.5">
+<div class="flex items-center justify-between text-xs mb-1.5">
+<span class="text-[#65717B]">任务完成度</span>
+<span class="font-medium text-[#26313A]">3/4 项完成</span>
+</div>
+<div class="w-full bg-[#EDF1F3] rounded-full h-1.5 overflow-hidden">
+<div class="bg-[#F88440] h-1.5 rounded-full transition-all duration-300" style="width: 75%"></div>
+</div>
+</div>
+<!-- 详细状态说明条目 -->
+<div class="mt-3 flex items-start text-xs text-[#65717B] bg-[#F5F7F8] p-2.5 rounded-lg border border-[#EDF1F3]">
+<span class="material-symbols-outlined text-[16px] text-[#F88440] mr-1.5 flex-shrink-0 mt-0.5">info</span>
+<span class="leading-relaxed">已完成彩排提纲，待培训师验收整场演练</span>
+</div>
+<!-- 双主次操作按钮组合 -->
+<div class="mt-4 grid grid-cols-2 gap-2.5">
+<a class="h-12 bg-[#F88440] active:bg-[#D96A31] text-white text-sm font-medium rounded-lg flex items-center justify-center transition-colors min-h-[44px]" data-page="P41" data-subject="麦子" href="#P41">
+            打开成长任务
+          </a>
+<a class="h-11 my-auto bg-white active:bg-[#EDF1F3] border border-[#DDE3E8] text-[#26313A] text-sm font-medium rounded-lg flex items-center justify-center transition-colors min-h-[44px]" data-page="P41D" data-subject="麦子" href="#P41D">
+            看学员档案
+          </a>
+</div>
+</div>
+</section>
+<!-- END: PrimaryFocusCard -->
+<!-- BEGIN: AssessmentPendingList -->
+<!-- 考核待办模块：栗子条目独立评审 -->
+<section class="bg-white border border-[#DDE3E8] rounded-xl overflow-hidden" data-purpose="assessment-pending">
+<!-- 列表标题 -->
+<div class="px-4 py-3 bg-white border-b border-[#EDF1F3] flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#26313A]">fact_check</span>
+<h3 class="text-sm font-semibold text-[#26313A]">考核待办</h3>
+</div>
+<span class="text-xs text-[#65717B]">独立评估 · 栗子</span>
+</div>
+<!-- 待办清单 -->
+<div class="divide-y divide-[#EDF1F3]">
+<!-- 条目 1: 平台规则与红线 (低于80分，需补考) -->
+<div class="p-3.5 space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#EF4444] flex-shrink-0"></span>
+<span class="text-sm font-medium text-[#26313A]">栗子 · 平台规则与红线</span>
+</div>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-medium bg-[#FEF2F2] text-[#EF4444]">
+              74分 · 需补考
+            </span>
+</div>
+<div class="flex items-center justify-between text-xs pt-1">
+<span class="text-[#65717B]">理论考核低于80分基准线</span>
+<a class="text-[#F88440] font-medium active:underline flex items-center space-x-0.5 min-h-[36px] items-center" data-page="P42" data-subject="栗子" href="#P42">
+<span class="">安排补考</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- 条目 2: 破冰话术（第2次补考） (待评分) -->
+<div class="p-3.5 space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B45309] flex-shrink-0"></span>
+<span class="text-sm font-medium text-[#26313A]">栗子 · 破冰话术 (第2次补考)</span>
+</div>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-medium bg-[#FFFBEB] text-[#B45309]">
+              待评分
+            </span>
+</div>
+<div class="flex items-center justify-between text-xs pt-1">
+<span class="text-[#65717B]">待导师查收并给出客观综合评估结果</span>
+<a class="text-[#F88440] font-medium active:underline flex items-center space-x-0.5 min-h-[36px] items-center" data-page="P42" data-subject="栗子" href="#P42">
+<span class="">前往评分</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: AssessmentPendingList -->
+<!-- BEGIN: RosterSection -->
+<!-- 在训名单模块：常规档案序展示 -->
+<section class="bg-white border border-[#DDE3E8] rounded-xl overflow-hidden" data-purpose="trainee-roster">
+<div class="px-4 py-3 bg-white border-b border-[#EDF1F3] flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#26313A]">group</span>
+<h3 class="text-sm font-semibold text-[#26313A]">在训名单</h3>
+</div>
+<span class="text-xs text-[#65717B]">当前 2 名学员</span>
+</div>
+<div class="divide-y divide-[#EDF1F3]">
+<!-- 学员 1：麦子 -->
+<div class="p-3.5 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B] flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="text-sm font-semibold text-[#26313A]">麦子</span>
+<span class="text-xs text-[#65717B]">第6天</span>
+</div>
+<p class="text-xs text-[#65717B] mt-0.5">3/4 项完成 · 第4项进行中</p>
+</div>
+</div>
+<a class="px-3 py-1.5 text-xs font-medium text-[#26313A] bg-[#F5F7F8] hover:bg-[#EDF1F3] active:bg-[#DDE3E8] border border-[#DDE3E8] rounded-md transition-colors min-h-[32px] flex items-center" data-page="P41" data-subject="麦子" href="#P41">
+            成长任务
+          </a>
+</div>
+<!-- 学员 2：栗子 -->
+<div class="p-3.5 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B] flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="text-sm font-semibold text-[#26313A]">栗子</span>
+<span class="text-xs text-[#65717B]">第2天</span>
+</div>
+<p class="text-xs text-[#65717B] mt-0.5">任务进行中 · 待补考</p>
+</div>
+</div>
+<a class="px-3 py-1.5 text-xs font-medium text-[#26313A] bg-[#F5F7F8] hover:bg-[#EDF1F3] active:bg-[#DDE3E8] border border-[#DDE3E8] rounded-md transition-colors min-h-[32px] flex items-center" data-page="P42" data-subject="栗子" href="#P42">
+            结业评估
+          </a>
+</div>
+<!-- 本地桃桃交接项预留容器 (默认无状态时隐式挂载) -->
+<div class="hidden p-3.5 bg-[#FFFBEB] border-t border-[#EDF1F3]" id="handover-recipient-slot">
+<div class="flex items-center justify-between text-xs text-[#B45309]">
+<span class="font-medium">检测到待交接学员数据...</span>
+<button class="underline text-xs font-semibold" type="button">确认接收</button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: RosterSection -->
+<!-- BEGIN: SystemDisclaimer -->
+<!-- 业务说明文案 -->
+<footer class="pt-2 pb-4 text-center">
+<p class="text-[11px] text-[#65717B] leading-relaxed px-2">
+        当前为明镜培训角色工作台只读演示。导师排队顺序为常规档案序列，不代表风险排名；各项学员操作不自动变更状态，不代表真实后端已结业或跨账号同步。
+      </p>
+</footer>
+<!-- END: SystemDisclaimer -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomNavigation -->
+<!-- 固定 68px 培训工作台底栏导航 -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto bg-white border-t border-[#DDE3E8] z-50 h-[68px] pb-safe flex justify-around items-center" data-purpose="trainer-tabbar" data-role="trainer">
+<!-- Tab 1: 今天 (当前激活状态) -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-[#F88440]" data-page="P40" href="#P40">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[12px] font-medium leading-none mt-1">今天</span>
+</a>
+<!-- Tab 2: 任务 -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-[#65717B] hover:text-[#26313A] transition-colors" data-page="P41" href="#P41">
+<span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+<span class="text-[12px] font-normal leading-none mt-1">任务</span>
+</a>
+<!-- Tab 3: 考核 -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-[#65717B] hover:text-[#26313A] transition-colors" data-page="P42" href="#P42">
+<span class="material-symbols-outlined text-[24px]">fact_check</span>
+<span class="text-[12px] font-normal leading-none mt-1">考核</span>
+</a>
+<!-- Tab 4: 我的 -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-[#65717B] hover:text-[#26313A] transition-colors" data-page="MY" href="#MY">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="text-[12px] font-normal leading-none mt-1">我的</span>
+</a>
+<!-- Tab 5: 助理 -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-[#65717B] hover:text-[#26313A] transition-colors" data-page="AI" href="#AI">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+<span class="text-[12px] font-normal leading-none mt-1">助理</span>
+</a>
+</nav>
+<!-- END: BottomNavigation -->
+<!-- BEGIN: InteractiveHandlers -->
+<script data-purpose="interaction-handlers">
+    document.addEventListener('DOMContentLoaded', () => {
+      // 检查是否有来自 P32 的交接缓存
+      try {
+        const handoverData = localStorage.getItem('pending_handover_taotao');
+        if (handoverData) {
+          const slot = document.getElementById('handover-recipient-slot');
+          if (slot) {
+            slot.classList.remove('hidden');
+          }
+        }
+      } catch (e) {
+        // 保持静默处理以避免控制台污染
+      }
+    });
+  </script>
+<!-- END: InteractiveHandlers -->
+
+
+</body></html>

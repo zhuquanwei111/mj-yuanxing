@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#E5E9EC]" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>剪辑任务</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "neutral-state": "#686260",
+            "on-primary-container": "#632800",
+            "error-container": "#ffdad6",
+            "danger-bg": "#FEF2F2",
+            "border": "#DDE3E8",
+            "surface-dim": "#d8dadb",
+            "on-secondary-fixed-variant": "#7b2e00",
+            "tertiary-fixed": "#b5ebff",
+            "outline-variant": "#ddc1b4",
+            "neutral-state-bg": "#F4F0ED",
+            "surface-container-lowest": "#ffffff",
+            "surface-bright": "#f8fafb",
+            "surface-container-low": "#f2f4f5",
+            "surface-container-highest": "#e1e3e4",
+            "secondary": "#a04005",
+            "tertiary": "#00677e",
+            "on-tertiary-fixed": "#001f28",
+            "success": "#047857",
+            "primary-fixed-dim": "#ffb690",
+            "on-primary-fixed": "#341100",
+            "surface": "#FFFFFF",
+            "tertiary-container": "#00b2d8",
+            "tertiary-fixed-dim": "#4ed6fd",
+            "success-bg": "#ECFDF5",
+            "background": "#F5F7F8",
+            "secondary-fixed": "#ffdbcc",
+            "on-tertiary-fixed-variant": "#004e60",
+            "on-background": "#191c1d",
+            "inverse-primary": "#ffb690",
+            "surface-container": "#eceeef",
+            "primary-container": "#F88440",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#eff1f2",
+            "inverse-surface": "#2e3132",
+            "brand-soft": "#FCF4EC",
+            "surface-container-high": "#e6e8e9",
+            "on-surface-variant": "#564239",
+            "text-secondary": "#65717B",
+            "on-secondary-container": "#692600",
+            "surface-tint": "#9d4300",
+            "pending": "#B45309",
+            "secondary-container": "#fc854a",
+            "brand-pressed": "#D96A31",
+            "primary": "#F88440",
+            "on-primary": "#ffffff",
+            "surface-muted": "#EDF1F3",
+            "text-primary": "#26313A",
+            "outline": "#8a7267",
+            "danger": "#EF4444",
+            "on-tertiary-container": "#003f4f",
+            "on-primary-fixed-variant": "#783200",
+            "surface-variant": "#e1e3e4",
+            "on-error-container": "#93000a",
+            "pending-bg": "#FFFBEB",
+            "on-secondary-fixed": "#351000",
+            "primary-fixed": "#ffdbca",
+            "on-secondary": "#ffffff",
+            "secondary-fixed-dim": "#ffb695",
+            "error": "#ba1a1a",
+            "on-surface": "#191c1d",
+            "on-tertiary": "#ffffff"
+          },
+          borderRadius: {
+            "DEFAULT": "4px",
+            "lg": "6px",
+            "xl": "10px",
+            "full": "9999px"
+          },
+          fontFamily: {
+            "headline-sm": ["\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, sans-serif"],
+            "label-md": ["\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, sans-serif"],
+            "headline-lg": ["\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, sans-serif"],
+            "body-lg": ["\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, sans-serif"],
+            "body-md": ["\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, sans-serif"],
+            "title-md": ["\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, sans-serif"],
+            "headline-md": ["\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, sans-serif"],
+            "label-sm": ["\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, sans-serif"]
+          },
+          fontSize: {
+            "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+            "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+            "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "title-md": ["16px", { lineHeight: "22px", fontWeight: "500" }],
+            "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+            "label-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-1 {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body {
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full flex items-center justify-center p-0 md:py-6 overflow-hidden select-none">
+<!-- Mobile Reference Frame: 390px x 884px -->
+<div class="relative w-full max-w-[390px] h-full max-h-[884px] bg-background flex flex-col shadow-2xl overflow-hidden md:rounded-2xl border border-border">
+<!-- TopAppBar (56px fixed, border-b #DDE3E8) -->
+<header class="h-[56px] min-h-[56px] px-3 bg-surface border-b border-border flex items-center justify-between z-30 select-none">
+<a aria-label="返回" class="w-[44px] h-[44px] flex items-center justify-center text-text-primary active:opacity-70 transition-opacity" data-page="P60" href="#P60">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</a>
+<div class="flex flex-col items-center justify-center pointer-events-none">
+<h1 class="font-headline-md text-[18px] leading-[22px] font-semibold text-text-primary tracking-tight">剪辑任务</h1>
+<span class="font-label-sm text-[11px] leading-tight text-text-secondary mt-0.5">剪辑负责人 · 小雷</span>
+</div>
+<!-- Balanced 44x44 Placeholder Right Slot -->
+<div aria-hidden="true" class="w-[44px] h-[44px] flex items-center justify-center"></div>
+</header>
+<!-- Main Content Flow (min-height: 0, scrollable) -->
+<main class="flex-1 min-h-0 overflow-y-auto no-scrollbar flex flex-col">
+<!-- Filter Chips Bar (Sticky Sub-nav, Height >= 44px) -->
+<section class="sticky top-0 bg-background/95 backdrop-blur-sm z-20 px-4 py-2.5 border-b border-border/70 flex items-center">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar w-full py-0.5">
+<button class="filter-pill flex items-center justify-center h-[34px] px-3.5 rounded-full text-label-md transition-colors bg-text-primary text-surface font-medium whitespace-nowrap" data-filter="all" onclick="setFilter('all')">全部</button>
+<button class="filter-pill flex items-center justify-center h-[34px] px-3.5 rounded-full text-label-md transition-colors bg-surface text-text-secondary border border-border/80 whitespace-nowrap" data-filter="待领" onclick="setFilter('待领')">待领</button>
+<button class="filter-pill flex items-center justify-center h-[34px] px-3.5 rounded-full text-label-md transition-colors bg-surface text-text-secondary border border-border/80 whitespace-nowrap" data-filter="进行中" onclick="setFilter('进行中')">进行中</button>
+<button class="filter-pill flex items-center justify-center h-[34px] px-3.5 rounded-full text-label-md transition-colors bg-surface text-text-secondary border border-border/80 whitespace-nowrap" data-filter="已交付" onclick="setFilter('已交付')">已交付</button>
+<button class="filter-pill flex items-center justify-center h-[34px] px-3.5 rounded-full text-label-md transition-colors bg-surface text-text-secondary border border-border/80 whitespace-nowrap" data-filter="已回款" onclick="setFilter('已回款')">已回款</button>
+</div>
+</section>
+<!-- Task Cards Stream -->
+<div class="p-4 space-y-3.5 flex-1" id="taskListContainer">
+<!-- Injected via JavaScript for complete dynamic state machine support -->
+</div>
+<!-- Editorial Workflow Explanatory Notice Footer Banner -->
+<div class="mx-4 mb-4 p-3.5 bg-surface border border-border rounded-lg text-text-secondary font-label-sm space-y-1.5 leading-relaxed">
+<div class="flex items-center gap-1.5 text-text-primary font-medium text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-primary">lightbulb</span>
+<span>剪辑作业流说明</span>
+</div>
+<p class="text-[12px] text-text-secondary">① 领取后自动进入「进行中」；交付成片自动登记为「已交付」</p>
+<p class="text-[12px] text-text-secondary">② 仅「已交付」状态可发起返修修正或进行回款登记</p>
+<p class="text-[11px] text-neutral-state border-t border-border/50 pt-1.5 mt-1">注：本地操作模拟前端状态流转，不直接代表真实财务结算到账。</p>
+</div>
+<!-- Safe Space Cushion for bottom bar -->
+<div class="h-4"></div>
+</main>
+<!-- BottomNavBar (68px fixed, border-t #DDE3E8) -->
+<nav class="h-[68px] min-h-[68px] bg-surface border-t border-border flex items-center justify-around z-30 select-none pb-safe">
+<!-- 1. 内容 -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-text-secondary hover:text-primary active:scale-95 transition-all duration-150" data-page="P60" href="#P60">
+<span class="material-symbols-outlined text-[24px]">article</span>
+<span class="font-label-md text-[12px] leading-tight mt-1">内容</span>
+</a>
+<!-- 2. 脚本 -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-text-secondary hover:text-primary active:scale-95 transition-all duration-150" data-page="P61" href="#P61">
+<span class="material-symbols-outlined text-[24px]">edit_note</span>
+<span class="font-label-md text-[12px] leading-tight mt-1">脚本</span>
+</a>
+<!-- 3. 剪辑 (Active) -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-primary font-medium active:scale-95 transition-all duration-150" data-page="P62" href="#P62">
+<span class="material-symbols-outlined text-[24px]">content_cut</span>
+<span class="font-label-md text-[12px] leading-tight mt-1">剪辑</span>
+</a>
+<!-- 4. 我的 -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-text-secondary hover:text-primary active:scale-95 transition-all duration-150" data-role="editor" href="#MY">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="font-label-md text-[12px] leading-tight mt-1">我的</span>
+</a>
+</nav>
+<!-- Modal Drawer / Dialog: Detail Viewer -->
+<div class="fixed inset-0 z-50 bg-black/45 backdrop-blur-[2px] hidden items-end justify-center transition-opacity duration-200" id="detailModal">
+<div class="w-full max-w-[390px] bg-surface rounded-t-xl p-5 border-t border-border flex flex-col max-h-[724px] overflow-y-auto no-scrollbar">
+<div class="flex items-center justify-between pb-3 border-b border-border">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">description</span>
+<h3 class="font-title-md font-semibold text-text-primary text-[17px]" id="modalTitle">需求详情</h3>
+</div>
+<button class="w-8 h-8 flex items-center justify-center text-text-secondary active:opacity-60" onclick="closeModal('detailModal')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="py-4 space-y-3.5 text-body-md" id="modalBody"></div>
+<div class="pt-2">
+<button class="w-full h-[44px] bg-surface border border-border rounded-lg text-text-primary font-title-md active:bg-surface-muted transition-colors" onclick="closeModal('detailModal')">我知道了</button>
+</div>
+</div>
+</div>
+<!-- Modal Drawer / Dialog: Deliver Form -->
+<div class="fixed inset-0 z-50 bg-black/45 backdrop-blur-[2px] hidden items-end justify-center transition-opacity duration-200" id="deliverModal">
+<div class="w-full max-w-[390px] bg-surface rounded-t-xl p-5 border-t border-border flex flex-col">
+<div class="flex items-center justify-between pb-3 border-b border-border">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">upload_file</span>
+<h3 class="font-title-md font-semibold text-text-primary text-[17px]">交付成片回传</h3>
+</div>
+<button class="w-8 h-8 flex items-center justify-center text-text-secondary active:opacity-60" onclick="closeModal('deliverModal')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="py-4 space-y-3">
+<p class="text-label-md text-text-secondary" id="deliverTaskName">任务名称</p>
+<div>
+<label class="block text-label-md text-text-primary font-medium mb-1.5">成片预览网盘链接 / 文件名</label>
+<input class="w-full h-[44px] px-3.5 rounded-lg border border-border bg-surface text-text-primary text-body-md focus:border-primary focus:ring-0 outline-none" id="deliverFileInput" placeholder="如：【成片V1】阿哲怀旧精剪.mp4" type="text"/>
+</div>
+<p class="text-[12px] text-text-secondary leading-normal">交付后状态自动更新为「已交付」，可随时进行返修流转或回款登记。</p>
+</div>
+<div class="pt-2 flex gap-2.5">
+<button class="flex-1 h-[44px] bg-surface border border-border rounded-lg text-text-secondary font-title-md active:bg-surface-muted transition-colors" onclick="closeModal('deliverModal')">取消</button>
+<button class="flex-1 h-[44px] bg-primary active:bg-brand-pressed text-surface rounded-lg font-title-md transition-colors font-medium" onclick="confirmDeliverAction()">确认交付</button>
+</div>
+</div>
+</div>
+<!-- Modal Drawer / Dialog: Revision Form -->
+<div class="fixed inset-0 z-50 bg-black/45 backdrop-blur-[2px] hidden items-end justify-center transition-opacity duration-200" id="revisionModal">
+<div class="w-full max-w-[390px] bg-surface rounded-t-xl p-5 border-t border-border flex flex-col">
+<div class="flex items-center justify-between pb-3 border-b border-border">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-danger text-[22px]">build_circle</span>
+<h3 class="font-title-md font-semibold text-text-primary text-[17px]">发起返修修正</h3>
+</div>
+<button class="w-8 h-8 flex items-center justify-center text-text-secondary active:opacity-60" onclick="closeModal('revisionModal')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="py-4 space-y-3">
+<p class="text-label-md text-text-secondary" id="revisionTaskName">任务名称</p>
+<div>
+<label class="block text-label-md text-text-primary font-medium mb-1.5">返修原因与具体修改要求</label>
+<textarea class="w-full p-3 rounded-lg border border-border bg-surface text-text-primary text-body-md focus:border-primary focus:ring-0 outline-none resize-none" id="revisionReasonInput" placeholder="例如：背景乐声音过大压过人声，需调小6dB；片尾补上关注浮层。" rows="3"></textarea>
+</div>
+<p class="text-[12px] text-pending bg-pending-bg p-2.5 rounded border border-amber-200/60 leading-normal">提交后版本号自增，任务状态重置为「进行中 · 返修中」。</p>
+</div>
+<div class="pt-2 flex gap-2.5">
+<button class="flex-1 h-[44px] bg-surface border border-border rounded-lg text-text-secondary font-title-md active:bg-surface-muted transition-colors" onclick="closeModal('revisionModal')">取消</button>
+<button class="flex-1 h-[44px] bg-primary active:bg-brand-pressed text-surface rounded-lg font-title-md transition-colors font-medium" onclick="confirmRevisionAction()">提交返修</button>
+</div>
+</div>
+</div>
+<!-- Modal Drawer / Dialog: Payment Settlement -->
+<div class="fixed inset-0 z-50 bg-black/45 backdrop-blur-[2px] hidden items-end justify-center transition-opacity duration-200" id="paymentModal">
+<div class="w-full max-w-[390px] bg-surface rounded-t-xl p-5 border-t border-border flex flex-col">
+<div class="flex items-center justify-between pb-3 border-b border-border">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-success text-[22px]">payments</span>
+<h3 class="font-title-md font-semibold text-text-primary text-[17px]">登记回款</h3>
+</div>
+<button class="w-8 h-8 flex items-center justify-center text-text-secondary active:opacity-60" onclick="closeModal('paymentModal')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="py-4 space-y-3">
+<p class="text-label-md text-text-secondary" id="paymentTaskName">任务名称</p>
+<div class="bg-surface-container-low p-3.5 rounded-lg border border-border/80 space-y-1">
+<div class="flex justify-between text-body-md text-text-primary">
+<span>剪辑劳务预估</span>
+<span class="font-semibold text-primary">¥ 350.00</span>
+</div>
+<p class="text-[11px] text-text-secondary">按照成片时长与评级结算</p>
+</div>
+<div class="bg-neutral-state-bg/70 p-3 rounded text-[12px] text-neutral-state leading-relaxed border border-border/60">
+            ⚠ 仅本地登记，不代表真实到账，未接入真实结算平台。
+          </div>
+</div>
+<div class="pt-2 flex gap-2.5">
+<button class="flex-1 h-[44px] bg-surface border border-border rounded-lg text-text-secondary font-title-md active:bg-surface-muted transition-colors" onclick="closeModal('paymentModal')">取消</button>
+<button class="flex-1 h-[44px] bg-primary active:bg-brand-pressed text-surface rounded-lg font-title-md transition-colors font-medium" onclick="confirmPaymentAction()">确认登记</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Application Logic & Interactive State Machine -->
+<script>
+    // Initial Task State Data Model
+    const tasks = [
+      {
+        id: "T1",
+        title: "阿哲 · 怀旧场脚本",
+        category: "脚本成片",
+        status: "待领",
+        owner: "小雷",
+        deadline: "10月15日 18:00",
+        materials: "已通过脚本 / 直播回放",
+        requirements: "按脚本剪辑并提交预览",
+        version: "V1",
+        revisions: [],
+        deliveredFile: null,
+        isPaid: false
+      },
+      {
+        id: "T2",
+        title: "大乔 · 点歌互动串场切片",
+        category: "切片剪辑",
+        status: "待领",
+        owner: "小雷",
+        deadline: "明天 18:00",
+        materials: "10月12日 直播录像02:14:00~03:00:00",
+        requirements: "提取高能互动片段，每段控制在45秒以内，节奏紧凑带有花字提示。",
+        version: "V1",
+        revisions: [],
+        deliveredFile: null,
+        isPaid: false
+      },
+      {
+        id: "T3",
+        title: "甜甜 · 爵士编舞完整场回放",
+        category: "完整场回放",
+        status: "进行中",
+        owner: "小雷",
+        deadline: "后天 12:00",
+        materials: "舞台机位全景原画 + 导播台多机位信号",
+        requirements: "去除暖场静止画面，保留核心舞蹈串烧，统一做色调校正与音频母带降噪。",
+        version: "V2",
+        revisions: [
+          { v: "V1", note: "开头15秒节奏太慢，重切" }
+        ],
+        deliveredFile: null,
+        isPaid: false
+      }
+    ];
+
+    let currentFilter = "all";
+    let activeTaskId = null;
+
+    function renderTasks() {
+      const container = document.getElementById("taskListContainer");
+      container.innerHTML = "";
+
+      const filtered = tasks.filter(t => {
+        if (currentFilter === "all") return true;
+        return t.status === currentFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="py-16 flex flex-col items-center justify-center text-text-secondary space-y-2">
+            <span class="material-symbols-outlined text-[44px] text-border">inbox</span>
+            <span class="text-body-md">暂无「${currentFilter}」状态的任务</span>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(task => {
+        const card = document.createElement("div");
+        card.className = "bg-surface border border-border rounded-xl p-4 transition-all";
+
+        // Status badge styling
+        let statusBadgeClass = "bg-neutral-state-bg text-text-secondary";
+        let statusText = task.status;
+        if (task.status === "待领") {
+          statusBadgeClass = "bg-surface-container text-text-secondary";
+        } else if (task.status === "进行中") {
+          statusBadgeClass = "bg-brand-soft text-primary font-medium";
+          if (task.revisions.length > 0) {
+            statusText = `进行中 · ${task.version}`;
+          }
+        } else if (task.status === "已交付") {
+          statusBadgeClass = "bg-blue-50 text-blue-700 font-medium";
+        } else if (task.status === "已回款") {
+          statusBadgeClass = "bg-success-bg text-success font-medium";
+        }
+
+        // Header Line
+        let html = `
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <div>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h3 class="font-title-md font-semibold text-text-primary text-[16px]">${task.title}</h3>
+                <span class="text-label-sm text-text-secondary bg-surface-container-low px-1.5 py-0.5 rounded text-[11px]">${task.category}</span>
+              </div>
+              <div class="flex items-center gap-3 text-label-sm text-text-secondary mt-1">
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">person</span>
+                  <span>${task.owner}</span>
+                </span>
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">schedule</span>
+                  <span>${task.deadline}</span>
+                </span>
+              </div>
+            </div>
+            <span class="text-label-sm px-2.5 py-1 rounded-full whitespace-nowrap text-[12px] ${statusBadgeClass}">
+              ${statusText}
+            </span>
+          </div>
+        `;
+
+        // Details summary blocks
+        html += `
+          <div class="mt-3 pt-3 border-t border-border/60 grid grid-cols-1 gap-1.5 text-body-md">
+            <div class="flex items-start justify-between text-[13px]">
+              <span class="text-text-secondary flex-shrink-0 w-16">素材来源</span>
+              <span class="text-text-primary text-right truncate pl-2">${task.materials}</span>
+            </div>
+            <div class="flex items-start justify-between text-[13px]">
+              <span class="text-text-secondary flex-shrink-0 w-16">成片要求</span>
+              <span class="text-text-primary text-right truncate pl-2">${task.requirements}</span>
+            </div>
+          </div>
+        `;
+
+        // Revision Notice if any
+        if (task.revisions.length > 0) {
+          const latest = task.revisions[task.revisions.length - 1];
+          html += `
+            <div class="mt-2.5 bg-pending-bg/80 border border-amber-200/70 p-2.5 rounded-lg flex items-start gap-1.5 text-[12px] text-pending">
+              <span class="material-symbols-outlined text-[16px] flex-shrink-0 mt-0.5">info</span>
+              <div class="leading-snug">
+                <span class="font-medium">最近返修 ${latest.v}：</span>
+                <span>“${latest.note}”</span>
+              </div>
+            </div>
+          `;
+        }
+
+        // Delivered File Notice if present
+        if (task.deliveredFile) {
+          html += `
+            <div class="mt-2.5 bg-blue-50/70 border border-blue-200/60 p-2 rounded flex items-center justify-between text-[12px] text-blue-900">
+              <span class="truncate flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-blue-600">attachment</span>
+                <span>${task.deliveredFile}</span>
+              </span>
+              <span class="text-[11px] text-blue-600 font-medium whitespace-nowrap ml-2">本地记录</span>
+            </div>
+          `;
+        }
+
+        // Action Buttons Group (Height >= 44px for touch targets)
+        html += `<div class="mt-3.5 pt-3 border-t border-border/70 flex items-center gap-2.5">`;
+
+        // Secondary Button: 查看需求 (Always available)
+        html += `
+          <button onclick="viewRequirement('${task.id}')" class="flex-1 h-[44px] flex items-center justify-center bg-surface border border-border rounded-lg text-text-primary text-[14px] font-medium active:bg-surface-muted transition-colors">
+            查看需求
+          </button>
+        `;
+
+        // Primary / State Action Buttons
+        if (task.status === "待领") {
+          html += `
+            <button onclick="claimTask('${task.id}')" class="flex-1 h-[44px] flex items-center justify-center bg-primary active:bg-brand-pressed text-surface rounded-lg text-[14px] font-medium transition-colors">
+              领取需求
+            </button>
+          `;
+        } else if (task.status === "进行中") {
+          html += `
+            <button onclick="openDeliverModal('${task.id}')" class="flex-1 h-[44px] flex items-center justify-center bg-primary active:bg-brand-pressed text-surface rounded-lg text-[14px] font-medium transition-colors">
+              交付成片
+            </button>
+          `;
+        } else if (task.status === "已交付") {
+          html += `
+            <button onclick="openRevisionModal('${task.id}')" class="flex-1 h-[44px] flex items-center justify-center bg-surface border border-border text-danger text-[13px] font-medium rounded-lg active:bg-danger-bg transition-colors">
+              发起返修
+            </button>
+            <button onclick="openPaymentModal('${task.id}')" class="flex-1 h-[44px] flex items-center justify-center bg-primary active:bg-brand-pressed text-surface rounded-lg text-[13px] font-medium transition-colors">
+              登记回款
+            </button>
+          `;
+        } else if (task.status === "已回款") {
+          html += `
+            <div class="flex-1 h-[44px] flex items-center justify-center bg-success-bg border border-success/30 rounded-lg text-success text-[13px] font-medium">
+              <span class="material-symbols-outlined text-[16px] mr-1">check_circle</span>
+              已登记回款
+            </div>
+          `;
+        }
+
+        html += `</div>`; // Close button row
+
+        // Subtle sub-disclaimer for payment
+        if (task.status === "已回款") {
+          html += `
+            <p class="text-[11px] text-text-secondary/80 text-center mt-2">
+              仅本地登记，不代表真实到账，未接入真实结算
+            </p>
+          `;
+        }
+
+        card.innerHTML = html;
+        container.appendChild(card);
+      });
+    }
+
+    // Filter Trigger
+    function setFilter(filterType) {
+      currentFilter = filterType;
+      document.querySelectorAll(".filter-pill").forEach(pill => {
+        const type = pill.getAttribute("data-filter");
+        if (type === filterType) {
+          pill.className = "filter-pill flex items-center justify-center h-[34px] px-3.5 rounded-full text-label-md transition-colors bg-text-primary text-surface font-medium whitespace-nowrap";
+        } else {
+          pill.className = "filter-pill flex items-center justify-center h-[34px] px-3.5 rounded-full text-label-md transition-colors bg-surface text-text-secondary border border-border/80 whitespace-nowrap";
+        }
+      });
+      renderTasks();
+    }
+
+    // Modal Display Controls
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    // Action: 查看需求
+    function viewRequirement(id) {
+      const task = tasks.find(t => t.id === id);
+      if (!task) return;
+
+      document.getElementById("modalTitle").innerText = task.title;
+      document.getElementById("modalBody").innerHTML = `
+        <div class="space-y-3">
+          <div class="bg-surface-container-low p-3 rounded-lg border border-border/60">
+            <span class="text-label-sm text-text-secondary block mb-1">剪辑类别与时限</span>
+            <p class="text-body-md font-medium text-text-primary">${task.category} · 截止：${task.deadline}</p>
+          </div>
+          <div>
+            <span class="text-label-sm text-text-secondary block mb-1">素材接入地址</span>
+            <p class="text-body-md text-text-primary">${task.materials}</p>
+          </div>
+          <div>
+            <span class="text-label-sm text-text-secondary block mb-1">剪辑与合成规范</span>
+            <p class="text-body-md text-text-primary leading-relaxed">${task.requirements}</p>
+          </div>
+          ${task.revisions.length > 0 ? `
+            <div class="border-t border-border pt-2.5">
+              <span class="text-label-sm text-pending block mb-1">历史返修记录</span>
+              ${task.revisions.map(r => `
+                <div class="text-[13px] text-text-secondary mb-1">
+                  <span class="font-medium text-text-primary">${r.v}：</span>${r.note}
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+        </div>
+      `;
+      openModal("detailModal");
+    }
+
+    // Action: 领取需求 (待领 -> 进行中)
+    function claimTask(id) {
+      const task = tasks.find(t => t.id === id);
+      if (task) {
+        task.status = "进行中";
+        renderTasks();
+      }
+    }
+
+    // Action: 打开交付弹窗
+    function openDeliverModal(id) {
+      activeTaskId = id;
+      const task = tasks.find(t => t.id === id);
+      document.getElementById("deliverTaskName").innerText = task.title + " · " + task.version;
+      document.getElementById("deliverFileInput").value = `【${task.version}成片】${task.title.replace(/\s/g, '')}.mp4`;
+      openModal("deliverModal");
+    }
+
+    // Action: 确认交付 (进行中 -> 已交付)
+    function confirmDeliverAction() {
+      const task = tasks.find(t => t.id === activeTaskId);
+      const fileName = document.getElementById("deliverFileInput").value.trim() || `【成片】预览工程.mp4`;
+      if (task) {
+        task.status = "已交付";
+        task.deliveredFile = fileName;
+        closeModal("deliverModal");
+        renderTasks();
+      }
+    }
+
+    // Action: 打开返修弹窗
+    function openRevisionModal(id) {
+      activeTaskId = id;
+      const task = tasks.find(t => t.id === id);
+      document.getElementById("revisionTaskName").innerText = `${task.title}（当前${task.version}）`;
+      document.getElementById("revisionReasonInput").value = "";
+      openModal("revisionModal");
+    }
+
+    // Action: 提交返修 (已交付 -> 进行中·返修中·Vn+1)
+    function confirmRevisionAction() {
+      const task = tasks.find(t => t.id === activeTaskId);
+      const note = document.getElementById("revisionReasonInput").value.trim() || "画面剪辑点微调，优化节奏与音画同步。";
+      if (task) {
+        const nextVNum = task.revisions.length + 2;
+        const newVersion = "V" + nextVNum;
+        task.revisions.push({ v: task.version, note: note });
+        task.version = newVersion;
+        task.status = "进行中";
+        task.deliveredFile = null;
+        closeModal("revisionModal");
+        renderTasks();
+      }
+    }
+
+    // Action: 打开回款弹窗
+    function openPaymentModal(id) {
+      activeTaskId = id;
+      const task = tasks.find(t => t.id === id);
+      document.getElementById("paymentTaskName").innerText = task.title;
+      openModal("paymentModal");
+    }
+
+    // Action: 确认登记回款 (已交付 -> 已回款)
+    function confirmPaymentAction() {
+      const task = tasks.find(t => t.id === activeTaskId);
+      if (task) {
+        task.status = "已回款";
+        task.isPaid = true;
+        closeModal("paymentModal");
+        renderTasks();
+      }
+    }
+
+    // Initial Bootstrap
+    document.addEventListener("DOMContentLoaded", () => {
+      renderTasks();
+    });
+  </script>
+</body></html>

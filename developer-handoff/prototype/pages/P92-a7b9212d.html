@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>P92｜消息中心</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#F5F7F8",
+            surface: "#FFFFFF",
+            secondary: "#EDF1F3",
+            bordercolor: "#DDE3E8",
+            charcoal: "#26313A",
+            muted: "#65717B",
+            primary: "#F88440",
+            softorange: "#FCF4EC",
+            pressedorange: "#D96A31",
+            riskred: "#EF4444",
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "sans-serif"],
+            display: ["Public Sans", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "sans-serif"],
+            body: ["Public Sans", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "sans-serif"],
+            label: ["Public Sans", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+      background-color: #F5F7F8;
+    }
+  </style>
+</head>
+<body class="bg-[#F5F7F8] text-[#26313A] font-body antialiased min-h-screen flex justify-center items-start">
+<!-- Mobile Container (390px wide, 884px height) -->
+<div class="w-[390px] h-[884px] max-h-[884px] bg-[#F5F7F8] relative overflow-hidden flex flex-col">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-[#FFFFFF] w-full shrink-0 border-b border-[#DDE3E8]/60">
+<div class="flex justify-between items-center w-full px-4 py-3 max-w-md mx-auto">
+<button aria-label="返回" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#EDF1F3] active:scale-95 transition-all duration-150 text-[#26313A]" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h1 class="text-xl font-bold tracking-tight text-[#26313A]">消息中心</h1>
+<span class="text-xs text-[#65717B]">总未读 <span id="total-unread-badge">6</span> 条</span>
+</div>
+<button aria-label="更多选项" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#EDF1F3] active:scale-95 transition-all duration-150 text-[#26313A]">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Filter Tabs -->
+<div class="bg-[#FFFFFF] px-4 py-2 flex gap-4 border-b border-[#DDE3E8] text-sm font-medium shrink-0">
+<button class="pb-2 text-[#F88440] border-b-2 border-[#F88440] transition-colors" id="tab-all" onclick="filterMessages('all')">全部</button>
+<button class="pb-2 text-[#65717B] hover:text-[#26313A] transition-colors flex items-center gap-1" id="tab-unread" onclick="filterMessages('unread')">
+        未读 <span class="bg-[#FCF4EC] text-[#F88440] text-xs px-1.5 py-0.5 rounded-full font-bold" id="filter-unread-count">6</span>
+</button>
+<button class="pb-2 text-[#65717B] hover:text-[#26313A] transition-colors" id="tab-system" onclick="filterMessages('system')">系统通知</button>
+</div>
+<!-- Notification List (Scrollable Area) -->
+<main class="flex-1 px-4 py-3 overflow-y-auto">
+<div class="bg-[#FFFFFF] rounded-2xl border border-[#DDE3E8] overflow-hidden">
+<!-- 1. 星曜传媒·公会群 -->
+<div class="msg-item px-4 py-3.5 flex items-center gap-3 hover:bg-[#EDF1F3]/50 cursor-pointer transition-colors border-b border-[#DDE3E8] relative" data-type="unread group" onclick="handleItemClick('group', this)">
+<div class="w-11 h-11 rounded-full bg-[#FCF4EC] flex items-center justify-center text-[#F88440] shrink-0 relative">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="absolute -top-1 -right-1 bg-[#F88440] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#FFFFFF] unread-count-badge">2</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex justify-between items-baseline mb-0.5">
+<h2 class="text-sm font-bold text-[#26313A] truncate">星曜传媒·公会群</h2>
+<span class="text-[11px] text-[#65717B] shrink-0">今天 10:30</span>
+</div>
+<p class="text-xs text-[#65717B] truncate">麦子今天结业了，已转运营排首播</p>
+</div>
+<div class="unread-dot hidden w-2 h-2 rounded-full bg-[#EF4444] shrink-0"></div>
+</div>
+<!-- 2. 小林 (运营) -->
+<div class="msg-item px-4 py-3.5 flex items-center gap-3 hover:bg-[#EDF1F3]/50 cursor-pointer transition-colors border-b border-[#DDE3E8] relative" data-type="unread private" onclick="handleItemClick('private', this)">
+<div class="w-11 h-11 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#26313A] shrink-0 relative">
+<span class="material-symbols-outlined text-xl">person</span>
+<span class="absolute -top-1 -right-1 bg-[#F88440] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#FFFFFF] unread-count-badge">1</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex justify-between items-baseline mb-0.5">
+<h2 class="text-sm font-bold text-[#26313A] truncate">小林 (运营)</h2>
+<span class="text-[11px] text-[#65717B] shrink-0">今天 09:30</span>
+</div>
+<p class="text-xs text-[#65717B] truncate">昨晚4.6万，收尾连唱那两首留着，今晚再用一次</p>
+</div>
+<div class="unread-dot hidden w-2 h-2 rounded-full bg-[#EF4444] shrink-0"></div>
+</div>
+<!-- 3. 直播复盘 -->
+<div class="msg-item px-4 py-3.5 flex items-center gap-3 hover:bg-[#EDF1F3]/50 cursor-pointer transition-colors border-b border-[#DDE3E8] relative" data-type="unread system" onclick="handleItemClick('system1', this)">
+<div class="w-11 h-11 rounded-full bg-[#FCF4EC] flex items-center justify-center text-[#F88440] shrink-0">
+<span class="material-symbols-outlined text-xl">bar_chart</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex justify-between items-baseline mb-0.5">
+<h2 class="text-sm font-bold text-[#26313A] truncate">直播复盘</h2>
+<span class="text-[11px] text-[#65717B] shrink-0">今天 09:00</span>
+</div>
+<p class="text-xs text-[#65717B] truncate">复盘已推送：10-13</p>
+</div>
+<div class="unread-dot w-2 h-2 rounded-full bg-[#EF4444] shrink-0"></div>
+</div>
+<!-- 4. 直播规划 -->
+<div class="msg-item px-4 py-3.5 flex items-center gap-3 hover:bg-[#EDF1F3]/50 cursor-pointer transition-colors border-b border-[#DDE3E8] relative" data-type="unread system" onclick="handleItemClick('system2', this)">
+<div class="w-11 h-11 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#26313A] shrink-0">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex justify-between items-baseline mb-0.5">
+<h2 class="text-sm font-bold text-[#26313A] truncate">直播规划</h2>
+<span class="text-[11px] text-[#65717B] shrink-0">昨天 20:00</span>
+</div>
+<p class="text-xs text-[#65717B] truncate">新规划已发：周五晚场冲刺</p>
+</div>
+<div class="unread-dot w-2 h-2 rounded-full bg-[#EF4444] shrink-0"></div>
+</div>
+<!-- 5. 主播账单 -->
+<div class="msg-item px-4 py-3.5 flex items-center gap-3 hover:bg-[#EDF1F3]/50 cursor-pointer transition-colors relative" data-type="unread system" onclick="handleItemClick('system3', this)">
+<div class="w-11 h-11 rounded-full bg-[#FCF4EC] flex items-center justify-center text-[#F88440] shrink-0">
+<span class="material-symbols-outlined text-xl">receipt_long</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex justify-between items-baseline mb-0.5">
+<h2 class="text-sm font-bold text-[#26313A] truncate">主播账单</h2>
+<span class="text-[11px] text-[#65717B] shrink-0">昨天 18:00</span>
+</div>
+<p class="text-xs text-[#65717B] truncate">10月账单已出，待你确认 (账单后续状态待确认)</p>
+</div>
+<div class="unread-dot w-2 h-2 rounded-full bg-[#EF4444] shrink-0"></div>
+</div>
+</div>
+<!-- Local Demo Disclaimer Footer -->
+<div class="px-4 py-4 text-center">
+<p class="text-[10px] text-[#65717B] leading-relaxed">当前原型前端演示：点击未读自动清零为本地状态，不代表后台已读或外部推送</p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="shrink-0 w-full z-50 flex justify-around items-center px-2 py-2 max-w-md mx-auto bg-[#FFFFFF] border-t border-[#DDE3E8]">
+<a class="flex flex-col items-center justify-center text-[#F88440] font-bold py-1 min-w-[56px]" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[11px] font-medium font-body mt-0.5">今天</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#F88440] transition-colors min-w-[56px]" href="#">
+<span class="material-symbols-outlined text-2xl">calendar_month</span>
+<span class="text-[11px] font-medium font-body mt-0.5">规划</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#F88440] transition-colors min-w-[56px]" href="#">
+<span class="material-symbols-outlined text-2xl">bar_chart</span>
+<span class="text-[11px] font-medium font-body mt-0.5">复盘</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#F88440] transition-colors min-w-[56px]" href="#">
+<span class="material-symbols-outlined text-2xl">support_agent</span>
+<span class="text-[11px] font-medium font-body mt-0.5">助理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#F88440] transition-colors min-w-[56px]" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[11px] font-medium font-body mt-0.5">我的</span>
+</a>
+</nav>
+</div>
+<!-- Interactive Logic script -->
+<script>
+    let unreadCount = 6;
+
+    function updateUnreadDisplay() {
+      const badge = document.getElementById('total-unread-badge');
+      const filterBadge = document.getElementById('filter-unread-count');
+      if (badge) badge.innerText = unreadCount;
+      if (filterBadge) {
+        filterBadge.innerText = unreadCount;
+        if (unreadCount <= 0) {
+          filterBadge.parentElement.style.display = 'none';
+        }
+      }
+    }
+
+    function handleItemClick(type, element) {
+      const badge = element.querySelector('.unread-count-badge');
+      const dot = element.querySelector('.unread-dot');
+      
+      if (badge) {
+        const count = parseInt(badge.innerText, 10);
+        unreadCount = Math.max(0, unreadCount - count);
+        badge.remove();
+        element.setAttribute('data-type', element.getAttribute('data-type').replace('unread', 'read'));
+      } else if (dot && !dot.classList.contains('hidden')) {
+        unreadCount = Math.max(0, unreadCount - 1);
+        dot.classList.add('hidden');
+        element.setAttribute('data-type', element.getAttribute('data-type').replace('unread', 'read'));
+      }
+      updateUnreadDisplay();
+    }
+
+    function filterMessages(filter) {
+      const tabs = ['all', 'unread', 'system'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        if (btn) {
+          if (t === filter) {
+            btn.className = "pb-2 text-[#F88440] border-b-2 border-[#F88440] transition-colors flex items-center gap-1";
+          } else {
+            btn.className = "pb-2 text-[#65717B] hover:text-[#26313A] transition-colors flex items-center gap-1";
+          }
+        }
+      });
+
+      const items = document.querySelectorAll('.msg-item');
+      items.forEach(item => {
+        const type = item.getAttribute('data-type');
+        if (filter === 'all') {
+          item.style.display = 'flex';
+        } else if (filter === 'unread') {
+          if (type && type.includes('unread')) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        } else if (filter === 'system') {
+          if (type && type.includes('system')) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        }
+      });
+    }
+</script>
+</body></html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>P20｜运营工作台｜统一产品版</title>
+<!-- Tailwind CSS v3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#F5F7F8",
+            surface: "#FFFFFF",
+            "surface-sub": "#EDF1F3",
+            divider: "#DDE3E8",
+            textPrimary: "#26313A",
+            textSecondary: "#65717B",
+            brandOrange: "#F88440",
+            brandPressed: "#D96A31",
+            brandSoft: "#FCF4EC",
+            danger: "#EF4444",
+            dangerBg: "#FEF2F2",
+            pending: "#B45309",
+            pendingBg: "#FFFBEB",
+            success: "#047857",
+            successBg: "#ECFDF5",
+          },
+          fontFamily: {
+            sans: ["-apple-system", "BlinkMacSystemFont", "\"PingFang SC\"", "\"Noto Sans SC\"", "\"Microsoft YaHei\"", "sans-serif"],
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      background-color: #e5e7eb;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Hide scrollbar for clean app experience */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center m-0 p-0">
+<!-- Mobile Screen Shell: Strict 390px * 884px -->
+<div class="relative w-[390px] max-w-[390px] h-[884px] max-h-[884px] bg-[#F5F7F8] text-[#26313A] overflow-hidden flex flex-col shadow-2xl">
+<!-- BEGIN: TopAppBar (Fixed 56px) -->
+<header class="h-[56px] min-h-[56px] max-h-[56px] bg-white border-b border-[#DDE3E8] px-4 flex items-center justify-between z-30 select-none">
+<!-- Left placeholder slot for symmetric centering (44x44) -->
+<div aria-hidden="true" class="w-11 h-11 flex-shrink-0"></div>
+<!-- Center Title -->
+<h1 class="text-[20px] font-semibold text-[#26313A] tracking-tight text-center truncate">运营工作台</h1>
+<!-- Right Action Slot (44x44) -->
+<a aria-label="通知中心" class="w-11 h-11 flex items-center justify-center text-[#26313A] active:opacity-70 transition-opacity flex-shrink-0" data-page="P92" href="#P92">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</a>
+</header>
+<!-- END: TopAppBar -->
+<!-- BEGIN: 3-Segment Tab Switcher (Static bar above scrollable area) -->
+<div class="bg-white border-b border-[#DDE3E8] px-4 py-2 flex items-center z-20">
+<div class="w-full h-10 p-1 bg-[#EDF1F3] rounded-xl flex items-center justify-between text-sm">
+<button class="flex-1 h-8 rounded-lg font-semibold text-xs transition-all bg-[#F88440] text-white shadow-sm flex items-center justify-center" id="tab-btn-todo" onclick="switchTab('todo')" type="button">
+          待办
+        </button>
+<button class="flex-1 h-8 rounded-lg font-medium text-xs transition-all text-[#65717B] hover:text-[#26313A] flex items-center justify-center" id="tab-btn-broadcast" onclick="switchTab('broadcast')" type="button">
+          今日开播
+        </button>
+<button class="flex-1 h-8 rounded-lg font-medium text-xs transition-all text-[#65717B] hover:text-[#26313A] flex items-center justify-center" id="tab-btn-biz" onclick="switchTab('biz')" type="button">
+          经营概况
+        </button>
+</div>
+</div>
+<!-- END: Tab Switcher -->
+<!-- BEGIN: Main Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto no-scrollbar">
+<!-- ========================================== -->
+<!-- VIEW 1: 待办 (TODO PANEL - DEFAULT ACTIVE) -->
+<!-- ========================================== -->
+<div class="p-4 space-y-4" id="view-todo">
+<!-- Sub-header context row -->
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-medium text-[#65717B]">今天 · 10月14日</span>
+<span class="text-[11px] bg-[#EDF1F3] text-[#26313A] px-2 py-0.5 rounded font-medium">运营 · 小林</span>
+</div>
+<button class="text-xs text-[#F88440] font-medium flex items-center space-x-1 active:opacity-75" onclick="openNotificationModal()" type="button">
+<span class="material-symbols-outlined text-[16px]">campaign</span>
+<span>群发通知</span>
+</button>
+</div>
+<!-- Section: 今天要处理 -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between">
+<h2 class="text-base font-bold text-[#26313A]">今天要处理</h2>
+<span class="text-xs text-[#65717B]">2项待推进</span>
+</div>
+<!-- Highlight Card: 老K -->
+<article class="bg-white rounded-xl p-3.5 border border-[#DDE3E8] shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B] flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="text-base font-bold text-[#26313A]">老K</span>
+<span class="text-[11px] px-1.5 py-0.5 rounded bg-[#FCF4EC] text-[#F88440] font-medium">当前查看</span>
+<span class="text-xs text-[#65717B]">游戏陪玩 · 22:00档</span>
+</div>
+<h3 class="text-sm font-semibold text-[#26313A] mt-1">盯场复盘 · 流水下滑</h3>
+</div>
+</div>
+</div>
+<!-- Details -->
+<div class="mt-2.5 space-y-1.5 text-xs text-[#65717B] pl-1 bg-[#F5F7F8] p-2 rounded-lg">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[#EF4444] text-[16px]">trending_down</span>
+<span>晚音浪 <strong class="text-[#26313A]">1.1万</strong> · 较上周同期低<span class="text-[#EF4444] font-medium">42%</span></span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[#65717B] text-[16px]">schedule</span>
+<span>22:00–01:00 · 同赛道22点档有大场分流</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="mt-3 pt-2.5 border-t border-[#DDE3E8] flex items-center justify-between">
+<div class="text-xs text-[#65717B]">
+                负责人 <span class="text-[#26313A] font-medium">运营小林</span>
+</div>
+<div class="flex items-center space-x-2">
+<a class="h-9 px-3.5 rounded-lg bg-[#EDF1F3] text-[#26313A] text-xs font-medium flex items-center justify-center active:bg-[#DDE3E8] transition-colors" data-page="P22" data-subject="老K" href="#P22">
+                  看详情
+                </a>
+<a class="h-9 px-4 rounded-lg bg-[#F88440] text-white text-xs font-medium flex items-center justify-center active:bg-[#D96A31] transition-colors" data-page="P24" data-subject="老K" href="#P24">
+                  去复盘
+                </a>
+</div>
+</div>
+</article>
+<!-- Flat Row: 阿哲 -->
+<article class="bg-white rounded-xl p-3 border border-[#DDE3E8] flex items-center justify-between">
+<div class="flex items-center space-x-3 min-w-0 pr-2">
+<div class="w-10 h-10 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B] flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-sm font-bold text-[#26313A]">阿哲</h3>
+<p class="text-xs text-[#65717B] mt-0.5 truncate">连续3天流水下滑，近7天比前7天少16%</p>
+<p class="text-[11px] text-[#65717B] truncate">进场停留38秒→26秒，18点档同类新开播分流</p>
+</div>
+</div>
+<a class="flex-shrink-0 h-8 px-3 rounded-lg bg-[#EDF1F3] text-xs font-medium text-[#26313A] flex items-center justify-center active:bg-[#DDE3E8] transition-colors" data-page="P22" data-subject="阿哲" href="#P22">
+              去待办
+            </a>
+</article>
+</section>
+<!-- Section: 需要关注 -->
+<section class="space-y-2.5 pt-1">
+<div class="flex items-center justify-between">
+<h2 class="text-base font-bold text-[#26313A]">需要关注</h2>
+<span class="text-xs text-[#65717B]">日常跟进</span>
+</div>
+<div class="bg-white rounded-xl border border-[#DDE3E8] divide-y divide-[#DDE3E8]">
+<!-- Row: 麦子 -->
+<div class="p-3 flex items-center justify-between">
+<div class="flex items-center space-x-3 min-w-0 pr-2">
+<div class="w-9 h-9 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B] flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-sm font-semibold text-[#26313A]">麦子</h3>
+<p class="text-xs text-[#65717B] mt-0.5 truncate">新人第6天 · 明天结业评估</p>
+</div>
+</div>
+<a class="flex-shrink-0 h-8 px-3 rounded-lg bg-[#EDF1F3] text-xs font-medium text-[#26313A] flex items-center justify-center active:bg-[#DDE3E8] transition-colors" data-page="P22" data-subject="麦子" href="#P22">
+                看培训
+              </a>
+</div>
+<!-- Row: 茉莉 -->
+<div class="p-3 flex items-center justify-between">
+<div class="flex items-center space-x-3 min-w-0 pr-2">
+<div class="w-9 h-9 rounded-full bg-[#FCF4EC] flex items-center justify-center text-[#F88440] flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+<div class="min-w-0">
+<h3 class="text-sm font-semibold text-[#26313A]">茉莉</h3>
+<p class="text-xs text-[#65717B] mt-0.5 truncate">开播前撤掉背景标识 · 视觉组已回传</p>
+</div>
+</div>
+<a class="flex-shrink-0 h-8 px-3 rounded-lg bg-[#FCF4EC] text-xs font-medium text-[#F88440] flex items-center justify-center active:bg-[#DDE3E8] transition-colors" data-page="P22" data-subject="茉莉" href="#P22">
+                去验收
+              </a>
+</div>
+</div>
+</section>
+</div>
+<!-- ============================================== -->
+<!-- VIEW 2: 今日开播 (BROADCAST PANEL - TOGGLED) -->
+<!-- ============================================== -->
+<div class="p-4 space-y-3 hidden" id="view-broadcast">
+<!-- Search input -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[#65717B] text-[20px]">search</span>
+<input class="w-full h-10 pl-9 pr-3 text-xs bg-white border border-[#DDE3E8] rounded-xl text-[#26313A] placeholder-[#65717B] focus:outline-none focus:border-[#F88440]" id="broadcast-search" oninput="filterStreamers()" placeholder="搜索主播姓名或赛道" type="text"/>
+</div>
+<!-- Filter chips -->
+<div class="flex items-center space-x-2 text-xs overflow-x-auto no-scrollbar py-0.5">
+<button class="filter-chip px-3 py-1.5 rounded-full bg-[#F88440] text-white font-medium flex-shrink-0" data-filter="all" onclick="setFilter('all')">全部 (4)</button>
+<button class="filter-chip px-3 py-1.5 rounded-full bg-white text-[#65717B] border border-[#DDE3E8] font-medium flex-shrink-0" data-filter="live" onclick="setFilter('live')">在播 (1)</button>
+<button class="filter-chip px-3 py-1.5 rounded-full bg-white text-[#65717B] border border-[#DDE3E8] font-medium flex-shrink-0" data-filter="upcoming" onclick="setFilter('upcoming')">未开播 (2)</button>
+<button class="filter-chip px-3 py-1.5 rounded-full bg-white text-[#65717B] border border-[#DDE3E8] font-medium flex-shrink-0" data-filter="risk" onclick="setFilter('risk')">有风险 (3)</button>
+</div>
+<!-- Continuous Streamer List -->
+<div class="bg-white rounded-xl border border-[#DDE3E8] divide-y divide-[#DDE3E8] overflow-hidden">
+<!-- Row: 小雨 (在播) -->
+<a class="streamer-item p-3 flex items-center justify-between hover:bg-[#F5F7F8] active:bg-[#EDF1F3] transition-colors block" data-name="小雨" data-page="P22" data-status="live" data-subject="小雨" href="#P22">
+<div class="flex items-center space-x-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#ECFDF5] text-[#047857] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">person_outline</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">小雨</span>
+<span class="text-[11px] px-1.5 py-0.2 bg-[#ECFDF5] text-[#047857] rounded font-medium">直播中</span>
+<span class="text-xs text-[#65717B]">才艺唱歌</span>
+</div>
+<p class="text-xs text-[#65717B] mt-0.5">20:00–23:00 · 实时音浪稳定</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[#65717B] text-[18px]">chevron_right</span>
+</a>
+<!-- Row: 阿哲 (已下播 / 有风险) -->
+<a class="streamer-item p-3 flex items-center justify-between hover:bg-[#F5F7F8] active:bg-[#EDF1F3] transition-colors block" data-name="阿哲" data-page="P22" data-status="risk" data-subject="阿哲" href="#P22">
+<div class="flex items-center space-x-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#EDF1F3] text-[#65717B] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">person_outline</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">阿哲</span>
+<span class="text-[11px] px-1.5 py-0.2 bg-[#EDF1F3] text-[#65717B] rounded font-medium">已下播</span>
+<span class="text-xs text-[#65717B]">18:00–21:00</span>
+</div>
+<p class="text-xs text-[#EF4444] mt-0.5 truncate flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                  连续3天流水下滑 · 去处理
+                </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[#65717B] text-[18px]">chevron_right</span>
+</a>
+<!-- Row: 茉莉 (今日未播 / 有风险) -->
+<a class="streamer-item p-3 flex items-center justify-between hover:bg-[#F5F7F8] active:bg-[#EDF1F3] transition-colors block" data-name="茉莉" data-page="P22" data-status="risk upcoming" data-subject="茉莉" href="#P22">
+<div class="flex items-center space-x-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#FFFBEB] text-[#B45309] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">person_outline</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">茉莉</span>
+<span class="text-[11px] px-1.5 py-0.2 bg-[#FFFBEB] text-[#B45309] rounded font-medium">今日未播</span>
+<span class="text-xs text-[#65717B]">21:00–24:00</span>
+</div>
+<p class="text-xs text-[#B45309] mt-0.5 truncate flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">report</span>
+                  连续2天没开播 · 去处理
+                </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[#65717B] text-[18px]">chevron_right</span>
+</a>
+<!-- Row: 老K (未开播 / 有风险) -->
+<a class="streamer-item p-3 flex items-center justify-between hover:bg-[#F5F7F8] active:bg-[#EDF1F3] transition-colors block" data-name="老K" data-page="P22" data-status="risk upcoming" data-subject="老K" href="#P22">
+<div class="flex items-center space-x-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#FEF2F2] text-[#EF4444] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">person_outline</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">老K</span>
+<span class="text-[11px] px-1.5 py-0.2 bg-[#EDF1F3] text-[#65717B] rounded font-medium">未开播</span>
+<span class="text-xs text-[#65717B]">22:00–01:00</span>
+</div>
+<p class="text-xs text-[#EF4444] mt-0.5 truncate flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">priority_high</span>
+                  昨晚较上周同期低42% · 去处理
+                </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[#65717B] text-[18px]">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- ============================================== -->
+<!-- VIEW 3: 经营概况 (BIZ SUMMARY - TOGGLED)      -->
+<!-- ============================================== -->
+<div class="p-4 space-y-4 hidden" id="view-biz">
+<div class="flex items-center justify-between text-xs text-[#65717B]">
+<span>数据截至 22:00</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#047857]"></span>系统实时同步中</span>
+</div>
+<!-- Metric Card Overview (Flat Layout, single surface) -->
+<div class="bg-white rounded-xl border border-[#DDE3E8] p-3.5 space-y-3">
+<div class="flex items-center justify-between pb-3 border-b border-[#DDE3E8]">
+<div>
+<div class="text-xs text-[#65717B]">今晚排班进展</div>
+<div class="text-2xl font-bold text-[#26313A] mt-0.5 tracking-tight">6 / 9 <span class="text-xs font-normal text-[#65717B]">场已开播</span></div>
+<div class="text-xs text-[#047857] mt-0.5 font-medium">3位正在直播中</div>
+</div>
+<button class="text-xs px-3 py-1.5 rounded-lg bg-[#FCF4EC] text-[#F88440] font-medium active:opacity-75" onclick="switchTab('broadcast')" type="button">
+              看名单 →
+            </button>
+</div>
+<!-- Secondary 2-column metrics -->
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="bg-[#F5F7F8] p-2.5 rounded-lg">
+<div class="text-[11px] text-[#65717B]">在管主播</div>
+<div class="text-lg font-bold text-[#26313A] mt-0.5">13 <span class="text-xs font-normal text-[#65717B]">人</span></div>
+</div>
+<div class="bg-[#F5F7F8] p-2.5 rounded-lg">
+<div class="text-[11px] text-[#65717B]">今日累计音浪</div>
+<div class="text-lg font-bold text-[#26313A] mt-0.5">18.8 <span class="text-xs font-normal text-[#65717B]">万</span></div>
+</div>
+</div>
+</div>
+<!-- Section: 需要跟进 (Continuous follow-up rows) -->
+<section class="space-y-2">
+<div class="flex items-center justify-between">
+<h2 class="text-base font-bold text-[#26313A]">需要跟进</h2>
+<span class="text-xs text-[#65717B]">异常与瓶颈</span>
+</div>
+<div class="bg-white rounded-xl border border-[#DDE3E8] divide-y divide-[#DDE3E8]">
+<!-- Follow-up: 老K -->
+<div class="p-3 flex items-center justify-between">
+<div class="min-w-0 pr-2">
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">老K</span>
+<span class="text-[11px] text-[#EF4444] bg-[#FEF2F2] px-1.5 py-0.2 rounded font-medium">下滑严重</span>
+</div>
+<p class="text-xs text-[#65717B] mt-0.5 truncate">昨晚音浪1.1万，较上周同期低42%</p>
+</div>
+<button class="flex-shrink-0 h-8 px-3 rounded-lg bg-[#EDF1F3] text-xs font-medium text-[#26313A] active:bg-[#DDE3E8]" onclick="switchTab('todo')" type="button">
+                去待办
+              </button>
+</div>
+<!-- Follow-up: 阿哲 -->
+<div class="p-3 flex items-center justify-between">
+<div class="min-w-0 pr-2">
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">阿哲</span>
+<span class="text-[11px] text-[#B45309] bg-[#FFFBEB] px-1.5 py-0.2 rounded font-medium">连续下滑</span>
+</div>
+<p class="text-xs text-[#65717B] mt-0.5 truncate">连续3天流水下滑，近7天比前7天少16%</p>
+</div>
+<button class="flex-shrink-0 h-8 px-3 rounded-lg bg-[#EDF1F3] text-xs font-medium text-[#26313A] active:bg-[#DDE3E8]" onclick="switchTab('todo')" type="button">
+                去待办
+              </button>
+</div>
+<!-- Follow-up: 晓晓 -->
+<div class="p-3 flex items-center justify-between">
+<div class="min-w-0 pr-2">
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">晓晓</span>
+<span class="text-[11px] text-[#EF4444] bg-[#FEF2F2] px-1.5 py-0.2 rounded font-medium">话术老化</span>
+</div>
+<p class="text-xs text-[#65717B] mt-0.5 truncate">峰值连降一周只剩7成；开场30秒话术两周未换</p>
+</div>
+<a class="flex-shrink-0 h-8 px-3 rounded-lg bg-[#EDF1F3] text-xs font-medium text-[#26313A] flex items-center justify-center active:bg-[#DDE3E8]" data-page="P22" data-subject="晓晓" href="#P22">
+                去待办
+              </a>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- END: Main Content Area -->
+<!-- BEGIN: BottomNavBar (Fixed 68px, 5-items) -->
+<nav class="h-[68px] min-h-[68px] max-h-[68px] bg-white border-t border-[#DDE3E8] px-2 flex items-center justify-around z-30 select-none">
+<!-- 1. 今天 (Active) -->
+<a aria-label="今天" class="flex flex-col items-center justify-center flex-1 h-full text-[#F88440] transition-colors" data-page="P20" href="#P20">
+<div class="w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">home</span>
+</div>
+<span class="text-[12px] leading-tight mt-1 font-normal">今天</span>
+</a>
+<!-- 2. 我的主播 -->
+<a aria-label="我的主播" class="flex flex-col items-center justify-center flex-1 h-full text-[#65717B] hover:text-[#26313A] transition-colors" data-page="P21" href="#P21">
+<div class="w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+</div>
+<span class="text-[12px] leading-tight mt-1 font-normal">我的主播</span>
+</a>
+<!-- 3. 交接 -->
+<a aria-label="交接" class="flex flex-col items-center justify-center flex-1 h-full text-[#65717B] hover:text-[#26313A] transition-colors" data-page="P25" href="#P25">
+<div class="w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+</div>
+<span class="text-[12px] leading-tight mt-1 font-normal">交接</span>
+</a>
+<!-- 4. 我的 -->
+<a aria-label="我的" class="flex flex-col items-center justify-center flex-1 h-full text-[#65717B] hover:text-[#26313A] transition-colors" data-page="MY" href="#MY">
+<div class="w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+</div>
+<span class="text-[12px] leading-tight mt-1 font-normal">我的</span>
+</a>
+<!-- 5. 助理 -->
+<a aria-label="助理" class="flex flex-col items-center justify-center flex-1 h-full text-[#65717B] hover:text-[#26313A] transition-colors" data-page="AI" href="#AI">
+<div class="w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+</div>
+<span class="text-[12px] leading-tight mt-1 font-normal">助理</span>
+</a>
+</nav>
+<!-- END: BottomNavBar -->
+<!-- BEGIN: Local Demonstration Modal for Group Notification -->
+<div class="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4 hidden" id="notice-modal" onclick="closeNotificationModal(event)">
+<div class="w-[320px] bg-white rounded-2xl p-5 shadow-xl border border-[#DDE3E8]" onclick="event.stopPropagation()">
+<div class="w-10 h-10 rounded-full bg-[#FCF4EC] text-[#F88440] flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[22px]">campaign</span>
+</div>
+<h4 class="text-base font-bold text-[#26313A]">群发通知提醒</h4>
+<p class="text-xs text-[#65717B] mt-2 leading-relaxed">
+          此处为本地演示记录操作。已向今日当班的在管主播（共 6 位）生成待播提醒便签，当前操作仅做系统原型记录，不执行真实外部网络推送。
+        </p>
+<div class="mt-4 pt-3 border-t border-[#DDE3E8] flex justify-end">
+<button class="h-9 px-4 rounded-lg bg-[#F88440] text-white text-xs font-medium active:bg-[#D96A31]" onclick="closeNotificationModal()" type="button">
+            已知悉
+          </button>
+</div>
+</div>
+</div>
+<!-- END: Modal -->
+</div>
+<!-- Client-side tab switching and filter logic -->
+<script>
+    function switchTab(target) {
+      const tabs = ['todo', 'broadcast', 'biz'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        const view = document.getElementById(`view-${t}`);
+        if (t === target) {
+          btn.className = 'flex-1 h-8 rounded-lg font-semibold text-xs transition-all bg-[#F88440] text-white shadow-sm flex items-center justify-center';
+          view.classList.remove('hidden');
+        } else {
+          btn.className = 'flex-1 h-8 rounded-lg font-medium text-xs transition-all text-[#65717B] hover:text-[#26313A] flex items-center justify-center';
+          view.classList.add('hidden');
+        }
+      });
+    }
+
+    let currentFilter = 'all';
+
+    function setFilter(filterType) {
+      currentFilter = filterType;
+      document.querySelectorAll('.filter-chip').forEach(chip => {
+        if (chip.getAttribute('data-filter') === filterType) {
+          chip.className = 'filter-chip px-3 py-1.5 rounded-full bg-[#F88440] text-white font-medium flex-shrink-0';
+        } else {
+          chip.className = 'filter-chip px-3 py-1.5 rounded-full bg-white text-[#65717B] border border-[#DDE3E8] font-medium flex-shrink-0';
+        }
+      });
+      filterStreamers();
+    }
+
+    function filterStreamers() {
+      const keyword = (document.getElementById('broadcast-search').value || '').trim().toLowerCase();
+      const items = document.querySelectorAll('.streamer-item');
+
+      items.forEach(item => {
+        const name = (item.getAttribute('data-name') || '').toLowerCase();
+        const status = item.getAttribute('data-status') || '';
+
+        const matchesKeyword = !keyword || name.includes(keyword);
+        const matchesFilter = (currentFilter === 'all') || status.includes(currentFilter);
+
+        if (matchesKeyword && matchesFilter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    function openNotificationModal() {
+      document.getElementById('notice-modal').classList.remove('hidden');
+    }
+
+    function closeNotificationModal(e) {
+      document.getElementById('notice-modal').classList.add('hidden');
+    }
+  </script>
+</body></html>

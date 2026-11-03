@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>服务排期</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "canvas": "#FAF5F1",
+            "surface": "#FFFFFF",
+            "base-gray": "#F4F0ED",
+            "border-gray": "#EBE5E0",
+            "charcoal": "#282838",
+            "muted": "#686260",
+            "primary": "#F88440",
+            "soft-orange": "#FCF4EC",
+            "pressed-orange": "#D96A31",
+            "risk-red": "#BA1A1A",
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "PingFang SC", "sans-serif"],
+            display: ["Public Sans", "PingFang SC", "sans-serif"],
+            body: ["Public Sans", "PingFang SC", "sans-serif"],
+            label: ["Public Sans", "PingFang SC", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#FAF5F1] text-[#282838] font-body antialiased selection:bg-[#F88440] selection:text-white pb-24" style="min-height: max(884px, 100dvh); background-color: rgb(245, 247, 248);">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-white border-b border-[#EBE5E0] dark:border-[#EBE5E0] sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-4 py-3 max-w-md mx-auto">
+<button class="text-[#282838] dark:text-[#282838] hover:bg-[#F4F0ED] active:bg-[#EBE5E0] p-1 rounded-full transition-all duration-150 active:scale-95" onclick="history.back()">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-[#282838] dark:text-[#282838]">主播档案</h1>
+<button class="text-[#282838] dark:text-[#282838] hover:bg-[#F4F0ED] active:bg-[#EBE5E0] p-1 rounded-full transition-all duration-150 active:scale-95">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-md mx-auto px-4 py-4 space-y-6">
+<!-- Date & Filter Header -->
+<div class="flex items-center justify-between">
+<div class="text-sm font-bold text-[#282838]">
+        今天 · 10月14日 周三
+      </div>
+<div class="flex bg-[#F4F0ED] p-1 rounded-lg text-xs font-medium" style="background-color: rgb(237, 241, 243);">
+<button class="px-3 py-1.5 rounded-md bg-[#F88440] text-white shadow-sm transition-all">按日</button>
+<button class="px-3 py-1.5 rounded-md text-[#686260] hover:text-[#282838] transition-all">本周</button>
+<button class="px-3 py-1.5 rounded-md text-[#686260] hover:text-[#282838] transition-all">全部</button>
+</div>
+</div>
+<!-- Timeline Schedule Section -->
+<div class="relative pl-6 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[2px] before:bg-dashed before:bg-[#EBE5E0]" style="--tw-before-bg: #DDE3E8;">
+<!-- 09:40 Schedule Item -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-[#F88440] ring-4 ring-[#FAF5F1]" style="--tw-ring-color: #F5F7F8; box-shadow: rgb(245, 247, 248) 0px 0px 0px 4px;"></div>
+<div class="text-xs font-bold text-[#686260] mb-2">09:40</div>
+<div class="bg-white rounded-xl p-4 border border-[#EBE5E0] shadow-sm space-y-3">
+<div class="flex items-start justify-between">
+<div class="font-bold text-base text-[#282838]">
+              直播间调试 <span class="text-[#686260] font-normal">|</span> 小雨 <span class="text-[#686260] font-normal">·</span> 直播间A
+            </div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A]">
+              待接单
+            </span>
+</div>
+<div class="text-xs text-[#686260]">
+            发起：运营小林
+          </div>
+<div class="pt-2 border-t border-[#EBE5E0] flex justify-end">
+<a class="inline-flex items-center text-xs font-medium text-[#F88440] hover:text-[#D96A31] transition-colors" href="#P52">
+              查看工单
+              <span class="material-symbols-outlined text-sm ml-0.5">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Route Notice Card -->
+<div class="bg-[#F4F0ED] rounded-lg p-3 text-xs text-[#686260] flex items-center space-x-2 border border-[#EBE5E0]" style="background-color: rgb(237, 241, 243); border-color: rgb(221, 227, 232);">
+<span class="material-symbols-outlined text-base text-[#F88440]">route</span>
+<span class="">出发前确认路线 · 两地点不同</span>
+</div>
+<!-- 14:00 Schedule Item -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-[#F88440] ring-4 ring-[#FAF5F1]" style="--tw-ring-color: #F5F7F8; box-shadow: 0 0 0 4px #F5F7F8;"></div>
+<div class="text-xs font-bold text-[#686260] mb-2">14:00</div>
+<div class="bg-white rounded-xl p-4 border border-[#EBE5E0] shadow-sm space-y-3">
+<div class="flex items-start justify-between">
+<div class="font-bold text-base text-[#282838]">
+              妆造跟进 <span class="text-[#686260] font-normal">|</span> 小雨 <span class="text-[#686260] font-normal">·</span> 妆造间
+            </div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A]">
+              待接单
+            </span>
+</div>
+<div class="text-xs text-[#686260]">
+            发起：运营小林
+          </div>
+<div class="pt-2 border-t border-[#EBE5E0] flex justify-end">
+<a class="inline-flex items-center text-xs font-medium text-[#F88440] hover:text-[#D96A31] transition-colors" href="#P51">
+              查看工单
+              <span class="material-symbols-outlined text-sm ml-0.5">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Evening Section -->
+<div class="pt-2">
+<div class="text-xs font-bold text-[#686260] mb-3 flex items-center space-x-2">
+<span class="">今晚</span>
+<div class="flex-1 h-[1px] bg-[#EBE5E0]" style="background-color: rgb(221, 227, 232);"></div>
+</div>
+<div class="bg-white rounded-xl p-3 border border-[#EBE5E0] shadow-sm flex items-center justify-between text-xs">
+<div class="flex items-center space-x-2 text-[#686260]">
+<span class="font-bold text-[#282838]">今晚 19:00</span>
+<span class="">·</span>
+<span class="">甜甜</span>
+<span class="">·</span>
+<span class="">妆造跟进</span>
+<span class="">·</span>
+<span class="">直播间B</span>
+</div>
+<span class="material-symbols-outlined text-sm text-[#686260]">chevron_right</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 max-w-md mx-auto bg-white border-t border-[#EBE5E0]">
+<!-- Item 1: 工作台 (Active) -->
+<a class="flex flex-col items-center justify-center font-bold py-1 hover:text-[#F88440] transition-transform duration-150 active:scale-95 text-[#F88440]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">home</span>
+<span class="text-xs font-medium font-body mt-1">今天</span>
+
+</a>
+<!-- Item 2: 我的主播 -->
+<a class="flex flex-col items-center justify-center text-[#686260] py-1 hover:text-[#F88440] transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-xs font-medium font-body mt-1">我的主播</span>
+</a>
+<!-- Item 3: 交接 -->
+<a class="flex flex-col items-center justify-center text-[#686260] py-1 hover:text-[#F88440] transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-xs font-medium font-body mt-1">交接</span>
+</a>
+<!-- Item 4: 我的 -->
+<a class="flex flex-col items-center justify-center text-[#686260] py-1 hover:text-[#F88440] transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs font-medium font-body mt-1">我的</span>
+</a>
+<!-- Item 5: 助理 -->
+<a class="flex flex-col items-center justify-center text-[#686260] py-1 hover:text-[#F88440] transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="text-xs font-medium font-body mt-1">助理</span>
+</a>
+</nav>
+
+
+
+
+
+
+</body></html>

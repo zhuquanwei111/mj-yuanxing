@@ -1,0 +1,496 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=390, height=884, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>P90｜公会群聊｜统一产品版</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#F5F7F8",
+            surface: "#FFFFFF",
+            subtle: "#EDF1F3",
+            line: "#DDE3E8",
+            charcoal: "#26313A",
+            muted: "#65717B",
+            warmOrange: "#F88440",
+            pressedOrange: "#D96A31",
+            softOrange: "#FCF4EC",
+            risk: "#EF4444",
+            pending: "#B45309",
+            success: "#047857"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Noto Sans SC", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+            display: ["Noto Sans SC", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+            body: ["Noto Sans SC", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+            label: ["Noto Sans SC", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "Microsoft YaHei", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1A1D20;
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      display: inline-block;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    /* Hide scrollbars for smooth app appearance */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .tap-effect:active {
+      transform: scale(0.97);
+      opacity: 0.85;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex items-center justify-center min-h-screen select-none">
+<!-- Mobile Viewport Container 390px * 884px -->
+<div class="relative w-[390px] h-[884px] bg-[#F5F7F8] overflow-hidden flex flex-col shadow-2xl" id="viewport">
+<!-- 1. Top App Bar (Fixed 56px) -->
+<header class="h-[56px] min-h-[56px] w-full bg-white border-b border-[#DDE3E8] px-2 flex items-center justify-between z-30 shrink-0">
+<!-- Left 44x44 tap area -->
+<a aria-label="返回" class="w-[44px] h-[44px] flex items-center justify-center text-[#26313A] tap-effect rounded-lg focus:outline-none" data-page="P92" href="#P92">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</a>
+<!-- Center Title -->
+<div class="flex-1 text-center pointer-events-none">
+<h1 class="text-[17px] font-bold text-[#26313A] leading-tight tracking-tight">公会群</h1>
+<p class="text-[11px] text-[#65717B] font-normal leading-none mt-0.5">星曜传媒 · 公会群</p>
+</div>
+<!-- Right 44x44 balanced spacer -->
+<div class="w-[44px] h-[44px] flex items-center justify-center shrink-0"></div>
+</header>
+<!-- 2. Chat Message Stream (Scrollable, min-h-0 prevents overflow pushing nav) -->
+<main class="flex-1 overflow-y-auto no-scrollbar p-3 space-y-4 min-h-0 bg-[#F5F7F8]" id="chatStream">
+<!-- Group 1: 昨天 18:00 -->
+<div class="flex justify-center my-1">
+<span class="text-[11px] font-medium text-[#65717B] bg-[#EDF1F3] px-2.5 py-0.5 rounded-full">昨天 18:00</span>
+</div>
+<!-- g1: 系统通知事件条 -->
+<div class="w-full flex justify-center" data-message-id="g1">
+<a class="w-full max-w-[342px] bg-white border border-[#DDE3E8] rounded-xl p-3 flex items-center justify-between tap-effect transition-colors hover:bg-slate-50" data-message-id="g1" data-page="P71" href="#P71">
+<div class="flex items-center space-x-2.5 min-w-0">
+<span class="material-symbols-outlined text-[#65717B] text-[20px] shrink-0">campaign</span>
+<span class="text-[13px] text-[#26313A] truncate font-medium">10月账单已出，收益页可查</span>
+</div>
+<div class="flex items-center text-[#65717B] text-[12px] shrink-0 ml-2">
+<span>查看</span>
+<span class="material-symbols-outlined text-[16px] ml-0.5">chevron_right</span>
+</div>
+</a>
+</div>
+<!-- Group 2: 今天 09:15 -->
+<div class="flex justify-center mt-3 mb-1">
+<span class="text-[11px] font-medium text-[#65717B] bg-[#EDF1F3] px-2.5 py-0.5 rounded-full">今天 09:15</span>
+</div>
+<!-- g2: 大周 · 经纪人 -->
+<div class="flex items-start space-x-2.5 w-full" data-message-id="g2">
+<div class="w-9 h-9 rounded-full bg-[#EDF1F3] border border-[#DDE3E8] flex items-center justify-center text-[#65717B] shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+<div class="max-w-[260px]">
+<div class="text-[11px] text-[#65717B] mb-1 flex items-center space-x-1">
+<span class="font-medium text-[#26313A]">大周</span>
+<span class="text-[10px] bg-[#EDF1F3] px-1 rounded text-[#65717B]">经纪人</span>
+<span>09:15</span>
+</div>
+<div class="bg-white border border-[#DDE3E8] text-[#26313A] text-[14px] leading-relaxed p-2.5 rounded-2xl rounded-tl-sm shadow-sm">
+            今天谁没开播的跟我说一声，别让我挨个查
+          </div>
+</div>
+</div>
+<!-- Group 3: 今天 09:40 -->
+<div class="flex justify-center mt-3 mb-1">
+<span class="text-[11px] font-medium text-[#65717B] bg-[#EDF1F3] px-2.5 py-0.5 rounded-full">今天 09:40</span>
+</div>
+<!-- g3: 老K流水下滑 风险提示事件条 -->
+<div class="w-full flex justify-center" data-message-id="g3">
+<a class="w-full max-w-[342px] bg-white border border-[#DDE3E8] rounded-xl p-3 tap-effect transition-colors hover:bg-slate-50" data-message-id="g3" data-page="P15" data-subject="老K" href="#P15">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[#EF4444] text-[20px] shrink-0">warning</span>
+<span class="text-[13px] font-semibold text-[#26313A]">老K连续3天流水下滑，已派人跟进</span>
+</div>
+<span class="text-[11px] font-medium text-[#EF4444] bg-red-50 border border-red-200 px-1.5 py-0.5 rounded shrink-0 ml-1">风险处置</span>
+</div>
+<div class="mt-2 pt-2 border-t border-[#EDF1F3] flex items-center justify-between text-[12px] text-[#65717B]">
+<span>直达：P15 风险详情</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</div>
+</a>
+</div>
+<!-- Group 4: 今天 10:25 -->
+<div class="flex justify-center mt-3 mb-1">
+<span class="text-[11px] font-medium text-[#65717B] bg-[#EDF1F3] px-2.5 py-0.5 rounded-full">今天 10:25</span>
+</div>
+<!-- g4: 安姐 · 培训 -->
+<div class="flex items-start space-x-2.5 w-full" data-message-id="g4">
+<div class="w-9 h-9 rounded-full bg-[#EDF1F3] border border-[#DDE3E8] flex items-center justify-center text-[#65717B] shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+<div class="max-w-[260px]">
+<div class="text-[11px] text-[#65717B] mb-1 flex items-center space-x-1">
+<span class="font-medium text-[#26313A]">安姐</span>
+<span class="text-[10px] bg-[#EDF1F3] px-1 rounded text-[#65717B]">培训</span>
+<span>10:25</span>
+</div>
+<div class="bg-white border border-[#DDE3E8] text-[#26313A] text-[14px] leading-relaxed p-2.5 rounded-2xl rounded-tl-sm shadow-sm">
+            麦子结业评估我这边过了，资料都在单子里
+          </div>
+</div>
+</div>
+<!-- Group 5: 今天 10:30 -->
+<div class="flex justify-center mt-3 mb-1">
+<span class="text-[11px] font-medium text-[#65717B] bg-[#EDF1F3] px-2.5 py-0.5 rounded-full">今天 10:30</span>
+</div>
+<!-- g5: 麦子结业 业务卡片条 -->
+<div class="w-full flex justify-center" data-message-id="g5">
+<div class="w-full max-w-[342px] bg-white border border-[#DDE3E8] rounded-xl p-3.5 space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[#047857] text-[20px]">verified</span>
+<span class="text-[13px] font-bold text-[#26313A]">麦子今天结业了，已转运营排首播</span>
+</div>
+<span class="text-[11px] text-[#047857] bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded shrink-0">完成</span>
+</div>
+<p class="text-[11px] text-[#65717B] leading-relaxed">
+            历史消息仅作群内进度广播，不自动篡改业务底层档案真实状态。
+          </p>
+<a class="w-full h-[36px] bg-[#FCF4EC] border border-[#F88440]/30 rounded-lg flex items-center justify-center space-x-1 text-[#F88440] font-semibold text-[13px] tap-effect transition-colors hover:bg-orange-100" data-message-id="g5" data-page="P22" data-subject="maizi" href="#P22">
+<span>查看主播档案 (P22/maizi)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Dynamic Message Insert Anchor -->
+<div id="dynamicAnchor"></div>
+</main>
+<!-- 3. Fixed Chat Input Dock (~60px) -->
+<div class="h-[60px] min-h-[60px] w-full bg-white border-t border-[#DDE3E8] px-3 flex items-center space-x-2 z-20 shrink-0">
+<!-- Insert Card Button (44x44 area) -->
+<button aria-label="插入业务卡片" class="w-[44px] h-[44px] rounded-lg border border-[#DDE3E8] bg-[#EDF1F3] text-[#26313A] flex items-center justify-center tap-effect focus:outline-none" id="btnOpenCardModal" type="button">
+<span class="material-symbols-outlined text-[22px]">add</span>
+</button>
+<!-- Input Field -->
+<div class="flex-1 relative">
+<input class="w-full h-[40px] px-3 text-[14px] bg-[#F5F7F8] border border-[#DDE3E8] rounded-full text-[#26313A] placeholder-[#65717B] focus:outline-none focus:border-[#F88440] transition-colors" id="chatInput" placeholder="发到公会群…" type="text">
+</div>
+<!-- Send Button (>=44px touch area) -->
+<button class="min-w-[56px] h-[40px] px-3 rounded-full bg-[#F88440] hover:bg-[#D96A31] text-white text-[13px] font-semibold flex items-center justify-center tap-effect transition-colors shadow-sm focus:outline-none" id="btnSendMessage" type="button">
+        发送
+      </button>
+</div>
+<!-- 4. Shared Component: BottomNavBar (Fixed 68px, Operations Role, Today Active) -->
+<nav aria-label="底栏导航" class="h-[68px] min-h-[68px] w-full bg-white border-t border-[#DDE3E8] flex justify-around items-center z-30 shrink-0">
+<!-- 1. 今天 (Active #F88440) -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-[#F88440] font-medium relative focus:outline-none" data-page="P20" href="#P20">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[12px] leading-tight mt-1">今天</span>
+</a>
+<!-- 2. 我的主播 -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-[#65717B] hover:text-[#F88440] transition-colors focus:outline-none" data-page="P21" href="#P21">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+<span class="text-[12px] leading-tight mt-1">我的主播</span>
+</a>
+<!-- 3. 交接 -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-[#65717B] hover:text-[#F88440] transition-colors focus:outline-none" data-page="P25" href="#P25">
+<span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+<span class="text-[12px] leading-tight mt-1">交接</span>
+</a>
+<!-- 4. 我的 -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-[#65717B] hover:text-[#F88440] transition-colors focus:outline-none" data-page="MY" href="#MY">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="text-[12px] leading-tight mt-1">我的</span>
+</a>
+<!-- 5. 助理 -->
+<a class="flex flex-col items-center justify-center w-full h-[68px] min-w-[44px] text-[#65717B] hover:text-[#F88440] transition-colors focus:outline-none" data-page="AI" href="#AI">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+<span class="text-[12px] leading-tight mt-1">助理</span>
+</a>
+</nav>
+<!-- Modal Drawer: 插入业务卡 -->
+<div class="absolute inset-0 bg-black/40 z-50 hidden flex-col justify-end transition-opacity duration-200" id="cardModal">
+<div class="w-full bg-white rounded-t-2xl p-4 space-y-4 border-t border-[#DDE3E8] transform translate-y-full transition-transform duration-200 ease-out" id="cardModalContent">
+<div class="flex items-center justify-between pb-2 border-b border-[#DDE3E8]">
+<h2 class="text-[15px] font-bold text-[#26313A]">插入业务卡片</h2>
+<button class="w-[36px] h-[36px] rounded-full text-[#65717B] flex items-center justify-center tap-effect" id="btnCloseModal">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- 3 Radio Options -->
+<div class="space-y-2">
+<!-- Option 1: 直播规划 -->
+<label class="flex items-center justify-between p-3 rounded-xl border border-[#DDE3E8] bg-[#F5F7F8] cursor-pointer hover:border-[#F88440]">
+<div class="flex items-center space-x-2.5">
+<span class="material-symbols-outlined text-[#F88440] text-[20px]">calendar_month</span>
+<div>
+<p class="text-[13px] font-semibold text-[#26313A]">直播规划卡</p>
+<p class="text-[11px] text-[#65717B]">小雨周五晚场冲刺 · 排期更新</p>
+</div>
+</div>
+<input checked="" class="text-[#F88440] focus:ring-0 focus:ring-offset-0" name="business_card_opt" type="radio" value="plan">
+</label>
+<!-- Option 2: 直播复盘 -->
+<label class="flex items-center justify-between p-3 rounded-xl border border-[#DDE3E8] bg-[#F5F7F8] cursor-pointer hover:border-[#F88440]">
+<div class="flex items-center space-x-2.5">
+<span class="material-symbols-outlined text-[#047857] text-[20px]">analytics</span>
+<div>
+<p class="text-[13px] font-semibold text-[#26313A]">直播复盘卡</p>
+<p class="text-[11px] text-[#65717B]">昨夜专场GMV突破10w简报</p>
+</div>
+</div>
+<input class="text-[#F88440] focus:ring-0 focus:ring-offset-0" name="business_card_opt" type="radio" value="review">
+</label>
+<!-- Option 3: 风险预警 -->
+<label class="flex items-center justify-between p-3 rounded-xl border border-[#DDE3E8] bg-[#F5F7F8] cursor-pointer hover:border-[#F88440]">
+<div class="flex items-center space-x-2.5">
+<span class="material-symbols-outlined text-[#EF4444] text-[20px]">notification_important</span>
+<div>
+<p class="text-[13px] font-semibold text-[#26313A]">风险预警卡</p>
+<p class="text-[11px] text-[#65717B]">直播间敏感词提示已触发</p>
+</div>
+</div>
+<input class="text-[#F88440] focus:ring-0 focus:ring-offset-0" name="business_card_opt" type="radio" value="alert">
+</label>
+</div>
+<!-- Confirm Add Button -->
+<button class="w-full h-[44px] bg-[#F88440] hover:bg-[#D96A31] text-white font-semibold rounded-xl text-[14px] tap-effect flex items-center justify-center transition-colors" id="btnInsertCardConfirm">
+          加入群流
+        </button>
+</div>
+</div>
+<!-- Lightweight Toast Notification -->
+<div class="absolute top-[68px] left-1/2 -translate-x-1/2 bg-[#26313A]/90 text-white text-[12px] px-3.5 py-2 rounded-full shadow-lg pointer-events-none transition-all duration-200 opacity-0 -translate-y-2 z-50 flex items-center space-x-1.5" id="toastNotification">
+<span class="material-symbols-outlined text-[16px] text-[#F88440]">info</span>
+<span id="toastMsg">提示信息</span>
+</div>
+</div>
+<!-- Inline Logic for Mock Interactions and Guaranteed Non-disruptive Flow -->
+<script>
+    const chatStream = document.getElementById('chatStream');
+    const dynamicAnchor = document.getElementById('dynamicAnchor');
+    const chatInput = document.getElementById('chatInput');
+    const btnSendMessage = document.getElementById('btnSendMessage');
+    const btnOpenCardModal = document.getElementById('btnOpenCardModal');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+    const cardModal = document.getElementById('cardModal');
+    const cardModalContent = document.getElementById('cardModalContent');
+    const btnInsertCardConfirm = document.getElementById('btnInsertCardConfirm');
+    const toastNotification = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMsg');
+
+    function showToast(message) {
+      toastMsg.textContent = message;
+      toastNotification.classList.remove('opacity-0', '-translate-y-2');
+      toastNotification.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toastNotification.classList.add('opacity-0', '-translate-y-2');
+        toastNotification.classList.remove('opacity-100', 'translate-y-0');
+      }, 2200);
+    }
+
+    function scrollToBottom() {
+      chatStream.scrollTo({
+        top: chatStream.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+
+    // Modal Control
+    btnOpenCardModal.addEventListener('click', () => {
+      cardModal.classList.remove('hidden');
+      cardModal.classList.add('flex');
+      setTimeout(() => {
+        cardModalContent.classList.remove('translate-y-full');
+      }, 10);
+    });
+
+    function hideModal() {
+      cardModalContent.classList.add('translate-y-full');
+      setTimeout(() => {
+        cardModal.classList.add('hidden');
+        cardModal.classList.remove('flex');
+      }, 200);
+    }
+
+    btnCloseModal.addEventListener('click', hideModal);
+    cardModal.addEventListener('click', (e) => {
+      if (e.target === cardModal) hideModal();
+    });
+
+    // Send Regular Text Message (Role: 运营 · 小林)
+    btnSendMessage.addEventListener('click', () => {
+      const text = chatInput.value.trim();
+      if (!text) {
+        showToast('请输入消息内容后再发送');
+        return;
+      }
+
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      const msgHtml = document.createElement('div');
+      msgHtml.className = 'flex items-start justify-end space-x-2.5 w-full mt-2';
+      msgHtml.innerHTML = `
+        <div class="max-w-[260px] flex flex-col items-end">
+          <div class="text-[11px] text-[#65717B] mb-1 flex items-center space-x-1">
+            <span>${timeStr}</span>
+            <span class="text-[10px] bg-[#EDF1F3] px-1 rounded text-[#65717B]">运营</span>
+            <span class="font-medium text-[#26313A]">小林 (我)</span>
+          </div>
+          <div class="bg-[#F88440] text-white text-[14px] leading-relaxed p-2.5 rounded-2xl rounded-tr-sm shadow-sm break-words text-left">
+            ${escapeHtml(text)}
+          </div>
+        </div>
+        <div class="w-9 h-9 rounded-full bg-[#FCF4EC] border border-[#F88440]/30 flex items-center justify-center text-[#F88440] shrink-0 font-bold text-[12px]">
+          林
+        </div>
+      `;
+
+      dynamicAnchor.parentNode.insertBefore(msgHtml, dynamicAnchor);
+      chatInput.value = '';
+      showToast('已添加到当前会话（本地演示）');
+      scrollToBottom();
+    });
+
+    // Send on Enter
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        btnSendMessage.click();
+      }
+    });
+
+    // Insert Business Card
+    btnInsertCardConfirm.addEventListener('click', () => {
+      const selected = document.querySelector('input[name="business_card_opt"]:checked').value;
+      hideModal();
+
+      const cardWrapper = document.createElement('div');
+      cardWrapper.className = 'w-full flex justify-center mt-3';
+
+      if (selected === 'plan') {
+        cardWrapper.innerHTML = `
+          <div class="w-full max-w-[342px] bg-white border border-[#DDE3E8] rounded-xl p-3.5 space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="material-symbols-outlined text-[#F88440] text-[20px]">calendar_month</span>
+                <span class="text-[13px] font-bold text-[#26313A]">规划卡：小雨周五晚场冲刺</span>
+              </div>
+              <span class="text-[11px] text-[#F88440] bg-[#FCF4EC] border border-[#F88440]/30 px-1.5 py-0.5 rounded shrink-0">待确认</span>
+            </div>
+            <p class="text-[11px] text-[#65717B]">带货专场排期已下发至主档，预计 19:30 开始。</p>
+            <a href="#P81" data-page="P81" class="w-full h-[36px] bg-[#FCF4EC] border border-[#F88440]/30 rounded-lg flex items-center justify-center space-x-1 text-[#F88440] font-semibold text-[13px] tap-effect transition-colors hover:bg-orange-100">
+              <span>查看直播规划 (#P81)</span>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          </div>
+        `;
+      } else if (selected === 'review') {
+        cardWrapper.innerHTML = `
+          <div class="w-full max-w-[342px] bg-white border border-[#DDE3E8] rounded-xl p-3.5 space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="material-symbols-outlined text-[#047857] text-[20px]">analytics</span>
+                <span class="text-[13px] font-bold text-[#26313A]">复盘简报：昨日专场达成</span>
+              </div>
+              <span class="text-[11px] text-[#047857] bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded shrink-0">完成</span>
+            </div>
+            <p class="text-[11px] text-[#65717B]">实时成交金额破十万，人均观看时长增长14%。</p>
+            <a href="#P30" data-page="P30" class="w-full h-[36px] bg-[#EDF1F3] border border-[#DDE3E8] rounded-lg flex items-center justify-center space-x-1 text-[#26313A] font-semibold text-[13px] tap-effect transition-colors hover:bg-slate-200">
+              <span>查看复盘详情 (#P30)</span>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          </div>
+        `;
+      } else {
+        cardWrapper.innerHTML = `
+          <div class="w-full max-w-[342px] bg-white border border-[#DDE3E8] rounded-xl p-3.5 space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="material-symbols-outlined text-[#EF4444] text-[20px]">warning</span>
+                <span class="text-[13px] font-bold text-[#26313A]">风险预警：敏感词触发提示</span>
+              </div>
+              <span class="text-[11px] text-[#EF4444] bg-red-50 border border-red-200 px-1.5 py-0.5 rounded shrink-0">需处置</span>
+            </div>
+            <p class="text-[11px] text-[#65717B]">主播在14:20触发违规违禁词，已提示房管介入。</p>
+            <a href="#P15" data-page="P15" class="w-full h-[36px] bg-red-50 border border-red-200 rounded-lg flex items-center justify-center space-x-1 text-[#EF4444] font-semibold text-[13px] tap-effect transition-colors hover:bg-red-100">
+              <span>前往处置预警 (#P15)</span>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          </div>
+        `;
+      }
+
+      dynamicAnchor.parentNode.insertBefore(cardWrapper, dynamicAnchor);
+      showToast('已加入当前群流（本地演示）');
+      scrollToBottom();
+    });
+
+    function escapeHtml(string) {
+      const matchHtmlRegExp = /["'&<>]/;
+      const str = '' + string;
+      const match = matchHtmlRegExp.exec(str);
+      if (!match) return str;
+      let escape;
+      let html = '';
+      let index = 0;
+      let lastIndex = 0;
+      for (index = match.index; index < str.length; index++) {
+        switch (str.charCodeAt(index)) {
+          case 34: escape = '&quot;'; break;
+          case 38: escape = '&amp;'; break;
+          case 39: escape = '&#39;'; break;
+          case 60: escape = '&lt;'; break;
+          case 62: escape = '&gt;'; break;
+          default: continue;
+        }
+        if (lastIndex !== index) {
+          html += str.substring(lastIndex, index);
+        }
+        lastIndex = index + 1;
+        html += escape;
+      }
+      return lastIndex !== index ? html + str.substring(lastIndex, index) : html;
+    }
+  </script>
+</body></html>

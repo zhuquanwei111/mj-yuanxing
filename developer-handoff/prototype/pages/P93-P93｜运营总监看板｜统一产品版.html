@@ -1,0 +1,751 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>运营总监 · 看板</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<!-- Tailwind CSS Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            app: {
+              bg: '#F5F7F8',
+              surface: '#FFFFFF',
+              sub: '#EDF1F3',
+              border: '#DDE3E8',
+              text: '#26313A',
+              muted: '#65717B',
+              primary: '#F88440',
+              'primary-active': '#D96A31',
+              'primary-light': '#FCF4EC',
+              danger: '#EF4444',
+              'danger-bg': '#FEF2F2',
+              warning: '#B45309',
+              'warning-bg': '#FFFBEB',
+              success: '#047857',
+              'success-bg': '#ECFDF5'
+            }
+          },
+          fontFamily: {
+            sans: ['Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Base Styles -->
+<style data-purpose="base-layout">
+    body {
+      background-color: #F5F7F8;
+      color: #26313A;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    /* Hide scrollbars while preserving functionality */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<!-- END: Base Styles -->
+</head>
+<body class="bg-app-bg text-app-text min-h-screen flex flex-col justify-between selection:bg-orange-100">
+<!-- BEGIN: TopBar -->
+<header class="fixed top-0 left-0 right-0 z-40 bg-app-surface border-b border-app-border h-[56px] px-4 flex items-center justify-between">
+<!-- Left slot: Balanced placeholder -->
+<div class="w-[44px] h-[44px] flex items-center justify-start text-app-muted"></div>
+<!-- Center title -->
+<h1 class="text-[18px] font-semibold tracking-tight text-app-text text-center flex-1">运营总监 · 看板</h1>
+<!-- Right slot: Light action/balance -->
+<div class="w-[44px] h-[44px] flex items-center justify-end">
+<button aria-label="通知中心" class="w-10 h-10 flex items-center justify-center rounded-full active:bg-app-sub text-app-muted" type="button">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 mt-[56px] mb-[68px] overflow-y-auto no-scrollbar w-full max-w-[480px] mx-auto">
+<!-- Header Sub-info & Navigation Tabs Section -->
+<div class="bg-app-surface border-b border-app-border pt-3">
+<!-- Sub-meta info -->
+<div class="px-4 pb-2 text-[13px] text-app-muted flex items-center justify-between">
+<span class="font-medium tracking-wide">全公司 · 86位主播</span>
+<span class="text-[12px] bg-app-sub px-2 py-0.5 rounded text-app-muted">数据同步中</span>
+</div>
+<!-- Scrollable Tab Switcher -->
+<nav aria-label="看板分类" class="flex px-2 border-t border-app-sub">
+<!-- Tab 1: 风险决策 -->
+<button class="tab-button flex-1 py-3 text-center text-[15px] font-medium transition-colors relative text-app-primary" data-tab-target="tab-risk" onclick="switchTab('tab-risk')" type="button">
+<span class="inline-flex items-center gap-1"><span class="relative inline-block">风险决策<span class="absolute -top-1 -right-2 w-1.5 h-1.5 rounded-full bg-app-danger"></span></span></span>
+<span class="tab-indicator absolute bottom-0 left-3 right-3 h-[2.5px] bg-app-primary rounded-t-full"></span>
+</button>
+<!-- Tab 2: 跨组表现 -->
+<button class="tab-button flex-1 py-3 text-center text-[15px] font-medium transition-colors relative text-app-muted" data-tab-target="tab-performance" onclick="switchTab('tab-performance')" type="button">
+<span class="">跨组表现</span>
+<span class="tab-indicator hidden absolute bottom-0 left-3 right-3 h-[2.5px] bg-app-primary rounded-t-full"></span>
+</button>
+<!-- Tab 3: 组长任务 -->
+<button class="tab-button flex-1 py-3 text-center text-[15px] font-medium transition-colors relative text-app-muted" data-tab-target="tab-tasks" onclick="switchTab('tab-tasks')" type="button">
+<span class="">组长任务</span>
+<span class="tab-indicator hidden absolute bottom-0 left-3 right-3 h-[2.5px] bg-app-primary rounded-t-full"></span>
+</button>
+<!-- Tab 4: 主播查找 -->
+<button class="tab-button flex-1 py-3 text-center text-[15px] font-medium transition-colors relative text-app-muted" data-tab-target="tab-search" onclick="switchTab('tab-search')" type="button">
+<span class="">主播查找</span>
+<span class="tab-indicator hidden absolute bottom-0 left-3 right-3 h-[2.5px] bg-app-primary rounded-t-full"></span>
+</button>
+</nav>
+</div>
+<!-- BEGIN: TabContent: 风险决策 (Default Active) -->
+<section class="tab-pane block py-3" id="tab-risk">
+<!-- Section Header -->
+<div class="px-4 py-1 flex items-center justify-between">
+<span class="text-[13px] font-medium text-app-muted">待处理风险 5 项</span>
+<span class="text-[12px] text-app-muted">按严重度降序</span>
+</div>
+<!-- Risk List -->
+<div class="mt-2 divide-y divide-app-border bg-app-surface border-y border-app-border">
+<!-- Risk Item 1: 阿哲 -->
+<article class="p-4 space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-[16px] font-semibold text-app-text">阿哲</span>
+<span class="text-[14px] text-app-muted">| 收入不及预期</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[12px] font-medium px-2 py-0.5 rounded bg-app-danger-bg text-app-danger">
+<span class="material-symbols-outlined text-[14px]">warning</span> 高风险
+            </span>
+</div>
+<div class="text-[13px] leading-relaxed text-app-muted space-y-1">
+<p class=""><span class="text-app-text font-normal">源信号：</span>连续3天流水下滑，近7天比前7天少16%</p>
+<p class="">18点档被新起的两个同类场分流</p>
+</div>
+<div class="pt-2 flex items-center justify-between text-[13px]">
+<span class="text-app-muted">建议负责人：<span class="text-app-text font-medium">运营·小林</span></span>
+<div class="flex items-center gap-4">
+<a class="text-app-muted hover:text-app-text flex items-center text-[13px] py-1" data-subject="阿哲" href="#P22">
+                看主播档案 <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<a class="text-app-primary hover:text-app-primary-active font-semibold py-1" data-warning="w1" href="#P15">
+                打开处置
+              </a>
+</div>
+</div>
+</article>
+<!-- Risk Item 2: 喵喵 -->
+<article class="p-4 space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-[16px] font-semibold text-app-text">喵喵</span>
+<span class="text-[14px] text-app-muted">| 心态情绪</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[12px] font-medium px-2 py-0.5 rounded bg-app-warning-bg text-app-warning">
+<span class="material-symbols-outlined text-[14px]">info</span> 待处理
+            </span>
+</div>
+<div class="text-[13px] leading-relaxed text-app-muted space-y-1">
+<p class=""><span class="text-app-text font-normal">源信号：</span>连续2天没开播，消息回得慢</p>
+<p class="">停播前无数据下滑信号，疑似状态问题</p>
+</div>
+<div class="pt-2 flex items-center justify-between text-[13px]">
+<span class="text-app-muted">建议负责人：<span class="text-app-text font-medium">经纪人·大周</span></span>
+<div class="flex items-center gap-4">
+<a class="text-app-muted hover:text-app-text flex items-center text-[13px] py-1" data-subject="喵喵" href="#P22">
+                看主播档案 <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<a class="text-app-primary hover:text-app-primary-active font-semibold py-1" data-warning="w2" href="#P15">
+                打开处置
+              </a>
+</div>
+</div>
+</article>
+<!-- Risk Item 3: 老K -->
+<article class="p-4 space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-[16px] font-semibold text-app-text">老K</span>
+<span class="text-[14px] text-app-muted">| 收入不及预期</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[12px] font-medium px-2 py-0.5 rounded bg-app-danger-bg text-app-danger">
+<span class="material-symbols-outlined text-[14px]">warning</span> 高风险
+            </span>
+</div>
+<div class="text-[13px] leading-relaxed text-app-muted space-y-1">
+<p class=""><span class="text-app-text font-normal">源信号：</span>昨晚音浪1.1万，比上周同期低42%</p>
+<p class="">22点档有大场分流</p>
+</div>
+<div class="pt-2 flex items-center justify-between text-[13px]">
+<span class="text-app-muted">建议负责人：<span class="text-app-text font-medium">运营·小林</span></span>
+<div class="flex items-center gap-4">
+<a class="text-app-muted hover:text-app-text flex items-center text-[13px] py-1" data-subject="老K" href="#P22">
+                看主播档案 <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<a class="text-app-primary hover:text-app-primary-active font-semibold py-1" data-warning="w3" href="#P15">
+                打开处置
+              </a>
+</div>
+</div>
+</article>
+<!-- Risk Item 4: 晓晓 -->
+<article class="p-4 space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-[16px] font-semibold text-app-text">晓晓</span>
+<span class="text-[14px] text-app-muted">| 收入不及预期</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[12px] font-medium px-2 py-0.5 rounded bg-app-warning-bg text-app-warning">
+<span class="material-symbols-outlined text-[14px]">info</span> 待处理
+            </span>
+</div>
+<div class="text-[13px] leading-relaxed text-app-muted space-y-1">
+<p class=""><span class="text-app-text font-normal">源信号：</span>峰值连降一周，只剩上周的7成</p>
+</div>
+<div class="pt-2 flex items-center justify-between text-[13px]">
+<span class="text-app-muted">建议负责人：<span class="text-app-text font-medium">运营·小林</span></span>
+<div class="flex items-center gap-4">
+<a class="text-app-muted hover:text-app-text flex items-center text-[13px] py-1" data-subject="晓晓" href="#P22">
+                看主播档案 <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<a class="text-app-primary hover:text-app-primary-active font-semibold py-1" data-warning="w4" href="#P15">
+                打开处置
+              </a>
+</div>
+</div>
+</article>
+<!-- Risk Item 5: 椰果 -->
+<article class="p-4 space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-[16px] font-semibold text-app-text">椰果</span>
+<span class="text-[14px] text-app-muted">| 大哥纠纷</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[12px] font-medium px-2 py-0.5 rounded bg-app-warning-bg text-app-warning">
+<span class="material-symbols-outlined text-[14px]">info</span> 待处理
+            </span>
+</div>
+<div class="text-[13px] leading-relaxed text-app-muted space-y-1">
+<p class=""><span class="text-app-text font-normal">源信号：</span>固定大哥连续两周高额消费后突然停刷</p>
+</div>
+<div class="pt-2 flex items-center justify-between text-[13px]">
+<span class="text-app-muted">建议负责人：<span class="text-app-text font-medium">经纪人·大周</span></span>
+<div class="flex items-center gap-4">
+<a class="text-app-muted hover:text-app-text flex items-center text-[13px] py-1" data-subject="椰果" href="#P22">
+                看主播档案 <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<a class="text-app-primary hover:text-app-primary-active font-semibold py-1" data-warning="w5" href="#P15">
+                打开处置
+              </a>
+</div>
+</div>
+</article>
+</div>
+<!-- Bottom Disclaimer -->
+<footer class="p-4 text-center">
+<p class="text-[12px] text-app-muted leading-tight">
+          排序依据风险严重度与处理状态，不因进入或回访自动关闭预警
+        </p>
+</footer>
+</section>
+<!-- END: TabContent: 风险决策 -->
+<!-- BEGIN: TabContent: 跨组表现 -->
+<section class="tab-pane hidden py-3" id="tab-performance">
+<!-- Overview Heading -->
+<div class="px-4 py-2 bg-app-surface border-b border-app-border">
+<div class="flex items-baseline justify-between">
+<h2 class="text-[16px] font-semibold text-app-text">各组经营表现</h2>
+<span class="text-[12px] text-app-primary font-medium">今日音浪 · 按音浪排序</span>
+</div>
+<div class="text-[11px] text-app-muted mt-1 leading-relaxed">
+          人数口径：在册 / 此刻在播 ｜ 开播率：此刻在播 ÷ 本组在册
+        </div>
+</div>
+<!-- List of 7 Teams -->
+<div class="divide-y divide-app-border bg-app-surface border-b border-app-border">
+<!-- Team 1 -->
+<div class="p-3.5 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-[15px] text-app-text">运营一组 · 小林</span>
+<span class="text-[16px] font-bold text-app-text">18.8万</span>
+</div>
+<div class="flex items-center justify-between text-[12px] text-app-muted">
+<span class="">在册/在播 <strong class="text-app-text font-medium">13/3</strong></span>
+<span class="">开播率 <strong class="text-app-text font-medium">23%</strong></span>
+<span class="text-app-muted">近7日：持平</span>
+</div>
+</div>
+<!-- Team 2 -->
+<div class="p-3.5 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-[15px] text-app-text">运营三组 · 陈默</span>
+<span class="text-[16px] font-bold text-app-text">16.6万</span>
+</div>
+<div class="flex items-center justify-between text-[12px] text-app-muted">
+<span class="">在册/在播 <strong class="text-app-text font-medium">14/2</strong></span>
+<span class="">开播率 <strong class="text-app-text font-medium">14%</strong></span>
+<span class="text-app-danger">近7日：下降1%</span>
+</div>
+</div>
+<!-- Team 3 -->
+<div class="p-3.5 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-[15px] text-app-text">运营四组 · 何佳</span>
+<span class="text-[16px] font-bold text-app-text">15.5万</span>
+</div>
+<div class="flex items-center justify-between text-[12px] text-app-muted">
+<span class="">在册/在播 <strong class="text-app-text font-medium">11/1</strong></span>
+<span class="">开播率 <strong class="text-app-text font-medium">9%</strong></span>
+<span class="text-app-muted">近7日：持平</span>
+</div>
+</div>
+<!-- Team 4 -->
+<div class="p-3.5 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-[15px] text-app-text">运营七组 · 唐薇</span>
+<span class="text-[16px] font-bold text-app-text">15.4万</span>
+</div>
+<div class="flex items-center justify-between text-[12px] text-app-muted">
+<span class="">在册/在播 <strong class="text-app-text font-medium">13/1</strong></span>
+<span class="">开播率 <strong class="text-app-text font-medium">8%</strong></span>
+<span class="text-app-danger">近7日：下降1%</span>
+</div>
+</div>
+<!-- Team 5 -->
+<div class="p-3.5 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-[15px] text-app-text">运营六组 · 蒋一</span>
+<span class="text-[16px] font-bold text-app-text">15.0万</span>
+</div>
+<div class="flex items-center justify-between text-[12px] text-app-muted">
+<span class="">在册/在播 <strong class="text-app-text font-medium">11/2</strong></span>
+<span class="">开播率 <strong class="text-app-text font-medium">18%</strong></span>
+<span class="text-app-muted">近7日：持平</span>
+</div>
+</div>
+<!-- Team 6 -->
+<div class="p-3.5 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-[15px] text-app-text">运营二组 · 周锐</span>
+<span class="text-[16px] font-bold text-app-text">12.7万</span>
+</div>
+<div class="flex items-center justify-between text-[12px] text-app-muted">
+<span class="">在册/在播 <strong class="text-app-text font-medium">12/2</strong></span>
+<span class="">开播率 <strong class="text-app-text font-medium">17%</strong></span>
+<span class="text-app-muted">近7日：持平</span>
+</div>
+</div>
+<!-- Team 7 -->
+<div class="p-3.5 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-[15px] text-app-text">运营五组 · 许诺</span>
+<span class="text-[16px] font-bold text-app-text">9.5万</span>
+</div>
+<div class="flex items-center justify-between text-[12px] text-app-muted">
+<span class="">在册/在播 <strong class="text-app-text font-medium">12/1</strong></span>
+<span class="">开播率 <strong class="text-app-text font-medium">8%</strong></span>
+<span class="text-app-muted">近7日：持平</span>
+</div>
+</div>
+</div>
+<!-- Footnote -->
+<footer class="p-4 text-center">
+<p class="text-[12px] text-app-muted">
+          排序只按今日音浪，不代表风险等级；新组首周不参与排名
+        </p>
+</footer>
+</section>
+<!-- END: TabContent: 跨组表现 -->
+<!-- BEGIN: TabContent: 组长任务 -->
+<section class="tab-pane hidden py-6 px-4" id="tab-tasks">
+<!-- Task Header Summary -->
+<div class="text-center py-6" id="task-empty-state">
+<div class="w-14 h-14 rounded-full bg-app-sub flex items-center justify-center mx-auto mb-3 text-app-muted">
+<span class="material-symbols-outlined text-[32px]">remove_circle_outline</span>
+</div>
+<p class="text-[15px] font-medium text-app-text" id="task-count-label">0项待跟进</p>
+</div>
+<!-- Action Button -->
+<div class="mt-2 mb-6">
+<button class="w-full h-[44px] bg-app-primary active:bg-app-primary-active text-white font-medium rounded-lg shadow-sm flex items-center justify-center gap-1.5 transition-colors text-[15px]" onclick="openTaskModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span> 下达任务
+        </button>
+</div>
+<!-- Dynamic Task Container -->
+<div class="space-y-3" id="task-list-container">
+<!-- New items injected here via JS -->
+</div>
+</section>
+<!-- END: TabContent: 组长任务 -->
+<!-- BEGIN: TabContent: 主播查找 -->
+<section class="tab-pane hidden py-3 px-4" id="tab-search">
+<!-- Search Input Container -->
+<div class="relative flex items-center mb-3">
+<span class="material-symbols-outlined absolute left-3 text-[20px] text-app-muted pointer-events-none">search</span>
+<input class="w-full h-[42px] pl-9 pr-8 bg-app-surface border border-app-border rounded-lg text-[14px] text-app-text placeholder-app-muted focus:outline-none focus:border-app-primary focus:ring-1 focus:ring-app-primary" id="anchor-search-input" oninput="handleSearch(this.value)" placeholder="搜索主播姓名、赛道或组名..." type="text">
+<button aria-label="清空输入" class="hidden absolute right-2.5 w-6 h-6 rounded-full flex items-center justify-center text-app-muted active:text-app-text" id="clear-search-btn" onclick="clearSearch()" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+</div>
+<!-- Filter Capsules -->
+<div class="flex items-center gap-2 pb-3 overflow-x-auto no-scrollbar">
+<button class="anchor-filter-pill px-3 py-1.5 rounded-full text-[13px] font-medium bg-app-primary-light text-app-primary border border-transparent" onclick="filterAnchors('all', this)" type="button">
+          全部 <span id="count-all" class="">3</span>
+</button>
+<button class="anchor-filter-pill px-3 py-1.5 rounded-full text-[13px] font-medium bg-app-surface text-app-muted border border-app-border" onclick="filterAnchors('live', this)" type="button">
+          直播中 <span id="count-live" class="">1</span>
+</button>
+<button class="anchor-filter-pill px-3 py-1.5 rounded-full text-[13px] font-medium bg-app-surface text-app-muted border border-app-border" onclick="filterAnchors('risk', this)" type="button">
+          有风险 <span id="count-risk" class="">1</span>
+</button>
+</div>
+<!-- Sub Counter -->
+<div class="py-1 text-[12px] text-app-muted border-b border-app-border mb-2 flex justify-between">
+<span class="">主播列表</span>
+<span id="filtered-ratio-text" class="">3/86</span>
+</div>
+<!-- Anchor Items Container -->
+<div class="divide-y divide-app-border bg-app-surface border border-app-border rounded-lg overflow-hidden" id="anchor-list">
+<!-- Anchor 1: 小雨 -->
+<article class="anchor-item p-3 flex items-start gap-3 active:bg-app-sub transition-colors" data-group="运营一组" data-name="小雨" data-risk="false" data-status="live" data-track="才艺唱歌">
+<div class="w-12 h-12 rounded-full bg-app-sub flex items-center justify-center flex-shrink-0 text-app-muted">
+<span class="material-symbols-outlined text-[28px]">person</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h3 class="text-[15px] font-semibold text-app-text truncate">小雨 · 才艺唱歌</h3>
+<span class="px-2 py-0.5 rounded text-[11px] font-medium bg-app-success-bg text-app-success">直播中</span>
+</div>
+<p class="text-[12px] text-app-muted mt-0.5">运营一组 · 负责人 小林</p>
+<p class="text-[12px] text-app-muted mt-1">无风险标记</p>
+</div>
+<a aria-label="查看小雨档案" class="self-center p-1 text-app-muted" data-subject="小雨" href="#P22">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</article>
+<!-- Anchor 2: 阿哲 -->
+<article class="anchor-item p-3 flex items-start gap-3 active:bg-app-sub transition-colors" data-group="运营二组" data-name="阿哲" data-risk="true" data-status="offline" data-track="颜值聊天">
+<div class="w-12 h-12 rounded-full bg-app-sub flex items-center justify-center flex-shrink-0 text-app-muted">
+<span class="material-symbols-outlined text-[28px]">person</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h3 class="text-[15px] font-semibold text-app-text truncate">阿哲 · 颜值聊天</h3>
+<span class="px-2 py-0.5 rounded text-[11px] font-medium bg-app-sub text-app-muted">已下播</span>
+</div>
+<p class="text-[12px] text-app-muted mt-0.5">运营二组 · 负责人 老杨</p>
+<p class="text-[12px] text-app-danger mt-1">有风险 · 连续3天流水下滑，进场停留从38秒降到26秒</p>
+</div>
+<a aria-label="查看阿哲档案" class="self-center p-1 text-app-muted" data-subject="阿哲" href="#P22">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</article>
+<!-- Anchor 3: 喵喵 -->
+<article class="anchor-item p-3 flex items-start gap-3 active:bg-app-sub transition-colors" data-group="运营三组" data-name="喵喵" data-risk="pending" data-status="offline" data-track="舞蹈">
+<div class="w-12 h-12 rounded-full bg-app-sub flex items-center justify-center flex-shrink-0 text-app-muted">
+<span class="material-symbols-outlined text-[28px]">person</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h3 class="text-[15px] font-semibold text-app-text truncate">喵喵 · 舞蹈</h3>
+<span class="px-2 py-0.5 rounded text-[11px] font-medium bg-app-sub text-app-muted">今日未播</span>
+</div>
+<p class="text-[12px] text-app-muted mt-0.5">运营三组 · 负责人 阿美</p>
+<p class="text-[12px] text-app-warning mt-1">待跟进 · 连续2天没开播，昨天消息回得慢</p>
+</div>
+<a aria-label="查看喵喵档案" class="self-center p-1 text-app-muted" data-subject="喵喵" href="#P22">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</article>
+</div>
+<!-- Empty State for Search -->
+<div class="hidden text-center py-12 px-4 bg-app-surface rounded-lg border border-app-border mt-2" id="search-empty-state">
+<span class="material-symbols-outlined text-[48px] text-app-muted mb-2">person_search</span>
+<h4 class="text-[16px] font-medium text-app-text">没有找到主播</h4>
+<p class="text-[13px] text-app-muted mt-1 mb-4">换个昵称、赛道或组名试试</p>
+<button class="px-4 py-2 bg-app-sub hover:bg-app-border text-app-text text-[13px] font-medium rounded-lg" onclick="clearSearch()" type="button">
+          清空搜索
+        </button>
+</div>
+</section>
+<!-- END: TabContent: 主播查找 -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: TaskModalDrawer -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-end justify-center" id="task-modal">
+<div class="w-full max-w-[480px] bg-app-surface rounded-t-2xl p-5 border-t border-app-border shadow-xl transform transition-transform duration-200">
+<div class="flex items-center justify-between pb-3 border-b border-app-sub">
+<h3 class="text-[17px] font-semibold text-app-text">下达任务给组长</h3>
+<button class="w-8 h-8 flex items-center justify-center rounded-full text-app-muted active:bg-app-sub" onclick="closeTaskModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="mt-4 space-y-4">
+<!-- Assignee Selection -->
+<div>
+<label class="block text-[13px] font-medium text-app-muted mb-1.5" for="task-assignee">负责组长</label>
+<div class="relative">
+<select class="w-full h-[44px] bg-app-sub/50 border border-app-border rounded-lg px-3 text-[14px] text-app-text focus:outline-none focus:border-app-primary" id="task-assignee">
+<option value="小林">小林（运营一组 组长）</option>
+<option value="周锐">周锐（运营二组 组长）</option>
+<option value="陈默">陈默（运营三组 组长）</option>
+<option value="何佳">何佳（运营四组 组长）</option>
+</select>
+</div>
+</div>
+<!-- Task Content Input -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-[13px] font-medium text-app-muted" for="task-content">任务内容 <span class="text-app-danger">*</span></label>
+<span class="text-[12px] text-app-danger hidden" id="task-error-tip">先写任务内容</span>
+</div>
+<textarea class="w-full p-3 bg-app-sub/50 border border-app-border rounded-lg text-[14px] text-app-text placeholder-app-muted focus:outline-none focus:border-app-primary resize-none" id="task-content" placeholder="比如：本周把本组开播率拉回80%" rows="3"></textarea>
+</div>
+<p class="text-[11px] text-app-muted">任务会出现在组长的组务页，完成情况回流（本地演示）</p>
+<!-- Actions -->
+<div class="pt-2 flex items-center gap-3">
+<button class="flex-1 h-[44px] bg-app-sub text-app-text font-medium rounded-lg text-[14px] active:bg-app-border" onclick="closeTaskModal()" type="button">
+            取消
+          </button>
+<button class="flex-1 h-[44px] bg-app-primary text-white font-medium rounded-lg text-[14px] active:bg-app-primary-active" onclick="submitTask()" type="button">
+            下达
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- END: TaskModalDrawer -->
+<!-- BEGIN: BottomNav -->
+<nav class="fixed bottom-0 left-0 right-0 z-40 bg-app-surface border-t border-app-border h-[68px] flex items-center justify-around px-4" data-role="ops_director">
+<!-- Item 1: 看板 (Active) -->
+<a class="flex flex-col items-center justify-center flex-1 h-full text-app-primary" href="#P93">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-[12px] font-medium mt-1">看板</span>
+</a>
+<!-- Item 2: 组织 -->
+<a class="flex flex-col items-center justify-center flex-1 h-full text-app-muted hover:text-app-text" href="#P95">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+<span class="text-[12px] font-medium mt-1">组织</span>
+</a>
+<!-- Item 3: 我的 -->
+<a class="flex flex-col items-center justify-center flex-1 h-full text-app-muted hover:text-app-text" data-role="ops_director" href="#MY">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="text-[12px] font-medium mt-1">我的</span>
+</a>
+</nav>
+<!-- END: BottomNav -->
+<!-- BEGIN: Application Logic Scripts -->
+<script data-purpose="tab-switching">
+    /**
+     * Switch between the 4 main dashboard tabs
+     */
+    function switchTab(targetTabId) {
+      // Manage panes visibility
+      const panes = document.querySelectorAll('.tab-pane');
+      panes.forEach(pane => {
+        if (pane.id === targetTabId) {
+          pane.classList.remove('hidden');
+          pane.classList.add('block');
+        } else {
+          pane.classList.add('hidden');
+          pane.classList.remove('block');
+        }
+      });
+
+      // Manage tab headers styling
+      const buttons = document.querySelectorAll('.tab-button');
+      buttons.forEach(btn => {
+        const isCurrent = btn.getAttribute('data-tab-target') === targetTabId;
+        const indicator = btn.querySelector('.tab-indicator');
+        
+        if (isCurrent) {
+          btn.classList.add('text-app-primary');
+          btn.classList.remove('text-app-muted');
+          if (indicator) indicator.classList.remove('hidden');
+        } else {
+          btn.classList.remove('text-app-primary');
+          btn.classList.add('text-app-muted');
+          if (indicator) indicator.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+<script data-purpose="task-management">
+    let taskCount = 0;
+
+    function openTaskModal() {
+      const modal = document.getElementById('task-modal');
+      const err = document.getElementById('task-error-tip');
+      const input = document.getElementById('task-content');
+      err.classList.add('hidden');
+      input.classList.remove('border-app-danger');
+      input.value = '';
+      modal.classList.remove('hidden');
+    }
+
+    function closeTaskModal() {
+      document.getElementById('task-modal').classList.add('hidden');
+    }
+
+    function submitTask() {
+      const contentInput = document.getElementById('task-content');
+      const assigneeSelect = document.getElementById('task-assignee');
+      const errorTip = document.getElementById('task-error-tip');
+      const content = contentInput.value.trim();
+
+      if (!content) {
+        errorTip.classList.remove('hidden');
+        contentInput.classList.add('border-app-danger');
+        contentInput.focus();
+        return;
+      }
+
+      const assignee = assigneeSelect.value;
+      taskCount++;
+
+      // Create new Task Card
+      const container = document.getElementById('task-list-container');
+      const card = document.createElement('article');
+      card.className = "bg-app-surface border border-app-border rounded-lg p-3.5 space-y-2 shadow-sm transition-all";
+      card.id = `task-card-${taskCount}`;
+      
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-2">
+          <p class="text-[14px] font-semibold text-app-text leading-snug">${content}</p>
+          <span class="status-badge px-2 py-0.5 rounded text-[11px] font-medium bg-app-warning-bg text-app-warning flex-shrink-0">进行中</span>
+        </div>
+        <div class="flex items-center justify-between text-[12px] text-app-muted pt-1 border-t border-app-sub">
+          <span>负责人：<strong class="text-app-text">${assignee}</strong></span>
+          <button type="button" onclick="simulateCompleteTask('${taskCount}')" class="complete-btn text-app-primary font-medium hover:underline text-[12px] py-1">
+            模拟组长完成
+          </button>
+        </div>
+        <p class="receipt-note text-[11px] text-app-muted">仅本地演示映射，已同步组长P94待处理</p>
+      `;
+
+      container.prepend(card);
+
+      // Update counters & state
+      document.getElementById('task-empty-state').classList.add('hidden');
+      closeTaskModal();
+    }
+
+    function simulateCompleteTask(id) {
+      const card = document.getElementById(`task-card-${id}`);
+      if (!card) return;
+
+      const badge = card.querySelector('.status-badge');
+      const btn = card.querySelector('.complete-btn');
+      const note = card.querySelector('.receipt-note');
+
+      badge.className = "status-badge px-2 py-0.5 rounded text-[11px] font-medium bg-app-success-bg text-app-success flex-shrink-0";
+      badge.textContent = "已完成";
+
+      note.textContent = "已回复总监：任务完成（回执已记录）";
+      note.className = "receipt-note text-[11px] text-app-success font-medium";
+
+      btn.remove();
+    }
+  </script>
+<script data-purpose="search-and-filters">
+    let currentFilter = 'all';
+
+    function handleSearch(val) {
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (val.trim()) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      executeAnchorFiltering();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('anchor-search-input');
+      input.value = '';
+      document.getElementById('clear-search-btn').classList.add('hidden');
+      executeAnchorFiltering();
+    }
+
+    function filterAnchors(type, elem) {
+      currentFilter = type;
+
+      // Update pill styling
+      const pills = document.querySelectorAll('.anchor-filter-pill');
+      pills.forEach(pill => {
+        pill.classList.remove('bg-app-primary-light', 'text-app-primary', 'border-transparent');
+        pill.classList.add('bg-app-surface', 'text-app-muted', 'border-app-border');
+      });
+
+      elem.classList.remove('bg-app-surface', 'text-app-muted', 'border-app-border');
+      elem.classList.add('bg-app-primary-light', 'text-app-primary', 'border-transparent');
+
+      executeAnchorFiltering();
+    }
+
+    function executeAnchorFiltering() {
+      const keyword = (document.getElementById('anchor-search-input').value || '').trim().toLowerCase();
+      const items = document.querySelectorAll('.anchor-item');
+      let visibleCount = 0;
+
+      items.forEach(item => {
+        const name = (item.getAttribute('data-name') || '').toLowerCase();
+        const track = (item.getAttribute('data-track') || '').toLowerCase();
+        const group = (item.getAttribute('data-group') || '').toLowerCase();
+        const status = item.getAttribute('data-status');
+        const hasRisk = item.getAttribute('data-risk') !== 'false';
+
+        // Check search keyword
+        const matchesKeyword = !keyword || name.includes(keyword) || track.includes(keyword) || group.includes(keyword);
+
+        // Check filter pill
+        let matchesPill = true;
+        if (currentFilter === 'live') {
+          matchesPill = (status === 'live');
+        } else if (currentFilter === 'risk') {
+          matchesPill = hasRisk;
+        }
+
+        if (matchesKeyword && matchesPill) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      // Update empty state & ratio text
+      const emptyState = document.getElementById('search-empty-state');
+      const ratioText = document.getElementById('filtered-ratio-text');
+      
+      ratioText.textContent = `${visibleCount}/86`;
+
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+        document.getElementById('anchor-list').classList.add('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+        document.getElementById('anchor-list').classList.remove('hidden');
+      }
+    }
+  </script>
+<!-- END: Application Logic Scripts -->
+
+
+</body></html>

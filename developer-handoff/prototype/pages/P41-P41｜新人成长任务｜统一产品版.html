@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>新人成长任务</title>
+<!-- Tailwind CSS v3 with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#F88440',
+              press: '#D96A31',
+              subtle: '#FCF4EC'
+            },
+            surface: {
+              canvas: '#F5F7F8',
+              card: '#FFFFFF',
+              subtle: '#EDF1F3',
+              border: '#DDE3E8'
+            },
+            ink: {
+              primary: '#26313A',
+              secondary: '#65717B'
+            },
+            status: {
+              success: '#047857',
+              'success-bg': '#ECFDF5',
+              warning: '#B45309',
+              'warning-bg': '#FFFBEB',
+              danger: '#EF4444',
+              'danger-bg': '#FEF2F2'
+            }
+          }
+        }
+      }
+    };
+  </script>
+<style data-purpose="custom-layout">
+    /* 严格限制视口与设备尺寸规范 */
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #E2E8F0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #app-container {
+      width: 390px;
+      height: 884px;
+      background-color: #F5F7F8;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* 隐藏滚动条但保留功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style data-purpose="typography-icons">
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 24px;
+      line-height: 1;
+    }
+    .material-symbols-outlined.filled {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-slate-200">
+<!-- BEGIN: Application Shell -->
+<div class="flex flex-col bg-surface-canvas text-ink-primary shadow-2xl relative select-none" id="app-container">
+<!-- BEGIN: MainHeader -->
+<!-- 固定 56px 顶栏 -->
+<header class="h-[56px] min-h-[56px] px-4 flex items-center justify-between bg-surface-card border-b border-surface-border z-20" data-purpose="top-navigation">
+<a aria-label="返回上一页" class="w-11 h-11 flex items-center justify-center text-ink-primary active:opacity-70 transition-opacity -ml-2" data-page="P40" href="#P40">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+<h1 class="text-[17px] font-semibold text-ink-primary tracking-tight">新人成长任务</h1>
+<div aria-label="通知" class="w-11 h-11 flex items-center justify-center text-ink-primary -mr-2">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<!-- 独立滚动主内容区 -->
+<main class="flex-1 min-h-0 overflow-y-auto no-scrollbar pb-6" data-purpose="content-stream">
+<!-- BEGIN: ContextSwitcher -->
+<!-- 上下文信息栏与学员切换胶囊 -->
+<section class="bg-surface-card px-4 py-3 border-b border-surface-border mb-3" data-purpose="student-context-bar">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-xs text-ink-secondary">带教培训师:</span>
+<span class="text-xs font-medium text-ink-primary bg-surface-subtle px-2 py-0.5 rounded">安姐</span>
+</div>
+<!-- 切换学员标签 -->
+<div aria-label="学员切换" class="flex items-center bg-surface-subtle p-0.5 rounded-lg border border-surface-border" role="tablist">
+<button aria-selected="true" class="px-2.5 py-1 text-xs font-semibold rounded-md transition-all text-white bg-brand shadow-sm" id="tab-maizi" onclick="switchStudent('maizi')" role="tab">麦子</button>
+<button aria-selected="false" class="px-2.5 py-1 text-xs font-medium rounded-md transition-all text-ink-secondary hover:text-ink-primary" id="tab-lizi" onclick="switchStudent('lizi')" role="tab">栗子</button>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs text-ink-secondary pt-1 border-t border-dashed border-surface-border">
+<div class="flex items-center space-x-2">
+<span class="text-ink-primary font-medium" id="ctx-student-name">学员：麦子</span>
+<span>·</span>
+<span id="ctx-teach-days">带教第6天</span>
+</div>
+<span class="text-[11px] text-ink-secondary bg-surface-subtle px-1.5 py-0.5 rounded">双周带教体系</span>
+</div>
+</section>
+<!-- END: ContextSwitcher -->
+<!-- ==================== 麦子数据视图 (默认) ==================== -->
+<div class="space-y-3 px-3.5" id="view-maizi">
+<!-- BEGIN: ProgressCard -->
+<!-- 任务进度概览 -->
+<section class="bg-surface-card rounded-xl p-4 border border-surface-border" data-purpose="progress-overview">
+<div class="flex justify-between items-baseline mb-2">
+<h2 class="text-base font-semibold text-ink-primary">任务进度</h2>
+<div class="flex items-baseline space-x-1">
+<span class="text-lg font-bold text-brand">3</span>
+<span class="text-xs text-ink-secondary">/ 4 完成</span>
+</div>
+</div>
+<!-- 进度条容器 -->
+<div class="w-full h-2 bg-surface-subtle rounded-full overflow-hidden mb-2.5">
+<div class="h-full bg-brand rounded-full transition-all duration-300" style="width: 75%;"></div>
+</div>
+<div class="flex justify-between items-center text-xs text-ink-secondary">
+<span>已完成 3 项基础考核与话术验收</span>
+<span class="text-[11px] bg-brand-subtle text-brand px-1.5 py-0.5 rounded font-medium">预计15天周期</span>
+</div>
+</section>
+<!-- END: ProgressCard -->
+<!-- BEGIN: ChecklistSection -->
+<!-- 阶段验收清单 -->
+<section class="bg-surface-card rounded-xl border border-surface-border divide-y divide-surface-border overflow-hidden" data-purpose="stage-checklist">
+<div class="px-4 py-3 flex justify-between items-center bg-surface-card">
+<h3 class="text-sm font-semibold text-ink-primary">阶段验收清单</h3>
+<span class="text-xs text-ink-secondary">已按排期达标</span>
+</div>
+<!-- 已验收项目 1 -->
+<article class="p-4 flex items-start justify-between">
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-status-success mt-0.5 filled">check_circle</span>
+<div>
+<h4 class="text-sm font-medium text-ink-primary leading-tight mb-1">1. 平台规则与红线</h4>
+<p class="text-xs text-ink-secondary">口试与合规自查清单已通过</p>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-status-success bg-status-success-bg whitespace-nowrap">
+              已验收
+            </span>
+</article>
+<!-- 已验收项目 2 -->
+<article class="p-4 flex items-start justify-between">
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-status-success mt-0.5 filled">check_circle</span>
+<div>
+<h4 class="text-sm font-medium text-ink-primary leading-tight mb-1">2. 开播流程与设备自检</h4>
+<p class="text-xs text-ink-secondary">声画调优、机位布光与推流测试</p>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-status-success bg-status-success-bg whitespace-nowrap">
+              已验收
+            </span>
+</article>
+<!-- 已验收项目 3 -->
+<article class="p-4 flex items-start justify-between">
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-status-success mt-0.5 filled">check_circle</span>
+<div>
+<h4 class="text-sm font-medium text-ink-primary leading-tight mb-1">3. 破冰话术与留人</h4>
+<p class="text-xs text-ink-secondary">前3分钟停留与互动脚本对齐</p>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-status-success bg-status-success-bg whitespace-nowrap">
+              已验收
+            </span>
+</article>
+</section>
+<!-- END: ChecklistSection -->
+<!-- BEGIN: ActiveTaskSection -->
+<!-- 当前进行中重点任务 -->
+<section class="bg-surface-card rounded-xl border-2 border-brand/40 p-4 space-y-3.5 relative" data-purpose="active-task-detail">
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-brand bg-brand-subtle px-2 py-0.5 rounded-md">第11–15天·终期实践</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-status-warning bg-status-warning-bg">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning mr-1"></span> 进行中
+            </span>
+</div>
+<div>
+<h3 class="text-base font-semibold text-ink-primary mb-1">完整首秀彩排</h3>
+<p class="text-xs text-ink-secondary leading-relaxed">首秀全程模拟实战，检验控场节奏与产品过款能力。</p>
+</div>
+<!-- 交付证据与状态列表 -->
+<div class="bg-surface-canvas rounded-lg p-3 space-y-2.5 border border-surface-border">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center space-x-2 text-ink-primary">
+<span class="material-symbols-outlined text-[18px] text-status-success">check_circle</span>
+<span>已完成彩排提纲</span>
+</div>
+<span class="text-[11px] text-ink-secondary bg-surface-subtle px-1.5 py-0.5 rounded font-mono">已就绪</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center space-x-2 text-ink-primary">
+<span class="material-symbols-outlined text-[18px] text-status-warning">pending</span>
+<span>待培训师验收整场演练</span>
+</div>
+<span class="text-[11px] text-status-warning bg-status-warning-bg px-1.5 py-0.5 rounded">待处理</span>
+</div>
+</div>
+<!-- 提示说明 -->
+<div class="text-[12px] text-ink-secondary flex items-start space-x-1.5 bg-surface-subtle/70 p-2.5 rounded-md border border-surface-border">
+<span class="material-symbols-outlined text-[16px] text-ink-secondary mt-0.5 flex-shrink-0">info</span>
+<p class="leading-normal">说明：验收通过后可查看结业评估及开播排期评定。</p>
+</div>
+<!-- 操作按钮区 -->
+<div class="pt-1 space-y-2">
+<div class="grid grid-cols-2 gap-2.5">
+<button class="h-11 bg-brand active:bg-brand-press text-white text-sm font-semibold rounded-lg flex items-center justify-center transition-colors shadow-sm" data-page="P41D" data-section="tasks" data-subject="麦子" onclick="handleEvidenceAction('麦子')">
+<span class="material-symbols-outlined text-[18px] mr-1">upload_file</span>
+                补充证据
+              </button>
+<a class="h-11 bg-surface-card active:bg-surface-subtle border border-surface-border text-ink-primary text-sm font-medium rounded-lg flex items-center justify-center transition-colors" data-page="P41D" data-subject="麦子" href="#P41D">
+<span class="material-symbols-outlined text-[18px] mr-1 text-ink-secondary">badge</span>
+                看学员档案
+              </a>
+</div>
+<div class="text-center pt-1">
+<a class="inline-flex items-center text-xs text-brand font-medium hover:underline p-1" data-page="P42" data-subject="麦子" href="#P42">
+                查看结业评估考核
+                <span class="material-symbols-outlined text-[14px] ml-0.5">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- END: ActiveTaskSection -->
+<!-- 原型说明标识 -->
+<div class="px-2 py-2 text-[11px] text-ink-secondary text-center leading-relaxed">
+          当前为明镜培训角色 P41 交互原型演示。证据补充与验收仅限前端状态反馈，不代表公会管理后台真实持久化或跨账号同步。
+        </div>
+</div>
+<!-- ==================== 栗子数据视图 (切换后展示) ==================== -->
+<div class="space-y-3 px-3.5 hidden" id="view-lizi">
+<!-- 进度概览 -->
+<section class="bg-surface-card rounded-xl p-4 border border-surface-border" data-purpose="progress-overview-lizi">
+<div class="flex justify-between items-baseline mb-2">
+<h2 class="text-base font-semibold text-ink-primary">任务进度</h2>
+<div class="flex items-baseline space-x-1">
+<span class="text-lg font-bold text-ink-secondary">0</span>
+<span class="text-xs text-ink-secondary">/ 4 完成</span>
+</div>
+</div>
+<div class="w-full h-2 bg-surface-subtle rounded-full overflow-hidden mb-2.5">
+<div class="h-full bg-brand rounded-full transition-all duration-300" style="width: 5%;"></div>
+</div>
+<div class="flex justify-between items-center text-xs text-ink-secondary">
+<span>正在进行第 1 项规则测验与学习</span>
+<span class="text-[11px] bg-surface-subtle text-ink-secondary px-1.5 py-0.5 rounded font-medium">初始导入期</span>
+</div>
+</section>
+<!-- 任务列表 -->
+<section class="bg-surface-card rounded-xl border border-surface-border divide-y divide-surface-border overflow-hidden" data-purpose="stage-checklist-lizi">
+<div class="px-4 py-3 flex justify-between items-center bg-surface-card">
+<h3 class="text-sm font-semibold text-ink-primary">基础学习任务</h3>
+<span class="text-xs text-status-warning">1 项进行中</span>
+</div>
+<!-- 当前进行中任务 -->
+<article class="p-4 space-y-2">
+<div class="flex items-start justify-between">
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-status-warning mt-0.5">pending</span>
+<div>
+<h4 class="text-sm font-medium text-ink-primary leading-tight mb-1">1. 平台规则与红线</h4>
+<p class="text-xs text-ink-secondary">正在学习平台规则；待完成红线测验</p>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-status-warning bg-status-warning-bg whitespace-nowrap">
+                进行中
+              </span>
+</div>
+<div class="text-xs text-ink-secondary bg-surface-subtle p-2 rounded flex items-center space-x-1">
+<span class="material-symbols-outlined text-[15px]">description</span>
+<span>待提交证据：合规测试答卷截图</span>
+</div>
+</article>
+<!-- 待开启任务 2 -->
+<article class="p-4 flex items-start justify-between opacity-50">
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-ink-secondary mt-0.5">lock</span>
+<div>
+<h4 class="text-sm font-medium text-ink-primary leading-tight mb-1">2. 开播流程与设备自检</h4>
+<p class="text-xs text-ink-secondary">前置任务完成后解锁</p>
+</div>
+</div>
+<span class="text-xs text-ink-secondary">未解锁</span>
+</article>
+</section>
+<!-- 操作按钮 -->
+<div class="pt-2 space-y-2">
+<button class="w-full h-11 bg-brand active:bg-brand-press text-white text-sm font-semibold rounded-lg flex items-center justify-center transition-colors shadow-sm" data-page="P41D" data-section="tasks" data-subject="栗子" onclick="handleEvidenceAction('栗子')">
+<span class="material-symbols-outlined text-[18px] mr-1">upload_file</span>
+            补充栗子学习证据
+          </button>
+<a class="w-full h-11 bg-surface-card active:bg-surface-subtle border border-surface-border text-ink-primary text-sm font-medium rounded-lg flex items-center justify-center transition-colors" data-page="P41D" data-subject="栗子" href="#P41D">
+<span class="material-symbols-outlined text-[18px] mr-1 text-ink-secondary">badge</span>
+            查看栗子学员档案
+          </a>
+</div>
+<div class="px-2 py-2 text-[11px] text-ink-secondary text-center leading-relaxed">
+          栗子档案数据独立，考核及格线为 80 分。
+        </div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: FeedbackModal -->
+<!-- 原型模拟轻量反馈弹层 -->
+<div class="fixed inset-0 bg-ink-primary/40 backdrop-blur-xs z-40 hidden flex items-center justify-center p-4" id="modal-backdrop">
+<div class="bg-surface-card rounded-2xl w-[320px] p-5 shadow-xl border border-surface-border space-y-4">
+<div class="w-12 h-12 bg-brand-subtle text-brand rounded-full flex items-center justify-center mx-auto">
+<span class="material-symbols-outlined text-2xl">cloud_upload</span>
+</div>
+<div class="text-center">
+<h4 class="text-base font-semibold text-ink-primary mb-1">补充演练证据</h4>
+<p class="text-xs text-ink-secondary" id="modal-desc">请选择整场彩排视频切片或打卡记录</p>
+</div>
+<div class="space-y-2 pt-1">
+<button class="w-full h-10 bg-brand text-white text-xs font-semibold rounded-lg flex items-center justify-center active:bg-brand-press" onclick="submitSimulatedEvidence()">
+            上传并提交初验
+          </button>
+<button class="w-full h-10 bg-surface-subtle text-ink-secondary text-xs font-medium rounded-lg flex items-center justify-center hover:text-ink-primary" onclick="closeModal()">
+            取消
+          </button>
+</div>
+</div>
+</div>
+<!-- END: FeedbackModal -->
+<!-- BEGIN: BottomNavigation -->
+<!-- 固定 68px 底部导航栏 (标准5联) -->
+<footer class="h-[68px] min-h-[68px] bg-surface-card border-t border-surface-border flex items-center justify-around px-2 z-20 pb-safe" data-purpose="tab-navigation">
+<!-- 1. 今天 -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-ink-secondary active:opacity-75 transition-colors" data-page="P40" href="#P40">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[11px] leading-tight mt-1 font-normal">今天</span>
+</a>
+<!-- 2. 任务 (高亮选中态) -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-brand transition-colors font-medium" data-page="P41" href="#P41">
+<span class="material-symbols-outlined text-[24px] filled">assignment_turned_in</span>
+<span class="text-[11px] leading-tight mt-1">任务</span>
+</a>
+<!-- 3. 考核 -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-ink-secondary active:opacity-75 transition-colors" data-page="P42" href="#P42">
+<span class="material-symbols-outlined text-[24px]">fact_check</span>
+<span class="text-[11px] leading-tight mt-1 font-normal">考核</span>
+</a>
+<!-- 4. 我的 -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-ink-secondary active:opacity-75 transition-colors" data-page="MY" href="#MY">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="text-[11px] leading-tight mt-1 font-normal">我的</span>
+</a>
+<!-- 5. 助理 -->
+<a class="flex flex-col items-center justify-center w-14 h-full text-ink-secondary active:opacity-75 transition-colors" data-page="AI" href="#AI">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+<span class="text-[11px] leading-tight mt-1 font-normal">助理</span>
+</a>
+</footer>
+<!-- END: BottomNavigation -->
+</div>
+<!-- END: Application Shell -->
+<!-- BEGIN: LogicScript -->
+<script data-purpose="interaction-logic">
+    // 学员数据上下文切换
+    function switchStudent(studentKey) {
+      const tabMaizi = document.getElementById('tab-maizi');
+      const tabLizi = document.getElementById('tab-lizi');
+      const viewMaizi = document.getElementById('view-maizi');
+      const viewLizi = document.getElementById('view-lizi');
+      const ctxStudentName = document.getElementById('ctx-student-name');
+      const ctxTeachDays = document.getElementById('ctx-teach-days');
+
+      if (studentKey === 'maizi') {
+        // 选中麦子
+        tabMaizi.className = "px-2.5 py-1 text-xs font-semibold rounded-md transition-all text-white bg-brand shadow-sm";
+        tabMaizi.setAttribute('aria-selected', 'true');
+        tabLizi.className = "px-2.5 py-1 text-xs font-medium rounded-md transition-all text-ink-secondary hover:text-ink-primary";
+        tabLizi.setAttribute('aria-selected', 'false');
+
+        viewMaizi.classList.remove('hidden');
+        viewLizi.classList.add('hidden');
+
+        ctxStudentName.textContent = '学员：麦子';
+        ctxTeachDays.textContent = '带教第6天';
+      } else {
+        // 选中栗子
+        tabLizi.className = "px-2.5 py-1 text-xs font-semibold rounded-md transition-all text-white bg-brand shadow-sm";
+        tabLizi.setAttribute('aria-selected', 'true');
+        tabMaizi.className = "px-2.5 py-1 text-xs font-medium rounded-md transition-all text-ink-secondary hover:text-ink-primary";
+        tabMaizi.setAttribute('aria-selected', 'false');
+
+        viewLizi.classList.remove('hidden');
+        viewMaizi.classList.add('hidden');
+
+        ctxStudentName.textContent = '学员：栗子';
+        ctxTeachDays.textContent = '带教第2天';
+      }
+    }
+
+    // 弹层模拟交互
+    function handleEvidenceAction(student) {
+      const modal = document.getElementById('modal-backdrop');
+      const desc = document.getElementById('modal-desc');
+      desc.textContent = `为学员 [${student}] 补充并关联最新实操与录屏证据文件。`;
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-backdrop').classList.add('hidden');
+    }
+
+    function submitSimulatedEvidence() {
+      alert('证据提交模拟成功（原型演示已反馈验收流程）');
+      closeModal();
+    }
+  </script>
+<!-- END: LogicScript -->
+</body></html>
