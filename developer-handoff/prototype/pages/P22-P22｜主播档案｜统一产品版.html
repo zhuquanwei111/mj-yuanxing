@@ -1,0 +1,593 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>P22｜主播档案｜统一产品版</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'app-canvas': '#F5F7F8',
+            'app-surface': '#FFFFFF',
+            'surface-muted': '#EDF1F3',
+            'app-border': '#DDE3E8',
+            'text-primary': '#26313A',
+            'text-secondary': '#65717B',
+            'brand-primary': '#F88440',
+            'brand-pressed': '#D96A31',
+            'brand-soft': '#FCF4EC',
+            'status-success': '#047857',
+            'status-pending': '#B45309',
+            'status-danger': '#EF4444'
+          },
+          fontFamily: {
+            sans: ['"Noto Sans SC"', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 强制移动端单列视口防溢出 */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F5F7F8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* 隐藏滚动条但保留功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#F5F7F8] text-[#26313A] antialiased select-none">
+  <!-- 移动端 390 x 884 CSS 容器 -->
+  <div class="relative w-[390px] h-[884px] max-w-[390px] max-h-[884px] bg-[#F5F7F8] flex flex-col overflow-hidden shadow-sm">
+    
+    <!-- 1. 顶部持久化固定导航栏 (56px) -->
+    <header class="h-[56px] min-h-[56px] w-full bg-[#FFFFFF] border-b border-[#DDE3E8] flex items-center justify-between px-4 z-30 shrink-0">
+      <div class="w-11 h-11 flex items-center justify-start">
+        <a href="#P21" data-page="P21" class="w-11 h-11 flex items-center justify-center text-[#26313A] hover:text-[#F88440] transition-colors active:scale-95">
+          <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+        </a>
+      </div>
+      <div class="flex flex-col items-center justify-center pointer-events-none">
+        <h1 class="text-[17px] font-semibold text-[#26313A] tracking-tight leading-tight">主播档案</h1>
+        <span class="text-[11px] text-[#65717B] leading-none mt-0.5">运营 · 小林</span>
+      </div>
+      <div class="w-11 h-11 flex items-center justify-end">
+        <a href="#P92" data-page="P92" class="w-11 h-11 flex items-center justify-center text-[#26313A] hover:text-[#F88440] transition-colors active:scale-95">
+          <span class="material-symbols-outlined text-[24px]">notifications</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- 2. 中间独立内容滚动区 -->
+    <main class="flex-1 min-h-0 overflow-y-auto no-scrollbar pb-6">
+      
+      <!-- 主播基础摘要与快捷操作卡 (单一白表面，细发丝线) -->
+      <section class="bg-[#FFFFFF] border-b border-[#DDE3E8] px-4 pt-4 pb-4">
+        <!-- 头部身份信息行 -->
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-[#EDF1F3] border border-[#DDE3E8] flex items-center justify-center shrink-0 text-[#65717B]">
+              <span class="material-symbols-outlined text-[26px]">person_outline</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-[19px] font-bold text-[#26313A] tracking-tight">小雨</span>
+                <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-medium bg-[#ECFDF5] text-[#047857] border border-[#A7F3D0]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#047857]"></span>开播中
+                </span>
+                <span class="inline-block px-1.5 py-0.5 rounded text-[11px] text-[#65717B] bg-[#EDF1F3]">成熟</span>
+              </div>
+              <p class="text-[12px] text-[#65717B] mt-0.5">才艺唱歌 · 治愈系翻唱</p>
+            </div>
+          </div>
+          <!-- 核心行动：生成规划 (P23) -->
+          <a href="#P23" data-page="P23" data-subject="小雨" class="h-9 px-3.5 bg-[#F88440] hover:bg-[#D96A31] active:bg-[#D96A31] text-[#FFFFFF] rounded-lg text-[13px] font-medium flex items-center gap-1.5 transition-colors shadow-none shrink-0 self-center">
+            <span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+            <span>生成规划</span>
+          </a>
+        </div>
+
+        <!-- 关键数据三列指标行 (无多层嵌套小盒，纯排版) -->
+        <div class="mt-4 pt-3.5 border-t border-[#EDF1F3] grid grid-cols-3 divide-x divide-[#EDF1F3] text-center">
+          <div class="px-1">
+            <span class="block text-[11px] text-[#65717B]">今日音浪</span>
+            <div class="text-[18px] font-bold text-[#26313A] tracking-tight mt-0.5">
+              3.2<span class="text-[12px] font-normal text-[#65717B] ml-0.5">万</span>
+            </div>
+          </div>
+          <div class="px-1">
+            <span class="block text-[11px] text-[#65717B]">近7天环比</span>
+            <div class="text-[18px] font-bold text-[#047857] tracking-tight mt-0.5 flex items-center justify-center gap-0.5">
+              <span class="material-symbols-outlined text-[16px]">trending_up</span>+13%
+            </div>
+          </div>
+          <div class="px-1">
+            <span class="block text-[11px] text-[#65717B]">本周有效天</span>
+            <div class="text-[18px] font-bold text-[#26313A] tracking-tight mt-0.5">
+              6<span class="text-[12px] font-normal text-[#65717B] ml-0.5">/7天</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2 text-right">
+          <span class="text-[11px] text-[#65717B]">数据更新至 10月14日 22:00</span>
+        </div>
+      </section>
+
+      <!-- 4个页内业务Tab标签栏 (概况 / 趋势 / 规划与复盘 / 协作记录) -->
+      <nav class="sticky top-0 bg-[#FFFFFF] border-b border-[#DDE3E8] z-20 flex h-[44px] px-2 shadow-none">
+        <button onclick="switchTab('overview')" id="tab-btn-overview" class="tab-btn flex-1 flex items-center justify-center text-[14px] font-semibold text-[#F88440] relative border-b-2 border-[#F88440] transition-colors">
+          概况
+        </button>
+        <button onclick="switchTab('trend')" id="tab-btn-trend" class="tab-btn flex-1 flex items-center justify-center text-[14px] font-medium text-[#65717B] relative border-b-2 border-transparent hover:text-[#26313A] transition-colors">
+          趋势
+        </button>
+        <button onclick="switchTab('plan-review')" id="tab-btn-plan-review" class="tab-btn flex-1 flex items-center justify-center text-[14px] font-medium text-[#65717B] relative border-b-2 border-transparent hover:text-[#26313A] transition-colors">
+          规划与复盘
+        </button>
+        <button onclick="switchTab('collab')" id="tab-btn-collab" class="tab-btn flex-1 flex items-center justify-center text-[14px] font-medium text-[#65717B] relative border-b-2 border-transparent hover:text-[#26313A] transition-colors">
+          协作记录
+        </button>
+      </nav>
+
+      <!-- TAB 内容容器 -->
+      <div class="p-4 space-y-4">
+
+        <!-- ================= 视图 1：概况 (默认) ================= -->
+        <div id="view-overview" class="tab-content block space-y-4">
+          
+          <!-- 核心资料平面卡 -->
+          <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl overflow-hidden">
+            <div class="px-4 py-3 border-b border-[#EDF1F3] flex items-center justify-between">
+              <div class="flex items-center gap-1.5 text-[15px] font-bold text-[#26313A]">
+                <span class="material-symbols-outlined text-[18px] text-[#F88440]">badge</span>
+                <span>核心资料</span>
+              </div>
+              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-medium bg-[#ECFDF5] text-[#047857]">
+                履约合规
+              </span>
+            </div>
+            <div class="divide-y divide-[#EDF1F3] text-[13px]">
+              <div class="px-4 py-3 flex justify-between items-center">
+                <span class="text-[#65717B]">赛道 / 定位</span>
+                <span class="font-medium text-[#26313A]">才艺唱歌 · 治愈系翻唱</span>
+              </div>
+              <div class="px-4 py-3 flex justify-between items-center">
+                <span class="text-[#65717B]">加入日期</span>
+                <span class="font-medium text-[#26313A]">2026-03-14</span>
+              </div>
+              <div class="px-4 py-3 flex justify-between items-center">
+                <span class="text-[#65717B]">合同到期</span>
+                <span class="font-medium text-[#26313A]">2027-03-13</span>
+              </div>
+              <div class="px-4 py-3 flex justify-between items-center">
+                <span class="text-[#65717B]">负责运营</span>
+                <span class="font-medium text-[#26313A]">小林（我）</span>
+              </div>
+              <div class="px-4 py-3 flex justify-between items-center">
+                <span class="text-[#65717B]">分成比例</span>
+                <span class="font-bold text-[#F88440]">40%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 协同业务通道 (3个业务快捷出口) -->
+          <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3.5">
+            <span class="block text-[13px] font-bold text-[#26313A] mb-2.5">协同业务通道</span>
+            <div class="grid grid-cols-3 gap-2">
+              <a href="#P23" data-page="P23" data-subject="小雨" class="flex flex-col items-center justify-center p-2.5 rounded-lg bg-[#F5F7F8] hover:bg-[#FCF4EC] border border-[#DDE3E8] transition-colors group">
+                <span class="material-symbols-outlined text-[22px] text-[#F88440] group-hover:scale-105 transition-transform">edit_calendar</span>
+                <span class="text-[12px] font-medium text-[#26313A] mt-1">制定规划</span>
+                <span class="text-[10px] text-[#65717B]">拟定策略</span>
+              </a>
+              <a href="#P24" data-page="P24" data-subject="小雨" class="flex flex-col items-center justify-center p-2.5 rounded-lg bg-[#F5F7F8] hover:bg-[#FCF4EC] border border-[#DDE3E8] transition-colors group">
+                <span class="material-symbols-outlined text-[22px] text-[#047857] group-hover:scale-105 transition-transform">monitoring</span>
+                <span class="text-[12px] font-medium text-[#26313A] mt-1">查看复盘</span>
+                <span class="text-[10px] text-[#65717B]">4.6万音浪</span>
+              </a>
+              <a href="#P25" data-page="P25" data-subject="小雨" class="flex flex-col items-center justify-center p-2.5 rounded-lg bg-[#F5F7F8] hover:bg-[#FCF4EC] border border-[#DDE3E8] transition-colors group">
+                <span class="material-symbols-outlined text-[22px] text-[#26313A] group-hover:scale-105 transition-transform">sync_alt</span>
+                <span class="text-[12px] font-medium text-[#26313A] mt-1">发起交接</span>
+                <span class="text-[10px] text-[#65717B]">跨组协同</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="text-center pt-1">
+            <span class="text-[11px] text-[#65717B]">明镜系统 · 档案流数据实时同步演示 · 点击操作跳转对应原型流</span>
+          </div>
+        </div>
+
+        <!-- ================= 视图 2：趋势 ================= -->
+        <div id="view-trend" class="tab-content hidden space-y-4">
+          <!-- 近7天音浪对比面板 -->
+          <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[14px] font-bold text-[#26313A]">近7天音浪比较 (万)</span>
+              <span class="text-[11px] text-[#65717B]">截至 10-14 22:00</span>
+            </div>
+            
+            <div class="mt-4 space-y-3">
+              <div>
+                <div class="flex justify-between text-[12px] mb-1">
+                  <span class="text-[#65717B]">前7天</span>
+                  <span class="font-semibold text-[#26313A]">21.2万</span>
+                </div>
+                <div class="w-full h-2.5 bg-[#EDF1F3] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#A0AEC0] rounded-full" style="width: 78%;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[12px] mb-1">
+                  <span class="text-[#26313A] font-medium">近7天</span>
+                  <span class="font-bold text-[#F88440]">24.0万</span>
+                </div>
+                <div class="w-full h-2.5 bg-[#EDF1F3] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#F88440] rounded-full" style="width: 88%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 p-2.5 bg-[#EDF1F3] rounded-lg flex items-center gap-2 text-[12px] text-[#26313A]">
+              <span class="material-symbols-outlined text-[18px] text-[#047857]">insights</span>
+              <span><strong>简明解读：</strong>近7天比前7天涨幅 <strong class="text-[#047857]">13%</strong>，翻唱大场拉动明显。</span>
+            </div>
+          </div>
+
+          <!-- 运营待决项卡片 (决策由你定) -->
+          <div class="bg-[#FCF4EC] border border-[#F88440] border-opacity-40 rounded-xl p-4">
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-[20px] text-[#F88440] shrink-0 mt-0.5">tips_and_updates</span>
+              <div class="flex-1">
+                <h3 class="text-[13px] font-bold text-[#26313A]">运营待决：周六是否固定提前到 19:30 开播？</h3>
+                <p class="text-[12px] text-[#65717B] mt-1 leading-relaxed">
+                  上周六 2.6万；当天 19:58 才开播，提前开播预计可多承接 3000+ 基础晚高峰流量。
+                </p>
+                <div class="mt-3 flex items-center gap-2">
+                  <button type="button" onclick="alert('本地演示已采纳建议：已同步开播排期拟定')" class="h-8 px-3.5 bg-[#F88440] text-[#FFFFFF] rounded-md text-[12px] font-medium hover:bg-[#D96A31] active:bg-[#D96A31] transition-colors">
+                    采纳建议
+                  </button>
+                  <button type="button" onclick="alert('本地演示：已标记稍后定')" class="h-8 px-3 bg-[#FFFFFF] border border-[#DDE3E8] text-[#65717B] rounded-md text-[12px] font-medium hover:bg-[#EDF1F3] transition-colors">
+                    稍后定
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= 视图 3：规划与复盘 ================= -->
+        <div id="view-plan-review" class="tab-content hidden space-y-4">
+          <!-- 子标签切换 (规划史 3 / 复盘史 3) -->
+          <div class="flex items-center justify-between pb-1 border-b border-[#EDF1F3]">
+            <div class="flex gap-2">
+              <button onclick="switchSubTab('plan')" id="subtab-btn-plan" class="px-3 py-1 text-[12px] font-bold text-[#F88440] bg-[#FCF4EC] rounded-full border border-[#F88440] transition-colors">
+                规划史 3
+              </button>
+              <button onclick="switchSubTab('review')" id="subtab-btn-review" class="px-3 py-1 text-[12px] font-medium text-[#65717B] bg-[#FFFFFF] rounded-full border border-[#DDE3E8] hover:text-[#26313A] transition-colors">
+                复盘史 3
+              </button>
+            </div>
+            <!-- 出口根据子标签切换 -->
+            <a id="subtab-action-btn" href="#P23" data-page="P23" data-subject="小雨" class="text-[12px] text-[#F88440] font-medium flex items-center hover:underline">
+              <span>新建规划 (P23)</span>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          </div>
+
+          <!-- 3.1 规划列表区 -->
+          <div id="subview-plan" class="space-y-3 block">
+            <!-- 记录 1: 10-14 -->
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3.5">
+              <div class="flex items-center justify-between text-[11px] text-[#65717B]">
+                <span>10-14 · 单场规划</span>
+                <span class="text-[#B45309] bg-[#FFFBEB] px-1.5 py-0.5 rounded font-medium border border-[#FDE68A]">待确认草稿</span>
+              </div>
+              <h4 class="text-[14px] font-bold text-[#26313A] mt-1.5">周六大场：翻唱连打＋两场连麦</h4>
+              <p class="text-[12px] text-[#65717B] mt-1">目标：音浪冲 5.5万 · 涨粉 150</p>
+              <div class="mt-2.5 pt-2 border-t border-[#EDF1F3] flex justify-end">
+                <a href="#P23" data-page="P23" data-subject="小雨" class="text-[12px] font-medium text-[#F88440] flex items-center">
+                  查看草稿并推进 <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 记录 2: 10-13 -->
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3.5">
+              <div class="flex items-center justify-between text-[11px] text-[#65717B]">
+                <span>10-13 · 单场规划</span>
+                <span class="text-[#047857] bg-[#ECFDF5] px-1.5 py-0.5 rounded font-medium">执行中</span>
+              </div>
+              <h4 class="text-[14px] font-bold text-[#26313A] mt-1.5">周五晚场冲刺</h4>
+              <p class="text-[12px] text-[#65717B] mt-1">目标：音浪 4.5万</p>
+            </div>
+
+            <!-- 记录 3: 10-06 -->
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3.5">
+              <div class="flex items-center justify-between text-[11px] text-[#65717B]">
+                <span>10-06 · 7天规划</span>
+                <span class="text-[#65717B] bg-[#EDF1F3] px-1.5 py-0.5 rounded font-medium">已完成</span>
+              </div>
+              <h4 class="text-[14px] font-bold text-[#26313A] mt-1.5">翻唱主题周</h4>
+              <p class="text-[12px] text-[#65717B] mt-1">目标：7天涨粉 800</p>
+            </div>
+          </div>
+
+          <!-- 3.2 复盘列表区 -->
+          <div id="subview-review" class="space-y-3 hidden">
+            <!-- 记录 1: 10-13 -->
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3.5">
+              <div class="flex items-center justify-between text-[11px] text-[#65717B]">
+                <span>10-13 场次复盘</span>
+                <span class="text-[#047857] bg-[#ECFDF5] px-1.5 py-0.5 rounded font-medium">已归档</span>
+              </div>
+              <h4 class="text-[14px] font-bold text-[#26313A] mt-1">比前晚多涨2万，赢在收尾连唱</h4>
+              
+              <div class="mt-2 grid grid-cols-3 gap-2 bg-[#F5F7F8] p-2 rounded-lg text-center text-[11px]">
+                <div><span class="text-[#65717B]">音浪</span> <span class="font-bold text-[#26313A] block">4.6万</span></div>
+                <div><span class="text-[#65717B]">时长</span> <span class="font-bold text-[#26313A] block">3.1h</span></div>
+                <div><span class="text-[#65717B]">峰值</span> <span class="font-bold text-[#26313A] block">412人</span></div>
+              </div>
+
+              <div class="mt-2.5 text-[12px] space-y-1.5">
+                <p><strong class="text-[#047857]">做得好：</strong><span class="text-[#65717B]">收尾连唱两首效果明显</span></p>
+                <p><strong class="text-[#B45309]">需要处理：</strong><span class="text-[#65717B]">开场前5分钟慢热，进来的人走得快</span></p>
+                <p><strong class="text-[#F88440]">下一步：</strong><span class="text-[#65717B]">今晚21:20黄金段提前5分钟热场；收尾连唱保留</span></p>
+              </div>
+
+              <div class="mt-3 pt-2 border-t border-[#EDF1F3] flex justify-end">
+                <a href="#P24" data-page="P24" data-subject="小雨" class="text-[12px] font-medium text-[#F88440] flex items-center">
+                  查看完整复盘报告 (P24) <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 记录 2: 10-12 -->
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3 flex justify-between items-center text-[13px]">
+              <div>
+                <span class="text-[11px] text-[#65717B]">10-12</span>
+                <h5 class="font-medium text-[#26313A]">平稳场，按周计划在走</h5>
+              </div>
+              <span class="font-bold text-[#26313A]">2.6万音浪</span>
+            </div>
+
+            <!-- 记录 3: 10-11 -->
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3 flex justify-between items-center text-[13px]">
+              <div>
+                <span class="text-[11px] text-[#65717B]">10-11</span>
+                <h5 class="font-medium text-[#26313A]">周六大场达标</h5>
+              </div>
+              <span class="font-bold text-[#26313A]">4.2万音浪</span>
+            </div>
+          </div>
+
+          <div class="text-center pt-1">
+            <span class="text-[11px] text-[#65717B]">说明：原型操作仅保存在前端运行环境，不代表真实对外下发</span>
+          </div>
+        </div>
+
+        <!-- ================= 视图 4：协作记录 ================= -->
+        <div id="view-collab" class="tab-content hidden space-y-4">
+          <!-- 子标签切换 (交接史 1 / 沟通记录 2) -->
+          <div class="flex items-center justify-between pb-1 border-b border-[#EDF1F3]">
+            <div class="flex gap-2">
+              <button onclick="switchCollabSubTab('handoff')" id="subtab-btn-handoff" class="px-3 py-1 text-[12px] font-bold text-[#F88440] bg-[#FCF4EC] rounded-full border border-[#F88440] transition-colors">
+                交接史 1
+              </button>
+              <button onclick="switchCollabSubTab('comm')" id="subtab-btn-comm" class="px-3 py-1 text-[12px] font-medium text-[#65717B] bg-[#FFFFFF] rounded-full border border-[#DDE3E8] hover:text-[#26313A] transition-colors">
+                沟通记录 2
+              </button>
+            </div>
+            <a href="#P25" data-page="P25" data-subject="小雨" class="text-[12px] text-[#F88440] font-medium flex items-center hover:underline">
+              <span>进入交接中心 (P25)</span>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          </div>
+
+          <!-- 4.1 交接史 -->
+          <div id="subview-handoff" class="space-y-3 block">
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3.5">
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-[#65717B]">10-12 · 妆造交接</span>
+                <span class="text-[#047857] bg-[#ECFDF5] px-1.5 py-0.5 rounded font-medium">已完成</span>
+              </div>
+              <div class="mt-2 text-[13px]">
+                <div class="flex items-center gap-1.5 text-[#26313A] font-semibold">
+                  <span class="material-symbols-outlined text-[16px] text-[#65717B]">swap_horiz</span>
+                  <span>接收方：妆造组 · 小蝶</span>
+                </div>
+                <p class="text-[12px] text-[#65717B] mt-1 leading-relaxed bg-[#F5F7F8] p-2.5 rounded-lg border border-[#EDF1F3]">
+                  说明：明天 16:00 妆造，19:00 彩排前完成。
+                </p>
+              </div>
+            </div>
+            
+            <div class="p-3 bg-[#FFFFFF] border border-dashed border-[#DDE3E8] rounded-xl text-center">
+              <a href="#P25" data-page="P25" data-subject="小雨" class="text-[13px] text-[#F88440] font-medium inline-flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">add_circle</span>发起新交接工单
+              </a>
+            </div>
+          </div>
+
+          <!-- 4.2 沟通记录 -->
+          <div id="subview-comm" class="space-y-3 hidden">
+            <!-- 沟通 1 -->
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3.5">
+              <div class="flex items-center justify-between text-[11px] text-[#65717B]">
+                <span class="flex items-center gap-1 font-medium text-[#26313A]">
+                  <span class="material-symbols-outlined text-[15px] text-[#047857]">chat</span>10-13 · 微信
+                </span>
+                <span>负责运营：小林</span>
+              </div>
+              <p class="text-[13px] text-[#26313A] mt-2 leading-relaxed">
+                “把昨晚复盘要点发给她，她说收尾连唱保留”
+              </p>
+            </div>
+
+            <!-- 沟通 2 -->
+            <div class="bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl p-3.5">
+              <div class="flex items-center justify-between text-[11px] text-[#65717B]">
+                <span class="flex items-center gap-1 font-medium text-[#26313A]">
+                  <span class="material-symbols-outlined text-[15px] text-[#35678E]">call</span>10-10 · 电话
+                </span>
+                <span>负责运营：小林</span>
+              </div>
+              <p class="text-[13px] text-[#26313A] mt-2 leading-relaxed">
+                “聊了周六大场安排，她想加两场连麦”
+              </p>
+            </div>
+
+            <div class="p-2.5 text-center">
+              <span class="text-[11px] text-[#65717B]">沟通记录仅展示本地历史备忘 · 不代表消息后台送达</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- 3. 底部持久化固定导航栏 (68px, 运营端5项固定, 选中「我的主播」) -->
+    <footer class="h-[68px] min-h-[68px] w-full bg-[#FFFFFF] border-t border-[#DDE3E8] flex items-center justify-around px-2 z-30 shrink-0 pb-safe">
+      <!-- 1. 今天 -->
+      <a href="#P20" data-page="P20" class="flex-1 flex flex-col items-center justify-center text-[#65717B] hover:text-[#26313A] transition-colors py-1">
+        <span class="material-symbols-outlined text-[24px]">home</span>
+        <span class="text-[11px] font-medium leading-none mt-1">今天</span>
+      </a>
+      <!-- 2. 我的主播 (当前选中) -->
+      <a href="#P21" data-page="P21" class="flex-1 flex flex-col items-center justify-center text-[#F88440] transition-colors py-1">
+        <span class="material-symbols-outlined text-[24px]">groups</span>
+        <span class="text-[11px] font-bold leading-none mt-1">我的主播</span>
+      </a>
+      <!-- 3. 交接 -->
+      <a href="#P25" data-page="P25" class="flex-1 flex flex-col items-center justify-center text-[#65717B] hover:text-[#26313A] transition-colors py-1">
+        <span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+        <span class="text-[11px] font-medium leading-none mt-1">交接</span>
+      </a>
+      <!-- 4. 我的 -->
+      <a href="#MY" data-page="MY" class="flex-1 flex flex-col items-center justify-center text-[#65717B] hover:text-[#26313A] transition-colors py-1">
+        <span class="material-symbols-outlined text-[24px]">person_outline</span>
+        <span class="text-[11px] font-medium leading-none mt-1">我的</span>
+      </a>
+      <!-- 5. 助理 -->
+      <a href="#AI" data-page="AI" class="flex-1 flex flex-col items-center justify-center text-[#65717B] hover:text-[#26313A] transition-colors py-1">
+        <span class="material-symbols-outlined text-[24px]">support_agent</span>
+        <span class="text-[11px] font-medium leading-none mt-1">助理</span>
+      </a>
+    </footer>
+
+  </div>
+
+  <!-- 页面交互脚本：原生 JS 实现平滑 Tab 切换 -->
+  <script>
+    function switchTab(tabKey) {
+      // 1. 隐藏所有内容视图
+      const views = document.querySelectorAll('.tab-content');
+      views.forEach(v => {
+        v.classList.add('hidden');
+        v.classList.remove('block');
+      });
+
+      // 2. 重置所有Tab按钮状态
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => {
+        b.classList.remove('text-[#F88440]', 'border-[#F88440]', 'font-semibold');
+        b.classList.add('text-[#65717B]', 'border-transparent', 'font-medium');
+      });
+
+      // 3. 激活选中项
+      const targetView = document.getElementById('view-' + tabKey);
+      const targetBtn = document.getElementById('tab-btn-' + tabKey);
+      if (targetView && targetBtn) {
+        targetView.classList.remove('hidden');
+        targetView.classList.add('block');
+
+        targetBtn.classList.remove('text-[#65717B]', 'border-transparent', 'font-medium');
+        targetBtn.classList.add('text-[#F88440]', 'border-[#F88440]', 'font-semibold');
+      }
+    }
+
+    // 规划与复盘 子Tab切换
+    function switchSubTab(subKey) {
+      const planView = document.getElementById('subview-plan');
+      const reviewView = document.getElementById('subview-review');
+      const planBtn = document.getElementById('subtab-btn-plan');
+      const reviewBtn = document.getElementById('subtab-btn-review');
+      const actionBtn = document.getElementById('subtab-action-btn');
+
+      if (subKey === 'plan') {
+        planView.classList.remove('hidden');
+        planView.classList.add('block');
+        reviewView.classList.add('hidden');
+        reviewView.classList.remove('block');
+
+        planBtn.className = 'px-3 py-1 text-[12px] font-bold text-[#F88440] bg-[#FCF4EC] rounded-full border border-[#F88440] transition-colors';
+        reviewBtn.className = 'px-3 py-1 text-[12px] font-medium text-[#65717B] bg-[#FFFFFF] rounded-full border border-[#DDE3E8] hover:text-[#26313A] transition-colors';
+        actionBtn.href = '#P23';
+        actionBtn.dataset.page = 'P23';
+        actionBtn.innerHTML = '<span>新建规划 (P23)</span><span class="material-symbols-outlined text-[16px]">chevron_right</span>';
+      } else {
+        reviewView.classList.remove('hidden');
+        reviewView.classList.add('block');
+        planView.classList.add('hidden');
+        planView.classList.remove('block');
+
+        reviewBtn.className = 'px-3 py-1 text-[12px] font-bold text-[#F88440] bg-[#FCF4EC] rounded-full border border-[#F88440] transition-colors';
+        planBtn.className = 'px-3 py-1 text-[12px] font-medium text-[#65717B] bg-[#FFFFFF] rounded-full border border-[#DDE3E8] hover:text-[#26313A] transition-colors';
+        actionBtn.href = '#P24';
+        actionBtn.dataset.page = 'P24';
+        actionBtn.innerHTML = '<span>查看复盘助手 (P24)</span><span class="material-symbols-outlined text-[16px]">chevron_right</span>';
+      }
+    }
+
+    // 协作记录 子Tab切换
+    function switchCollabSubTab(collabKey) {
+      const handoffView = document.getElementById('subview-handoff');
+      const commView = document.getElementById('subview-comm');
+      const handoffBtn = document.getElementById('subtab-btn-handoff');
+      const commBtn = document.getElementById('subtab-btn-comm');
+
+      if (collabKey === 'handoff') {
+        handoffView.classList.remove('hidden');
+        handoffView.classList.add('block');
+        commView.classList.add('hidden');
+        commView.classList.remove('block');
+
+        handoffBtn.className = 'px-3 py-1 text-[12px] font-bold text-[#F88440] bg-[#FCF4EC] rounded-full border border-[#F88440] transition-colors';
+        commBtn.className = 'px-3 py-1 text-[12px] font-medium text-[#65717B] bg-[#FFFFFF] rounded-full border border-[#DDE3E8] hover:text-[#26313A] transition-colors';
+      } else {
+        commView.classList.remove('hidden');
+        commView.classList.add('block');
+        handoffView.classList.add('hidden');
+        handoffView.classList.remove('block');
+
+        commBtn.className = 'px-3 py-1 text-[12px] font-bold text-[#F88440] bg-[#FCF4EC] rounded-full border border-[#F88440] transition-colors';
+        handoffBtn.className = 'px-3 py-1 text-[12px] font-medium text-[#65717B] bg-[#FFFFFF] rounded-full border border-[#DDE3E8] hover:text-[#26313A] transition-colors';
+      }
+    }
+  </script>
+
+
+</body></html>

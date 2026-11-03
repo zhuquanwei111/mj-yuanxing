@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>P83｜明镜助理</title>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#FAF5F1',
+            surface: '#FFFFFF',
+            surfaceMuted: '#F4F0ED',
+            line: '#EBE5E0',
+            primaryText: '#282838',
+            secondaryText: '#686260',
+            accent: '#F88440',
+            accentHover: '#E06D29',
+            accentActive: '#D96A31'
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Hiragino Sans GB"', '"Noto Sans SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="base-resets">
+    /* Prevent bouncy scroll on mobile iOS & custom tap highlights */
+    body {
+      -webkit-tap-highlight-color: transparent;
+      background-color: #FAF5F1;
+      color: #282838;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+    }
+    /* Hide scrollbars gracefully */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-canvas min-h-screen flex flex-col justify-between select-none antialiased text-primaryText">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-30 bg-canvas/95 backdrop-blur-md border-b border-line/70 px-4 pt-3 pb-2.5 flex flex-col items-center">
+<!-- Top Row Actions -->
+<div class="w-full flex items-center justify-between h-9">
+<!-- Back navigation button -->
+<a class="w-9 h-9 -ml-1 flex items-center justify-center rounded-full text-secondaryText hover:text-accent transition-colors" href="#P80" title="返回">
+<svg class="w-6 h-6 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+</a>
+<!-- Screen Title -->
+<h1 class="text-xl font-bold tracking-tight text-primaryText">明镜助理</h1>
+<!-- More options button -->
+<button class="w-9 h-9 -mr-1 flex items-center justify-center rounded-full text-secondaryText hover:text-accent transition-colors" title="更多选项" type="button">
+<svg class="w-6 h-6 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="1"></circle>
+<circle cx="19" cy="12" r="1"></circle>
+<circle cx="5" cy="12" r="1"></circle>
+</svg>
+</button>
+</div>
+<!-- Assistant Subtitle -->
+<p class="text-xs text-secondaryText font-normal mt-0.5 tracking-wide">可围绕当前直播规划与复盘提问</p>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: ChatStreamArea -->
+<main class="flex-1 w-full max-w-md mx-auto px-4 py-4 space-y-5 overflow-y-auto" id="chat-scroller">
+<!-- Subtle Timestamp -->
+<div class="flex justify-center">
+<span class="text-[11px] font-medium text-secondaryText/80 bg-surfaceMuted/60 px-2.5 py-0.5 rounded-full">今天 14:30</span>
+</div>
+<!-- User Question Bubble (Right aligned) -->
+<div class="flex items-start justify-end gap-2.5 pl-10" data-purpose="user-message">
+<div class="bg-surface border border-line text-primaryText rounded-2xl rounded-tr-sm px-4 py-2.5 shadow-sm text-[15px] leading-relaxed">
+        今晚的直播计划是什么？
+      </div>
+<!-- User Avatar -->
+<div class="w-9 h-9 rounded-full bg-surfaceMuted border border-line flex-shrink-0 flex items-center justify-center text-secondaryText">
+<svg class="w-5 h-5 text-secondaryText" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- Assistant Message Block (Left aligned) -->
+<div class="flex items-start gap-2.5 pr-2" data-purpose="assistant-response">
+<!-- AI Bot Icon Avatar -->
+<div class="w-9 h-9 rounded-full bg-surface border border-line flex-shrink-0 flex items-center justify-center shadow-xs">
+<svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+<!-- Robot Face Outline -->
+<rect height="10" rx="3" width="18" x="3" y="11"></rect>
+<circle cx="9" cy="16" fill="currentColor" r="1.5"></circle>
+<circle cx="15" cy="16" fill="currentColor" r="1.5"></circle>
+<path d="M12 2v4"></path>
+<line x1="2" x2="3" y1="16" y2="16"></line>
+<line x1="21" x2="22" y1="16" y2="16"></line>
+</svg>
+</div>
+<div class="flex-1 space-y-3">
+<!-- Direct Text Reply -->
+<div class="text-[15px] text-primaryText font-medium pt-1.5">
+          当前计划为周五晚场冲刺
+        </div>
+<!-- Compact Plan Structured Card -->
+<div class="bg-surface border border-line rounded-2xl p-4 shadow-sm" data-purpose="compact-plan-card">
+  <!-- Date & Title Row -->
+  <div class="flex items-center justify-between py-2.5 border-b border-surfaceMuted">
+    <div class="flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-secondaryText flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <rect height="18" rx="2" stroke-linecap="round" stroke-linejoin="round" width="18" x="3" y="4"></rect>
+        <line stroke-linecap="round" x1="16" x2="16" y1="2" y2="6"></line>
+        <line stroke-linecap="round" x1="8" x2="8" y1="2" y2="6"></line>
+        <line stroke-linecap="round" x1="3" x2="21" y1="10" y2="10"></line>
+      </svg>
+      <span class="text-xs text-secondaryText">直播排期</span>
+    </div>
+    <div class="text-right">
+      <span class="text-sm font-semibold text-primaryText">10月16日</span>
+      <span class="text-xs text-secondaryText ml-1">周五 · 周五晚场冲刺</span>
+    </div>
+  </div>
+
+  <!-- Time & Duration Details -->
+  <div class="flex items-center justify-between py-2.5 border-b border-surfaceMuted">
+    <div class="flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-secondaryText flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <span class="text-xs text-secondaryText">时间段</span>
+    </div>
+    <span class="text-sm font-semibold text-primaryText">20:00 - 22:30</span>
+  </div>
+
+  <!-- Duration Target -->
+  <div class="flex items-center justify-between py-2.5 border-b border-surfaceMuted">
+    <div class="flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-secondaryText flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8"></circle>
+        <line x1="12" x2="15" y1="12" y2="9"></line>
+        <path d="M16 16l-3-3"></path>
+      </svg>
+      <span class="text-xs text-secondaryText">计划时长</span>
+    </div>
+    <span class="text-sm font-semibold text-primaryText">2 小时 30分钟</span>
+  </div>
+
+  <!-- Soundwave Target Metric -->
+  <div class="flex items-center justify-between py-2.5 border-b border-surfaceMuted">
+    <div class="flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-secondaryText flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8"></circle>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+      <span class="text-xs text-secondaryText">音浪目标</span>
+    </div>
+    <span class="text-sm font-bold text-accent">4.5万</span>
+  </div>
+
+  <!-- Follower Growth Target Metric -->
+  <div class="flex items-center justify-between py-2.5">
+    <div class="flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-secondaryText flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="8.5" cy="7" r="4"></circle>
+        <polyline points="17 8 20 11 23 8"></polyline>
+      </svg>
+      <span class="text-xs text-secondaryText">涨粉目标</span>
+    </div>
+    <span class="text-sm font-semibold text-primaryText">1200人</span>
+  </div>
+
+  <!-- Card Action Link -->
+  <div class="pt-2.5 mt-1 border-t border-line/70">
+    <a class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accentHover transition-colors py-1 group" href="#P81">
+      <span class="">查看规划</span>
+      <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="5" x2="19" y1="12" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+  </div>
+</div>
+<!-- Prototype Disclaimer Note -->
+<p class="text-center text-xs text-secondaryText/80 py-1 font-normal">
+          本页为设计提案，非真实 AI 回复。
+        </p>
+</div>
+</div>
+</main>
+<!-- END: ChatStreamArea -->
+<!-- BEGIN: InteractiveFooterSection -->
+<footer class="sticky bottom-0 z-20 bg-canvas/95 backdrop-blur-md pt-2 border-t border-line/70">
+<div class="w-full max-w-md mx-auto px-4 space-y-3 pb-2">
+<!-- Quick Prompts (快捷问句) -->
+<div class="space-y-1.5" data-purpose="quick-prompts-container">
+<span class="text-xs font-normal text-secondaryText">快捷问句</span>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+<button class="flex-shrink-0 bg-surface border border-line hover:border-accent hover:text-accent active:bg-surfaceMuted text-primaryText text-xs font-medium px-3.5 py-1.5 rounded-xl transition-all shadow-2xs" onclick="handleQuickPrompt('查看当前规划')" type="button">
+            查看当前规划
+          </button>
+<button class="flex-shrink-0 bg-surface border border-line hover:border-accent hover:text-accent active:bg-surfaceMuted text-primaryText text-xs font-medium px-3.5 py-1.5 rounded-xl transition-all shadow-2xs" onclick="handleQuickPrompt('查看最近复盘')" type="button">
+            查看最近复盘
+          </button>
+<button class="flex-shrink-0 bg-surface border border-line hover:border-accent hover:text-accent active:bg-surfaceMuted text-primaryText text-xs font-medium px-3.5 py-1.5 rounded-xl transition-all shadow-2xs" onclick="handleQuickPrompt('开播前准备')" type="button">
+            开播前准备
+          </button>
+</div>
+</div>
+<!-- Input Composer Bar -->
+<form class="flex items-center gap-2.5 pb-1" onsubmit="handleSend(event)">
+<!-- Input Container with Attachment/Pencil Icon -->
+<div class="flex-1 flex items-center bg-surface border border-line rounded-full px-3.5 py-1.5 focus-within:border-accent focus-within:ring-1 focus-within:ring-accent transition-all shadow-2xs">
+<!-- Pencil Icon -->
+<svg class="w-4 h-4 text-secondaryText flex-shrink-0 mr-2" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<input autocomplete="off" class="w-full bg-transparent border-0 p-0 text-sm text-primaryText placeholder-secondaryText/70 focus:outline-none focus:ring-0" id="chat-input" placeholder="输入直播相关问题..." type="text">
+</div>
+<!-- Primary Action Send Button (Strict Accent Color Rule) -->
+<button aria-label="发送消息" class="w-10 h-10 rounded-full bg-accent hover:bg-accentHover active:bg-accentActive text-surface flex items-center justify-center transition-transform active:scale-95 shadow-sm flex-shrink-0" id="send-btn" type="submit">
+<svg class="w-4 h-4 transform rotate-45 -translate-y-0.5 -translate-x-0.5 fill-current" viewBox="0 0 24 24">
+<path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+</svg>
+</button>
+</form>
+</div>
+<!-- BEGIN: BottomNavTabs -->
+<!-- Streamer Bottom Navigation Bar (5 tabs) with 44px min touch target -->
+<nav aria-label="底部主导航" class="w-full bg-surface border-t border-line/80 px-2 py-1 flex items-center justify-around">
+<!-- Tab 1: 今天 (#P80) -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-secondaryText hover:text-accent transition-colors" href="#P80">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<rect height="18" rx="2" width="18" x="3" y="4"></rect>
+<line x1="16" x2="16" y1="2" y2="6"></line>
+<line x1="8" x2="8" y1="2" y2="6"></line>
+<line x1="3" x2="21" y1="10" y2="10"></line>
+</svg>
+<span class="text-[11px] font-normal">今天</span>
+</a>
+<!-- Tab 2: 规划 (#P81) -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-secondaryText hover:text-accent transition-colors" href="#P81">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M12 7v5l3 3"></path>
+</svg>
+<span class="text-[11px] font-normal">规划</span>
+</a>
+<!-- Tab 3: 复盘 (#P82) -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-secondaryText hover:text-accent transition-colors" href="#P82">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<rect height="16" rx="2" width="16" x="4" y="4"></rect>
+<line x1="8" x2="16" y1="10" y2="10"></line>
+<line x1="8" x2="12" y1="14" y2="14"></line>
+</svg>
+<span class="text-[11px] font-normal">复盘</span>
+</a>
+<!-- Tab 4: 助理 (#P83 - ACTIVE) -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-accent font-medium" href="#P83">
+<div class="relative">
+<svg class="w-5 h-5 mb-0.5 fill-accent" viewBox="0 0 24 24">
+<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+</svg>
+</div>
+<span class="text-[11px]">助理</span>
+</a>
+<!-- Tab 5: 我的 (#P84) -->
+<a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-secondaryText hover:text-accent transition-colors" href="#P84">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-normal">我的</span>
+</a>
+</nav>
+<!-- END: BottomNavTabs -->
+</footer>
+<!-- END: InteractiveFooterSection -->
+<!-- Toast Notification Container for Quick Interactions -->
+<div class="fixed top-16 left-1/2 transform -translate-x-1/2 bg-surface text-primaryText border border-line shadow-lg px-4 py-2 rounded-full text-xs font-medium opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center gap-1.5" id="toast">
+<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+<span id="toast-message" class="">已填入快捷问句</span>
+</div>
+<!-- Client-side Interactive Demonstration Script -->
+<script data-purpose="chat-interactions">
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 1800);
+    }
+
+    function handleQuickPrompt(text) {
+      const input = document.getElementById('chat-input');
+      input.value = text;
+      input.focus();
+      showToast('已填入快捷问句: ' + text);
+    }
+
+    function handleSend(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const val = input.value.trim();
+      if (!val) {
+        showToast('请输入问题内容');
+        return;
+      }
+      showToast('已提交演示提问，助理思考中...');
+      input.value = '';
+    }
+  </script>
+
+
+</body></html>

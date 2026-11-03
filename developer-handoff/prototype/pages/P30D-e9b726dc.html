@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>P30D｜跟进详情｜统一产品版</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            appCanvas: '#F5F7F8',
+            surface: '#FFFFFF',
+            surfaceMuted: '#EDF1F3',
+            borderLine: '#DDE3E8',
+            textPrimary: '#26313A',
+            textSecondary: '#65717B',
+            brandPrimary: '#F88440',
+            brandPressed: '#D96A31',
+            brandSoft: '#FCF4EC',
+            statusDanger: '#EF4444',
+            statusPending: '#B45309',
+            statusSuccess: '#047857'
+          },
+          fontFamily: {
+            sans: ['"Noto Sans SC"', '-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html, body {
+      width: 390px;
+      height: 884px;
+      margin: 0;
+      padding: 0;
+      background-color: #F5F7F8;
+      font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      overflow: hidden;
+      color: #26313A;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+    }
+    /* 自定义轻量滚动条 */
+    main::-webkit-scrollbar {
+      width: 4px;
+    }
+    main::-webkit-scrollbar-thumb {
+      background-color: #DDE3E8;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="relative w-[390px] h-[884px] bg-[#F5F7F8] overflow-hidden select-none" data-role="broker">
+<!-- 顶部导航栏 (固定 56px) -->
+<header class="absolute top-0 left-0 right-0 w-[390px] h-[56px] bg-[#FFFFFF] border-b border-[#DDE3E8] z-30 flex items-center justify-between px-2">
+<a aria-label="返回今日回访" class="w-[44px] h-[44px] flex items-center justify-center text-[#26313A] active:opacity-70 transition-opacity" data-page="P30" href="#P30">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+<h1 class="text-[17px] font-semibold text-[#26313A] tracking-tight">跟进详情</h1>
+<div class="w-[44px] h-[44px] flex items-center justify-center text-[12px] text-[#65717B] font-medium pr-1">经纪人 · 大周</div>
+</header>
+<!-- 中间主要内容滚动区 (自 56px 到 828px，高 760px) -->
+<main class="absolute top-[56px] bottom-[68px] left-0 right-0 w-[390px] overflow-y-auto px-4 py-3 flex flex-col gap-2.5"><div class="bg-[#FFFFFF] border-b border-[#DDE3E8] flex items-center justify-between py-3 px-1"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#EDF1F3] text-[#65717B] flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[24px]">person_outline</span></div><div><div class="flex items-center gap-2"><span class="text-[17px] font-bold text-[#26313A]" id="targetStreamerName">喵喵</span><span class="text-[11px] font-medium px-1.5 py-0.5 rounded bg-[#FCF4EC] text-[#F88440] border border-[#F88440]/20">签约主播</span></div></div></div><a class="text-[13px] font-medium text-[#F88440] flex items-center gap-0.5 py-1 px-2 active:opacity-75 transition-colors" href="#"><span class="hidden">P22</span>看主播档案<span class="material-symbols-outlined text-[16px]">chevron_right</span></a></div><div class="bg-[#FFFFFF] border-b border-[#DDE3E8] flex flex-col p-3 gap-2"><div class="flex items-center justify-between border-b border-[#DDE3E8] pb-2.5"><span class="text-[13px] font-medium text-[#65717B]">任务类型</span><span class="text-[13px] font-semibold text-[#26313A] px-2 py-0.5 rounded bg-[#FCF4EC] text-[#F88440]">预警跟进</span></div><div class="flex items-center justify-between border-b border-[#DDE3E8] pb-2.5"><span class="text-[13px] font-medium text-[#65717B]">任务来源</span><a class="text-[13px] font-medium text-[#F88440] flex items-center gap-0.5 active:opacity-75" href="#"><span class="hidden">P15 w2</span>来自老板预警派单<span class="material-symbols-outlined text-[14px]">arrow_forward</span></a></div><div class="flex items-center justify-between border-b border-[#DDE3E8] pb-2.5"><span class="text-[13px] font-medium text-[#65717B]">本次回访状态</span><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#B45309]" id="visitStatusDot"></span><span class="text-[13px] font-medium text-[#B45309]" id="visitStatusText">待回访</span></div></div><div class="flex items-center justify-between pb-0.5"><span class="text-[13px] font-medium text-[#65717B]">预警风险状态</span><div class="flex items-center gap-1.5"><span class="text-[12px] text-[#65717B] bg-[#EDF1F3] px-2 py-0.5 rounded">处理中（老板判定）</span></div></div></div><div class="bg-[#FFFFFF] border-b border-[#DDE3E8] flex flex-col gap-3 p-3"><div><div class="flex items-center gap-1.5 mb-1"><span class="w-1.5 h-3 bg-[#EF4444] rounded-full"></span><h2 class="text-[13px] font-semibold text-[#26313A]">异动信号</h2></div><div class="bg-[#FEF2F2] border border-[#EF4444]/20 rounded p-2.5 text-[13px] text-[#EF4444] font-medium leading-relaxed">连续2天没开播，消息回复慢</div></div><div><div class="flex items-center gap-1.5 mb-1"><span class="w-1.5 h-3 bg-[#F88440] rounded-full"></span><h2 class="text-[13px] font-semibold text-[#26313A]">研判背景</h2></div><div class="bg-[#F5F7F8] border border-[#DDE3E8] rounded p-2.5 text-[13px] text-[#26313A] leading-relaxed">停播前未见数据下滑信号。</div></div></div><div class="bg-[#FFFFFF] border-b border-[#DDE3E8] flex flex-col gap-3 p-3"><div class="flex items-center justify-between border-b border-[#DDE3E8] pb-2"><h2 class="text-[14px] font-semibold text-[#26313A] flex items-center gap-1.5"><span class="material-symbols-outlined text-[#65717B] text-[18px]">history</span>历史沟通记录</h2><span class="text-[12px] text-[#65717B]" id="historyCount">共 2 次沟通</span></div><div class="flex flex-col gap-2.5" id="historyList"><div class="border-b border-[#DDE3E8]/80 pb-2.5 flex flex-col gap-1"><div class="flex items-center justify-between text-[12px]"><span class="font-medium text-[#26313A] flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-[#65717B]">groups</span>面谈 · 10-12</span><span class="text-[#65717B]">已完成</span></div><p class="text-[13px] text-[#26313A] leading-relaxed pl-5">聊开后约好每周一次电话沟通，疏导心态顾虑。</p></div><div class="border-b border-[#DDE3E8]/80 pb-2.5 flex flex-col gap-1"><div class="flex items-center justify-between text-[12px]"><span class="font-medium text-[#26313A] flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-[#65717B]">chat</span>微信 · 10-08</span><span class="text-[#65717B]">已完成</span></div><p class="text-[13px] text-[#26313A] leading-relaxed pl-5">发送上周直播高光后，她回复积极并感谢运营跟进。</p></div></div></div><div class="pt-1 pb-2 px-3"></div></main>
+<!-- 底部抽屉表单 (全功能记沟通弹层，默认隐藏) -->
+<div class="absolute inset-0 bg-[#26313A]/50 z-40 hidden flex flex-col justify-end transition-opacity" id="recordModal">
+<div class="w-[390px] bg-[#FFFFFF] rounded-t-2xl border-t border-[#DDE3E8] p-5 max-h-[720px] overflow-y-auto flex flex-col gap-4 shadow-2xl animate-in slide-in-from-bottom duration-200">
+<!-- 弹层标题 -->
+<div class="flex items-center justify-between border-b border-[#DDE3E8] pb-3">
+<div class="flex items-center gap-2">
+<span class="w-1 h-4 bg-[#F88440] rounded-full"></span>
+<h3 class="text-[16px] font-bold text-[#26313A]">记一条沟通 · 喵喵</h3>
+</div>
+<button aria-label="关闭" class="w-8 h-8 flex items-center justify-center text-[#65717B] hover:text-[#26313A] rounded-full active:bg-[#EDF1F3]" id="closeModalBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- 校验/成功通知提示栏 -->
+<div class="hidden p-3 rounded-lg text-[12px] flex items-center gap-2" id="alertBox">
+<span class="material-symbols-outlined text-[18px]" id="alertIcon">info</span>
+<span class="font-medium" id="alertMsg"></span>
+</div>
+<!-- 表单字段：沟通方式 -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[13px] font-semibold text-[#26313A]">沟通方式 <span class="text-[#EF4444]">*</span></label>
+<div class="grid grid-cols-3 gap-2" id="commTypeGroup">
+<button class="comm-type-btn h-[40px] rounded-lg border border-[#F88440] bg-[#FCF4EC] text-[#F88440] font-medium text-[13px] flex items-center justify-center gap-1.5 transition-colors" data-val="微信" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+            微信
+          </button>
+<button class="comm-type-btn h-[40px] rounded-lg border border-[#DDE3E8] bg-[#FFFFFF] text-[#26313A] font-medium text-[13px] flex items-center justify-center gap-1.5 transition-colors" data-val="电话" type="button">
+<span class="material-symbols-outlined text-[18px]">call</span>
+            电话
+          </button>
+<button class="comm-type-btn h-[40px] rounded-lg border border-[#DDE3E8] bg-[#FFFFFF] text-[#26313A] font-medium text-[13px] flex items-center justify-center gap-1.5 transition-colors" data-val="面谈" type="button">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+            面谈
+          </button>
+</div>
+</div>
+<!-- 表单字段：内容必填 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="text-[13px] font-semibold text-[#26313A]" for="commContent">沟通内容 <span class="text-[#EF4444]">*</span></label>
+<span class="text-[11px] text-[#65717B]">必填</span>
+</div>
+<textarea class="w-full p-3 text-[13px] text-[#26313A] bg-[#FFFFFF] border border-[#DDE3E8] rounded-lg focus:outline-none focus:border-[#F88440] resize-none" id="commContent" placeholder="记录这次沟通与后续安排" rows="3"></textarea>
+</div>
+<!-- 表单字段：下次跟进动作 -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[13px] font-semibold text-[#26313A]" for="nextAction">下次跟进动作</label>
+<input class="w-full h-[40px] px-3 text-[13px] text-[#26313A] bg-[#FFFFFF] border border-[#DDE3E8] rounded-lg focus:outline-none focus:border-[#F88440]" id="nextAction" placeholder="例如：发资料、约周二面谈等" type="text">
+</div>
+<!-- 表单字段：下次跟进时间 -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[13px] font-semibold text-[#26313A]">下次跟进时间</label>
+<div class="grid grid-cols-4 gap-2" id="nextTimeGroup">
+<button class="next-time-btn h-[36px] rounded-lg border border-[#DDE3E8] bg-[#FFFFFF] text-[#26313A] text-[12px] font-medium transition-colors" data-val="明天" type="button">明天</button>
+<button class="next-time-btn h-[36px] rounded-lg border border-[#F88440] bg-[#FCF4EC] text-[#F88440] text-[12px] font-medium transition-colors" data-val="3天后" type="button">3天后</button>
+<button class="next-time-btn h-[36px] rounded-lg border border-[#DDE3E8] bg-[#FFFFFF] text-[#26313A] text-[12px] font-medium transition-colors" data-val="一周内" type="button">一周内</button>
+<button class="next-time-btn h-[36px] rounded-lg border border-[#DDE3E8] bg-[#FFFFFF] text-[#65717B] text-[12px] font-medium transition-colors" data-val="不需要" type="button">不需要</button>
+</div>
+</div>
+<!-- 表单底部操作按钮 -->
+<div class="flex items-center gap-3 pt-2">
+<button class="flex-1 h-[44px] bg-[#EDF1F3] hover:bg-[#DDE3E8] text-[#26313A] font-medium text-[14px] rounded-xl transition-colors" id="cancelRecordBtn" type="button">
+          取消
+        </button>
+<button class="flex-1 h-[44px] bg-[#F88440] hover:bg-[#D96A31] active:bg-[#D96A31] text-[#FFFFFF] font-semibold text-[14px] rounded-xl transition-colors flex items-center justify-center gap-1.5" id="saveRecordBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+          记下
+        </button>
+</div>
+</div>
+</div>
+<!-- 底部固定导航栏 (基座03 经纪人端复用，固定 68px) -->
+<footer class="absolute bottom-0 left-0 right-0 w-[390px] h-[68px] bg-[#FFFFFF] border-t border-[#DDE3E8] z-30 flex items-center justify-around px-2 pb-[safe-area-inset-bottom]"><a aria-label="今天回访" class="flex flex-col items-center justify-center w-[54px] h-[52px] text-[#F88440] transition-colors" data-page="P30" href="#P30"><div class="w-[24px] h-[24px] flex items-center justify-center"><span class="material-symbols-outlined text-[#F88440]">home</span></div><span class="text-[12px] font-semibold leading-tight mt-1 text-[#F88440]">今天</span></a><a aria-label="招募线索" class="flex flex-col items-center justify-center w-[54px] h-[52px] text-[#65717B] hover:text-[#26313A] transition-colors" data-page="P31" href="#P31"><div class="w-[24px] h-[24px] flex items-center justify-center"><span class="material-symbols-outlined text-[#65717B]">person_add</span></div><span class="text-[12px] font-normal leading-tight mt-1 text-[#65717B]">招募</span></a><a aria-label="主播关怀" class="flex flex-col items-center justify-center w-[54px] h-[52px] text-[#65717B] hover:text-[#26313A] transition-colors" data-page="P33" href="#P33"><div class="w-[24px] h-[24px] flex items-center justify-center"><span class="material-symbols-outlined text-[#65717B]">favorite</span></div><span class="text-[12px] font-normal leading-tight mt-1 text-[#65717B]">关怀</span></a><a aria-label="我的" class="flex flex-col items-center justify-center w-[54px] h-[52px] text-[#65717B] hover:text-[#26313A] transition-colors" data-page="MY" href="#MY"><div class="w-[24px] h-[24px] flex items-center justify-center"><span class="material-symbols-outlined text-[#65717B]">person_outline</span></div><span class="text-[12px] font-normal leading-tight mt-1 text-[#65717B]">我的</span></a><a aria-label="助理" class="flex flex-col items-center justify-center w-[54px] h-[52px] text-[#65717B] hover:text-[#26313A] transition-colors" data-page="AI" href="#AI"><div class="w-[24px] h-[24px] flex items-center justify-center"><span class="material-symbols-outlined text-[#65717B]">support_agent</span></div><span class="text-[12px] font-normal leading-tight mt-1 text-[#65717B]">助理</span></a></footer>
+<!-- 页面交互与表单校验脚本 -->
+<script>
+    (function() {
+      const openRecordBtn = document.getElementById('openRecordBtn');
+      const recordModal = document.getElementById('recordModal');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const cancelRecordBtn = document.getElementById('cancelRecordBtn');
+      const saveRecordBtn = document.getElementById('saveRecordBtn');
+      const commContent = document.getElementById('commContent');
+      const nextAction = document.getElementById('nextAction');
+      const alertBox = document.getElementById('alertBox');
+      const alertMsg = document.getElementById('alertMsg');
+      const alertIcon = document.getElementById('alertIcon');
+      const historyList = document.getElementById('historyList');
+      const historyCount = document.getElementById('historyCount');
+      const visitStatusDot = document.getElementById('visitStatusDot');
+      const visitStatusText = document.getElementById('visitStatusText');
+
+      let currentCommType = '微信';
+      let currentNextTime = '3天后';
+      let isSubmitting = false;
+
+      // 检查 URL 是否带 data-mode=record 自动打开
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('mode') === 'record' || window.location.hash.includes('record')) {
+        recordModal.classList.remove('hidden');
+      }
+
+      // 打开弹层
+      openRecordBtn.addEventListener('click', () => {
+        recordModal.classList.remove('hidden');
+        hideAlert();
+      });
+
+      // 关闭弹层 (取消不增加记录)
+      function closeModal() {
+        recordModal.classList.add('hidden');
+        hideAlert();
+      }
+      closeModalBtn.addEventListener('click', closeModal);
+      cancelRecordBtn.addEventListener('click', closeModal);
+
+      // 单选：沟通方式
+      document.querySelectorAll('.comm-type-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.comm-type-btn').forEach(b => {
+            b.classList.remove('border-[#F88440]', 'bg-[#FCF4EC]', 'text-[#F88440]');
+            b.classList.add('border-[#DDE3E8]', 'bg-[#FFFFFF]', 'text-[#26313A]');
+          });
+          this.classList.remove('border-[#DDE3E8]', 'bg-[#FFFFFF]', 'text-[#26313A]');
+          this.classList.add('border-[#F88440]', 'bg-[#FCF4EC]', 'text-[#F88440]');
+          currentCommType = this.getAttribute('data-val');
+        });
+      });
+
+      // 单选：下次时间
+      document.querySelectorAll('.next-time-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.next-time-btn').forEach(b => {
+            b.classList.remove('border-[#F88440]', 'bg-[#FCF4EC]', 'text-[#F88440]');
+            b.classList.add('border-[#DDE3E8]', 'bg-[#FFFFFF]', 'text-[#26313A]');
+          });
+          this.classList.remove('border-[#DDE3E8]', 'bg-[#FFFFFF]', 'text-[#26313A]');
+          this.classList.add('border-[#F88440]', 'bg-[#FCF4EC]', 'text-[#F88440]');
+          currentNextTime = this.getAttribute('data-val');
+        });
+      });
+
+      // 错误提示
+      function showError(msg) {
+        alertBox.className = "p-3 rounded-lg text-[12px] flex items-center gap-2 bg-[#FEF2F2] border border-[#EF4444]/30 text-[#EF4444]";
+        alertIcon.innerText = "error";
+        alertMsg.innerText = msg;
+        alertBox.classList.remove('hidden');
+      }
+
+      // 隐藏提示
+      function hideAlert() {
+        alertBox.classList.add('hidden');
+      }
+
+      // 提交校验与保存
+      saveRecordBtn.addEventListener('click', () => {
+        if (isSubmitting) return;
+
+        const content = commContent.value.trim();
+        const action = nextAction.value.trim();
+
+        // 校验 1：内容为空
+        if (!content) {
+          showError('先写点内容');
+          commContent.focus();
+          return;
+        }
+
+        // 校验 2：下次时间不是不需要且动作空
+        if (currentNextTime !== '不需要' && !action) {
+          showError('请填写下次跟进动作');
+          nextAction.focus();
+          return;
+        }
+
+        // 防双击
+        isSubmitting = true;
+        saveRecordBtn.disabled = true;
+
+        // 成功状态：展示通知
+        alertBox.className = "p-3 rounded-lg text-[12px] flex items-center gap-2 bg-[#ECFDF5] border border-[#047857]/30 text-[#047857]";
+        alertIcon.innerText = "check_circle";
+        alertMsg.innerText = "本地已记录沟通，风险仍由老板判断";
+        alertBox.classList.remove('hidden');
+
+        // 新增一条历史记录到顶部
+        const now = new Date();
+        const dateStr = (now.getMonth() + 1).toString().padStart(2, '0') + '-' + now.getDate().toString().padStart(2, '0');
+        
+        let iconName = 'chat';
+        if (currentCommType === '电话') iconName = 'call';
+        if (currentCommType === '面谈') iconName = 'groups';
+
+        const newRecord = document.createElement('div');
+        newRecord.className = "border-b border-[#DDE3E8]/80 pb-2.5 flex flex-col gap-1 bg-[#FCF4EC]/40 p-2 rounded-lg";
+        newRecord.innerHTML = `
+          <div class="flex items-center justify-between text-[12px]">
+            <span class="font-medium text-[#F88440] flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px] text-[#F88440]">${iconName}</span>
+              ${currentCommType} · ${dateStr} (刚刚记录)
+            </span>
+            <span class="text-[#047857] font-medium">已完成回访</span>
+          </div>
+          <p class="text-[13px] text-[#26313A] leading-relaxed pl-5">${escapeHTML(content)}</p>
+          ${action ? `<p class="text-[11px] text-[#65717B] pl-5">下次安排 (${currentNextTime})：${escapeHTML(action)}</p>` : ''}
+        `;
+        historyList.prepend(newRecord);
+        historyCount.innerText = "共 3 次沟通";
+
+        // 更新回访状态为已回访（绿色）
+        visitStatusDot.className = "w-2 h-2 rounded-full bg-[#047857]";
+        visitStatusText.className = "text-[13px] font-medium text-[#047857]";
+        visitStatusText.innerText = "已回访";
+
+        // 按钮变为已记录
+        openRecordBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">check_circle</span> 再次记沟通`;
+        openRecordBtn.classList.remove('bg-[#F88440]');
+        openRecordBtn.classList.add('bg-[#047857]');
+
+        // 延迟自动关闭弹层
+        setTimeout(() => {
+          closeModal();
+          isSubmitting = false;
+          saveRecordBtn.disabled = false;
+        }, 1200);
+      });
+
+      function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+          tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+          }[tag] || tag)
+        );
+      }
+    })();
+  </script>
+
+
+
+
+</body></html>

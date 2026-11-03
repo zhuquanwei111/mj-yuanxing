@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P60｜内容工作台｜统一产品版</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#FAF5F1",
+            surface: "#FFFFFF",
+            neutralBg: "#F4F0ED",
+            borderCol: "#EBE5E0",
+            primaryColor: "#F88440",
+            primaryPressed: "#D96A31",
+            primarySoft: "#FCF4EC",
+            charcoal: "#282838",
+            muted: "#686260",
+            riskRed: "#EF4444",
+            amberBg: "#FFFBEB",
+            amberText: "#B45309",
+            amberBorder: "#FDE68A",
+            greenBg: "#ECFDF5",
+            greenText: "#047857",
+            greenBorder: "#A7F3D0"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "sans-serif"],
+            display: ["Public Sans", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "sans-serif"],
+            body: ["Public Sans", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "sans-serif"],
+            label: ["Public Sans", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-canvas text-charcoal font-body antialiased min-h-screen flex justify-center items-start selection:bg-primaryColor selection:text-white">
+<!-- Mobile Screen Shell (390px max width constraint) -->
+<div class="w-full max-w-[390px] min-h-screen bg-canvas pb-24 relative flex flex-col shadow-xl overflow-x-hidden"><!-- Mobile App Viewport Shell (390 x 884) -->
+<div class="w-full max-w-[390px] h-[884px] max-h-[884px] bg-[#F5F7F8] flex flex-col relative overflow-hidden text-[#26313A] select-none shadow-xl">
+<!-- Fixed 56px Top Bar -->
+<header class="h-[56px] min-h-[56px] max-h-[56px] bg-white border-b border-[#DDE3E8] px-3 flex items-center justify-between z-40 shrink-0">
+<a aria-label="返回" class="w-11 h-11 flex items-center justify-center text-[#26313A] hover:bg-[#EDF1F3] rounded active:scale-95 transition-all" href="#BACK">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</a>
+<div class="flex flex-col items-center justify-center text-center">
+<h1 class="text-[18px] font-semibold leading-tight text-[#26313A]">内容工作台</h1>
+<span class="text-[11px] text-[#65717B] font-normal leading-tight mt-0.5">编导 · 何姐 · 按任务推进脚本、选题和成片</span>
+</div>
+<button aria-label="更多操作" class="w-11 h-11 flex items-center justify-center text-[#26313A] hover:bg-[#EDF1F3] rounded active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[24px]">more_vert</span>
+</button>
+</header>
+<!-- Main Scrollable Area -->
+<main class="flex-1 overflow-y-auto px-4 py-3.5 space-y-3.5">
+<!-- Tab Switcher (Segmented Control) -->
+<div class="flex bg-[#EDF1F3] p-1 rounded-lg shrink-0 border border-[#DDE3E8]">
+<button class="flex-1 py-1.5 text-xs font-semibold rounded bg-white text-[#F88440] shadow-sm transition-all text-center" id="tab-btn-scripts" onclick="selectTab('scripts')">
+        脚本任务 (3)
+      </button>
+<button class="flex-1 py-1.5 text-xs font-medium rounded text-[#65717B] hover:text-[#26313A] transition-all text-center" id="tab-btn-topics" onclick="selectTab('topics')">
+        选题池 (3)
+      </button>
+<button class="flex-1 py-1.5 text-xs font-medium rounded text-[#65717B] hover:text-[#26313A] transition-all text-center" id="tab-btn-published" onclick="selectTab('published')">
+        已发布 (1)
+      </button>
+</div>
+<!-- Tab 1: 脚本任务 -->
+<section class="space-y-3" id="panel-scripts">
+<!-- Task 1: 阿哲 · 怀旧场脚本 -->
+<div class="bg-white border border-[#DDE3E8] rounded-lg p-3.5 shadow-sm space-y-2.5">
+<div class="flex justify-between items-start">
+<div class="flex items-center space-x-2">
+<span class="text-xs px-2 py-0.5 rounded bg-[#FFFBEB] text-[#B45309] font-medium border border-[#FDE68A]" id="badge-task1">待领</span>
+<h3 class="font-semibold text-sm text-[#26313A]">阿哲 · 怀旧场脚本</h3>
+</div>
+<span class="text-[11px] text-[#65717B]">来源：数据异常</span>
+</div>
+<div class="flex justify-between items-center text-xs text-[#65717B] bg-[#F5F7F8] px-2.5 py-1.5 rounded">
+<span>负责人：何姐</span>
+<span>期限：10月15日 18:00</span>
+</div>
+<div class="flex items-center space-x-2 pt-1">
+<button class="flex-1 h-[40px] bg-[#F88440] hover:bg-[#D96A31] active:bg-[#D96A31] text-white text-xs font-medium rounded px-3 transition-colors flex items-center justify-center space-x-1.5 shadow-sm" id="claim-btn-task1" onclick="claimTask('task1')">
+<span class="material-symbols-outlined text-[18px]">assignment_add</span>
+<span id="claim-btn-task1-txt">领取任务</span>
+</button>
+<a class="h-[40px] px-3.5 bg-[#EDF1F3] hover:bg-[#DDE3E8] text-[#26313A] text-xs font-medium rounded flex items-center justify-center transition-colors" data-page="P61" data-script="阿哲·怀旧场脚本" data-subject="阿哲" href="#P61">
+            打开脚本
+          </a>
+</div>
+</div>
+<!-- Task 2: 大乔 · 点歌互动串场 -->
+<div class="bg-white border border-[#DDE3E8] rounded-lg p-3.5 shadow-sm space-y-2.5">
+<div class="flex justify-between items-start">
+<div class="flex items-center space-x-2">
+<span class="text-xs px-2 py-0.5 rounded bg-[#ECFDF5] text-[#047857] font-medium border border-[#A7F3D0]" id="badge-task2">进行中</span>
+<h3 class="font-semibold text-sm text-[#26313A]">大乔 · 点歌互动串场</h3>
+</div>
+<span class="text-[11px] text-[#65717B]">来源：运营派</span>
+</div>
+<div class="flex justify-between items-center text-xs text-[#65717B] bg-[#F5F7F8] px-2.5 py-1.5 rounded">
+<span>负责人：何姐</span>
+<span>期限：今天 17:00</span>
+</div>
+<div class="flex items-center space-x-2 pt-1">
+<a class="flex-1 h-[40px] bg-[#EDF1F3] hover:bg-[#DDE3E8] text-[#26313A] text-xs font-medium rounded flex items-center justify-center transition-colors" data-page="P61" data-script="大乔·点歌互动串场" data-subject="大乔" href="#P61">
+            打开脚本 (#P61/k2)
+          </a>
+</div>
+<!-- 审核模拟演练面板 -->
+<div class="mt-2 pt-2 border-t border-[#DDE3E8] bg-[#F5F7F8] p-2 rounded text-xs space-y-1.5">
+<div class="flex items-center justify-between text-[#65717B]">
+<span class="font-medium text-[#26313A]">待审核演练模拟：</span>
+<span class="text-[11px] text-[#B45309]" id="task2-audit-status">待审核</span>
+</div>
+<div class="flex space-x-2">
+<button class="flex-1 h-[32px] bg-[#047857] text-white rounded text-[11px] font-medium hover:opacity-90 active:scale-95 transition-all" onclick="approveAndDispatchCut()">
+              通过并派剪辑
+            </button>
+<button class="h-[32px] px-3 bg-white border border-[#EF4444] text-[#EF4444] rounded text-[11px] font-medium hover:bg-[#FEF2F2] active:scale-95 transition-all" onclick="rejectAudit()">
+              退回修改
+            </button>
+</div>
+<div class="hidden text-[11px] text-[#047857] bg-[#ECFDF5] p-1.5 rounded border border-[#A7F3D0]" id="dispatch-notification">
+            已在本地派生成片任务《点歌互动串场（脚本成片）》due 今天 17:00（独立单，未合并）。
+          </div>
+</div>
+</div>
+<!-- Task 3: 茉莉 · 国风切片脚本 -->
+<div class="bg-white border border-[#DDE3E8] rounded-lg p-3.5 shadow-sm space-y-2.5">
+<div class="flex justify-between items-start">
+<div class="flex items-center space-x-2">
+<span class="text-xs px-2 py-0.5 rounded bg-[#FFFBEB] text-[#B45309] font-medium border border-[#FDE68A]" id="badge-task3">待领</span>
+<h3 class="font-semibold text-sm text-[#26313A]">茉莉 · 国风切片脚本</h3>
+</div>
+<span class="text-[11px] text-[#65717B]">来源：主播提案</span>
+</div>
+<div class="flex justify-between items-center text-xs text-[#65717B] bg-[#F5F7F8] px-2.5 py-1.5 rounded">
+<span>负责人：何姐</span>
+<span>期限：10月17日 20:00</span>
+</div>
+<div class="flex items-center space-x-2 pt-1">
+<button class="flex-1 h-[40px] bg-[#F88440] hover:bg-[#D96A31] active:bg-[#D96A31] text-white text-xs font-medium rounded px-3 transition-colors flex items-center justify-center space-x-1.5 shadow-sm" id="claim-btn-task3" onclick="claimTask('task3')">
+<span class="material-symbols-outlined text-[18px]">assignment_add</span>
+<span id="claim-btn-task3-txt">领取任务</span>
+</button>
+<a class="h-[40px] px-3.5 bg-[#EDF1F3] hover:bg-[#DDE3E8] text-[#26313A] text-xs font-medium rounded flex items-center justify-center transition-colors" data-page="P61" data-script="茉莉·国风切片脚本" data-subject="茉莉" href="#P61">
+            打开脚本
+          </a>
+</div>
+</div>
+</section>
+<!-- Tab 2: 选题池 -->
+<section class="space-y-3 hidden" id="panel-topics">
+<div class="flex items-center justify-between pb-1">
+<span class="text-xs text-[#65717B]">共 3 条储备选题</span>
+<button class="h-[32px] px-3 bg-[#FCF4EC] text-[#F88440] border border-[#F88440] rounded text-xs font-medium flex items-center space-x-1 active:scale-95 transition-all" onclick="openTopicModal()">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>新建选题</span>
+</button>
+</div>
+<div class="space-y-2" id="topics-list">
+<!-- Topic 1 -->
+<div class="bg-white border border-[#DDE3E8] rounded-lg p-3 space-y-2">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-sm font-semibold text-[#26313A]">粉丝连麦点唱夜</h4>
+<p class="text-xs text-[#65717B] mt-0.5">主播：阿哲 · 连麦企划</p>
+</div>
+<span class="text-xs px-2 py-0.5 bg-[#FCF4EC] text-[#F88440] font-medium rounded">制作中</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-[#DDE3E8] text-[11px] text-[#65717B]">
+<span>绑定状态：未关联</span>
+<span class="text-[#F88440]">阶段流转中</span>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="bg-white border border-[#DDE3E8] rounded-lg p-3 space-y-2">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-sm font-semibold text-[#26313A]">新舞分段教学（四拍拆解）</h4>
+<p class="text-xs text-[#65717B] mt-0.5">主播：甜甜 · 舞蹈教学</p>
+</div>
+<span class="text-xs px-2 py-0.5 bg-[#ECFDF5] text-[#047857] font-medium rounded">已立项</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-[#DDE3E8] text-[11px] text-[#65717B]">
+<span>绑定状态：未关联</span>
+<span class="text-[#65717B]">待派生任务</span>
+</div>
+</div>
+<!-- Topic 3 -->
+<div class="bg-white border border-[#DDE3E8] rounded-lg p-3 space-y-2">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-sm font-semibold text-[#26313A]">公会日常小剧场（第一期）</h4>
+<p class="text-xs text-[#65717B] mt-0.5">主播：茉莉 · 剧情短剧</p>
+</div>
+<span class="text-xs px-2 py-0.5 bg-[#EDF1F3] text-[#65717B] font-medium rounded">提案</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-[#DDE3E8] text-[11px] text-[#65717B]">
+<span>绑定状态：未关联</span>
+<span class="text-[#65717B]">策划评审中</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Tab 3: 已发布 -->
+<section class="space-y-3 hidden" id="panel-published">
+<div class="bg-white border border-[#DDE3E8] rounded-lg p-3.5 shadow-sm space-y-2.5">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-xs px-2 py-0.5 rounded bg-[#ECFDF5] text-[#047857] font-medium border border-[#A7F3D0]">已发布</span>
+<h3 class="font-semibold text-sm text-[#26313A] mt-1.5">治愈系翻唱挑战（点歌箱）</h3>
+<p class="text-xs text-[#65717B] mt-0.5">主播：小雨 · 翻唱挑战</p>
+</div>
+<span class="text-[11px] text-[#65717B]">阶段：已发布</span>
+</div>
+<div class="flex justify-between items-center bg-[#F5F7F8] p-2.5 rounded text-xs">
+<span class="text-[#65717B]">成片数据表现</span>
+<span class="text-[#047857] font-semibold flex items-center space-x-0.5">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>音浪 ↑12%</span>
+</span>
+</div>
+</div>
+</section>
+<!-- Prototype Notice -->
+<div class="py-3 text-center">
+<p class="text-[11px] text-[#65717B] leading-normal">
+        原型本地演示：操作与状态流转仅在前端模拟，不代表真实后端推送、发布或跨账号同步
+      </p>
+</div>
+</main>
+<!-- Bottom Navigation (Fixed 68px, data-role="director", 4 items) -->
+<nav class="h-[68px] min-h-[68px] max-h-[68px] bg-white border-t border-[#DDE3E8] flex items-center justify-around px-2 shrink-0 z-40" data-role="director">
+<!-- 1. 内容 (Active) -->
+<a class="w-[70px] h-[52px] flex flex-col items-center justify-center text-[#F88440] transition-colors" data-page="P60" href="#P60">
+<span class="material-symbols-outlined text-[24px]">article</span>
+<span class="text-[12px] font-medium leading-none mt-1">内容</span>
+</a>
+<!-- 2. 脚本 -->
+<a class="w-[70px] h-[52px] flex flex-col items-center justify-center text-[#65717B] hover:text-[#26313A] transition-colors" data-page="P61" href="#P61">
+<span class="material-symbols-outlined text-[24px]">edit_note</span>
+<span class="text-[12px] font-normal leading-none mt-1">脚本</span>
+</a>
+<!-- 3. 我的 -->
+<a class="w-[70px] h-[52px] flex flex-col items-center justify-center text-[#65717B] hover:text-[#26313A] transition-colors" data-page="MY" href="#MY">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="text-[12px] font-normal leading-none mt-1">我的</span>
+</a>
+<!-- 4. 助理 -->
+<a class="w-[70px] h-[52px] flex flex-col items-center justify-center text-[#65717B] hover:text-[#26313A] transition-colors" data-page="AI" href="#AI">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+<span class="text-[12px] font-normal leading-none mt-1">助理</span>
+</a>
+</nav>
+<!-- 轻量新建选题弹窗抽屉 -->
+<div class="hidden fixed inset-0 z-50 bg-black/40 flex items-end justify-center" id="topic-modal">
+<div class="w-full max-w-[390px] bg-white rounded-t-xl p-4 space-y-3.5 shadow-2xl">
+<div class="flex justify-between items-center pb-2 border-b border-[#DDE3E8]">
+<h3 class="text-sm font-semibold text-[#26313A]">新建储备选题</h3>
+<button class="text-[#65717B] hover:text-[#26313A]" onclick="closeTopicModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="space-y-2.5 text-xs text-[#26313A]">
+<div>
+<label class="block text-[#65717B] mb-1">选题名称</label>
+<input class="w-full h-[36px] px-2.5 border border-[#DDE3E8] rounded focus:outline-none focus:border-[#F88440]" id="new-topic-title" placeholder="输入选题名称" type="text"/>
+</div>
+<div>
+<label class="block text-[#65717B] mb-1">对象主播与方向</label>
+<input class="w-full h-[36px] px-2.5 border border-[#DDE3E8] rounded focus:outline-none focus:border-[#F88440]" id="new-topic-author" placeholder="如：阿哲 · 连麦企划" type="text"/>
+</div>
+<div>
+<label class="block text-[#65717B] mb-1">初始阶段</label>
+<select class="w-full h-[36px] px-2 border border-[#DDE3E8] rounded focus:outline-none focus:border-[#F88440] bg-white" id="new-topic-stage">
+<option value="提案">提案</option>
+<option value="已立项">已立项</option>
+<option value="制作中">制作中</option>
+</select>
+</div>
+</div>
+<div class="flex space-x-2 pt-1">
+<button class="flex-1 h-[40px] bg-[#EDF1F3] text-[#65717B] text-xs font-medium rounded" onclick="closeTopicModal()">取消</button>
+<button class="flex-1 h-[40px] bg-[#F88440] text-white text-xs font-medium rounded" onclick="saveNewTopic()">保存选题</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function selectTab(name) {
+    ['scripts', 'topics', 'published'].forEach(t => {
+      const btn = document.getElementById('tab-btn-' + t);
+      const panel = document.getElementById('panel-' + t);
+      if (t === name) {
+        btn.className = 'flex-1 py-1.5 text-xs font-semibold rounded bg-white text-[#F88440] shadow-sm transition-all text-center';
+        panel.classList.remove('hidden');
+      } else {
+        btn.className = 'flex-1 py-1.5 text-xs font-medium rounded text-[#65717B] hover:text-[#26313A] transition-all text-center';
+        panel.classList.add('hidden');
+      }
+    });
+  }
+
+  function claimTask(taskId) {
+    const badge = document.getElementById('badge-' + taskId);
+    const btn = document.getElementById('claim-btn-' + taskId);
+    const txt = document.getElementById('claim-btn-' + taskId + '-txt');
+    if (badge && btn && txt) {
+      badge.textContent = '进行中';
+      badge.className = 'text-xs px-2 py-0.5 rounded bg-[#ECFDF5] text-[#047857] font-medium border border-[#A7F3D0]';
+      btn.className = 'flex-1 h-[40px] bg-[#EDF1F3] text-[#047857] text-xs font-medium rounded px-3 transition-colors flex items-center justify-center space-x-1.5 cursor-default';
+      btn.disabled = true;
+      txt.textContent = '已认领进行中';
+    }
+  }
+
+  function approveAndDispatchCut() {
+    const note = document.getElementById('dispatch-notification');
+    const status = document.getElementById('task2-audit-status');
+    if (note && status) {
+      status.textContent = '审核通过 (已派发剪辑)';
+      status.className = 'text-[11px] text-[#047857] font-semibold';
+      note.classList.remove('hidden');
+    }
+  }
+
+  function rejectAudit() {
+    const note = document.getElementById('dispatch-notification');
+    const status = document.getElementById('task2-audit-status');
+    if (note && status) {
+      status.textContent = '已退回何姐修改';
+      status.className = 'text-[11px] text-[#EF4444] font-semibold';
+      note.classList.remove('hidden');
+      note.className = 'text-[11px] text-[#EF4444] bg-[#FEF2F2] p-1.5 rounded border border-[#EF4444]';
+      note.textContent = '已退回何姐 P61 脚本修改，未派发剪辑单。';
+    }
+  }
+
+  function openTopicModal() {
+    document.getElementById('topic-modal').classList.remove('hidden');
+  }
+
+  function closeTopicModal() {
+    document.getElementById('topic-modal').classList.add('hidden');
+  }
+
+  function saveNewTopic() {
+    const titleInput = document.getElementById('new-topic-title');
+    const authorInput = document.getElementById('new-topic-author');
+    const stageSelect = document.getElementById('new-topic-stage');
+    const title = titleInput.value.trim() || '新选题策划';
+    const author = authorInput.value.trim() || '何姐 · 企划储备';
+    const stage = stageSelect.value;
+    
+    const card = document.createElement('div');
+    card.className = 'bg-white border border-[#DDE3E8] rounded-lg p-3 space-y-2';
+    card.innerHTML = `
+      <div class="flex justify-between items-start">
+        <div>
+          <h4 class="text-sm font-semibold text-[#26313A]">${title}</h4>
+          <p class="text-xs text-[#65717B] mt-0.5">主播：${author}</p>
+        </div>
+        <span class="text-xs px-2 py-0.5 bg-[#FCF4EC] text-[#F88440] font-medium rounded">${stage}</span>
+      </div>
+      <div class="flex items-center justify-between pt-1 border-t border-[#DDE3E8] text-[11px] text-[#65717B]">
+        <span>绑定状态：未关联</span>
+        <span class="text-[#F88440]">本地新增</span>
+      </div>
+    `;
+    document.getElementById('topics-list').prepend(card);
+    titleInput.value = '';
+    authorInput.value = '';
+    closeTopicModal();
+  }
+</script></div>
+<script>
+    function switchTab(tabName) {
+      const tabs = ['scripts', 'topics', 'published'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        const content = document.getElementById('content-' + t);
+        if (t === tabName) {
+          btn.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-white text-[#282838] shadow-sm transition-all";
+          content.classList.remove('hidden');
+        } else {
+          btn.className = "flex-1 py-2 text-xs font-medium rounded-lg text-muted hover:text-charcoal transition-all";
+          content.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body></html>

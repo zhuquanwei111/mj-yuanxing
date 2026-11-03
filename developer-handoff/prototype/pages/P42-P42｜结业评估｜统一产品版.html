@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=390, height=884, initial-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>结业评估 - 明镜培训端</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<!-- Tailwind Configuration for Design Tokens -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#F5F7F8',
+            surface: '#FFFFFF',
+            subtle: '#EDF1F3',
+            divider: '#DDE3E8',
+            'txt-main': '#26313A',
+            'txt-muted': '#65717B',
+            brand: {
+              DEFAULT: '#F88440',
+              pressed: '#D96A31',
+              light: '#FCF4EC'
+            },
+            status: {
+              success: '#047857',
+              'success-bg': '#ECFDF5',
+              warning: '#B45309',
+              'warning-bg': '#FFFBEB',
+              'warning-border': '#FDE68A',
+              danger: '#EF4444',
+              'danger-bg': '#FEF2F2'
+            }
+          },
+          fontFamily: {
+            sans: ['"Noto Sans SC"', '-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+<!-- BEGIN: Custom Typography and Scrollbar Style -->
+<style data-purpose="typography-and-reset">
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F5F7F8;
+      color: #26313A;
+      font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    /* Hide scrollbar for a neat mobile viewport appearance */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .material-symbols-outlined {
+      font-size: 24px;
+      line-height: 1;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+<!-- END: Custom Typography and Scrollbar Style -->
+</head>
+<body class="bg-[#F5F7F8]">
+<!-- Mobile Viewport Container: Exactly 390x884 px, Self-Contained -->
+<div class="relative w-[390px] h-[884px] bg-[#F5F7F8] flex flex-col overflow-hidden text-[#26313A]" id="mobile-viewport">
+<!-- BEGIN: TopAppBar (56px) -->
+<header class="h-[56px] min-h-[56px] bg-white border-b border-[#DDE3E8] px-3 flex items-center justify-between z-20 shrink-0">
+<!-- Back Navigation Button -->
+<a aria-label="返回学员档案" class="w-[44px] h-[44px] flex items-center justify-center text-[#26313A] active:bg-[#EDF1F3] rounded-full transition-colors" data-page="P41D" data-subject="麦子" href="#P41D" id="nav-back-link">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+<!-- Page Title & Subject Badge -->
+<div class="flex flex-col items-center justify-center text-center">
+<h1 class="text-[17px] font-semibold text-[#26313A] tracking-tight leading-tight flex items-center gap-1.5">
+<span>结业评估</span>
+<span class="text-xs px-2 py-0.5 bg-[#EDF1F3] text-[#65717B] rounded-full font-medium" id="header-subject-tag">麦子</span>
+</h1>
+<span class="text-[11px] text-[#65717B] font-normal leading-tight">明镜培训端 · P42</span>
+</div>
+<!-- Context Switcher Capsule (Toggle between Maizi and Lizi) -->
+<div class="h-[44px] flex items-center justify-end">
+<div class="bg-[#EDF1F3] p-0.5 rounded-full flex items-center gap-0.5 border border-[#DDE3E8]">
+<button class="px-2.5 py-1 text-xs rounded-full font-medium transition-all bg-white text-[#26313A] shadow-sm" id="switch-maizi" type="button">
+            麦子
+          </button>
+<button class="px-2.5 py-1 text-xs rounded-full font-medium transition-all text-[#65717B] hover:text-[#26313A]" id="switch-lizi" type="button">
+            栗子
+          </button>
+</div>
+</div>
+</header>
+<!-- END: TopAppBar -->
+<!-- BEGIN: MainContent (Scrollable) -->
+<main class="flex-1 overflow-y-auto no-scrollbar px-4 py-3.5 space-y-4">
+<!-- Subheader & Trainee Context Header Card -->
+<div class="bg-white rounded-xl p-3.5 border border-[#DDE3E8] flex items-center justify-between shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-[#EDF1F3] border border-[#DDE3E8] flex items-center justify-center text-[#65717B] font-bold text-base" id="avatar-container">
+<span id="trainee-avatar-text">麦</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-semibold text-base text-[#26313A]" id="trainee-name">麦子</span>
+<span class="text-[11px] px-2 py-0.5 bg-[#EDF1F3] text-[#65717B] rounded font-medium" id="trainee-stage">带教第6天</span>
+</div>
+<div class="text-xs text-[#65717B] mt-0.5" id="trainee-cycle">主播新人孵化第1期 · 重点培养对象</div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[11px] text-[#65717B] block">带教导师</span>
+<span class="text-xs font-medium text-[#26313A]">安姐</span>
+</div>
+</div>
+<!-- Threshold & Core Status Alert Banner -->
+<section class="bg-[#FFFBEB] border border-[#FDE68A] rounded-xl p-3.5 space-y-2" id="status-card">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-[#B45309] font-semibold text-[15px]">
+<span class="material-symbols-outlined text-[20px] text-[#B45309]">warning</span>
+<span id="banner-title">结业条件：待补</span>
+</div>
+<span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#92400E]" id="banner-badge">
+            1 项证据待补
+          </span>
+</div>
+<p class="text-xs text-[#92400E] leading-relaxed" id="banner-description">
+          完整首秀彩排待培训师验收通过，且全部必考课程考核合格（≥80分），方可解锁结业。
+        </p>
+<div class="pt-1.5 border-t border-[#FDE68A]/60 flex items-center justify-between text-[11px] text-[#92400E]">
+<span class="font-medium">剩余门槛项：</span>
+<span class="truncate max-w-[230px] font-semibold" id="banner-pending-item">第11-15天 完整首秀彩排待验收</span>
+</div>
+</section>
+<!-- Section 1: Growth Task Evidence -->
+<section class="space-y-2">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-baseline gap-1.5">
+<h2 class="text-sm font-bold text-[#26313A] tracking-tight">成长任务</h2>
+<span class="text-xs font-bold text-[#F88440]" id="task-progress-ratio">3/4</span>
+</div>
+<span class="text-[11px] font-medium text-[#65717B] bg-[#EDF1F3] px-2 py-0.5 rounded">必修证据项</span>
+</div>
+<!-- Continuous Flat Task List -->
+<div class="bg-white border border-[#DDE3E8] rounded-xl divide-y divide-[#DDE3E8] overflow-hidden" id="tasks-container">
+<!-- Dynamically populated or switchable -->
+</div>
+</section>
+<!-- Section 2: Course Assessment Credentials -->
+<section class="space-y-2">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-baseline gap-1.5">
+<h2 class="text-sm font-bold text-[#26313A] tracking-tight">课程考核</h2>
+<span class="text-xs font-bold text-[#047857]" id="exam-progress-ratio">4/4</span>
+</div>
+<span class="text-[11px] font-medium text-[#65717B] bg-[#EDF1F3] px-2 py-0.5 rounded">成绩凭证 (≥80分及格)</span>
+</div>
+<!-- Continuous Flat Assessment List -->
+<div class="bg-white border border-[#DDE3E8] rounded-xl divide-y divide-[#DDE3E8] overflow-hidden" id="exams-container">
+<!-- Dynamically populated or switchable -->
+</div>
+<!-- Disclaimers / Separation Notice -->
+<div class="flex items-start gap-1.5 px-1 py-1 text-[11px] text-[#65717B]">
+<span class="material-symbols-outlined text-[15px] mt-0.5 text-[#65717B]">info</span>
+<span>独立判定准则：任务验收与课程考核分别记录，不合并计算总分或百分比。</span>
+</div>
+</section>
+<!-- Action Area -->
+<div class="pt-2 pb-2 space-y-2.5">
+<a class="w-full h-[48px] bg-[#F88440] active:bg-[#D96A31] text-white font-semibold text-[15px] rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all" data-page="P41D" data-subject="麦子" href="#P41D" id="btn-view-profile">
+<span>查看学员档案</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="w-full h-[44px] bg-white border border-[#DDE3E8] text-[#26313A] active:bg-[#EDF1F3] font-medium text-sm rounded-xl flex items-center justify-center transition-colors" data-page="P41" data-subject="麦子" href="#P41" id="btn-back-task">
+<span>返回成长任务 (P41)</span>
+</a>
+<p class="text-[11px] text-center text-[#65717B] leading-relaxed px-3">
+          注：结业须两项维度均达标。当前彩排演练未验收，不提供强制提前结业功能。
+        </p>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomNavBar (68px) -->
+<nav class="h-[68px] min-h-[68px] bg-white border-t border-[#DDE3E8] grid grid-cols-5 items-center px-1 z-30 shrink-0">
+<!-- 1. 今天 -->
+<a class="flex flex-col items-center justify-center py-1 text-[#65717B] hover:text-[#26313A] active:scale-95 transition-all" data-page="P40" href="#P40">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] mt-0.5 font-medium leading-none">今天</span>
+</a>
+<!-- 2. 任务 -->
+<a class="flex flex-col items-center justify-center py-1 text-[#65717B] hover:text-[#26313A] active:scale-95 transition-all" data-page="P41" href="#P41">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="text-[10px] mt-0.5 font-medium leading-none">任务</span>
+</a>
+<!-- 3. 考核 (Active) -->
+<a class="flex flex-col items-center justify-center py-1 text-[#F88440] active:scale-95 transition-all" data-page="P42" href="#P42">
+<span class="material-symbols-outlined font-bold">fact_check</span>
+<span class="text-[10px] mt-0.5 font-bold leading-none">考核</span>
+</a>
+<!-- 4. 我的 -->
+<a class="flex flex-col items-center justify-center py-1 text-[#65717B] hover:text-[#26313A] active:scale-95 transition-all" data-page="MY" href="#MY">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] mt-0.5 font-medium leading-none">我的</span>
+</a>
+<!-- 5. 助理 -->
+<a class="flex flex-col items-center justify-center py-1 text-[#65717B] hover:text-[#26313A] active:scale-95 transition-all" data-page="AI" href="#AI">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="text-[10px] mt-0.5 font-medium leading-none">助理</span>
+</a>
+</nav>
+<!-- END: BottomNavBar -->
+</div>
+<!-- BEGIN: Interactive Context Switching Logic -->
+<script data-purpose="page-data-and-context">
+    // Mock Data for Trainees
+    const dataStore = {
+      maizi: {
+        id: 'maizi',
+        name: '麦子',
+        shortName: '麦',
+        stageText: '带教第6天',
+        cycleText: '主播新人孵化第1期 · 重点培养对象',
+        statusBanner: {
+          title: '结业条件：待补',
+          badgeText: '1 项待补',
+          description: '完整首秀彩排待培训师验收通过，且全部必考课程考核合格（≥80分），方可解锁结业。',
+          pendingItem: '第11-15天 完整首秀彩排待培训师验收'
+        },
+        taskProgress: '3/4',
+        tasks: [
+          {
+            title: '平台规则与红线',
+            detail: '口试与合规自查清单已通过',
+            status: 'success',
+            statusLabel: '已验收'
+          },
+          {
+            title: '开播流程与设备自检',
+            detail: '声画调优、机位布光与推流自检已归档',
+            status: 'success',
+            statusLabel: '已验收'
+          },
+          {
+            title: '破冰话术与留人',
+            detail: '前3分钟停留与开场话术对齐完毕',
+            status: 'success',
+            statusLabel: '已验收'
+          },
+          {
+            title: '第11-15天·完整首秀彩排',
+            detail: '已完成彩排提纲；待培训师验收整场演练',
+            status: 'warning',
+            statusLabel: '进行中 待验收'
+          }
+        ],
+        examProgress: '4/4',
+        exams: [
+          {
+            title: '开播理论知识',
+            score: '92分',
+            status: 'success',
+            statusLabel: '通过'
+          },
+          {
+            title: '镜头表现与表现力',
+            score: '88分',
+            status: 'success',
+            statusLabel: '通过'
+          },
+          {
+            title: '产品了解与卖点',
+            score: '90分',
+            status: 'success',
+            statusLabel: '通过'
+          },
+          {
+            title: '留人与互动',
+            score: '免修',
+            status: 'neutral',
+            statusLabel: '通过 · 免修'
+          }
+        ]
+      },
+      lizi: {
+        id: 'lizi',
+        name: '栗子',
+        shortName: '栗',
+        stageText: '带教第2天',
+        cycleText: '主播新人孵化第2期 · 入门基础期',
+        statusBanner: {
+          title: '结业条件：待补 (2项需处理)',
+          badgeText: '存在需补考项',
+          description: '平台规则考核未达标（低于80分），且破冰任务仍在进行中，暂不满足结业标准。',
+          pendingItem: '平台规则需补考 / 破冰话术待评分'
+        },
+        taskProgress: '0/4',
+        tasks: [
+          {
+            title: '平台规则与红线',
+            detail: '正在学习平台合规规则；待完成在线红线测验',
+            status: 'warning',
+            statusLabel: '进行中'
+          },
+          {
+            title: '开播流程与设备自检',
+            detail: '待开始设备调试与OBS设置实操',
+            status: 'disabled',
+            statusLabel: '未开始'
+          },
+          {
+            title: '破冰话术与留人',
+            detail: '演练脚本已提交，等待导师指导',
+            status: 'disabled',
+            statusLabel: '未开始'
+          },
+          {
+            title: '第11-15天·完整首秀彩排',
+            detail: '周期后段演练排期中',
+            status: 'disabled',
+            statusLabel: '未解锁'
+          }
+        ],
+        examProgress: '1/4',
+        exams: [
+          {
+            title: '平台规则与红线',
+            score: '74分',
+            status: 'danger',
+            statusLabel: '低于80分需补考'
+          },
+          {
+            title: '破冰话术 (第2次补考)',
+            score: '待评',
+            status: 'warning',
+            statusLabel: '待导师评分'
+          },
+          {
+            title: '产品了解与卖点',
+            score: '--',
+            status: 'disabled',
+            statusLabel: '未开始'
+          },
+          {
+            title: '留人与互动',
+            score: '--',
+            status: 'disabled',
+            statusLabel: '未开始'
+          }
+        ]
+      }
+    };
+
+    let currentTraineeKey = 'maizi';
+
+    function renderTrainee(key) {
+      const data = dataStore[key];
+      currentTraineeKey = key;
+
+      // Update Navigation & Header
+      document.getElementById('header-subject-tag').textContent = data.name;
+      document.getElementById('nav-back-link').setAttribute('data-subject', data.name);
+      document.getElementById('btn-view-profile').setAttribute('data-subject', data.name);
+      document.getElementById('btn-back-task').setAttribute('data-subject', data.name);
+
+      // Toggle Header buttons style
+      const btnMaizi = document.getElementById('switch-maizi');
+      const btnLizi = document.getElementById('switch-lizi');
+      if (key === 'maizi') {
+        btnMaizi.className = 'px-2.5 py-1 text-xs rounded-full font-medium transition-all bg-white text-[#26313A] shadow-sm';
+        btnLizi.className = 'px-2.5 py-1 text-xs rounded-full font-medium transition-all text-[#65717B] hover:text-[#26313A]';
+      } else {
+        btnLizi.className = 'px-2.5 py-1 text-xs rounded-full font-medium transition-all bg-white text-[#26313A] shadow-sm';
+        btnMaizi.className = 'px-2.5 py-1 text-xs rounded-full font-medium transition-all text-[#65717B] hover:text-[#26313A]';
+      }
+
+      // Update Subheader Card
+      document.getElementById('trainee-avatar-text').textContent = data.shortName;
+      document.getElementById('trainee-name').textContent = data.name;
+      document.getElementById('trainee-stage').textContent = data.stageText;
+      document.getElementById('trainee-cycle').textContent = data.cycleText;
+
+      // Update Status Banner
+      const statusCard = document.getElementById('status-card');
+      const bannerTitle = document.getElementById('banner-title');
+      const bannerBadge = document.getElementById('banner-badge');
+      const bannerDesc = document.getElementById('banner-description');
+      const bannerPending = document.getElementById('banner-pending-item');
+
+      bannerTitle.textContent = data.statusBanner.title;
+      bannerBadge.textContent = data.statusBanner.badgeText;
+      bannerDesc.textContent = data.statusBanner.description;
+      bannerPending.textContent = data.statusBanner.pendingItem;
+
+      if (key === 'lizi') {
+        statusCard.className = 'bg-[#FEF2F2] border border-[#FECACA] rounded-xl p-3.5 space-y-2';
+        bannerTitle.className = 'flex items-center gap-1.5 text-[#DC2626] font-semibold text-[15px]';
+        bannerBadge.className = 'text-xs font-semibold px-2 py-0.5 rounded-full bg-[#FEE2E2] text-[#B91C1C]';
+        bannerDesc.className = 'text-xs text-[#991B1B] leading-relaxed';
+      } else {
+        statusCard.className = 'bg-[#FFFBEB] border border-[#FDE68A] rounded-xl p-3.5 space-y-2';
+        bannerTitle.className = 'flex items-center gap-1.5 text-[#B45309] font-semibold text-[15px]';
+        bannerBadge.className = 'text-xs font-semibold px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#92400E]';
+        bannerDesc.className = 'text-xs text-[#92400E] leading-relaxed';
+      }
+
+      // Render Tasks
+      document.getElementById('task-progress-ratio').textContent = data.taskProgress;
+      const tasksContainer = document.getElementById('tasks-container');
+      tasksContainer.innerHTML = '';
+
+      data.tasks.forEach((t, idx) => {
+        const item = document.createElement('div');
+        item.className = 'p-3 flex items-center justify-between hover:bg-slate-50 transition-colors';
+        
+        let badgeHtml = '';
+        if (t.status === 'success') {
+          badgeHtml = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#ECFDF5] text-[#047857]">
+            <span class="material-symbols-outlined text-[16px]">check_circle</span>
+            ${t.statusLabel}
+          </span>`;
+        } else if (t.status === 'warning') {
+          badgeHtml = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#B45309]"></span>
+            ${t.statusLabel}
+          </span>`;
+        } else {
+          badgeHtml = `<span class="px-2 py-1 rounded text-xs text-[#65717B] bg-[#EDF1F3]">${t.statusLabel}</span>`;
+        }
+
+        item.innerHTML = `
+          <div class="pr-2 flex-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-[#65717B] font-mono">${idx + 1}</span>
+              <span class="text-sm font-medium text-[#26313A]">${t.title}</span>
+            </div>
+            <p class="text-xs text-[#65717B] mt-0.5 pl-4 truncate max-w-[210px]">${t.detail}</p>
+          </div>
+          <div class="shrink-0">
+            ${badgeHtml}
+          </div>
+        `;
+        tasksContainer.appendChild(item);
+      });
+
+      // Render Exams
+      document.getElementById('exam-progress-ratio').textContent = data.examProgress;
+      const examsContainer = document.getElementById('exams-container');
+      examsContainer.innerHTML = '';
+
+      data.exams.forEach((ex) => {
+        const item = document.createElement('div');
+        item.className = 'p-3 flex items-center justify-between hover:bg-slate-50 transition-colors';
+
+        let scoreHtml = '';
+        if (ex.status === 'success') {
+          scoreHtml = `
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-[#26313A]">${ex.score}</span>
+              <span class="px-2 py-0.5 rounded text-xs font-medium bg-[#ECFDF5] text-[#047857] flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-[14px]">check</span>通过
+              </span>
+            </div>
+          `;
+        } else if (ex.status === 'neutral') {
+          scoreHtml = `
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-[#65717B] font-medium bg-[#EDF1F3] px-2 py-0.5 rounded">免修</span>
+              <span class="text-xs text-[#047857] font-medium">免考通过</span>
+            </div>
+          `;
+        } else if (ex.status === 'danger') {
+          scoreHtml = `
+            <div class="flex items-center gap-2.5">
+              <span class="text-sm font-bold text-[#DC2626]">${ex.score}</span>
+              <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]">
+                ${ex.statusLabel}
+              </span>
+            </div>
+          `;
+        } else if (ex.status === 'warning') {
+          scoreHtml = `
+            <div class="flex items-center gap-2.5">
+              <span class="text-xs text-[#B45309] font-medium">${ex.score}</span>
+              <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A]">
+                待导师打分
+              </span>
+            </div>
+          `;
+        } else {
+          scoreHtml = `<span class="text-xs text-[#65717B] bg-[#EDF1F3] px-2 py-0.5 rounded">${ex.statusLabel}</span>`;
+        }
+
+        item.innerHTML = `
+          <div class="flex-1 pr-2">
+            <span class="text-sm font-medium text-[#26313A]">${ex.title}</span>
+          </div>
+          <div class="shrink-0">
+            ${scoreHtml}
+          </div>
+        `;
+        examsContainer.appendChild(item);
+      });
+    }
+
+    // Bind Context Switch Buttons
+    document.getElementById('switch-maizi').addEventListener('click', () => renderTrainee('maizi'));
+    document.getElementById('switch-lizi').addEventListener('click', () => renderTrainee('lizi'));
+
+    // Initial Render
+    renderTrainee('maizi');
+  </script>
+<!-- END: Interactive Context Switching Logic -->
+</body></html>

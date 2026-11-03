@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>P23｜直播规划｜统一产品版</title>
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            app: '#F5F7F8',
+            surface: '#FFFFFF',
+            'surface-sub': '#EDF1F3',
+            border: '#DDE3E8',
+            'txt-main': '#26313A',
+            'txt-muted': '#65717B',
+            brand: '#F88440',
+            'brand-press': '#D96A31',
+            'brand-soft': '#FCF4EC',
+            'risk-red': '#EF4444',
+            'pending-amber': '#B45309',
+            'done-green': '#047857',
+          },
+          fontFamily: {
+            sans: ['Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* 隐藏滚动条但保留功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* 避免移动端点击高亮 */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body class="bg-[#F5F7F8] text-[#26313A] font-sans antialiased m-0 p-0 flex justify-center items-start min-h-screen">
+
+  <!-- 390 x 884 CSS px 绝对标准化移动产品外壳 -->
+  <div id="app-container" class="w-full max-w-[390px] h-[884px] bg-[#F5F7F8] flex flex-col relative overflow-hidden select-none border-x border-[#DDE3E8] shadow-sm">
+    
+    <!-- 1. 固定 56px 顶栏 -->
+    <header class="w-full h-[56px] min-h-[56px] bg-white border-b border-[#DDE3E8] flex items-center justify-between px-4 z-30 shrink-0">
+      <!-- 左侧 44x44px 槽位：返回 P22 主播档案 (小雨) -->
+      <a href="#P22" data-page="P22" data-subject="小雨" class="w-11 h-11 flex items-center justify-start text-[#26313A] active:opacity-70 transition-opacity" title="返回主播档案">
+        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+      </a>
+
+      <!-- 居中标题与操作者标签 -->
+      <div class="flex items-baseline gap-2">
+        <h1 class="text-[18px] font-semibold text-[#26313A] tracking-tight">直播规划</h1>
+        <span class="text-[12px] text-[#65717B] font-normal">运营·小林</span>
+      </div>
+
+      <!-- 右侧 44x44px 槽位：重置或状态辅助入口 -->
+      <button id="btn-reset-form" class="w-11 h-11 flex items-center justify-end text-[#65717B] hover:text-[#26313A] active:opacity-70 transition-colors" title="重新填写规划">
+        <span class="material-symbols-outlined text-[20px]">refresh</span>
+      </button>
+    </header>
+
+    <!-- 2. 中间独立滚动的 main 内容区 (min-height:0, overflow-y:auto) -->
+    <main class="flex-1 min-h-0 overflow-y-auto no-scrollbar p-4 space-y-4">
+      
+      <!-- 步骤流程导航指示条 (根据状态机动态高亮) -->
+      <div class="bg-white border border-[#DDE3E8] rounded-xl px-4 py-3 flex items-center justify-between">
+        <div id="step-node-1" class="flex items-center gap-1.5 text-brand font-medium">
+          <span class="w-5 h-5 rounded-full bg-brand text-white text-[11px] flex items-center justify-center font-bold">1</span>
+          <span class="text-[13px]">填信息</span>
+        </div>
+        <div class="h-[1px] w-8 bg-[#DDE3E8]"></div>
+        <div id="step-node-2" class="flex items-center gap-1.5 text-[#65717B]">
+          <span class="w-5 h-5 rounded-full bg-[#EDF1F3] text-[#65717B] text-[11px] flex items-center justify-center font-bold">2</span>
+          <span class="text-[13px]">生成中</span>
+        </div>
+        <div class="h-[1px] w-8 bg-[#DDE3E8]"></div>
+        <div id="step-node-3" class="flex items-center gap-1.5 text-[#65717B]">
+          <span class="w-5 h-5 rounded-full bg-[#EDF1F3] text-[#65717B] text-[11px] flex items-center justify-center font-bold">3</span>
+          <span class="text-[13px]">确认草稿</span>
+        </div>
+      </div>
+
+      <!-- 主播对象信息概览行 (纯白平整区) -->
+      <div class="bg-white border border-[#DDE3E8] rounded-xl p-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#EDF1F3] border border-[#DDE3E8] flex items-center justify-center text-[#65717B] shrink-0">
+            <span class="material-symbols-outlined text-[22px]">person_outline</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-[15px] font-semibold text-[#26313A]">小雨</span>
+              <span class="text-[11px] px-1.5 py-0.5 rounded bg-[#FCF4EC] text-brand border border-orange-200">成熟</span>
+              <span class="text-[11px] px-1.5 py-0.5 rounded bg-[#ECFDF5] text-done-green border border-emerald-200 flex items-center gap-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-done-green"></span>
+                开播中
+              </span>
+            </div>
+            <p class="text-[12px] text-[#65717B] mt-0.5">才艺唱歌 · 治愈系翻唱</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <span class="text-[12px] text-[#65717B] block">负责人</span>
+          <span class="text-[12px] font-medium text-[#26313A]">运营·小林</span>
+        </div>
+      </div>
+
+      <!-- 阶段 A：填写表单核心区域 (ID: section-form) -->
+      <section id="section-form" class="bg-white border border-[#DDE3E8] rounded-xl p-4 space-y-4">
+        
+        <!-- 规划周期选择 -->
+        <div>
+          <label class="block text-[13px] font-medium text-[#26313A] mb-2">规划周期</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" class="cycle-btn h-11 rounded-lg border text-[13px] font-medium transition-colors border-brand bg-[#FCF4EC] text-brand" data-cycle="单场">
+              单场
+            </button>
+            <button type="button" class="cycle-btn h-11 rounded-lg border text-[13px] font-medium transition-colors border-[#DDE3E8] bg-white text-[#26313A] hover:bg-[#F5F7F8]" data-cycle="7天规划">
+              7天规划
+            </button>
+            <button type="button" class="cycle-btn h-11 rounded-lg border text-[13px] font-medium transition-colors border-[#DDE3E8] bg-white text-[#26313A] hover:bg-[#F5F7F8]" data-cycle="30天规划">
+              30天规划
+            </button>
+          </div>
+        </div>
+
+        <!-- 本场音浪目标输入 (单位'万'只显示一次) -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="input-target" class="text-[13px] font-medium text-[#26313A]">本场音浪目标</label>
+            <span class="text-[11px] text-[#65717B]">建议区间 3.5 - 4.5万</span>
+          </div>
+          <div class="relative flex items-center">
+            <input id="input-target" type="number" step="0.1" value="3.9" class="w-full h-11 bg-white border border-[#DDE3E8] rounded-lg px-3.5 pr-10 text-[15px] font-medium text-[#26313A] focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all" placeholder="请输入目标数值">
+            <span class="absolute right-3.5 text-[14px] text-[#65717B] pointer-events-none font-medium">万</span>
+          </div>
+          <p id="target-error-tip" class="text-[11px] text-risk-red mt-1 hidden flex items-center gap-1">
+            <span class="material-symbols-outlined text-[13px]">error</span>
+            请输入大于 0 的有效音浪目标数值
+          </p>
+        </div>
+
+        <!-- 本轮重点输入框 (默认不伪造已填内容，占位提示) -->
+        <div>
+          <label for="input-focus" class="text-[13px] font-medium text-[#26313A] block mb-1.5">本轮重点</label>
+          <input id="input-focus" type="text" class="w-full h-11 bg-white border border-[#DDE3E8] rounded-lg px-3.5 text-[14px] text-[#26313A] placeholder-[#9CA3AF] focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all" placeholder="比如：留人、试新歌">
+          <p id="focus-error-tip" class="text-[11px] text-risk-red mt-1 hidden flex items-center gap-1">
+            <span class="material-symbols-outlined text-[13px]">error</span>
+            请填写本轮直播的核心策略或重点事项
+          </p>
+        </div>
+
+        <!-- 参考上周数据复选框 (默认勾选) -->
+        <div class="pt-1 border-t border-[#DDE3E8]">
+          <label class="flex items-start gap-2.5 cursor-pointer py-1">
+            <input id="checkbox-ref-history" type="checkbox" checked="" class="w-4 h-4 mt-0.5 rounded border-[#DDE3E8] text-brand focus:ring-brand accent-brand cursor-pointer">
+            <div class="flex-1">
+              <span class="text-[13px] font-medium text-[#26313A] block">参考上周数据</span>
+              <span class="text-[11px] text-[#65717B] block leading-tight mt-0.5">
+                基于上周数据优化本场规划，自动调取留存曲线与打赏峰值
+              </span>
+            </div>
+          </label>
+        </div>
+
+        <!-- 开始生成主操作按钮 (高度 48px) -->
+        <div class="pt-2">
+          <button id="btn-generate" type="button" class="w-full h-12 bg-brand hover:bg-brand-press active:bg-brand-press text-white font-medium rounded-lg text-[15px] flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-[0.99]">
+            <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+            <span>开始生成</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 阶段 B：生成中状态卡片 (短暂生成动画过渡) -->
+      <section id="section-loading" class="bg-white border border-[#DDE3E8] rounded-xl p-8 text-center space-y-3 hidden">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#FCF4EC] text-brand animate-spin mb-1">
+          <span class="material-symbols-outlined text-[26px]">progress_activity</span>
+        </div>
+        <h3 class="text-[15px] font-medium text-[#26313A]">系统正在结合主播数据生成草稿...</h3>
+        <p class="text-[12px] text-[#65717B]">正在调取小雨近期场次峰值与建议节奏，请稍候</p>
+      </section>
+
+      <!-- 阶段 C：待确认草稿区域 (平面可编辑分节，默认隐藏) -->
+      <section id="section-draft" class="bg-white border border-[#DDE3E8] rounded-xl p-4 space-y-4 hidden">
+        <div class="flex items-center justify-between border-b border-[#DDE3E8] pb-3">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-brand text-[20px]">assignment</span>
+            <h2 class="text-[15px] font-semibold text-[#26313A]">规划草稿预览</h2>
+          </div>
+          <span id="draft-status-badge" class="text-[11px] px-2 py-0.5 rounded bg-[#FFFBEB] text-pending-amber border border-amber-200 font-medium">
+            待确认草稿
+          </span>
+        </div>
+
+        <!-- 草稿细节条目 (保持单层平面与细线划分) -->
+        <div class="space-y-3 text-[13px]">
+          <div class="flex justify-between items-center py-1 border-b border-dashed border-[#DDE3E8]">
+            <span class="text-[#65717B]">规划类型</span>
+            <span id="draft-cycle" class="font-medium text-[#26313A]">单场规划</span>
+          </div>
+          <div class="flex justify-between items-center py-1 border-b border-dashed border-[#DDE3E8]">
+            <span class="text-[#65717B]">音浪目标</span>
+            <span id="draft-target" class="font-semibold text-brand text-[15px]">3.9 万</span>
+          </div>
+          <div class="flex justify-between items-start py-1 border-b border-dashed border-[#DDE3E8]">
+            <span class="text-[#65717B] shrink-0">本轮重点</span>
+            <span id="draft-focus" class="font-medium text-[#26313A] text-right ml-4">留人、试新歌</span>
+          </div>
+          <div class="flex justify-between items-center py-1 border-b border-dashed border-[#DDE3E8]">
+            <span class="text-[#65717B]">数据基准</span>
+            <span id="draft-ref" class="text-[#26313A]">已参考上周同赛道留存曲线</span>
+          </div>
+        </div>
+
+        <!-- 运营操作按钮组：先确认草稿，后允许发送 -->
+        <div class="pt-2 space-y-2">
+          <!-- 确认草稿按钮 -->
+          <button id="btn-confirm-draft" type="button" class="w-full h-11 bg-brand hover:bg-brand-press active:bg-brand-press text-white font-medium rounded-lg text-[14px] flex items-center justify-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            <span>确认无误，采纳草稿</span>
+          </button>
+
+          <!-- 发给主播按钮 (初始置灰禁用，确认草稿后激活) -->
+          <button id="btn-send-streamer" type="button" disabled="" class="w-full h-11 bg-[#EDF1F3] text-[#65717B] font-medium rounded-lg text-[14px] flex items-center justify-center gap-1.5 transition-all cursor-not-allowed">
+            <span class="material-symbols-outlined text-[18px]">send</span>
+            <span>发给主播 (待先确认草稿)</span>
+          </button>
+        </div>
+
+        <p class="text-[11px] text-[#65717B] leading-tight">
+          * 说明：确认草稿仅作为本地运营定稿标记；再次修改表单将重置为待确认状态。
+        </p>
+      </section>
+
+      <!-- 阶段 D：本地完成态卡片 (已记入规划史) -->
+      <section id="section-completed" class="bg-white border border-[#DDE3E8] rounded-xl p-4 space-y-3 hidden">
+        <div class="flex items-center gap-2 text-done-green">
+          <span class="material-symbols-outlined text-[20px]">check_circle</span>
+          <span class="text-[14px] font-semibold">已记入规划史（本地演示）</span>
+        </div>
+        <p class="text-[12px] text-[#65717B] leading-relaxed">
+          本次直播规划草稿已在本地完成归档。当前原型动作不表示真实后台已送达或主播已读。主播端可于 <a href="#P81" data-page="P81" data-subject="小雨" class="text-brand underline font-medium">#P81 (当前规划详情)</a> 查阅此场计划。
+        </p>
+        <div class="pt-1 flex gap-2">
+          <a href="#P22" data-page="P22" data-subject="小雨" class="flex-1 h-10 bg-[#FCF4EC] text-brand border border-orange-200 rounded-lg text-[13px] font-medium flex items-center justify-center gap-1 active:opacity-75 transition-opacity">
+            <span>返回小雨档案查看规划</span>
+            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 3. 固定 68px 运营端底部导航栏 (5项固定：今天、我的主播、交接、我的、助理) -->
+    <footer class="w-full h-[68px] min-h-[68px] bg-white border-t border-[#DDE3E8] flex items-center justify-around px-2 z-30 shrink-0">
+      
+      <!-- 1. 今天 -->
+      <a href="#P20" data-page="P20" class="flex flex-col items-center justify-center w-[60px] h-full text-[#65717B] hover:text-[#26313A] active:opacity-70 transition-colors">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">home</span>
+        </div>
+        <span class="text-[12px] mt-1 leading-none font-normal">今天</span>
+      </a>
+
+      <!-- 2. 我的主播 (P23 属于主播业务范畴，高亮激活态) -->
+      <a href="#P21" data-page="P21" class="flex flex-col items-center justify-center w-[60px] h-full text-brand font-medium">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">groups</span>
+        </div>
+        <span class="text-[12px] mt-1 leading-none font-medium">我的主播</span>
+      </a>
+
+      <!-- 3. 交接 -->
+      <a href="#P25" data-page="P25" class="flex flex-col items-center justify-center w-[60px] h-full text-[#65717B] hover:text-[#26313A] active:opacity-70 transition-colors">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+        </div>
+        <span class="text-[12px] mt-1 leading-none font-normal">交接</span>
+      </a>
+
+      <!-- 4. 我的 -->
+      <a href="#MY" data-page="MY" class="flex flex-col items-center justify-center w-[60px] h-full text-[#65717B] hover:text-[#26313A] active:opacity-70 transition-colors">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">person_outline</span>
+        </div>
+        <span class="text-[12px] mt-1 leading-none font-normal">我的</span>
+      </a>
+
+      <!-- 5. 助理 -->
+      <a href="#AI" data-page="AI" class="flex flex-col items-center justify-center w-[60px] h-full text-[#65717B] hover:text-[#26313A] active:opacity-70 transition-colors">
+        <div class="w-6 h-6 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">support_agent</span>
+        </div>
+        <span class="text-[12px] mt-1 leading-none font-normal">助理</span>
+      </a>
+
+    </footer>
+
+  </div>
+
+  <!-- 4. 严谨的本地表单校验与状态流转脚本 (仅模拟本地演示状态，不暗示服务端提交) -->
+  <script>
+    (function initP23Flow() {
+      let selectedCycle = '单场';
+      let isDraftConfirmed = false;
+
+      // DOM 元素引用
+      const cycleButtons = document.querySelectorAll('.cycle-btn');
+      const inputTarget = document.getElementById('input-target');
+      const inputFocus = document.getElementById('input-focus');
+      const checkboxRef = document.getElementById('checkbox-ref-history');
+      const targetError = document.getElementById('target-error-tip');
+      const focusError = document.getElementById('focus-error-tip');
+
+      const btnGenerate = document.getElementById('btn-generate');
+      const btnReset = document.getElementById('btn-reset-form');
+      const btnConfirmDraft = document.getElementById('btn-confirm-draft');
+      const btnSendStreamer = document.getElementById('btn-send-streamer');
+
+      const sectionForm = document.getElementById('section-form');
+      const sectionLoading = document.getElementById('section-loading');
+      const sectionDraft = document.getElementById('section-draft');
+      const sectionCompleted = document.getElementById('section-completed');
+
+      const stepNode1 = document.getElementById('step-node-1');
+      const stepNode2 = document.getElementById('step-node-2');
+      const stepNode3 = document.getElementById('step-node-3');
+
+      const draftCycle = document.getElementById('draft-cycle');
+      const draftTarget = document.getElementById('draft-target');
+      const draftFocus = document.getElementById('draft-focus');
+      const draftRef = document.getElementById('draft-ref');
+      const draftStatusBadge = document.getElementById('draft-status-badge');
+
+      // 1. 周期选项卡切换
+      cycleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          cycleButtons.forEach(b => {
+            b.classList.remove('border-brand', 'bg-[#FCF4EC]', 'text-brand');
+            b.classList.add('border-[#DDE3E8]', 'bg-white', 'text-[#26313A]');
+          });
+          btn.classList.remove('border-[#DDE3E8]', 'bg-white', 'text-[#26313A]');
+          btn.classList.add('border-brand', 'bg-[#FCF4EC]', 'text-brand');
+          selectedCycle = btn.dataset.cycle;
+          resetToUnconfirmed();
+        });
+      });
+
+      // 2. 表单输入监听：当用户再次编辑字段，清除草稿确认状态
+      [inputTarget, inputFocus, checkboxRef].forEach(elem => {
+        elem.addEventListener('input', () => {
+          resetToUnconfirmed();
+        });
+      });
+
+      function resetToUnconfirmed() {
+        if (isDraftConfirmed) {
+          isDraftConfirmed = false;
+          btnSendStreamer.disabled = true;
+          btnSendStreamer.className = 'w-full h-11 bg-[#EDF1F3] text-[#65717B] font-medium rounded-lg text-[14px] flex items-center justify-center gap-1.5 transition-all cursor-not-allowed';
+          btnSendStreamer.innerHTML = '<span class="material-symbols-outlined text-[18px]">send</span><span>发给主播 (待先确认草稿)</span>';
+          
+          btnConfirmDraft.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>确认无误，采纳草稿</span>';
+          btnConfirmDraft.className = 'w-full h-11 bg-brand hover:bg-brand-press active:bg-brand-press text-white font-medium rounded-lg text-[14px] flex items-center justify-center gap-1.5 transition-all';
+          
+          draftStatusBadge.className = 'text-[11px] px-2 py-0.5 rounded bg-[#FFFBEB] text-pending-amber border border-amber-200 font-medium';
+          draftStatusBadge.textContent = '待确认草稿';
+        }
+      }
+
+      // 3. 点击「开始生成」按钮及表单校验
+      btnGenerate.addEventListener('click', () => {
+        let hasError = false;
+
+        // 校验音浪目标
+        const targetVal = parseFloat(inputTarget.value);
+        if (isNaN(targetVal) || targetVal <= 0) {
+          targetError.classList.remove('hidden');
+          inputTarget.classList.add('border-risk-red');
+          hasError = true;
+        } else {
+          targetError.classList.add('hidden');
+          inputTarget.classList.remove('border-risk-red');
+        }
+
+        // 校验重点是否填写
+        const focusVal = inputFocus.value.trim();
+        if (!focusVal) {
+          focusError.classList.remove('hidden');
+          inputFocus.classList.add('border-risk-red');
+          hasError = true;
+        } else {
+          focusError.classList.add('hidden');
+          inputFocus.classList.remove('border-risk-red');
+        }
+
+        if (hasError) return;
+
+        // 进入步骤 2：生成中状态
+        btnGenerate.disabled = true;
+        sectionForm.classList.add('hidden');
+        sectionLoading.classList.remove('hidden');
+
+        // 更新步骤条
+        updateStepBar(2);
+
+        // 模拟生成耗时 (500ms)
+        setTimeout(() => {
+          sectionLoading.classList.add('hidden');
+          sectionForm.classList.remove('hidden');
+          sectionDraft.classList.remove('hidden');
+
+          // 将表单真实数据回填到草稿展示区
+          draftCycle.textContent = selectedCycle;
+          draftTarget.textContent = `${targetVal} 万`;
+          draftFocus.textContent = focusVal;
+          draftRef.textContent = checkboxRef.checked ? '已参考上周同赛道留存曲线' : '未参考历史数据，按独立目标设定';
+
+          btnGenerate.disabled = false;
+          updateStepBar(3);
+
+          // 视口平滑滚动到底部草稿区
+          sectionDraft.scrollIntoView({ behavior: 'smooth' });
+        }, 550);
+      });
+
+      // 4. 点击「确认无误，采纳草稿」
+      btnConfirmDraft.addEventListener('click', () => {
+        isDraftConfirmed = true;
+        draftStatusBadge.className = 'text-[11px] px-2 py-0.5 rounded bg-[#ECFDF5] text-done-green border border-emerald-200 font-medium';
+        draftStatusBadge.textContent = '已确认草稿';
+
+        btnConfirmDraft.innerHTML = '<span class="material-symbols-outlined text-[18px]">done</span><span>草稿已确认</span>';
+        btnConfirmDraft.className = 'w-full h-11 bg-[#ECFDF5] text-done-green border border-emerald-200 font-medium rounded-lg text-[14px] flex items-center justify-center gap-1.5 transition-all';
+
+        // 启用「发给主播」按钮
+        btnSendStreamer.disabled = false;
+        btnSendStreamer.className = 'w-full h-11 bg-brand hover:bg-brand-press active:bg-brand-press text-white font-medium rounded-lg text-[14px] flex items-center justify-center gap-1.5 transition-all active:scale-[0.99] cursor-pointer';
+        btnSendStreamer.innerHTML = '<span class="material-symbols-outlined text-[18px]">send</span><span>发给主播 (同步本地计划)</span>';
+      });
+
+      // 5. 点击「发给主播」
+      btnSendStreamer.addEventListener('click', () => {
+        if (!isDraftConfirmed) return;
+        
+        btnSendStreamer.disabled = true;
+        btnSendStreamer.textContent = '正在本地归档...';
+
+        setTimeout(() => {
+          sectionDraft.classList.add('hidden');
+          sectionCompleted.classList.remove('hidden');
+          sectionCompleted.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      });
+
+      // 6. 重置表单
+      btnReset.addEventListener('click', () => {
+        inputTarget.value = '3.9';
+        inputFocus.value = '';
+        checkboxRef.checked = true;
+        targetError.classList.add('hidden');
+        focusError.classList.add('hidden');
+        inputTarget.classList.remove('border-risk-red');
+        inputFocus.classList.remove('border-risk-red');
+
+        sectionDraft.classList.add('hidden');
+        sectionCompleted.classList.add('hidden');
+        sectionForm.classList.remove('hidden');
+        updateStepBar(1);
+        resetToUnconfirmed();
+      });
+
+      function updateStepBar(step) {
+        if (step === 1) {
+          stepNode1.className = 'flex items-center gap-1.5 text-brand font-medium';
+          stepNode1.querySelector('span').className = 'w-5 h-5 rounded-full bg-brand text-white text-[11px] flex items-center justify-center font-bold';
+
+          stepNode2.className = 'flex items-center gap-1.5 text-[#65717B]';
+          stepNode2.querySelector('span').className = 'w-5 h-5 rounded-full bg-[#EDF1F3] text-[#65717B] text-[11px] flex items-center justify-center font-bold';
+
+          stepNode3.className = 'flex items-center gap-1.5 text-[#65717B]';
+          stepNode3.querySelector('span').className = 'w-5 h-5 rounded-full bg-[#EDF1F3] text-[#65717B] text-[11px] flex items-center justify-center font-bold';
+        } else if (step === 2) {
+          stepNode2.className = 'flex items-center gap-1.5 text-brand font-medium';
+          stepNode2.querySelector('span').className = 'w-5 h-5 rounded-full bg-brand text-white text-[11px] flex items-center justify-center font-bold';
+        } else if (step === 3) {
+          stepNode3.className = 'flex items-center gap-1.5 text-brand font-medium';
+          stepNode3.querySelector('span').className = 'w-5 h-5 rounded-full bg-brand text-white text-[11px] flex items-center justify-center font-bold';
+        }
+      }
+    })();
+  </script>
+
+</body></html>

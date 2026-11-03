@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>P96｜平台能力说明｜统一产品版</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'canvas': '#F5F7F8',
+            'surface': '#FFFFFF',
+            'surface-muted': '#EDF1F3',
+            'border-base': '#DDE3E8',
+            'text-primary': '#26313A',
+            'text-secondary': '#65717B',
+            'brand-primary': '#F88440',
+            'brand-pressed': '#D96A31',
+            'brand-soft': '#FCF4EC',
+            'semantic-risk': '#EF4444',
+            'semantic-pending': '#B45309',
+            'semantic-success': '#047857'
+          },
+          fontFamily: {
+            sans: ['"Noto Sans SC"', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 强制物理画板约束：390px × 884px */
+    html, body {
+      width: 390px;
+      height: 884px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #F5F7F8;
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    #app-container {
+      width: 390px;
+      height: 884px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-color: #F5F7F8;
+      overflow: hidden;
+    }
+
+    /* 隐藏滚动条但保留平滑滚动 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    /* Tab 激活指示 */
+    .nav-tab.active {
+      color: #F88440;
+      border-bottom: 2px solid #F88440;
+      font-weight: 600;
+    }
+    .nav-tab {
+      border-bottom: 2px solid transparent;
+      color: #65717B;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center bg-[#F5F7F8]">
+
+  <div id="app-container">
+    
+    <!-- 固定顶栏 (56px) - 轻量品牌与页面名称，无角色底栏说明模式，无冗余返回 -->
+    <header class="h-[56px] w-[390px] shrink-0 bg-surface border-b border-border-base px-4 flex items-center justify-between z-20">
+      <div class="flex items-center space-x-1.5">
+        <span class="text-[17px] font-semibold text-text-primary tracking-tight">明镜</span>
+        <span class="text-[14px] text-border-base font-normal">/</span>
+        <span class="text-[15px] font-medium text-text-secondary">平台能力说明</span>
+      </div>
+      <div class="w-[44px] h-[44px] flex items-center justify-end">
+        <span class="text-[12px] text-text-secondary px-2 py-0.5 rounded bg-surface-muted">说明</span>
+      </div>
+    </header>
+
+    <!-- 固定四页签栏 (44px) - 概览 / 能力 / 业务工具 / 使用流程 (无斜线、固定槽位) -->
+    <nav class="h-[44px] w-[390px] shrink-0 bg-surface border-b border-border-base px-3 flex items-center justify-around z-20">
+      <button onclick="switchTab('overview')" id="tab-overview" class="nav-tab active h-full px-2 text-[14px] flex items-center justify-center cursor-pointer focus:outline-none" role="tab" aria-selected="true" aria-controls="view-overview">
+        概览
+      </button>
+      <button onclick="switchTab('capabilities')" id="tab-capabilities" class="nav-tab h-full px-2 text-[14px] flex items-center justify-center cursor-pointer focus:outline-none" role="tab" aria-selected="false" aria-controls="view-capabilities">
+        能力
+      </button>
+      <button onclick="switchTab('tools')" id="tab-tools" class="nav-tab h-full px-2 text-[14px] flex items-center justify-center cursor-pointer focus:outline-none" role="tab" aria-selected="false" aria-controls="view-tools">
+        业务工具
+      </button>
+      <button onclick="switchTab('flow')" id="tab-flow" class="nav-tab h-full px-2 text-[14px] flex items-center justify-center cursor-pointer focus:outline-none" role="tab" aria-selected="false" aria-controls="view-flow">
+        使用流程
+      </button>
+    </nav>
+
+    <!-- 内容滚动主区域 (延伸至底部，无底栏占用) -->
+    <main id="main-content" class="flex-1 min-h-0 w-[390px] overflow-y-auto no-scrollbar relative">
+
+      <!-- ================= 视图 1：概览 (默认激活) ================= -->
+      <section id="view-overview" class="p-4 space-y-4 block">
+        <!-- 头部说明区块 -->
+        <div class="bg-surface rounded-xl p-4 border border-border-base">
+          <h1 class="text-[19px] font-semibold text-text-primary mb-2 leading-tight">明镜如何支持公会工作</h1>
+          <p class="text-[13px] text-text-secondary leading-relaxed">
+            围绕主播经营和团队协作，提供数据查看、风险分析、内容生成与流程处理能力。
+          </p>
+        </div>
+
+        <!-- 四类能力摘要列表（点击切换至对应能力分组并滚动定位） -->
+        <div class="bg-surface rounded-xl border border-border-base divide-y divide-border-base">
+          
+          <!-- 感知 -->
+          <div onclick="navigateToCapability('cap-perception')" class="p-4 flex items-center justify-between cursor-pointer active:bg-surface-muted transition-colors" role="button" aria-label="查看感知能力">
+            <div class="flex items-center space-x-3">
+              <div class="w-[36px] h-[36px] rounded-lg bg-brand-soft text-brand-primary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]">radar</span>
+              </div>
+              <div>
+                <div class="flex items-baseline space-x-1.5">
+                  <span class="text-[15px] font-semibold text-text-primary">感知</span>
+                  <span class="text-[13px] text-text-secondary">AI 帮你盯</span>
+                </div>
+                <div class="text-[12px] text-text-secondary mt-0.5">主播数据波动与排班异常筛查</div>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1 shrink-0 text-text-secondary">
+              <span class="text-[13px] font-medium">7 项能力</span>
+              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- 认知 -->
+          <div onclick="navigateToCapability('cap-cognition')" class="p-4 flex items-center justify-between cursor-pointer active:bg-surface-muted transition-colors" role="button" aria-label="查看认知能力">
+            <div class="flex items-center space-x-3">
+              <div class="w-[36px] h-[36px] rounded-lg bg-brand-soft text-brand-primary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]">psychology</span>
+              </div>
+              <div>
+                <div class="flex items-baseline space-x-1.5">
+                  <span class="text-[15px] font-semibold text-text-primary">认知</span>
+                  <span class="text-[13px] text-text-secondary">AI 帮你判断</span>
+                </div>
+                <div class="text-[12px] text-text-secondary mt-0.5">流失归因诊断与财务自算对账</div>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1 shrink-0 text-text-secondary">
+              <span class="text-[13px] font-medium">10 项能力</span>
+              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- 生成 -->
+          <div onclick="navigateToCapability('cap-generation')" class="p-4 flex items-center justify-between cursor-pointer active:bg-surface-muted transition-colors" role="button" aria-label="查看生成能力">
+            <div class="flex items-center space-x-3">
+              <div class="w-[36px] h-[36px] rounded-lg bg-brand-soft text-brand-primary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]">edit_note</span>
+              </div>
+              <div>
+                <div class="flex items-baseline space-x-1.5">
+                  <span class="text-[15px] font-semibold text-text-primary">生成</span>
+                  <span class="text-[13px] text-text-secondary">AI 帮你写</span>
+                </div>
+                <div class="text-[12px] text-text-secondary mt-0.5">三段式直播规划草稿与复盘总结</div>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1 shrink-0 text-text-secondary">
+              <span class="text-[13px] font-medium">7 项能力</span>
+              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            </div>
+          </div>
+
+          <!-- 执行 -->
+          <div onclick="navigateToCapability('cap-execution')" class="p-4 flex items-center justify-between cursor-pointer active:bg-surface-muted transition-colors" role="button" aria-label="查看执行能力">
+            <div class="flex items-center space-x-3">
+              <div class="w-[36px] h-[36px] rounded-lg bg-brand-soft text-brand-primary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]">task_alt</span>
+              </div>
+              <div>
+                <div class="flex items-baseline space-x-1.5">
+                  <span class="text-[15px] font-semibold text-text-primary">执行</span>
+                  <span class="text-[13px] text-text-secondary">AI 帮你办</span>
+                </div>
+                <div class="text-[12px] text-text-secondary mt-0.5">带参直达卡片与待办任务协同下达</div>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1 shrink-0 text-text-secondary">
+              <span class="text-[13px] font-medium">7 项能力</span>
+              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 末尾操作按钮（纯页面切换，外壳恒定稳定） -->
+        <div class="pt-2 space-y-3 pb-6">
+          <button onclick="switchTab('tools')" class="w-full h-[48px] rounded-xl bg-brand-primary hover:bg-brand-pressed text-white text-[15px] font-semibold flex items-center justify-center shadow-none active:scale-[0.99] transition-all cursor-pointer">
+            查看业务工具
+          </button>
+          <button onclick="switchTab('flow')" class="w-full h-[44px] rounded-xl bg-surface border border-border-base text-text-primary text-[14px] font-medium flex items-center justify-center active:bg-surface-muted transition-all cursor-pointer">
+            了解使用流程
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 视图 2：能力范围 ================= -->
+      <section id="view-capabilities" class="p-4 space-y-4 hidden">
+        <!-- 标题与说明 -->
+        <div class="bg-surface rounded-xl p-4 border border-border-base">
+          <h2 class="text-[18px] font-semibold text-text-primary mb-1">能力范围</h2>
+          <p class="text-[13px] text-text-secondary">按数据处理、分析、生成和执行组织</p>
+        </div>
+
+        <!-- 四个连续平面分节 -->
+        <div class="space-y-3">
+          
+          <!-- 感知分节 -->
+          <div id="cap-perception" class="bg-surface rounded-xl p-4 border border-border-base space-y-3">
+            <div class="flex items-center justify-between border-b border-border-base pb-2.5">
+              <div class="flex items-center space-x-2">
+                <span class="text-[15px] font-semibold text-text-primary">感知</span>
+                <span class="text-[12px] text-text-secondary">AI 帮你盯</span>
+              </div>
+              <span class="text-[12px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">7 项</span>
+            </div>
+            <div class="space-y-2 text-[13px]">
+              <div class="flex items-start space-x-2">
+                <span class="material-symbols-outlined text-text-secondary text-[16px] mt-0.5 shrink-0">monitoring</span>
+                <div class="text-text-primary leading-snug">
+                  <span class="font-medium">主播数据：</span>近14天音浪、直播时长、在线峰值
+                </div>
+              </div>
+              <div class="flex items-start space-x-2">
+                <span class="material-symbols-outlined text-text-secondary text-[16px] mt-0.5 shrink-0">warning_amber</span>
+                <div class="text-text-primary leading-snug">
+                  <span class="font-medium">异常信号：</span>掉数、停播规则自动初筛
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 认知分节 -->
+          <div id="cap-cognition" class="bg-surface rounded-xl p-4 border border-border-base space-y-3">
+            <div class="flex items-center justify-between border-b border-border-base pb-2.5">
+              <div class="flex items-center space-x-2">
+                <span class="text-[15px] font-semibold text-text-primary">认知</span>
+                <span class="text-[12px] text-text-secondary">AI 帮你判断</span>
+              </div>
+              <span class="text-[12px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">10 项</span>
+            </div>
+            <div class="space-y-2 text-[13px]">
+              <div class="flex items-start space-x-2">
+                <span class="material-symbols-outlined text-text-secondary text-[16px] mt-0.5 shrink-0">query_stats</span>
+                <div class="text-text-primary leading-snug">
+                  <span class="font-medium">流失归因：</span>五类原因研判＋针对性建议动作
+                </div>
+              </div>
+              <div class="flex items-start space-x-2">
+                <span class="material-symbols-outlined text-text-secondary text-[16px] mt-0.5 shrink-0">balance</span>
+                <div class="text-text-primary leading-snug">
+                  <span class="font-medium">对账差异：</span>平台出账 vs 公会自算差异比对
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 生成分节 -->
+          <div id="cap-generation" class="bg-surface rounded-xl p-4 border border-border-base space-y-3">
+            <div class="flex items-center justify-between border-b border-border-base pb-2.5">
+              <div class="flex items-center space-x-2">
+                <span class="text-[15px] font-semibold text-text-primary">生成</span>
+                <span class="text-[12px] text-text-secondary">AI 帮你写</span>
+              </div>
+              <span class="text-[12px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">7 项</span>
+            </div>
+            <div class="space-y-2 text-[13px]">
+              <div class="flex items-start space-x-2">
+                <span class="material-symbols-outlined text-text-secondary text-[16px] mt-0.5 shrink-0">assignment</span>
+                <div class="text-text-primary leading-snug">
+                  <span class="font-medium">直播规划：</span>结构化三段式草稿与节奏节点
+                </div>
+              </div>
+              <div class="flex items-start space-x-2">
+                <span class="material-symbols-outlined text-text-secondary text-[16px] mt-0.5 shrink-0">rate_review</span>
+                <div class="text-text-primary leading-snug">
+                  <span class="font-medium">复盘草稿：</span>三句话结论＋场次快照数据依据
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 执行分节 -->
+          <div id="cap-execution" class="bg-surface rounded-xl p-4 border border-border-base space-y-3">
+            <div class="flex items-center justify-between border-b border-border-base pb-2.5">
+              <div class="flex items-center space-x-2">
+                <span class="text-[15px] font-semibold text-text-primary">执行</span>
+                <span class="text-[12px] text-text-secondary">AI 帮你办</span>
+              </div>
+              <span class="text-[12px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">7 项</span>
+            </div>
+            <div class="space-y-2 text-[13px]">
+              <div class="flex items-start space-x-2">
+                <span class="material-symbols-outlined text-text-secondary text-[16px] mt-0.5 shrink-0">tab_move</span>
+                <div class="text-text-primary leading-snug">
+                  <span class="font-medium">执行卡：</span>点开卡片带参直达对应业务页面
+                </div>
+              </div>
+              <div class="flex items-start space-x-2">
+                <span class="material-symbols-outlined text-text-secondary text-[16px] mt-0.5 shrink-0">assignment_turned_in</span>
+                <div class="text-text-primary leading-snug">
+                  <span class="font-medium">任务下达：</span>智能建议一键采纳转为协同待办
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 客观说明脚注 -->
+        <div class="p-3 text-center text-[12px] text-text-secondary leading-normal pb-6">
+          以上为能力范围示例，并非当前用户已执行结果。
+        </div>
+      </section>
+
+      <!-- ================= 视图 3：业务工具 ================= -->
+      <section id="view-tools" class="p-4 space-y-4 hidden">
+        <!-- 标题与说明 -->
+        <div class="bg-surface rounded-xl p-4 border border-border-base">
+          <h2 class="text-[18px] font-semibold text-text-primary mb-1">业务工具</h2>
+          <p class="text-[13px] text-text-secondary">10项工具 · 对应业务页面与人工确认环节</p>
+        </div>
+
+        <!-- 十项连续排版列表（非十张卡片套卡，统一单表面发丝线细分） -->
+        <div class="bg-surface rounded-xl border border-border-base divide-y divide-border-base">
+          
+          <!-- 01 数据工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="01" data-related-pages="P22,P23,P24,P13,P93">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">01</span>
+                <span class="text-[14px] font-semibold text-text-primary">数据工具</span>
+                <span class="text-[12px] text-text-secondary">读档案/近14天/任务/分组聚合</span>
+              </div>
+              <span class="text-[11px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">权限内只读</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：上下文包</span>
+              <span class="text-text-secondary">关联：主播档案 / 直播规划 / 复盘助手 / 经营大盘 / 运营总监看板</span>
+            </div>
+          </div>
+
+          <!-- 02 规划工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="02" data-related-pages="P23">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">02</span>
+                <span class="text-[14px] font-semibold text-text-primary">规划工具</span>
+                <span class="text-[12px] text-text-secondary">生成直播规划草稿</span>
+              </div>
+              <span class="text-[11px] font-medium text-semantic-pending bg-[#FFFBEB] px-2 py-0.5 rounded border border-[#FDE68A]">采纳后可发</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：结构化草稿</span>
+              <span class="text-text-secondary">关联：直播规划</span>
+            </div>
+          </div>
+
+          <!-- 03 复盘工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="03" data-related-pages="P24">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">03</span>
+                <span class="text-[14px] font-semibold text-text-primary">复盘工具</span>
+                <span class="text-[12px] text-text-secondary">生成三句话复盘</span>
+              </div>
+              <span class="text-[11px] font-medium text-brand-primary bg-brand-soft px-2 py-0.5 rounded">确认后推送</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：复盘草稿</span>
+              <span class="text-text-secondary">关联：复盘助手</span>
+            </div>
+          </div>
+
+          <!-- 04 话术工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="04" data-related-pages="P31,P61,P83">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">04</span>
+                <span class="text-[14px] font-semibold text-text-primary">话术工具</span>
+                <span class="text-[12px] text-text-secondary">邀约话术/脚本要点/问答</span>
+              </div>
+              <span class="text-[11px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">采纳/不用</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：草稿</span>
+              <span class="text-text-secondary">关联：招募线索 / 脚本任务 / 主播助理</span>
+            </div>
+          </div>
+
+          <!-- 05 预警工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="05" data-related-pages="P13,P15,P20">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">05</span>
+                <span class="text-[14px] font-semibold text-text-primary">预警工具</span>
+                <span class="text-[12px] text-text-secondary">筛异常并给原因与建议</span>
+              </div>
+              <span class="text-[11px] font-medium text-semantic-risk bg-[#FEF2F2] px-2 py-0.5 rounded border border-[#FECACA]">派人需拍板</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：预警卡</span>
+              <span class="text-text-secondary">关联：经营大盘 / 预警与派单 / 运营工作台</span>
+            </div>
+          </div>
+
+          <!-- 06 排期工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="06" data-related-pages="P50">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">06</span>
+                <span class="text-[14px] font-semibold text-text-primary">排期工具</span>
+                <span class="text-[12px] text-text-secondary">工单铺周历并检测撞档</span>
+              </div>
+              <span class="text-[11px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">改期人工定</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：排期视图</span>
+              <span class="text-text-secondary">关联：服务排期</span>
+            </div>
+          </div>
+
+          <!-- 07 账单工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="07" data-related-pages="P70,P71,P84">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">07</span>
+                <span class="text-[14px] font-semibold text-text-primary">账单工具</span>
+                <span class="text-[12px] text-text-secondary">按合同测算、出表、预审</span>
+              </div>
+              <span class="text-[11px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">出表/确认人工</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：账单＋差异行</span>
+              <span class="text-text-secondary">关联：财务工作台 / 账单详情 / 主播我的</span>
+            </div>
+          </div>
+
+          <!-- 08 通知工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="08" data-related-pages="P20,P03,P92">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">08</span>
+                <span class="text-[14px] font-semibold text-text-primary">通知工具</span>
+                <span class="text-[12px] text-text-secondary">群发/公告/系统卡三通道</span>
+              </div>
+              <span class="text-[11px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">发送前人工</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：本地通知记录</span>
+              <span class="text-text-secondary">关联：运营工作台 / 平台经营与公告 / 消息中心</span>
+            </div>
+          </div>
+
+          <!-- 09 任务工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="09" data-related-pages="P93,P94">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">09</span>
+                <span class="text-[14px] font-semibold text-text-primary">任务工具</span>
+                <span class="text-[12px] text-text-secondary">建议转任务并完成回写</span>
+              </div>
+              <span class="text-[11px] font-medium text-semantic-pending bg-[#FFFBEB] px-2 py-0.5 rounded border border-[#FDE68A]">采纳后生成本地任务</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：组长待办</span>
+              <span class="text-text-secondary">关联：运营总监看板 / 组长组务</span>
+            </div>
+          </div>
+
+          <!-- 10 报表工具 -->
+          <div class="p-3.5 space-y-1.5" data-tool-id="10" data-related-pages="P13,P70">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="text-[11px] font-mono font-medium text-text-secondary bg-surface-muted px-1.5 py-0.5 rounded">10</span>
+                <span class="text-[14px] font-semibold text-text-primary">报表工具</span>
+                <span class="text-[12px] text-text-secondary">周报/月报样式卡</span>
+              </div>
+              <span class="text-[11px] font-medium text-text-secondary bg-surface-muted px-2 py-0.5 rounded">当前导出未开放</span>
+            </div>
+            <div class="text-[12px] text-text-secondary flex items-center justify-between pl-7">
+              <span>产出：报表样式卡</span>
+              <span class="text-text-secondary">关联：经营大盘 / 财务工作台</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 边界声明说明 -->
+        <div class="p-3 rounded-xl bg-surface border border-border-base text-[12px] text-text-secondary leading-relaxed pb-6">
+          <div class="flex items-start space-x-1.5">
+            <span class="material-symbols-outlined text-[16px] text-text-secondary mt-0.5 shrink-0">info</span>
+            <span>工具能力范围示例，不代表当前用户已调用或后台已执行；发送、推送及持久化以具体业务页面为准。</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 视图 4：使用流程 ================= -->
+      <section id="view-flow" class="p-4 space-y-4 hidden">
+        <!-- 标题与副标题 -->
+        <div class="bg-surface rounded-xl p-4 border border-border-base">
+          <h2 class="text-[18px] font-semibold text-text-primary mb-1">使用流程</h2>
+          <p class="text-[13px] text-text-secondary">从问题到可确认的业务结果</p>
+        </div>
+
+        <!-- 五步中性时间线（节点同色同大小，无橙色进度线，无完成打勾） -->
+        <div class="bg-surface rounded-xl p-5 border border-border-base">
+          <div class="relative pl-6 space-y-7 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border-base">
+            
+            <!-- 节点 1 -->
+            <div class="relative">
+              <div class="absolute -left-[24px] top-0.5 w-[22px] h-[22px] rounded-full bg-surface-muted border border-border-base text-[12px] font-semibold text-text-secondary flex items-center justify-center shrink-0">
+                1
+              </div>
+              <div class="space-y-0.5">
+                <div class="text-[15px] font-semibold text-text-primary">用户发起</div>
+                <div class="text-[13px] text-text-secondary leading-normal">
+                  选择页面动作、输入问题或处理待办。
+                </div>
+              </div>
+            </div>
+
+            <!-- 节点 2 -->
+            <div class="relative">
+              <div class="absolute -left-[24px] top-0.5 w-[22px] h-[22px] rounded-full bg-surface-muted border border-border-base text-[12px] font-semibold text-text-secondary flex items-center justify-center shrink-0">
+                2
+              </div>
+              <div class="space-y-0.5">
+                <div class="text-[15px] font-semibold text-text-primary">明镜助理</div>
+                <div class="text-[13px] text-text-secondary leading-normal">
+                  识别当前角色与业务对象，提供回复或建议。
+                </div>
+              </div>
+            </div>
+
+            <!-- 节点 3 -->
+            <div class="relative">
+              <div class="absolute -left-[24px] top-0.5 w-[22px] h-[22px] rounded-full bg-surface-muted border border-border-base text-[12px] font-semibold text-text-secondary flex items-center justify-center shrink-0">
+                3
+              </div>
+              <div class="space-y-0.5">
+                <div class="text-[15px] font-semibold text-text-primary">业务工具</div>
+                <div class="text-[13px] text-text-secondary leading-normal">
+                  读取数据、生成草稿或组织待处理事项。
+                </div>
+              </div>
+            </div>
+
+            <!-- 节点 4 -->
+            <div class="relative">
+              <div class="absolute -left-[24px] top-0.5 w-[22px] h-[22px] rounded-full bg-surface-muted border border-border-base text-[12px] font-semibold text-text-secondary flex items-center justify-center shrink-0">
+                4
+              </div>
+              <div class="space-y-0.5">
+                <div class="text-[15px] font-semibold text-text-primary">用户确认</div>
+                <div class="text-[13px] text-text-secondary leading-normal">
+                  在关联页面复核信息，再保存、发送或提交。
+                </div>
+              </div>
+            </div>
+
+            <!-- 节点 5 -->
+            <div class="relative">
+              <div class="absolute -left-[24px] top-0.5 w-[22px] h-[22px] rounded-full bg-surface-muted border border-border-base text-[12px] font-semibold text-text-secondary flex items-center justify-center shrink-0">
+                5
+              </div>
+              <div class="space-y-0.5">
+                <div class="text-[15px] font-semibold text-text-primary">结果回到页面</div>
+                <div class="text-[13px] text-text-secondary leading-normal">
+                  显示新的状态、记录或后续动作。
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 流程末尾严谨说明 -->
+          <div class="mt-6 pt-4 border-t border-border-base text-[12px] text-text-secondary leading-relaxed">
+            操作由用户确认。助理会带你查看关联业务页；保存或发送前仍可核对并调整。
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- 原生 JavaScript 交互逻辑：页签切换与能力定位 -->
+  <script>
+    const tabs = ['overview', 'capabilities', 'tools', 'flow'];
+
+    function switchTab(tabKey) {
+      // 切换导航按钮样式与 ARIA
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        const view = document.getElementById('view-' + t);
+        if (t === tabKey) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          view.classList.remove('hidden');
+          view.classList.add('block');
+        } else {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+          view.classList.remove('block');
+          view.classList.add('hidden');
+        }
+      });
+
+      // 滚动回顶
+      const main = document.getElementById('main-content');
+      main.scrollTop = 0;
+    }
+
+    function navigateToCapability(elementId) {
+      // 切换到能力页签
+      switchTab('capabilities');
+      
+      // 延迟确保 DOM 展现后平滑滚动到指定锚点
+      setTimeout(() => {
+        const target = document.getElementById(elementId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    }
+  </script>
+</body>
+</html>

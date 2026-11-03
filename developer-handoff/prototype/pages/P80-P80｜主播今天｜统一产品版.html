@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=390, height=884, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>P80｜主播今天｜统一产品版</title>
+<!-- Tailwind CSS v3 CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration for Design System Tokens -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#F5F7F8',
+            surface: '#FFFFFF',
+            subsurface: '#EDF1F3',
+            borderline: '#DDE3E8',
+            primaryText: '#26313A',
+            subText: '#65717B',
+            brandOrange: '#F88440',
+            brandOrangeActive: '#D96A31',
+            brandOrangeLight: '#FCF4EC',
+            statusGreen: '#047857',
+            statusGreenLight: '#ECFDF5',
+            statusAmber: '#B45309',
+            statusAmberLight: '#FFFBEB',
+            statusRed: '#EF4444',
+            statusRedLight: '#FEF2F2'
+          },
+          fontFamily: {
+            sans: ['"Noto Sans SC"', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Material Symbols Outlined Icon Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style data-purpose="custom-layout-and-reset">
+    /* Lock viewport to exact mobile physical specs without global outer-wrapper artifacts */
+    html, body {
+      width: 390px;
+      height: 884px;
+      margin: 0;
+      padding: 0;
+      background-color: #F5F7F8;
+      overflow: hidden;
+      font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    /* Custom scrollbar styling for clean mobile presentation */
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #DDE3E8;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  </style>
+</head>
+<body class="flex flex-col h-[884px] w-[390px] mx-auto select-none bg-canvas text-primaryText">
+<!-- BEGIN: MainHeader -->
+<!-- Header: Fixed height 56px, white background, bottom border #DDE3E8 -->
+<header class="h-[56px] min-h-[56px] bg-surface border-b border-borderline flex items-center justify-between px-4 z-20">
+<!-- Left Touch Area Placeholder for symmetrical alignment -->
+<div class="w-[44px] h-[44px] flex items-center justify-center"></div>
+<!-- Title -->
+<h1 class="text-[20px] font-semibold text-primaryText tracking-tight">今天</h1>
+<!-- Right Touch Action: Notifications -->
+<a aria-label="消息通知" class="w-[44px] h-[44px] flex items-center justify-center rounded-full text-subText active:bg-subsurface transition-colors" data-page="P92" href="#P92">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</a>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: ScrollableContentArea -->
+<main class="flex-1 overflow-y-auto px-4 py-3 space-y-3" style="-webkit-overflow-scrolling: touch;">
+<!-- Auxiliary Date & Real-time Live Status Row -->
+<div class="flex items-center justify-between px-1 text-xs">
+<span class="text-subText font-medium text-[13px]">10月16日 周五</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-statusGreenLight text-statusGreen font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-statusGreen animate-pulse"></span>
+        开播状态：正常开播
+      </span>
+</div>
+<!-- BEGIN: ChecklistCard -->
+<!-- Card 1: Checklist Section -->
+<section class="bg-surface border border-borderline rounded-xl p-4 shadow-none" data-purpose="prep-checklist">
+<!-- Header row: title, count badge, select-all action -->
+<div class="flex items-center justify-between pb-3 border-b border-subsurface">
+<div class="flex items-center gap-2">
+<h2 class="text-[15px] font-semibold text-primaryText">开播前准备清单</h2>
+<span class="text-[11px] font-medium px-2 py-0.5 rounded bg-subsurface text-subText transition-all duration-200" id="checkCountBadge">
+            0/6 完成
+          </span>
+</div>
+<button class="text-[12px] font-medium text-brandOrange active:text-brandOrangeActive px-1 py-0.5" id="toggleSelectAllBtn" type="button">
+          一键全选
+        </button>
+</div>
+<!-- Checklist Items Form (Actual 6 Items from H01 specification) -->
+<form class="divide-y divide-subsurface pt-1" id="checklistForm" onsubmit="return false;">
+<!-- Item 1: Camera -->
+<label class="flex items-center justify-between py-2.5 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-subText">videocam</span>
+<span class="text-[14px] text-primaryText">摄像头正常</span>
+</div>
+<input class="w-5 h-5 rounded border-borderline text-brandOrange focus:ring-brandOrange cursor-pointer" name="prepItem" type="checkbox" value="camera"/>
+</label>
+<!-- Item 2: Microphone -->
+<label class="flex items-center justify-between py-2.5 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-subText">mic</span>
+<span class="text-[14px] text-primaryText">麦克风正常</span>
+</div>
+<input class="w-5 h-5 rounded border-borderline text-brandOrange focus:ring-brandOrange cursor-pointer" name="prepItem" type="checkbox" value="mic"/>
+</label>
+<!-- Item 3: Network -->
+<label class="flex items-center justify-between py-2.5 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-subText">wifi</span>
+<span class="text-[14px] text-primaryText">网络正常</span>
+</div>
+<input class="w-5 h-5 rounded border-borderline text-brandOrange focus:ring-brandOrange cursor-pointer" name="prepItem" type="checkbox" value="network"/>
+</label>
+<!-- Item 4: Lighting -->
+<label class="flex items-center justify-between py-2.5 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-subText">light_mode</span>
+<span class="text-[14px] text-primaryText">光线正常</span>
+</div>
+<input class="w-5 h-5 rounded border-borderline text-brandOrange focus:ring-brandOrange cursor-pointer" name="prepItem" type="checkbox" value="light"/>
+</label>
+<!-- Item 5: Soundcard -->
+<label class="flex items-center justify-between py-2.5 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-subText">volume_up</span>
+<span class="text-[14px] text-primaryText">声卡正常</span>
+</div>
+<input class="w-5 h-5 rounded border-borderline text-brandOrange focus:ring-brandOrange cursor-pointer" name="prepItem" type="checkbox" value="soundcard"/>
+</label>
+<!-- Item 6: Clean Background -->
+<label class="flex items-center justify-between py-2.5 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-subText">wallpaper</span>
+<span class="text-[14px] text-primaryText">背景整洁</span>
+</div>
+<input class="w-5 h-5 rounded border-borderline text-brandOrange focus:ring-brandOrange cursor-pointer" name="prepItem" type="checkbox" value="background"/>
+</label>
+</form>
+<!-- Checklist Footer Note -->
+<div class="mt-2.5 pt-2 border-t border-subsurface flex items-center justify-between text-[11px] text-subText">
+<span>自检仅在本地记录，不作为开播门槛</span>
+<span class="hidden text-statusGreen font-medium" id="allDoneIndicator">✓ 已全部就绪</span>
+</div>
+</section>
+<!-- END: ChecklistCard -->
+<!-- BEGIN: PlanCard -->
+<!-- Card 2: Current Plan Section -->
+<section class="bg-surface border border-borderline rounded-xl p-4 shadow-none" data-purpose="daily-plan">
+<!-- Title & Local State Tag -->
+<div class="flex items-center justify-between pb-2.5 border-b border-subsurface">
+<div class="text-[13px] text-subText font-medium">当前计划 · 10月16日 周五</div>
+<span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-statusAmberLight text-statusAmber" id="planStatusTag">
+          本地计划 · 待我确认
+        </span>
+</div>
+<!-- Plan Title and Duration -->
+<div class="flex items-baseline justify-between mt-3 mb-2">
+<h3 class="text-[17px] font-semibold text-primaryText tracking-tight">周五晚场冲刺</h3>
+<span class="text-[13px] font-medium text-subText">计划时长 2.5 小时</span>
+</div>
+<!-- Live Window Details -->
+<div class="flex items-center gap-1.5 text-[12px] text-subText mb-3">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>20:00 – 22:30（直播窗口）· 直播开始 20:00</span>
+</div>
+<!-- Key Metrics Display (Flat Surface Layout) -->
+<div class="bg-canvas border border-borderline rounded-lg p-3 grid grid-cols-2 gap-4">
+<div>
+<div class="text-[11px] text-subText flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">graphic_eq</span>
+<span>目标音浪</span>
+</div>
+<div class="mt-0.5 text-[17px] font-semibold text-primaryText">
+            4.5 <span class="text-[12px] font-normal text-subText">万</span>
+</div>
+</div>
+<div>
+<div class="text-[11px] text-subText flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">person_add</span>
+<span>涨粉目标</span>
+</div>
+<div class="mt-0.5 text-[17px] font-semibold text-primaryText">
+            1,200 <span class="text-[12px] font-normal text-subText">人</span>
+</div>
+</div>
+</div>
+<!-- Action Row -->
+<div class="mt-3.5 pt-1 flex items-center justify-between">
+<button class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-brandOrange active:bg-brandOrangeActive text-white text-[13px] font-medium transition-colors" id="ackPlanBtn" type="button">
+          我已了解
+        </button>
+<a class="inline-flex items-center gap-0.5 text-[13px] font-medium text-primaryText hover:text-brandOrange transition-colors" data-page="P81" href="#P81">
+<span>查看规划详情</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- END: PlanCard -->
+<!-- BEGIN: ReviewCard -->
+<!-- Card 3: Recent Review Section -->
+<section class="bg-surface border border-borderline rounded-xl p-4 shadow-none mb-2" data-purpose="recent-review">
+<!-- Title & Status -->
+<div class="flex items-center justify-between pb-2 border-b border-subsurface">
+<div class="text-[13px] text-subText font-medium">最近复盘 · 10月13日 周一</div>
+<span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-statusGreenLight text-statusGreen">
+          本地复盘已归档
+        </span>
+</div>
+<!-- Core Conclusion -->
+<div class="mt-2.5">
+<h3 class="text-[15px] font-semibold text-primaryText leading-snug">
+          比前晚多涨2万，赢在收尾连唱
+        </h3>
+</div>
+<!-- Snapshot Metrics Inline Layout -->
+<div class="mt-2 py-2 px-3 bg-canvas border border-borderline rounded-lg flex items-center justify-between text-xs text-subText">
+<div>
+<span class="block text-[10px] text-subText">实收音浪</span>
+<span class="text-[14px] font-semibold text-primaryText">4.6万</span>
+</div>
+<div class="h-6 w-[1px] bg-borderline"></div>
+<div>
+<span class="block text-[10px] text-subText">直播时长</span>
+<span class="text-[14px] font-semibold text-primaryText">3.1h</span>
+</div>
+<div class="h-6 w-[1px] bg-borderline"></div>
+<div>
+<span class="block text-[10px] text-subText">峰值人数</span>
+<span class="text-[14px] font-semibold text-primaryText">412人</span>
+</div>
+</div>
+<!-- Collapsible Detailed Summary -->
+<div class="mt-3">
+<button class="w-full flex items-center justify-between py-1 text-[12px] text-subText hover:text-primaryText" id="toggleReviewDetailsBtn" type="button">
+<span class="font-medium">复盘重点与调整点</span>
+<span class="material-symbols-outlined text-[18px] transform transition-transform duration-200" id="collapseIcon">expand_more</span>
+</button>
+<div class="hidden mt-2 pt-2 border-t border-subsurface text-[12px] space-y-2 text-primaryText" id="reviewDetailsContent">
+<div class="bg-statusGreenLight/40 p-2 rounded">
+<span class="font-semibold text-statusGreen">做的好的：</span>
+<span>整体4.6万，是近14天最高的一场；收尾连唱两首效果明显。</span>
+</div>
+<div class="bg-statusAmberLight/40 p-2 rounded">
+<span class="font-semibold text-statusAmber">需要调整：</span>
+<span>开场前5分钟慢热，进来的人走得快。</span>
+</div>
+<div class="bg-subsurface p-2 rounded">
+<span class="font-semibold text-primaryText">今晚建议：</span>
+<span>今晚21:20黄金段提前5分钟热场；收尾连唱保留。</span>
+</div>
+</div>
+</div>
+<!-- View Detail Link -->
+<div class="mt-3 pt-2.5 border-t border-subsurface flex items-center justify-end">
+<a class="inline-flex items-center gap-0.5 text-[13px] font-medium text-primaryText hover:text-brandOrange transition-colors" data-page="P82" href="#P82">
+<span>查看完整复盘</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- END: ReviewCard -->
+</main>
+<!-- END: ScrollableContentArea -->
+<!-- BEGIN: BottomNavigation -->
+<!-- Footer: Fixed 68px height, white surface, top border #DDE3E8, 5 tabs -->
+<footer class="h-[68px] min-h-[68px] bg-surface border-t border-borderline grid grid-cols-5 items-center px-1 z-20" data-purpose="global-bottom-bar">
+<!-- Tab 1: 今天 (Active: #F88440) -->
+<a class="h-full flex flex-col items-center justify-center text-brandOrange" data-page="P80" href="#P80">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[12px] font-medium mt-1 leading-none">今天</span>
+</a>
+<!-- Tab 2: 规划 (Inactive: #65717B) -->
+<a class="h-full flex flex-col items-center justify-center text-subText active:text-brandOrange" data-page="P81" href="#P81">
+<span class="material-symbols-outlined text-[24px]">calendar_month</span>
+<span class="text-[12px] font-medium mt-1 leading-none">规划</span>
+</a>
+<!-- Tab 3: 复盘 (Inactive: #65717B) - speed icon per spec -->
+<a class="h-full flex flex-col items-center justify-center text-subText active:text-brandOrange" data-page="P82" href="#P82">
+<span class="material-symbols-outlined text-[24px]">speed</span>
+<span class="text-[12px] font-medium mt-1 leading-none">复盘</span>
+</a>
+<!-- Tab 4: 助理 (Inactive: #65717B) -->
+<a class="h-full flex flex-col items-center justify-center text-subText active:text-brandOrange" data-page="P83" href="#P83">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+<span class="text-[12px] font-medium mt-1 leading-none">助理</span>
+</a>
+<!-- Tab 5: 我的 (Inactive: #65717B) -->
+<a class="h-full flex flex-col items-center justify-center text-subText active:text-brandOrange" data-page="P84" href="#P84">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="text-[12px] font-medium mt-1 leading-none">我的</span>
+</a>
+</footer>
+<!-- END: BottomNavigation -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="checklist-and-ui-interactions">
+    document.addEventListener('DOMContentLoaded', function () {
+      // 1. Checklist Logic
+      const checkboxes = document.querySelectorAll('input[name="prepItem"]');
+      const countBadge = document.getElementById('checkCountBadge');
+      const toggleAllBtn = document.getElementById('toggleSelectAllBtn');
+      const allDoneIndicator = document.getElementById('allDoneIndicator');
+
+      function updateChecklistProgress() {
+        const total = checkboxes.length;
+        const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+        
+        countBadge.textContent = `${checkedCount}/${total} 完成`;
+
+        if (checkedCount === total) {
+          countBadge.className = 'text-[11px] font-medium px-2 py-0.5 rounded bg-statusGreenLight text-statusGreen transition-all duration-200';
+          allDoneIndicator.classList.remove('hidden');
+          toggleAllBtn.textContent = '重置自检';
+        } else {
+          countBadge.className = 'text-[11px] font-medium px-2 py-0.5 rounded bg-subsurface text-subText transition-all duration-200';
+          allDoneIndicator.classList.add('hidden');
+          toggleAllBtn.textContent = '一键全选';
+        }
+      }
+
+      checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateChecklistProgress);
+      });
+
+      toggleAllBtn.addEventListener('click', function () {
+        const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+        const targetState = checkedCount < checkboxes.length;
+        checkboxes.forEach(cb => { cb.checked = targetState; });
+        updateChecklistProgress();
+      });
+
+      // 2. Plan Confirmation Logic
+      const ackPlanBtn = document.getElementById('ackPlanBtn');
+      const planStatusTag = document.getElementById('planStatusTag');
+      let isPlanConfirmed = false;
+
+      ackPlanBtn.addEventListener('click', function () {
+        if (!isPlanConfirmed) {
+          isPlanConfirmed = true;
+          ackPlanBtn.textContent = '✓ 已了解';
+          ackPlanBtn.className = 'inline-flex items-center justify-center px-4 py-2 rounded-lg bg-statusGreenLight text-statusGreen border border-statusGreen/30 text-[13px] font-medium transition-colors cursor-default';
+          ackPlanBtn.disabled = true;
+
+          planStatusTag.textContent = '本地计划 · 已确认';
+          planStatusTag.className = 'text-[11px] font-medium px-2 py-0.5 rounded-full bg-statusGreenLight text-statusGreen';
+        }
+      });
+
+      // 3. Collapsible Review Summary Logic
+      const toggleReviewBtn = document.getElementById('toggleReviewDetailsBtn');
+      const reviewDetails = document.getElementById('reviewDetailsContent');
+      const collapseIcon = document.getElementById('collapseIcon');
+
+      toggleReviewBtn.addEventListener('click', function () {
+        const isHidden = reviewDetails.classList.contains('hidden');
+        if (isHidden) {
+          reviewDetails.classList.remove('hidden');
+          collapseIcon.style.transform = 'rotate(180deg)';
+        } else {
+          reviewDetails.classList.add('hidden');
+          collapseIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+  </script>
+<!-- END: InteractiveScripts -->
+</body></html>

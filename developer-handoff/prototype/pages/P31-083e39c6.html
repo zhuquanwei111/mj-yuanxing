@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>招募与邀约 - 经纪人线索池</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#F88440',
+              active: '#D96A31',
+              light: '#FCF4EC',
+            },
+            surface: {
+              DEFAULT: '#FFFFFF',
+              muted: '#EDF1F3',
+              bg: '#F5F7F8',
+            },
+            content: {
+              primary: '#26313A',
+              secondary: '#65717B',
+            },
+            borderLine: '#DDE3E8',
+          }
+        }
+      }
+    };
+  </script>
+<!-- Google Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style data-purpose="base-styling">
+    body {
+      background-color: #F5F7F8;
+      color: #26313A;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* 隐藏横向滚动条但保留滑动功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex justify-center bg-gray-100 antialiased selection:bg-orange-100">
+<!-- BEGIN: MobileDeviceContainer -->
+<!-- 严格按照 390x884 标准视口规格约束与适配 -->
+<div class="w-full max-w-[390px] min-h-[884px] bg-[#F5F7F8] flex flex-col relative shadow-xl overflow-x-hidden border-x border-[#DDE3E8]">
+<!-- BEGIN: TopHeader -->
+<!-- 基座固定 56px 顶栏规范 -->
+<header class="sticky top-0 z-30 h-[56px] bg-[#FFFFFF] border-b border-[#DDE3E8] px-4 flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="text-xl font-bold tracking-tight text-[#26313A]">招募与邀约</span>
+</div>
+<div class="flex items-center space-x-1">
+<span class="inline-flex items-center text-xs font-medium text-[#65717B] bg-[#EDF1F3] px-2.5 py-1 rounded-full">
+          经纪人 · 大周
+        </span>
+<button aria-label="系统通知" class="w-9 h-9 flex items-center justify-center rounded-full text-[#65717B] active:bg-[#EDF1F3] transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+</div>
+</header>
+<!-- END: TopHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 px-4 pt-3.5 pb-24 flex flex-col">
+<!-- 搜索区 -->
+<section class="mb-3.5" data-purpose="search-box">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-[#65717B] text-[20px] pointer-events-none">search</span>
+<input class="w-full h-11 pl-10 pr-9 bg-[#FFFFFF] border border-[#DDE3E8] rounded-xl text-sm text-[#26313A] placeholder-[#65717B] focus:border-[#F88440] focus:ring-1 focus:ring-[#F88440] transition-colors outline-none" id="searchInput" placeholder="搜索线索姓名、标签或渠道" type="text"/>
+<button aria-label="清空搜索" class="hidden absolute right-2.5 w-6 h-6 items-center justify-center text-[#65717B]" id="clearSearchBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+</div>
+</section>
+<!-- 阶段状态筛选 Tabs -->
+<section class="mb-3" data-purpose="stage-filter">
+<div class="flex items-center justify-between pb-1.5">
+<div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar py-0.5">
+<!-- 胶囊 Tab 项，触控热区保证 ≥44px -->
+<button class="filter-tab min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#F88440] text-white flex items-center transition-all shadow-sm" data-filter="all" type="button">
+<span>全部</span>
+<span class="ml-1 px-1.5 py-0.2 rounded-full text-[11px] bg-white/20 text-white" id="badge-all">4</span>
+</button>
+<button class="filter-tab min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-medium bg-[#FFFFFF] border border-[#DDE3E8] text-[#65717B] flex items-center transition-all" data-filter="pending" type="button">
+<span>待邀约</span>
+<span class="ml-1 px-1.5 py-0.2 rounded-full text-[11px] bg-[#EDF1F3] text-[#65717B]" id="badge-pending">1</span>
+</button>
+<button class="filter-tab min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-medium bg-[#FFFFFF] border border-[#DDE3E8] text-[#65717B] flex items-center transition-all" data-filter="invited" type="button">
+<span>已邀约</span>
+<span class="ml-1 px-1.5 py-0.2 rounded-full text-[11px] bg-[#EDF1F3] text-[#65717B]" id="badge-invited">1</span>
+</button>
+<button class="filter-tab min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-medium bg-[#FFFFFF] border border-[#DDE3E8] text-[#65717B] flex items-center transition-all" data-filter="audition" type="button">
+<span>试播中</span>
+<span class="ml-1 px-1.5 py-0.2 rounded-full text-[11px] bg-[#EDF1F3] text-[#65717B]" id="badge-audition">1</span>
+</button>
+<button class="filter-tab min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-medium bg-[#FFFFFF] border border-[#DDE3E8] text-[#65717B] flex items-center transition-all" data-filter="signed" type="button">
+<span>已签约</span>
+<span class="ml-1 px-1.5 py-0.2 rounded-full text-[11px] bg-[#EDF1F3] text-[#65717B]" id="badge-signed">1</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs text-[#65717B] px-1 pt-1">
+<span id="currentFilterLabel">当前视图：全部线索</span>
+<span id="filteredCountNotice">共 4 条记录</span>
+</div>
+</section>
+<!-- 线索池卡片列表 -->
+<section class="space-y-2.5 flex-1" data-purpose="lead-card-list" id="leadListContainer">
+<!-- 线索卡片 1: 桃桃 (核心交互对象) -->
+<article class="lead-card relative bg-[#FFFFFF] rounded-2xl p-4 border border-[#DDE3E8] shadow-sm transition-all" data-id="taotao" data-keywords="桃桃 才艺唱歌 直播广场" data-name="桃桃" data-stage="pending" id="lead-card-taotao">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<h3 class="text-base font-bold text-[#26313A]">桃桃</h3>
+<span class="lead-stage-badge text-xs px-2 py-0.5 rounded-md font-medium bg-[#FFFBEB] text-[#B45309]">
+                  待邀约
+                </span>
+</div>
+<p class="text-xs text-[#65717B] flex items-center">
+<span>才艺唱歌</span>
+<span class="mx-1 text-[#DDE3E8]">•</span>
+<span>直播广场</span>
+</p>
+</div>
+<!-- 右上角当前查看指示 -->
+<span class="text-[11px] text-[#65717B] bg-[#EDF1F3] px-2 py-0.5 rounded">
+              待处理
+            </span>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#EDF1F3] flex items-center justify-between">
+<span class="text-xs text-[#65717B] flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-[#65717B]">chat_bubble_outline</span>
+              话术库就绪
+            </span>
+<!-- 桃桃主操作按钮：触控热区保证 ≥44px -->
+<button class="min-h-[44px] px-4 py-2 bg-[#FCF4EC] text-[#F88440] hover:bg-[#F88440] hover:text-white active:bg-[#D96A31] border border-[#F88440]/30 rounded-xl text-xs font-semibold flex items-center justify-center transition-colors" data-purpose="action-primary" id="taotaoActionBtn" type="button">
+              查看邀约话术
+            </button>
+</div>
+</article>
+<!-- 线索卡片 2: 圆圆 -->
+<article class="lead-card relative bg-[#FFFFFF] rounded-2xl p-4 border border-[#DDE3E8] shadow-sm transition-all" data-id="yuanyuan" data-keywords="圆圆 颜值聊天 朋友介绍" data-name="圆圆" data-stage="invited" id="lead-card-yuanyuan">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<h3 class="text-base font-bold text-[#26313A]">圆圆</h3>
+<span class="lead-stage-badge text-xs px-2 py-0.5 rounded-md font-medium bg-[#ECFDF5] text-[#047857]">
+                  已邀约
+                </span>
+</div>
+<p class="text-xs text-[#65717B] flex items-center">
+<span>颜值聊天</span>
+<span class="mx-1 text-[#DDE3E8]">•</span>
+<span>朋友介绍</span>
+</p>
+</div>
+<span class="text-[11px] text-[#65717B] bg-[#EDF1F3] px-2 py-0.5 rounded">已初筛</span>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#EDF1F3] flex items-center justify-between">
+<span class="text-xs text-[#65717B] flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-[#65717B]">videocam</span>
+              准备首场试演
+            </span>
+<button class="min-h-[44px] px-4 py-2 bg-[#FFFFFF] text-[#26313A] hover:bg-[#EDF1F3] border border-[#DDE3E8] rounded-xl text-xs font-medium flex items-center justify-center transition-colors" onclick="showToast('已进入试播统筹排期通道')" type="button">
+              安排试播
+            </button>
+</div>
+</article>
+<!-- 线索卡片 3: 琪琪 -->
+<article class="lead-card relative bg-[#FFFFFF] rounded-2xl p-4 border border-[#DDE3E8] shadow-sm transition-all" data-id="qiqi" data-keywords="琪琪 舞蹈 招聘平台" data-name="琪琪" data-stage="audition" id="lead-card-qiqi">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<h3 class="text-base font-bold text-[#26313A]">琪琪</h3>
+<span class="lead-stage-badge text-xs px-2 py-0.5 rounded-md font-medium bg-[#EFF6FF] text-[#2563EB]">
+                  试播中
+                </span>
+</div>
+<p class="text-xs text-[#65717B] flex items-center">
+<span>舞蹈</span>
+<span class="mx-1 text-[#DDE3E8]">•</span>
+<span>招聘平台</span>
+</p>
+</div>
+<span class="text-[11px] text-[#65717B] bg-[#EDF1F3] px-2 py-0.5 rounded">考核第2天</span>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#EDF1F3] flex items-center justify-between">
+<span class="text-xs text-[#65717B] flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-[#65717B]">assignment_turned_in</span>
+              评估表现达标
+            </span>
+<button class="min-h-[44px] px-4 py-2 bg-[#FFFFFF] text-[#26313A] hover:bg-[#EDF1F3] border border-[#DDE3E8] rounded-xl text-xs font-medium flex items-center justify-center transition-colors" onclick="showToast('签约预审流程发起')" type="button">
+              确认签约
+            </button>
+</div>
+</article>
+<!-- 线索卡片 4: 小鹿 -->
+<article class="lead-card relative bg-[#FFFFFF] rounded-2xl p-4 border border-[#DDE3E8] shadow-sm transition-all" data-id="xiaolu" data-keywords="小鹿 才艺唱歌 直播广场" data-name="小鹿" data-stage="signed" id="lead-card-xiaolu">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<h3 class="text-base font-bold text-[#26313A]">小鹿</h3>
+<span class="lead-stage-badge text-xs px-2 py-0.5 rounded-md font-medium bg-[#ECFDF5] text-[#047857]">
+                  已签约
+                </span>
+</div>
+<p class="text-xs text-[#65717B] flex items-center">
+<span>才艺唱歌</span>
+<span class="mx-1 text-[#DDE3E8]">•</span>
+<span>直播广场</span>
+</p>
+</div>
+<span class="text-[11px] text-[#65717B] bg-[#EDF1F3] px-2 py-0.5 rounded">正式主播</span>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#EDF1F3] flex items-center justify-between">
+<span class="text-xs text-[#65717B] flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1 text-[#65717B]">folder_shared</span>
+              档案资料归档
+            </span>
+<!-- 查看签约资料 (底层保留路由标记，文案无页码) -->
+<a class="min-h-[44px] px-4 py-2 bg-[#FFFFFF] text-[#26313A] hover:bg-[#EDF1F3] border border-[#DDE3E8] rounded-xl text-xs font-medium inline-flex items-center justify-center transition-colors" data-page="P32" data-role="broker" data-subject="小鹿" href="#P32">
+              查看签约资料
+            </a>
+</div>
+</article>
+<!-- 无搜索结果兜底 -->
+<div class="hidden flex-col items-center justify-center py-12 text-center" id="noResultsState">
+<span class="material-symbols-outlined text-[44px] text-[#65717B]/60 mb-2">person_off</span>
+<p class="text-sm font-medium text-[#26313A]">未找到匹配的线索</p>
+<p class="text-xs text-[#65717B] mt-1">请尝试更换关键字或重置筛选</p>
+</div>
+</section>
+<!-- 底部客观说明提示 -->
+<footer class="mt-6 mb-2 text-center" data-purpose="prototype-notice">
+<p class="text-[11px] text-[#65717B] leading-relaxed bg-[#EDF1F3]/70 p-2.5 rounded-xl border border-[#DDE3E8]/60">
+          本地演示说明：线索推进与邀约话术采纳仅在前端模拟，不代表外部真实送达或签约生效
+        </p>
+</footer>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomNavigation -->
+<!-- 基座03统一外壳规范：固定 68px，招募项高亮 #F88440，不改图标大小或基线，无小圆点 -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] h-[68px] bg-[#FFFFFF] border-t border-[#DDE3E8] px-2 flex items-center justify-around z-30 shadow-[0_-2px_10px_rgba(0,0,0,0.03)] pb-[env(safe-area-inset-bottom)]">
+<!-- 今天 -->
+<a class="flex flex-col items-center justify-center flex-1 h-full text-[#65717B] active:opacity-70 transition-opacity" href="#today">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[11px] mt-0.5 leading-none">今天</span>
+</a>
+<!-- 招募 (当前激活项：#F88440) -->
+<a class="flex flex-col items-center justify-center flex-1 h-full text-[#F88440] active:opacity-70 transition-opacity" href="#recruit">
+<span class="material-symbols-outlined text-[24px]">person_search</span>
+<span class="text-[11px] mt-0.5 font-bold leading-none">招募</span>
+</a>
+<!-- 关怀 -->
+<a class="flex flex-col items-center justify-center flex-1 h-full text-[#65717B] active:opacity-70 transition-opacity" href="#care">
+<span class="material-symbols-outlined text-[24px]">favorite</span>
+<span class="text-[11px] mt-0.5 leading-none">关怀</span>
+</a>
+<!-- 我的 -->
+<a class="flex flex-col items-center justify-center flex-1 h-full text-[#65717B] active:opacity-70 transition-opacity" href="#profile">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+<span class="text-[11px] mt-0.5 leading-none">我的</span>
+</a>
+<!-- 助理 -->
+<a class="flex flex-col items-center justify-center flex-1 h-full text-[#65717B] active:opacity-70 transition-opacity" href="#assistant">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+<span class="text-[11px] mt-0.5 leading-none">助理</span>
+</a>
+</nav>
+<!-- END: BottomNavigation -->
+<!-- BEGIN: ScriptDrawerModal -->
+<!-- 话术状态抽屉弹层 (参考 IMG-887829AD9D 严格还原) -->
+<div class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300 opacity-0 flex items-end justify-center" id="drawerOverlay">
+<div class="w-full max-w-[390px] bg-[#FFFFFF] rounded-t-3xl p-5 transform transition-transform duration-300 translate-y-full max-h-[90vh] overflow-y-auto no-scrollbar shadow-2xl flex flex-col" id="drawerContent">
+<!-- 抽屉顶部 Bar -->
+<div class="flex items-center justify-between pb-3.5 border-b border-[#EDF1F3]">
+<button class="w-10 h-10 -ml-2 flex items-center justify-center text-[#26313A] rounded-full active:bg-[#EDF1F3]" id="closeDrawerBtn" type="button">
+<span class="material-symbols-outlined text-[24px]">chevron_left</span>
+</button>
+<h2 class="text-base font-bold text-[#26313A]">邀约话术</h2>
+<div class="w-8"></div> <!-- 占位平衡 -->
+</div>
+<div class="pt-4 space-y-5 flex-1">
+<!-- 动作前区块 -->
+<section class="space-y-3" id="sectionPreAction">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-[#65717B] uppercase tracking-wider">动作前</span>
+<span class="text-xs text-[#B45309] font-medium bg-[#FFFBEB] px-2 py-0.5 rounded">未采纳</span>
+</div>
+<div class="flex items-center space-x-3 p-2.5 rounded-xl bg-[#F5F7F8]">
+<div class="w-10 h-10 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B]">
+<span class="material-symbols-outlined text-[22px]">person</span>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">桃桃</span>
+<span class="text-xs text-[#65717B]">待邀约</span>
+</div>
+<p class="text-xs text-[#65717B]">才艺主播线索 · 未建立直接沟通</p>
+</div>
+</div>
+<!-- 话术卡片 -->
+<div class="bg-[#F5F7F8] p-4 rounded-2xl border border-[#DDE3E8]/80 text-[#26313A] text-sm leading-relaxed relative">
+              “张总，您好，方便聊聊您关注的这个项目吗？”
+            </div>
+<!-- 主按钮操作区 -->
+<div class="pt-2 text-center">
+<button class="w-full min-h-[48px] bg-[#26313A] hover:bg-[#1E262D] active:scale-[0.99] text-white rounded-xl font-medium text-sm flex items-center justify-center shadow-sm transition-all" id="adoptScriptBtn" type="button">
+                采纳并记录
+              </button>
+<p class="text-xs text-[#65717B] mt-2.5">仅记录本地选择，不发送消息</p>
+</div>
+</section>
+<!-- 转换流程指示箭头 -->
+<div class="flex flex-col items-center justify-center py-2 text-[#65717B]" id="flowIndicator">
+<span class="material-symbols-outlined text-[20px] text-[#65717B]">arrow_downward</span>
+<span class="text-[11px] text-[#65717B] mt-0.5">本地记录状态变化</span>
+</div>
+<!-- 动作后区块 -->
+<section class="space-y-3 opacity-60" id="sectionPostAction">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-[#65717B] uppercase tracking-wider">动作后</span>
+<span class="text-xs text-[#65717B] font-medium bg-[#EDF1F3] px-2 py-0.5 rounded" id="postStatusBadge">待触发</span>
+</div>
+<div class="flex items-center space-x-3 p-2.5 rounded-xl bg-[#F5F7F8]">
+<div class="w-10 h-10 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B]">
+<span class="material-symbols-outlined text-[22px]">person</span>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="text-sm font-bold text-[#26313A]">桃桃</span>
+<span class="text-xs text-[#65717B]" id="postSubjectDesc">待邀约</span>
+</div>
+<p class="text-xs text-[#65717B]">本地台账流转状态</p>
+</div>
+</div>
+<div class="bg-[#F5F7F8] p-4 rounded-2xl border border-dashed border-[#DDE3E8] text-[#65717B] text-xs leading-relaxed" id="postFeedbackBox">
+              尚未采纳话术。点击上方「采纳并记录」后更新本地状态。
+            </div>
+</section>
+</div>
+<!-- 底部收起按钮，保证体验闭环 -->
+<div class="pt-5 mt-auto">
+<button class="w-full min-h-[44px] bg-[#EDF1F3] text-[#26313A] rounded-xl text-xs font-semibold active:bg-[#DDE3E8] transition-colors" id="dismissDrawerBtn" type="button">
+            完成并关闭
+          </button>
+</div>
+</div>
+</div>
+<!-- END: ScriptDrawerModal -->
+<!-- BEGIN: GlobalToast -->
+<!-- 操作状态轻提示 -->
+<div class="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-[#26313A]/90 text-white text-xs px-4 py-2.5 rounded-xl shadow-lg flex items-center space-x-1.5 transition-all duration-300 opacity-0 pointer-events-none transform -translate-y-2" id="toastNotification">
+<span class="material-symbols-outlined text-[18px] text-[#F88440]">info</span>
+<span id="toastMsg">提示内容</span>
+</div>
+<!-- END: GlobalToast -->
+</div>
+<!-- END: MobileDeviceContainer -->
+<!-- BEGIN: LogicStateMachine -->
+<script data-purpose="app-state-machine">
+    (function() {
+      // 核心业务数据集
+      const state = {
+        leads: [
+          {
+            id: 'taotao',
+            name: '桃桃',
+            category: '才艺唱歌',
+            source: '直播广场',
+            stage: 'pending', // 'pending' | 'invited'
+            isAdopted: false,
+            keywords: '桃桃 才艺唱歌 直播广场'
+          },
+          {
+            id: 'yuanyuan',
+            name: '圆圆',
+            category: '颜值聊天',
+            source: '朋友介绍',
+            stage: 'invited',
+            isAdopted: false,
+            keywords: '圆圆 颜值聊天 朋友介绍'
+          },
+          {
+            id: 'qiqi',
+            name: '琪琪',
+            category: '舞蹈',
+            source: '招聘平台',
+            stage: 'audition',
+            isAdopted: false,
+            keywords: '琪琪 舞蹈 招聘平台'
+          },
+          {
+            id: 'xiaolu',
+            name: '小鹿',
+            category: '才艺唱歌',
+            source: '直播广场',
+            stage: 'signed',
+            isAdopted: false,
+            keywords: '小鹿 才艺唱歌 直播广场'
+          }
+        ],
+        currentFilter: 'all',
+        searchQuery: '',
+      };
+
+      // DOM 元素引用
+      const badgeAll = document.getElementById('badge-all');
+      const badgePending = document.getElementById('badge-pending');
+      const badgeInvited = document.getElementById('badge-invited');
+      const badgeAudition = document.getElementById('badge-audition');
+      const badgeSigned = document.getElementById('badge-signed');
+      const filteredNotice = document.getElementById('filteredCountNotice');
+      const currentFilterLabel = document.getElementById('currentFilterLabel');
+
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const searchInput = document.getElementById('searchInput');
+      const clearSearchBtn = document.getElementById('clearSearchBtn');
+      const noResultsState = document.getElementById('noResultsState');
+
+      const taotaoCard = document.getElementById('lead-card-taotao');
+      const taotaoActionBtn = document.getElementById('taotaoActionBtn');
+
+      // 抽屉元素
+      const drawerOverlay = document.getElementById('drawerOverlay');
+      const drawerContent = document.getElementById('drawerContent');
+      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+      const dismissDrawerBtn = document.getElementById('dismissDrawerBtn');
+      const adoptScriptBtn = document.getElementById('adoptScriptBtn');
+      
+      const sectionPostAction = document.getElementById('sectionPostAction');
+      const postStatusBadge = document.getElementById('postStatusBadge');
+      const postSubjectDesc = document.getElementById('postSubjectDesc');
+      const postFeedbackBox = document.getElementById('postFeedbackBox');
+
+      // Toast 引用
+      const toastEl = document.getElementById('toastNotification');
+      const toastMsgEl = document.getElementById('toastMsg');
+      let toastTimer = null;
+
+      // Toast 触发函数
+      window.showToast = function(msg) {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastMsgEl.textContent = msg;
+        toastEl.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+        toastEl.classList.add('opacity-100', 'translate-y-0');
+
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove('opacity-100', 'translate-y-0');
+          toastEl.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+        }, 2400);
+      };
+
+      // 刷新各阶段计数徽章
+      function updateStageBadges() {
+        const counts = {
+          all: state.leads.length,
+          pending: 0,
+          invited: 0,
+          audition: 0,
+          signed: 0
+        };
+
+        state.leads.forEach(l => {
+          if (counts[l.stage] !== undefined) {
+            counts[l.stage]++;
+          }
+        });
+
+        badgeAll.textContent = counts.all;
+        badgePending.textContent = counts.pending;
+        badgeInvited.textContent = counts.invited;
+        badgeAudition.textContent = counts.audition;
+        badgeSigned.textContent = counts.signed;
+      }
+
+      // 重新计算并应用筛选视图
+      function applyFilterAndSearch() {
+        const q = state.searchQuery.trim().toLowerCase();
+        let visibleCount = 0;
+
+        const stageNames = {
+          all: '全部线索',
+          pending: '待邀约',
+          invited: '已邀约',
+          audition: '试播中',
+          signed: '已签约'
+        };
+        currentFilterLabel.textContent = `当前视图：${stageNames[state.currentFilter]}`;
+
+        state.leads.forEach(lead => {
+          const cardEl = document.getElementById(`lead-card-${lead.id}`);
+          if (!cardEl) return;
+
+          // 阶段匹配
+          const matchesStage = (state.currentFilter === 'all') || (lead.stage === state.currentFilter);
+          
+          // 搜索词匹配
+          const matchesSearch = !q || lead.keywords.toLowerCase().includes(q) || lead.name.toLowerCase().includes(q);
+
+          if (matchesStage && matchesSearch) {
+            cardEl.style.display = 'block';
+            visibleCount++;
+          } else {
+            cardEl.style.display = 'none';
+          }
+        });
+
+        filteredNotice.textContent = `共 ${visibleCount} 条记录`;
+        if (visibleCount === 0) {
+          noResultsState.classList.remove('hidden');
+          noResultsState.classList.add('flex');
+        } else {
+          noResultsState.classList.add('hidden');
+          noResultsState.classList.remove('flex');
+        }
+      }
+
+      // 打开抽屉
+      function openDrawer() {
+        drawerOverlay.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          drawerOverlay.classList.remove('opacity-0');
+          drawerContent.classList.remove('translate-y-full');
+        });
+      }
+
+      // 关闭抽屉
+      function closeDrawer() {
+        drawerOverlay.classList.add('opacity-0');
+        drawerContent.classList.add('translate-y-full');
+        setTimeout(() => {
+          drawerOverlay.classList.add('hidden');
+        }, 300);
+      }
+
+      // 采纳并记录桃桃邀约核心行为
+      function handleAdoptScript() {
+        const taotao = state.leads.find(l => l.id === 'taotao');
+        if (!taotao) return;
+
+        // 1. 状态跃迁
+        taotao.stage = 'invited';
+        taotao.isAdopted = true;
+
+        // 2. 更新桃桃卡片内节点
+        const badgeEl = taotaoCard.querySelector('.lead-stage-badge');
+        badgeEl.textContent = '已邀约';
+        badgeEl.className = 'lead-stage-badge text-xs px-2 py-0.5 rounded-md font-medium bg-[#ECFDF5] text-[#047857]';
+
+        // 3. 将操作按钮更换为查看签约资料（带路由属性，严禁可见P32文字）
+        const actionBtnParent = taotaoActionBtn.parentElement;
+        const newActionAnchor = document.createElement('a');
+        newActionAnchor.href = '#P32';
+        newActionAnchor.setAttribute('data-page', 'P32');
+        newActionAnchor.setAttribute('data-subject', '桃桃');
+        newActionAnchor.setAttribute('data-role', 'broker');
+        newActionAnchor.className = 'min-h-[44px] px-4 py-2 bg-[#FFFFFF] text-[#26313A] hover:bg-[#EDF1F3] border border-[#DDE3E8] rounded-xl text-xs font-medium inline-flex items-center justify-center transition-colors';
+        newActionAnchor.textContent = '查看签约资料';
+        actionBtnParent.replaceChild(newActionAnchor, taotaoActionBtn);
+
+        // 4. 更新抽屉内「动作后」显示
+        sectionPostAction.classList.remove('opacity-60');
+        postStatusBadge.textContent = '已生效';
+        postStatusBadge.className = 'text-xs text-[#047857] font-medium bg-[#ECFDF5] px-2 py-0.5 rounded';
+        postSubjectDesc.textContent = '已邀约 · 本地记录';
+        postFeedbackBox.textContent = '话术已记入本地记录，未发送消息';
+        postFeedbackBox.className = 'bg-[#ECFDF5] p-4 rounded-2xl border border-[#047857]/30 text-[#047857] text-xs leading-relaxed font-medium';
+
+        // 按钮置灰不可重复点击
+        adoptScriptBtn.disabled = true;
+        adoptScriptBtn.className = 'w-full min-h-[48px] bg-[#EDF1F3] text-[#65717B] rounded-xl font-medium text-sm flex items-center justify-center cursor-not-allowed';
+        adoptScriptBtn.textContent = '已采纳入本地台账';
+
+        // 5. 刷新计数徽章 & 重新应用筛选视图（若在“待邀约”Tab，桃桃会被动态移出当前视窗）
+        updateStageBadges();
+        applyFilterAndSearch();
+
+        // 6. 吐司严谨提示
+        showToast('话术已记入本地记录，未发送消息');
+      }
+
+      // 事件绑定：Tab 切换
+      filterTabs.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const filterKey = this.getAttribute('data-filter');
+          state.currentFilter = filterKey;
+
+          filterTabs.forEach(t => {
+            t.className = 'filter-tab min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-medium bg-[#FFFFFF] border border-[#DDE3E8] text-[#65717B] flex items-center transition-all';
+            const badge = t.querySelector('span:nth-child(2)');
+            if (badge) {
+              badge.className = 'ml-1 px-1.5 py-0.2 rounded-full text-[11px] bg-[#EDF1F3] text-[#65717B]';
+            }
+          });
+
+          this.className = 'filter-tab min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#F88440] text-white flex items-center transition-all shadow-sm';
+          const activeBadge = this.querySelector('span:nth-child(2)');
+          if (activeBadge) {
+            activeBadge.className = 'ml-1 px-1.5 py-0.2 rounded-full text-[11px] bg-white/20 text-white';
+          }
+
+          applyFilterAndSearch();
+        });
+      });
+
+      // 事件绑定：搜索
+      searchInput.addEventListener('input', (e) => {
+        state.searchQuery = e.target.value;
+        if (state.searchQuery.length > 0) {
+          clearSearchBtn.classList.remove('hidden');
+          clearSearchBtn.classList.add('flex');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+          clearSearchBtn.classList.remove('flex');
+        }
+        applyFilterAndSearch();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        state.searchQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        clearSearchBtn.classList.remove('flex');
+        applyFilterAndSearch();
+        searchInput.focus();
+      });
+
+      // 桃桃操作抽屉
+      taotaoActionBtn.addEventListener('click', openDrawer);
+      closeDrawerBtn.addEventListener('click', closeDrawer);
+      dismissDrawerBtn.addEventListener('click', closeDrawer);
+      drawerOverlay.addEventListener('click', (e) => {
+        if (e.target === drawerOverlay) closeDrawer();
+      });
+
+      // 采纳话术触发
+      adoptScriptBtn.addEventListener('click', () => {
+        handleAdoptScript();
+      });
+
+      // 初始装载
+      updateStageBadges();
+      applyFilterAndSearch();
+
+    })();
+  </script>
+<!-- END: LogicStateMachine -->
+</body></html>

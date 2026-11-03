@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>P00｜选择工作身份｜统一产品版</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-container": "#f88440",
+            "primary": "#9d4300",
+            "pending-bg": "#FFFBEB",
+            "on-tertiary-fixed": "#001f28",
+            "on-secondary-container": "#692600",
+            "text-primary": "#26313A",
+            "on-error": "#ffffff",
+            "secondary-container": "#fc854a",
+            "neutral-state": "#686260",
+            "danger": "#EF4444",
+            "success": "#047857",
+            "tertiary-fixed": "#b5ebff",
+            "on-secondary-fixed": "#351000",
+            "on-surface-variant": "#564239",
+            "on-primary": "#ffffff",
+            "brand-pressed": "#D96A31",
+            "pending": "#B45309",
+            "neutral-state-bg": "#F4F0ED",
+            "on-secondary-fixed-variant": "#7b2e00",
+            "brand-soft": "#FCF4EC",
+            "on-primary-fixed": "#341100",
+            "secondary-fixed": "#ffdbcc",
+            "inverse-on-surface": "#eff1f2",
+            "outline": "#8a7267",
+            "tertiary-fixed-dim": "#4ed6fd",
+            "on-tertiary-fixed-variant": "#004e60",
+            "surface-variant": "#e1e3e4",
+            "surface-container-lowest": "#ffffff",
+            "primary-fixed": "#ffdbca",
+            "inverse-surface": "#2e3132",
+            "surface": "#FFFFFF",
+            "inverse-primary": "#ffb690",
+            "secondary": "#a04005",
+            "error": "#ba1a1a",
+            "on-background": "#191c1d",
+            "success-bg": "#ECFDF5",
+            "surface-container-high": "#e6e8e9",
+            "on-tertiary-container": "#003f4f",
+            "text-secondary": "#65717B",
+            "background": "#F5F7F8",
+            "danger-bg": "#FEF2F2",
+            "surface-muted": "#EDF1F3",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#e1e3e4",
+            "surface-bright": "#f8fafb",
+            "outline-variant": "#ddc1b4",
+            "on-error-container": "#93000a",
+            "surface-tint": "#9d4300",
+            "on-tertiary": "#ffffff",
+            "border": "#DDE3E8",
+            "surface-dim": "#d8dadb",
+            "on-surface": "#191c1d",
+            "surface-container-low": "#f2f4f5",
+            "on-primary-fixed-variant": "#783200",
+            "tertiary-container": "#00b2d8",
+            "error-container": "#ffdad6",
+            "primary-fixed-dim": "#ffb690",
+            "on-primary-container": "#632800",
+            "surface-container": "#eceeef",
+            "secondary-fixed-dim": "#ffb695",
+            "tertiary": "#00677e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "body-md": ["\"Noto Sans SC, -apple-system, BlinkMacSystemFont, PingFang SC, sans-serif\""],
+            "body-lg": ["\"Noto Sans SC, -apple-system, BlinkMacSystemFont, PingFang SC, sans-serif\""],
+            "label-sm": ["\"Noto Sans SC, -apple-system, BlinkMacSystemFont, PingFang SC, sans-serif\""],
+            "headline-md": ["\"Noto Sans SC, -apple-system, BlinkMacSystemFont, PingFang SC, sans-serif\""],
+            "headline-lg": ["\"Noto Sans SC, -apple-system, BlinkMacSystemFont, PingFang SC, sans-serif\""],
+            "title-md": ["\"Noto Sans SC, -apple-system, BlinkMacSystemFont, PingFang SC, sans-serif\""],
+            "label-md": ["\"Noto Sans SC, -apple-system, BlinkMacSystemFont, PingFang SC, sans-serif\""],
+            "headline-sm": ["\"Noto Sans SC, -apple-system, BlinkMacSystemFont, PingFang SC, sans-serif\""]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .tap-highlight-transparent {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-text-primary antialiased font-body-md select-none touch-manipulation min-h-screen">
+<!-- 移动端视口容器 (390px 满宽移动规范) -->
+<div class="w-full max-w-[430px] mx-auto min-h-screen flex flex-col bg-background relative overflow-x-hidden">
+<!-- 顶部固定栏 (56px) -->
+<header class="sticky top-0 z-40 w-full h-[56px] px-4 bg-surface/95 backdrop-blur-md flex items-center justify-between border-b border-border transition-colors">
+<div class="flex items-center space-x-2">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-text-primary">明镜</span>
+<span class="text-text-secondary font-body-md">/</span>
+<span class="font-title-md text-title-md font-medium text-text-secondary">选择工作身份</span>
+</div>
+<!-- 右侧平衡槽 (44x44px) -->
+<div aria-hidden="true" class="w-11 h-11 flex items-center justify-end">
+<span class="w-2 h-2 rounded-full bg-border"></span>
+</div>
+</header>
+<!-- 主体滚动区域 -->
+<main class="flex-1 w-full px-4 pt-5 pb-8 flex flex-col space-y-4">
+<!-- 页面提示与演示属性声明 -->
+<div class="px-1 space-y-1">
+<h1 class="font-headline-md text-headline-md font-bold text-text-primary tracking-tight">选择工作身份</h1>
+<p class="font-label-sm text-label-sm text-text-secondary">选择身份仅切换本地演示角色，快速浏览多角色协同看板</p>
+</div>
+<!-- 核心工作角色主容器 -->
+<section class="bg-surface rounded-xl border border-border overflow-hidden">
+<!-- 角色项：公会老板 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P13" data-role="boss" href="#P13">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">公会老板</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-brand-soft text-primary-container leading-none">经营核算</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">今天谁在播、赚多少、谁有风险</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：运营 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P20" data-role="operator" href="#P20">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">space_dashboard</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">运营</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-surface-muted text-text-secondary leading-none">现场跟播</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">我带的主播今天谁在播、要跟进什么</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：经纪人 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P30" data-role="broker" href="#P30">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">forum</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">经纪人</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">招募、签约推进、主播情绪</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：培训 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P40" data-role="trainer" href="#P40">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">fact_check</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">培训</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">新人前15天的任务与考核</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：妆造视觉 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P50" data-role="service" href="#P50">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">brush</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">妆造视觉</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">妆造预约与直播间调试单</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：编导 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors" data-page="P60" data-role="director" href="#P60">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">rate_review</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">编导</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">选题与脚本，主播的内容弹药</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+</section>
+<!-- 视觉折叠/继续向下过渡标线 -->
+<div class="flex items-center justify-center py-2">
+<span class="font-label-sm text-label-sm text-text-secondary/80 flex items-center space-x-1">
+<span>继续向下滚动</span>
+<span class="material-symbols-outlined text-[16px] animate-bounce">arrow_downward</span>
+</span>
+</div>
+<!-- 扩展业务角色列表 -->
+<section class="bg-surface rounded-xl border border-border overflow-hidden">
+<!-- 角色项：剪辑 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P62" data-role="editor" href="#P62">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">content_cut</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">剪辑</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">成片剪辑、改期与成片回款</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：财务 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P70" data-role="finance" href="#P70">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">receipt_long</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">财务</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">平台账期、活动返点与主播账单</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：主播 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P80" data-role="streamer" href="#P80">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">live_tv</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">主播</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-brand-soft text-primary-container leading-none">移动主控</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">开播自检、今日规划与直播复盘</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：运营总监 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P93" data-role="director_leader" href="#P93">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">monitoring</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">运营总监</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">全公司跨组表现与风险决策</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：组长 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors border-b border-border" data-page="P94" data-role="team_leader" href="#P94">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">组长</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">本组主播排班、数据与任务分配</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+<!-- 角色项：平台管理员 -->
+<a class="role-entry tap-highlight-transparent flex items-center min-h-[64px] px-4 py-3.5 hover:bg-brand-soft/40 active:bg-brand-soft transition-colors" data-page="P03" data-role="admin" href="#P03">
+<div class="w-10 h-10 rounded-lg bg-surface-muted flex items-center justify-center text-text-primary flex-shrink-0 mr-3.5">
+<span class="material-symbols-outlined text-[24px]">admin_panel_settings</span>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md font-semibold text-text-primary truncate">平台管理员</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-neutral-state-bg text-neutral-state leading-none">系统级</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">租户权限、角色授权与系统配置</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary/70 text-[20px] flex-shrink-0">chevron_right</span>
+</a>
+</section>
+<!-- 底部辅助说明与入口 -->
+<footer class="pt-6 pb-4">
+<div class="flex items-center justify-between px-2">
+<a class="tap-highlight-transparent min-h-[44px] flex items-center font-body-md text-body-md text-primary-container font-medium hover:text-brand-pressed active:opacity-75 transition-colors" href="#P10">
+<span>申请入驻</span>
+<span class="material-symbols-outlined text-[18px] ml-1">arrow_forward</span>
+</a>
+<a class="tap-highlight-transparent min-h-[44px] flex items-center font-body-md text-body-md text-primary-container font-medium hover:text-brand-pressed active:opacity-75 transition-colors" href="#P96">
+<span>了解平台能力</span>
+<span class="material-symbols-outlined text-[18px] ml-1">arrow_forward</span>
+</a>
+</div>
+</footer>
+</main>
+</div>
+<script>
+    // 轻量交互逻辑：记录所选演示身份，模拟路由响应
+    document.querySelectorAll('.role-entry').forEach(item => {
+      item.addEventListener('click', function(e) {
+        const role = this.getAttribute('data-role');
+        const page = this.getAttribute('data-page');
+        try {
+          localStorage.setItem('mingjing_active_role', role);
+          localStorage.setItem('mingjing_active_page', page);
+        } catch (err) {}
+      });
+    });
+  </script>
+</body></html>

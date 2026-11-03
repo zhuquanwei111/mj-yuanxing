@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>主播资产</title>
+<!-- Tailwind CSS CDN with forms & container-queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mj: {
+              canvas: '#F5F7F8',
+              surface: '#FFFFFF',
+              subtle: '#EDF1F3',
+              border: '#DDE3E8',
+              text: '#26313A',
+              muted: '#65717B',
+              primary: '#F88440',
+              'primary-active': '#D96A31',
+              'primary-light': '#FCF4EC',
+              risk: '#EF4444',
+              'risk-light': '#FEF2F2',
+              pending: '#B45309',
+              'pending-light': '#FFFBEB',
+              live: '#047857',
+              'live-light': '#ECFDF5'
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Noto Sans SC"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style data-purpose="global-resets">
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #F5F7F8;
+      color: #26313A;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .pt-safe {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+    /* Hide scrollbars cleanly */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="flex flex-col h-full bg-[#F5F7F8] font-sans antialiased text-[#26313A]">
+<!-- BEGIN: TopBar -->
+<header class="flex-none bg-[#F5F7F8] z-20 pt-safe" data-purpose="app-header">
+<div class="h-14 px-4 flex items-center justify-between">
+<!-- Left balancer slot -->
+<div class="w-10 flex items-center justify-start"></div>
+<!-- Center Title -->
+<h1 class="text-[17px] font-semibold tracking-tight text-[#26313A]">主播资产</h1>
+<!-- Right Action / Notification Entry -->
+<div class="w-10 flex items-center justify-end">
+<button aria-label="消息通知" class="w-9 h-9 flex items-center justify-center rounded-full text-[#26313A] active:bg-[#EDF1F3]" type="button">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 overflow-y-auto no-scrollbar flex flex-col" data-purpose="page-scroll-container">
+<!-- Header Title Section (as in Actual UI) -->
+<section class="px-4 pt-1 pb-3 flex-none" data-purpose="hero-title">
+<div class="flex items-baseline justify-between">
+<h2 class="text-2xl font-bold tracking-tight text-[#26313A]">主播资产</h2>
+</div>
+<p class="text-xs text-[#65717B] mt-0.5">公会老板 · 全量主播</p>
+</section>
+<!-- Search Bar -->
+<section class="px-4 pb-3 flex-none" data-purpose="search-box">
+<div class="relative flex items-center bg-[#EDF1F3] rounded-xl px-3 h-10 border border-transparent focus-within:border-[#F88440] focus-within:bg-white transition-all">
+<span class="material-symbols-outlined text-[#65717B] text-[20px] mr-2 flex-none">search</span>
+<input class="w-full bg-transparent border-0 p-0 text-sm text-[#26313A] placeholder-[#65717B] focus:ring-0 focus:outline-none" id="search-input" placeholder="搜昵称 / 赛道" type="text"/>
+<button aria-label="清除搜索" class="hidden text-[#65717B] hover:text-[#26313A] p-1 flex-none" id="clear-search-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+</div>
+</section>
+<!-- Filter Segment Tabs -->
+<section class="px-4 pb-2 flex-none border-b border-[#DDE3E8]" data-purpose="filter-tabs">
+<div class="flex items-center space-x-6 text-[15px]" id="filter-tabs-container">
+<!-- Tab: 全部 -->
+<button class="filter-tab relative font-semibold text-[#26313A] pb-2 transition-colors focus:outline-none" data-filter="all" type="button">
+          全部
+          <span class="tab-indicator absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F88440] rounded-full"></span>
+</button>
+<!-- Tab: 在播 -->
+<button class="filter-tab relative font-medium text-[#65717B] pb-2 transition-colors focus:outline-none" data-filter="live" type="button">
+          在播
+          <span class="tab-indicator hidden absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F88440] rounded-full"></span>
+</button>
+<!-- Tab: 未在播 -->
+<button class="filter-tab relative font-medium text-[#65717B] pb-2 transition-colors focus:outline-none" data-filter="offline" type="button">
+          未在播
+          <span class="tab-indicator hidden absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F88440] rounded-full"></span>
+</button>
+<!-- Tab: 有风险 -->
+<button class="filter-tab relative font-medium text-[#65717B] pb-2 transition-colors focus:outline-none" data-filter="risk" type="button">
+          有风险
+          <span class="tab-indicator hidden absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F88440] rounded-full"></span>
+</button>
+</div>
+</section>
+<!-- Registry Stats Notice -->
+<section class="px-4 py-2.5 flex-none flex items-center justify-between" data-purpose="roster-metrics">
+<span class="text-xs text-[#65717B]">在册86位</span>
+<span class="text-[11px] text-[#65717B]" id="display-count">显示 4 位核心示例</span>
+</section>
+<!-- Anchor List (Clean planar layout separated by borders, no bulky card nesting) -->
+<section class="bg-white flex-1 border-t border-[#DDE3E8]" data-purpose="anchor-list-container">
+<ul class="divide-y divide-[#DDE3E8]" id="anchor-list">
+<!-- Anchor Item 1: 阿哲 -->
+<li class="anchor-item px-4 py-3.5 active:bg-[#F5F7F8] transition-colors" data-category="颜值聊天" data-name="阿哲" data-risk="true" data-status="offline">
+<a class="block" data-return="P14" data-sid="azhe" data-subject="阿哲" href="#P22">
+<!-- Top line: Name + Tag + Live Status -->
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center space-x-2">
+<span class="text-[17px] font-semibold text-[#26313A] tracking-tight">阿哲</span>
+<span class="text-xs text-[#65717B] font-light">·</span>
+<span class="text-xs px-2 py-0.5 rounded bg-[#FFFBEB] text-[#B45309] font-medium">颜值聊天</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="inline-block w-2 h-2 rounded-full bg-[#65717B]"></span>
+<span class="text-xs text-[#65717B]">未在播</span>
+</div>
+</div>
+<!-- Bottom line: Risk note + chevron -->
+<div class="flex items-start justify-between">
+<p class="text-xs text-[#26313A] leading-relaxed pr-3 flex-1 line-clamp-2">
+<span class="text-[#EF4444] font-medium">有风险：</span>连续3天流水下滑，进场停留从38秒降到26秒。
+              </p>
+<span class="material-symbols-outlined text-[#F88440] text-[20px] flex-none mt-0.5">chevron_right</span>
+</div>
+</a>
+</li>
+<!-- Anchor Item 2: 小雨 -->
+<li class="anchor-item px-4 py-3.5 active:bg-[#F5F7F8] transition-colors" data-category="才艺唱歌" data-name="小雨" data-risk="false" data-status="live">
+<a class="block" data-return="P14" data-sid="xiaoyu" data-subject="小雨" href="#P22">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center space-x-2">
+<span class="text-[17px] font-semibold text-[#26313A] tracking-tight">小雨</span>
+<span class="text-xs text-[#65717B] font-light">·</span>
+<span class="text-xs px-2 py-0.5 rounded bg-[#FFFBEB] text-[#B45309] font-medium">才艺唱歌</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="inline-block w-2 h-2 rounded-full bg-[#047857]"></span>
+<span class="text-xs text-[#047857] font-medium">在播</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<p class="text-xs text-[#65717B] leading-relaxed flex-1">
+                无风险标记
+              </p>
+<span class="material-symbols-outlined text-[#F88440] text-[20px] flex-none">chevron_right</span>
+</div>
+</a>
+</li>
+<!-- Anchor Item 3: 喵喵 -->
+<li class="anchor-item px-4 py-3.5 active:bg-[#F5F7F8] transition-colors" data-category="舞蹈" data-name="喵喵" data-risk="pending" data-status="offline">
+<a class="block" data-return="P14" data-sid="miaomiao" data-subject="喵喵" href="#P22">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center space-x-2">
+<span class="text-[17px] font-semibold text-[#26313A] tracking-tight">喵喵</span>
+<span class="text-xs text-[#65717B] font-light">·</span>
+<span class="text-xs px-2 py-0.5 rounded bg-[#FFFBEB] text-[#B45309] font-medium">舞蹈</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="inline-block w-2 h-2 rounded-full bg-[#65717B]"></span>
+<span class="text-xs text-[#65717B]">未在播</span>
+</div>
+</div>
+<div class="flex items-start justify-between">
+<p class="text-xs text-[#26313A] leading-relaxed pr-3 flex-1 line-clamp-2">
+<span class="text-[#B45309] font-medium">待跟进：</span>连续2天没开播，昨天消息回得慢。
+              </p>
+<span class="material-symbols-outlined text-[#F88440] text-[20px] flex-none mt-0.5">chevron_right</span>
+</div>
+</a>
+</li>
+<!-- Anchor Item 4: 老K -->
+<li class="anchor-item px-4 py-3.5 active:bg-[#F5F7F8] transition-colors" data-category="游戏" data-name="老K" data-risk="true" data-status="offline">
+<a class="block" data-return="P14" data-sid="laok" data-subject="老K" href="#P22">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center space-x-2">
+<span class="text-[17px] font-semibold text-[#26313A] tracking-tight">老K</span>
+<span class="text-xs text-[#65717B] font-light">·</span>
+<span class="text-xs px-2 py-0.5 rounded bg-[#FFFBEB] text-[#B45309] font-medium">游戏</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="inline-block w-2 h-2 rounded-full bg-[#65717B]"></span>
+<span class="text-xs text-[#65717B]">未在播</span>
+</div>
+</div>
+<div class="flex items-start justify-between">
+<p class="text-xs text-[#26313A] leading-relaxed pr-3 flex-1 line-clamp-2">
+<span class="text-[#EF4444] font-medium">有风险：</span>昨晚比上周同期低42%，22点档有大场分流...
+              </p>
+<span class="material-symbols-outlined text-[#F88440] text-[20px] flex-none mt-0.5">chevron_right</span>
+</div>
+</a>
+</li>
+</ul>
+<!-- Empty State Container -->
+<div class="hidden flex-col items-center justify-center py-16 px-4 text-center" id="empty-state">
+<div class="w-16 h-16 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B] mb-3">
+<span class="material-symbols-outlined text-[32px]">person_off</span>
+</div>
+<p class="text-sm font-medium text-[#26313A] mb-1">暂无匹配主播</p>
+<p class="text-xs text-[#65717B] mb-4">请尝试更换搜索词或重置筛选条件</p>
+<button class="px-4 py-2 rounded-lg bg-[#FCF4EC] text-[#F88440] text-xs font-semibold active:bg-[#F88440] active:text-white transition-colors" id="reset-filter-btn" type="button">
+          清除筛选
+        </button>
+</div>
+</section>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomNavigation -->
+<nav class="flex-none bg-white border-t border-[#DDE3E8] pb-safe z-30" data-purpose="shared-bottom-nav" data-role="owner">
+<div class="h-[68px] grid grid-cols-5 items-center">
+<!-- 1. 今天 -->
+<a class="flex flex-col items-center justify-center group h-full" data-page="P13" href="#P13">
+<div class="w-6 h-6 flex items-center justify-center text-[#65717B] group-active:text-[#26313A]">
+<span class="material-symbols-outlined text-[24px]">home</span>
+</div>
+<span class="text-[12px] font-normal leading-tight text-[#65717B] mt-1 group-active:text-[#26313A]">今天</span>
+</a>
+<!-- 2. 主播 (Active Item) -->
+<a class="flex flex-col items-center justify-center h-full" data-page="P14" href="#P14">
+<div class="w-6 h-6 flex items-center justify-center text-[#F88440]">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+</div>
+<span class="text-[12px] font-medium leading-tight text-[#F88440] mt-1">主播</span>
+</a>
+<!-- 3. 预警 -->
+<a class="flex flex-col items-center justify-center group h-full" data-page="P15" href="#P15">
+<div class="w-6 h-6 flex items-center justify-center text-[#65717B] group-active:text-[#26313A]">
+<span class="material-symbols-outlined text-[24px]">warning_amber</span>
+</div>
+<span class="text-[12px] font-normal leading-tight text-[#65717B] mt-1 group-active:text-[#26313A]">预警</span>
+</a>
+<!-- 4. 我的 -->
+<a class="flex flex-col items-center justify-center group h-full" data-page="P16" href="#P16">
+<div class="w-6 h-6 flex items-center justify-center text-[#65717B] group-active:text-[#26313A]">
+<span class="material-symbols-outlined text-[24px]">person_outline</span>
+</div>
+<span class="text-[12px] font-normal leading-tight text-[#65717B] mt-1 group-active:text-[#26313A]">我的</span>
+</a>
+<!-- 5. 助理(AI) -->
+<a class="flex flex-col items-center justify-center group h-full" data-page="AI" href="#AI">
+<div class="w-6 h-6 flex items-center justify-center text-[#65717B] group-active:text-[#26313A]">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+</div>
+<span class="text-[12px] font-normal leading-tight text-[#65717B] mt-1 group-active:text-[#26313A]">助理(AI)</span>
+</a>
+</div>
+</nav>
+<!-- END: BottomNavigation -->
+<!-- Interactivity Script -->
+<script data-purpose="list-filter-search">
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search-input');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const listItems = document.querySelectorAll('.anchor-item');
+      const emptyState = document.getElementById('empty-state');
+      const displayCount = document.getElementById('display-count');
+      const resetFilterBtn = document.getElementById('reset-filter-btn');
+
+      let currentFilter = 'all';
+      let searchQuery = '';
+
+      function applyFiltering() {
+        let visibleCount = 0;
+
+        listItems.forEach(item => {
+          const name = item.dataset.name.toLowerCase();
+          const category = item.dataset.category.toLowerCase();
+          const status = item.dataset.status;
+          const isRisk = item.dataset.risk === 'true';
+
+          // Match Search
+          const matchesSearch = !searchQuery || name.includes(searchQuery) || category.includes(searchQuery);
+
+          // Match Filter
+          let matchesFilter = false;
+          if (currentFilter === 'all') {
+            matchesFilter = true;
+          } else if (currentFilter === 'live') {
+            matchesFilter = (status === 'live');
+          } else if (currentFilter === 'offline') {
+            matchesFilter = (status === 'offline');
+          } else if (currentFilter === 'risk') {
+            matchesFilter = isRisk;
+          }
+
+          if (matchesSearch && matchesFilter) {
+            item.style.display = '';
+            visibleCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        // Update count label
+        if (displayCount) {
+          displayCount.textContent = `显示 ${visibleCount} 位核心示例`;
+        }
+
+        // Handle Empty state
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+          emptyState.classList.add('flex');
+        } else {
+          emptyState.classList.add('hidden');
+          emptyState.classList.remove('flex');
+        }
+      }
+
+      // Filter Tab Click Handlers
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          filterTabs.forEach(t => {
+            t.classList.remove('font-semibold', 'text-[#26313A]');
+            t.classList.add('font-medium', 'text-[#65717B]');
+            const indicator = t.querySelector('.tab-indicator');
+            if (indicator) indicator.classList.add('hidden');
+          });
+
+          tab.classList.remove('font-medium', 'text-[#65717B]');
+          tab.classList.add('font-semibold', 'text-[#26313A]');
+          const activeIndicator = tab.querySelector('.tab-indicator');
+          if (activeIndicator) activeIndicator.classList.remove('hidden');
+
+          currentFilter = tab.dataset.filter;
+          applyFiltering();
+        });
+      });
+
+      // Search input listener
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        if (searchQuery.length > 0) {
+          clearSearchBtn.classList.remove('hidden');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+        }
+        applyFiltering();
+      });
+
+      // Clear search button
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        searchInput.focus();
+        applyFiltering();
+      });
+
+      // Reset filters from empty state
+      if (resetFilterBtn) {
+        resetFilterBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          searchQuery = '';
+          clearSearchBtn.classList.add('hidden');
+          
+          // Reset to "all" tab
+          const allTab = document.querySelector('[data-filter="all"]');
+          if (allTab) allTab.click();
+        });
+      }
+    });
+  </script>
+</body></html>

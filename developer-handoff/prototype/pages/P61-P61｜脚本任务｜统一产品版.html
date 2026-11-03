@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>P61｜脚本任务｜统一产品版</title>
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            appCanvas: '#F5F7F8',
+            surface: '#FFFFFF',
+            surfaceMuted: '#EDF1F3',
+            borderLine: '#DDE3E8',
+            textPrimary: '#26313A',
+            textSecondary: '#65717B',
+            brandPrimary: '#F88440',
+            brandPressed: '#D96A31',
+            brandSoft: '#FCF4EC',
+            statusDanger: '#EF4444',
+            statusPending: '#B45309',
+            statusSuccess: '#047857'
+          },
+          fontFamily: {
+            sans: ['Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #F5F7F8;
+      font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      color: #26313A;
+      overflow: hidden;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 24px;
+      line-height: 1;
+      display: inline-block;
+      user-select: none;
+    }
+    /* 严格移动端 390x884 外壳 */
+    .app-viewport {
+      width: 390px;
+      height: 884px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-color: #F5F7F8;
+      overflow: hidden;
+    }
+    /* 隐藏滚动条但保留平滑滚动 */
+    .main-scrollable {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    .main-scrollable::-webkit-scrollbar {
+      display: none;
+    }
+    .main-scrollable {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* 文本域去描边自定义 */
+    textarea {
+      resize: none;
+      outline: none;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-[#F5F7F8]">
+
+  <div class="app-viewport shadow-sm flex flex-col" data-role="director" id="app">
+    
+    <!-- 1. 固定 56px 顶栏 (TopAppBar) -->
+    <header class="h-[56px] min-h-[56px] w-full bg-surface border-b border-borderLine px-4 flex items-center justify-between z-40 select-none">
+      <a href="#P60" data-page="P60" class="w-[44px] h-[44px] -ml-2 flex items-center justify-center text-textPrimary hover:opacity-80 active:opacity-60" title="返回内容工作台">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </a>
+      <div class="flex-1 text-center">
+        <h1 class="text-[17px] font-semibold text-textPrimary leading-none">脚本任务</h1>
+        <p class="text-[11px] text-textSecondary mt-1 leading-none">编导 · 何姐</p>
+      </div>
+      <div class="w-[44px] h-[44px] -mr-2 flex items-center justify-center text-textSecondary">
+        <!-- 切换对象的快捷轻胶囊 -->
+        <button id="switchObjectBtn" class="text-[12px] text-textSecondary bg-surfaceMuted px-2 py-1 rounded border border-borderLine flex items-center gap-0.5 active:bg-borderLine" title="切换脚本对象">
+          <span id="headerSubjectName">阿哲</span>
+          <span class="material-symbols-outlined !text-[16px]">expand_more</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. 主滚动区域 (Main) -->
+    <main class="main-scrollable px-4 py-3.5 space-y-3.5 pb-24">
+      
+      <!-- 任务核心元数据区 (单一纯白表面，细线分节) -->
+      <section class="bg-surface rounded-xl border border-borderLine p-4 space-y-3 shadow-none">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="displaySubjectTitle" class="text-[17px] font-bold text-textPrimary">阿哲 · 怀旧场脚本</span>
+              <span class="text-[11px] bg-surfaceMuted text-textSecondary px-1.5 py-0.5 rounded font-medium" id="displayTaskType">脚本成片</span>
+            </div>
+            <div class="flex items-center gap-3 text-[12px] text-textSecondary mt-1.5">
+              <span>责任人：<strong class="font-medium text-textPrimary">何姐</strong></span>
+              <span>期限：<span id="displayDeadline">10月15日 18:00</span></span>
+            </div>
+          </div>
+          <!-- 状态徽标 -->
+          <div id="statusBadgeContainer">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[12px] font-medium bg-[#FFFBEB] text-statusPending border border-[#FDE68A]" id="statusBadge">
+              草稿待采纳
+            </span>
+          </div>
+        </div>
+
+        <div class="pt-2.5 border-t border-borderLine flex items-center justify-between text-[12px]">
+          <span class="text-textSecondary">任务来源：<span class="text-textPrimary font-medium" id="displaySource">数据异常</span></span>
+          <span class="text-textSecondary" id="statusHintText">采纳后提交运营审核，通过后进入剪辑</span>
+        </div>
+
+        <!-- 创作依据轻提示条 -->
+        <div class="bg-surfaceMuted/80 rounded-lg p-2.5 flex items-start gap-2 border border-borderLine/60">
+          <span class="material-symbols-outlined !text-[18px] text-brandPrimary shrink-0 mt-0.5">info</span>
+          <p class="text-[12px] text-textSecondary leading-relaxed" id="displayBasis">
+            创作依据：阿哲语气慢半拍；按主播档案与近14天数据生成草稿。
+          </p>
+        </div>
+      </section>
+
+      <!-- 审核状态与派生流转面板（仅当待审、已通过或已退回时展示相应业务出口） -->
+      <section id="reviewFeedbackPanel" class="hidden bg-surface rounded-xl border border-borderLine p-4 space-y-2.5">
+        <!-- 待运营审核提示 -->
+        <div id="pendingReviewBox" class="hidden space-y-2">
+          <div class="flex items-center gap-2 text-statusPending font-medium text-[13px]">
+            <span class="material-symbols-outlined !text-[18px]">hourglass_top</span>
+            <span>已提交运营审核 · 待小林复核</span>
+          </div>
+          <p class="text-[12px] text-textSecondary leading-relaxed">
+            状态仅为本地演示标记，不表示审核人已读或外部系统持久化送达。运营审核通过后将派生 P62 剪辑成片任务。
+          </p>
+          <div class="pt-2 border-t border-borderLine flex items-center gap-2">
+            <button id="simApproveBtn" class="flex-1 h-[36px] bg-[#ECFDF5] border border-[#A7F3D0] text-statusSuccess text-[12px] font-medium rounded-lg active:opacity-75">
+              模拟运营通过 (派生P62)
+            </button>
+            <button id="simRejectBtn" class="flex-1 h-[36px] bg-[#FEF2F2] border border-[#FECACA] text-statusDanger text-[12px] font-medium rounded-lg active:opacity-75">
+              模拟退回修改
+            </button>
+          </div>
+        </div>
+
+        <!-- 运营已通过态 -->
+        <div id="approvedReviewBox" class="hidden space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="flex items-center gap-1.5 text-statusSuccess font-semibold text-[13px]">
+              <span class="material-symbols-outlined !text-[18px]">check_circle</span>
+              <span>运营审核已通过</span>
+            </span>
+            <span class="text-[11px] text-textSecondary">已派生对应剪辑任务</span>
+          </div>
+          <div class="bg-surfaceMuted rounded-lg p-2.5 flex items-center justify-between text-[12px]">
+            <div>
+              <p class="font-medium text-textPrimary" id="derivedTaskName">阿哲 · 怀旧场脚本成片</p>
+              <p class="text-[11px] text-textSecondary">负责人：小雷 · 待领</p>
+            </div>
+            <a href="#P62" data-page="P62" data-subject="阿哲" class="px-3 py-1.5 bg-brandPrimary text-white rounded-lg text-[12px] font-medium active:bg-brandPressed">
+              查看 P62 任务
+            </a>
+          </div>
+        </div>
+
+        <!-- 运营退回修改态 -->
+        <div id="rejectedReviewBox" class="hidden space-y-2">
+          <div class="flex items-center gap-1.5 text-statusDanger font-medium text-[13px]">
+            <span class="material-symbols-outlined !text-[18px]">error</span>
+            <span>运营已退回草稿：开场节奏可再提速</span>
+          </div>
+          <p class="text-[12px] text-textSecondary leading-relaxed">
+            可继续在下方重新编辑三段脚本内容，修改后将重置为草稿状态并需重新采纳。未通过前不派生 P62 剪辑任务。
+          </p>
+        </div>
+      </section>
+
+      <!-- 脚本三段式全宽内容编辑区 (开场、互动、收尾) -->
+      <section class="bg-surface rounded-xl border border-borderLine p-4 space-y-4">
+        <div class="flex items-center justify-between pb-2 border-b border-borderLine">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-4 bg-brandPrimary rounded-full"></span>
+            <h2 class="text-[15px] font-bold text-textPrimary">三段脚本正文</h2>
+          </div>
+          <span class="text-[11px] text-textSecondary" id="editStateTip">直接点击输入框可自由编辑</span>
+        </div>
+
+        <!-- 1. 开场 -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-[13px] font-bold text-textPrimary flex items-center gap-1">
+              <span>【开场】</span>
+              <span class="text-[11px] font-normal text-textSecondary">0-3分钟 · 快速破冰与前场留存</span>
+            </label>
+            <span class="text-[11px] text-textSecondary" id="charCountIntro">17字</span>
+          </div>
+          <div class="bg-surfaceMuted/50 border border-borderLine rounded-lg p-2.5 focus-within:border-brandPrimary focus-within:bg-surface transition-colors">
+            <textarea id="sectionIntro" class="w-full bg-transparent text-[14px] leading-relaxed text-textPrimary placeholder:text-textSecondary/50 min-h-[56px]" rows="2" placeholder="填写开场话术...">先接上一场的话题，别急着进正题。</textarea>
+          </div>
+        </div>
+
+        <!-- 2. 互动 -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-[13px] font-bold text-textPrimary flex items-center gap-1">
+              <span>【互动】</span>
+              <span class="text-[11px] font-normal text-textSecondary">中段节拍 · 歌曲点唱与弹幕响应</span>
+            </label>
+            <span class="text-[11px] text-textSecondary" id="charCountInteract">18字</span>
+          </div>
+          <div class="bg-surfaceMuted/50 border border-borderLine rounded-lg p-2.5 focus-within:border-brandPrimary focus-within:bg-surface transition-colors">
+            <textarea id="sectionInteract" class="w-full bg-transparent text-[14px] leading-relaxed text-textPrimary placeholder:text-textSecondary/50 min-h-[56px]" rows="2" placeholder="填写互动话术与节拍要求...">每首歌之间留20秒，点名回弹幕。</textarea>
+          </div>
+        </div>
+
+        <!-- 3. 收尾 -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-[13px] font-bold text-textPrimary flex items-center gap-1">
+              <span>【收尾】</span>
+              <span class="text-[11px] font-normal text-textSecondary">尾场冲刺 · 连唱蓄流与明日预告</span>
+            </label>
+            <span class="text-[11px] text-textSecondary" id="charCountOutro">15字</span>
+          </div>
+          <div class="bg-surfaceMuted/50 border border-borderLine rounded-lg p-2.5 focus-within:border-brandPrimary focus-within:bg-surface transition-colors">
+            <textarea id="sectionOutro" class="w-full bg-transparent text-[14px] leading-relaxed text-textPrimary placeholder:text-textSecondary/50 min-h-[56px]" rows="2" placeholder="填写收尾话术...">连唱两首老歌，报明天主题。</textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- 操作动作控制台 -->
+      <section class="bg-surface rounded-xl border border-borderLine p-4 space-y-3">
+        <h3 class="text-[13px] font-semibold text-textSecondary mb-2">流转动作</h3>
+
+        <!-- 状态A：草稿态操作 (默认) -->
+        <div id="actionsDraft" class="space-y-2.5">
+          <button id="btnAdopt" class="w-full h-[48px] bg-brandPrimary text-white text-[15px] font-medium rounded-xl flex items-center justify-center gap-1.5 active:bg-brandPressed shadow-none transition-all">
+            <span class="material-symbols-outlined !text-[20px]">check_circle</span>
+            <span>采纳此脚本</span>
+          </button>
+          <div class="flex items-center gap-2">
+            <button id="btnResetDraft" class="flex-1 h-[42px] bg-surface text-textPrimary border border-borderLine text-[14px] font-medium rounded-xl flex items-center justify-center gap-1 active:bg-surfaceMuted">
+              <span class="material-symbols-outlined !text-[18px] text-textSecondary">restart_alt</span>
+              <span>恢复初始文本</span>
+            </button>
+            <button id="btnDiscard" class="flex-1 h-[42px] bg-surface text-textSecondary border border-borderLine text-[14px] font-medium rounded-xl flex items-center justify-center gap-1 active:bg-surfaceMuted">
+              <span class="material-symbols-outlined !text-[18px]">close</span>
+              <span>不用此草稿</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 状态B：已采纳态操作 -->
+        <div id="actionsAdopted" class="hidden space-y-2.5">
+          <div class="bg-[#ECFDF5] border border-[#A7F3D0] rounded-xl p-3 flex items-center gap-2 text-statusSuccess text-[13px]">
+            <span class="material-symbols-outlined !text-[20px]">task_alt</span>
+            <span>已本地采纳。确认无误后可提交运营审核。</span>
+          </div>
+          <button id="btnSubmitReview" class="w-full h-[48px] bg-brandPrimary text-white text-[15px] font-medium rounded-xl flex items-center justify-center gap-1.5 active:bg-brandPressed shadow-none transition-all">
+            <span class="material-symbols-outlined !text-[20px]">send</span>
+            <span>提交运营审核</span>
+          </button>
+          <button id="btnCancelAdopt" class="w-full h-[42px] bg-surface text-textSecondary border border-borderLine text-[14px] font-medium rounded-xl flex items-center justify-center gap-1 active:bg-surfaceMuted">
+            <span>撤销采纳 · 回到草稿</span>
+          </button>
+        </div>
+
+        <!-- 状态C：待审状态操作 -->
+        <div id="actionsPending" class="hidden space-y-2.5">
+          <button disabled class="w-full h-[48px] bg-surfaceMuted text-textSecondary text-[15px] font-medium rounded-xl flex items-center justify-center gap-1.5 cursor-not-allowed">
+            <span class="material-symbols-outlined !text-[20px]">hourglass_empty</span>
+            <span>待运营审核中（不可重复提交）</span>
+          </button>
+          <button id="btnRevokeSubmit" class="w-full h-[42px] bg-surface text-textPrimary border border-borderLine text-[14px] font-medium rounded-xl flex items-center justify-center gap-1 active:bg-surfaceMuted">
+            <span>撤回为草稿</span>
+          </button>
+        </div>
+
+        <!-- 状态D：已取消/不用状态操作 -->
+        <div id="actionsCancelled" class="hidden space-y-2.5">
+          <div class="bg-surfaceMuted border border-borderLine rounded-xl p-3 text-textSecondary text-[13px] flex items-center gap-2">
+            <span class="material-symbols-outlined !text-[20px]">block</span>
+            <span>本条脚本已标记为不用（不等于审核拒绝）。</span>
+          </div>
+          <button id="btnReactivate" class="w-full h-[48px] bg-surface text-textPrimary border border-brandPrimary text-[15px] font-medium rounded-xl flex items-center justify-center gap-1.5 active:bg-brandSoft text-brandPrimary">
+            <span class="material-symbols-outlined !text-[20px]">undo</span>
+            <span>恢复为草稿</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 原型范围声明 -->
+      <div class="px-2 pt-2 pb-4 text-center">
+        <p class="text-[11px] text-textSecondary leading-normal">
+          原型演示说明：脚本采纳与提交均为本地前端状态演示，不代表后台服务真实已读、送达或下发。
+        </p>
+      </div>
+
+    </main>
+
+    <!-- 3. 固定 68px 编导端底栏 (BottomNavBar - 4项) -->
+    <!-- 依据业务参考图：内容 article -> #P60，脚本 edit_note -> #P61 (当前激活)，我的 person_outline -> #MY，助理 support_agent -> #AI -->
+    <footer class="h-[68px] min-h-[68px] w-full bg-surface border-t border-borderLine px-3 flex items-center justify-around z-40 select-none pb-safe">
+      <!-- 导航项 1: 内容 -->
+      <a href="#P60" data-page="P60" class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] text-textSecondary hover:text-textPrimary active:opacity-75 transition-colors">
+        <span class="material-symbols-outlined">article</span>
+        <span class="text-[12px] font-normal leading-tight mt-1">内容</span>
+      </a>
+
+      <!-- 导航项 2: 脚本 (当前激活) -->
+      <a href="#P61" data-page="P61" class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] text-brandPrimary font-medium relative">
+        <span class="material-symbols-outlined">edit_note</span>
+        <span class="text-[12px] leading-tight mt-1">脚本</span>
+      </a>
+
+      <!-- 导航项 3: 我的 -->
+      <a href="#MY" data-page="MY" data-role="director" class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] text-textSecondary hover:text-textPrimary active:opacity-75 transition-colors">
+        <span class="material-symbols-outlined">person_outline</span>
+        <span class="text-[12px] font-normal leading-tight mt-1">我的</span>
+      </a>
+
+      <!-- 导航项 4: 助理 -->
+      <a href="#AI" data-page="AI" class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] text-textSecondary hover:text-textPrimary active:opacity-75 transition-colors">
+        <span class="material-symbols-outlined">support_agent</span>
+        <span class="text-[12px] font-normal leading-tight mt-1">助理</span>
+      </a>
+    </footer>
+
+    <!-- 模态弹层：对象快速切换 (支持 k1 阿哲、k2 大乔、k3 茉莉) -->
+    <div id="subjectModal" class="hidden absolute inset-0 bg-black/40 z-50 flex flex-col justify-end">
+      <div class="bg-surface rounded-t-2xl p-5 space-y-4 max-h-[80%] overflow-y-auto">
+        <div class="flex items-center justify-between pb-3 border-b border-borderLine">
+          <h3 class="text-[16px] font-bold text-textPrimary">切换脚本任务对象</h3>
+          <button id="closeModalBtn" class="w-8 h-8 flex items-center justify-center text-textSecondary active:opacity-60">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        
+        <div class="space-y-2.5">
+          <!-- 对象 1: 阿哲 (k1) -->
+          <div class="subject-item p-3 rounded-xl border border-borderLine hover:border-brandPrimary cursor-pointer flex items-center justify-between bg-brandSoft/30" data-key="k1">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-[15px] text-textPrimary">阿哲 · 怀旧场脚本</span>
+                <span class="text-[11px] bg-brandSoft text-brandPrimary px-1.5 py-0.5 rounded">当前演示</span>
+              </div>
+              <p class="text-[12px] text-textSecondary mt-0.5">期限：10月15日 18:00 · 来源：数据异常</p>
+            </div>
+            <span class="material-symbols-outlined text-brandPrimary">check</span>
+          </div>
+
+          <!-- 对象 2: 大乔 (k2) -->
+          <div class="subject-item p-3 rounded-xl border border-borderLine hover:border-brandPrimary cursor-pointer flex items-center justify-between bg-surface" data-key="k2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-[15px] text-textPrimary">大乔 · 点歌互动串场</span>
+                <span class="text-[11px] bg-surfaceMuted text-textSecondary px-1.5 py-0.5 rounded">进行中</span>
+              </div>
+              <p class="text-[12px] text-textSecondary mt-0.5">期限：今天 17:00 · 来源：运营派</p>
+            </div>
+            <span class="material-symbols-outlined text-textSecondary/40">chevron_right</span>
+          </div>
+
+          <!-- 对象 3: 茉莉 (k3) -->
+          <div class="subject-item p-3 rounded-xl border border-borderLine hover:border-brandPrimary cursor-pointer flex items-center justify-between bg-surface" data-key="k3">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-[15px] text-textPrimary">茉莉 · 国风切片脚本</span>
+                <span class="text-[11px] bg-surfaceMuted text-textSecondary px-1.5 py-0.5 rounded">待领</span>
+              </div>
+              <p class="text-[12px] text-textSecondary mt-0.5">期限：10月17日 20:00 · 来源：主播提案</p>
+            </div>
+            <span class="material-symbols-outlined text-textSecondary/40">chevron_right</span>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-textSecondary text-center pt-2">
+          注：切换对象保留各对象独立字段与真实草稿，不混淆正文内容。
+        </p>
+      </div>
+    </div>
+
+    <!-- 轻提示 Toast -->
+    <div id="toast" class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-50 bg-[#26313A] text-white text-[13px] px-4 py-2 rounded-lg shadow-lg flex items-center gap-2 max-w-[320px]">
+      <span class="material-symbols-outlined !text-[18px] text-brandPrimary" id="toastIcon">info</span>
+      <span id="toastMsg">提示内容</span>
+    </div>
+
+  </div>
+
+  <script>
+    // 脚本多对象数据源 (阿哲 k1, 大乔 k2, 茉莉 k3)
+    const scriptDatabase = {
+      k1: {
+        id: 'k1',
+        subject: '阿哲',
+        title: '阿哲 · 怀旧场脚本',
+        taskType: '脚本成片',
+        deadline: '10月15日 18:00',
+        source: '数据异常',
+        basis: '创作依据：阿哲语气慢半拍；按主播档案与近14天数据生成草稿。',
+        intro: '先接上一场的话题，别急着进正题。',
+        interact: '每首歌之间留20秒，点名回弹幕。',
+        outro: '连唱两首老歌，报明天主题。',
+        initialIntro: '先接上一场的话题，别急着进正题。',
+        initialInteract: '每首歌之间留20秒，点名回弹幕。',
+        initialOutro: '连唱两首老歌，报明天主题。',
+        status: 'draft' // draft | adopted | pending | approved | rejected | cancelled
+      },
+      k2: {
+        id: 'k2',
+        subject: '大乔',
+        title: '大乔 · 点歌互动串场',
+        taskType: '脚本成片',
+        deadline: '今天 17:00',
+        source: '运营派',
+        basis: '创作依据：针对晚场前30分钟快节奏留存，结合点歌箱热门曲目排期。',
+        intro: '开场先用前三首点歌带互动，5分钟公布下一轮歌单规则。',
+        interact: '点歌穿插PK连麦提示，点名答谢榜前三。',
+        outro: '总结本场点歌最高票，预告明天同一时间打榜。',
+        initialIntro: '开场先用前三首点歌带互动，5分钟公布下一轮歌单规则。',
+        initialInteract: '点歌穿插PK连麦提示，点名答谢榜前三。',
+        outro: '总结本场点歌最高票，预告明天同一时间打榜。',
+        status: 'draft'
+      },
+      k3: {
+        id: 'k3',
+        subject: '茉莉',
+        title: '茉莉 · 国风切片脚本',
+        taskType: '切片脚本',
+        deadline: '10月17日 20:00',
+        source: '主播提案',
+        basis: '创作依据：国风舞蹈与古筝演奏切片，配合短视频前5秒黄金抓人点。',
+        intro: '',
+        interact: '',
+        outro: '',
+        initialIntro: '',
+        initialInteract: '',
+        initialOutro: '',
+        status: 'draft'
+      }
+    };
+
+    let currentKey = 'k1';
+
+    // DOM 元素缓存
+    const headerSubjectName = document.getElementById('headerSubjectName');
+    const displaySubjectTitle = document.getElementById('displaySubjectTitle');
+    const displayTaskType = document.getElementById('displayTaskType');
+    const displayDeadline = document.getElementById('displayDeadline');
+    const displaySource = document.getElementById('displaySource');
+    const displayBasis = document.getElementById('displayBasis');
+    const statusBadge = document.getElementById('statusBadge');
+    const statusHintText = document.getElementById('statusHintText');
+
+    const sectionIntro = document.getElementById('sectionIntro');
+    const sectionInteract = document.getElementById('sectionInteract');
+    const sectionOutro = document.getElementById('sectionOutro');
+
+    const charCountIntro = document.getElementById('charCountIntro');
+    const charCountInteract = document.getElementById('charCountInteract');
+    const charCountOutro = document.getElementById('charCountOutro');
+
+    const actionsDraft = document.getElementById('actionsDraft');
+    const actionsAdopted = document.getElementById('actionsAdopted');
+    const actionsPending = document.getElementById('actionsPending');
+    const actionsCancelled = document.getElementById('actionsCancelled');
+
+    const reviewFeedbackPanel = document.getElementById('reviewFeedbackPanel');
+    const pendingReviewBox = document.getElementById('pendingReviewBox');
+    const approvedReviewBox = document.getElementById('approvedReviewBox');
+    const rejectedReviewBox = document.getElementById('rejectedReviewBox');
+    const derivedTaskName = document.getElementById('derivedTaskName');
+
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+    const toastIcon = document.getElementById('toastIcon');
+
+    // 显示 Toast
+    function showToast(message, icon = 'info') {
+      toastMsg.innerText = message;
+      toastIcon.innerText = icon;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2600);
+    }
+
+    // 字符数更新
+    function updateCharCounts() {
+      charCountIntro.innerText = `${sectionIntro.value.length}字`;
+      charCountInteract.innerText = `${sectionInteract.value.length}字`;
+      charCountOutro.innerText = `${sectionOutro.value.length}字`;
+    }
+
+    // 渲染当前对象视图
+    function renderCurrentSubject() {
+      const data = scriptDatabase[currentKey];
+
+      headerSubjectName.innerText = data.subject;
+      displaySubjectTitle.innerText = data.title;
+      displayTaskType.innerText = data.taskType;
+      displayDeadline.innerText = data.deadline;
+      displaySource.innerText = data.source;
+      displayBasis.innerText = data.basis;
+
+      sectionIntro.value = data.intro;
+      sectionInteract.value = data.interact;
+      sectionOutro.value = data.outro;
+
+      updateCharCounts();
+      renderStatusUI(data.status);
+    }
+
+    // 状态 UI 切换
+    function renderStatusUI(status) {
+      // 隐藏所有动作组和反馈盒子
+      actionsDraft.classList.add('hidden');
+      actionsAdopted.classList.add('hidden');
+      actionsPending.classList.add('hidden');
+      actionsCancelled.classList.add('hidden');
+
+      reviewFeedbackPanel.classList.add('hidden');
+      pendingReviewBox.classList.add('hidden');
+      approvedReviewBox.classList.add('hidden');
+      rejectedReviewBox.classList.add('hidden');
+
+      // 重置文本框可编辑性
+      const isLocked = (status === 'pending' || status === 'approved' || status === 'cancelled');
+      sectionIntro.disabled = isLocked;
+      sectionInteract.disabled = isLocked;
+      sectionOutro.disabled = isLocked;
+
+      if (status === 'draft') {
+        actionsDraft.classList.remove('hidden');
+        statusBadge.className = "inline-flex items-center px-2 py-0.5 rounded text-[12px] font-medium bg-[#FFFBEB] text-statusPending border border-[#FDE68A]";
+        statusBadge.innerText = "草稿待采纳";
+        statusHintText.innerText = "采纳后提交运营审核，通过后进入剪辑";
+      } else if (status === 'adopted') {
+        actionsAdopted.classList.remove('hidden');
+        statusBadge.className = "inline-flex items-center px-2 py-0.5 rounded text-[12px] font-medium bg-[#ECFDF5] text-statusSuccess border border-[#A7F3D0]";
+        statusBadge.innerText = "已采纳 · 待提交";
+        statusHintText.innerText = "已采纳，点击下方提交运营审核";
+      } else if (status === 'pending') {
+        actionsPending.classList.remove('hidden');
+        reviewFeedbackPanel.classList.remove('hidden');
+        pendingReviewBox.classList.remove('hidden');
+        statusBadge.className = "inline-flex items-center px-2 py-0.5 rounded text-[12px] font-medium bg-surfaceMuted text-textSecondary border border-borderLine";
+        statusBadge.innerText = "待运营审核";
+        statusHintText.innerText = "已提交运营，等待小林复核中";
+      } else if (status === 'approved') {
+        reviewFeedbackPanel.classList.remove('hidden');
+        approvedReviewBox.classList.remove('hidden');
+        statusBadge.className = "inline-flex items-center px-2 py-0.5 rounded text-[12px] font-medium bg-[#ECFDF5] text-statusSuccess border border-[#A7F3D0]";
+        statusBadge.innerText = "审核通过 · 已派生";
+        statusHintText.innerText = "已派生对应 P62 剪辑成片任务";
+        derivedTaskName.innerText = `${scriptDatabase[currentKey].subject} · 脚本成片任务`;
+      } else if (status === 'rejected') {
+        actionsDraft.classList.remove('hidden');
+        reviewFeedbackPanel.classList.remove('hidden');
+        rejectedReviewBox.classList.remove('hidden');
+        statusBadge.className = "inline-flex items-center px-2 py-0.5 rounded text-[12px] font-medium bg-[#FEF2F2] text-statusDanger border border-[#FECACA]";
+        statusBadge.innerText = "退回修改";
+        statusHintText.innerText = "请根据运营意见调整话术后重新采纳";
+      } else if (status === 'cancelled') {
+        actionsCancelled.classList.remove('hidden');
+        statusBadge.className = "inline-flex items-center px-2 py-0.5 rounded text-[12px] font-medium bg-surfaceMuted text-textSecondary border border-borderLine line-through";
+        statusBadge.innerText = "已取消";
+        statusHintText.innerText = "本脚本已标记不用，可点击下方恢复";
+      }
+    }
+
+    // 监听文本框修改：若在已采纳或退回状态下改动，自动回退到草稿态并需重新采纳
+    [sectionIntro, sectionInteract, sectionOutro].forEach(textarea => {
+      textarea.addEventListener('input', () => {
+        updateCharCounts();
+        const cur = scriptDatabase[currentKey];
+        cur.intro = sectionIntro.value;
+        cur.interact = sectionInteract.value;
+        cur.outro = sectionOutro.value;
+
+        if (cur.status === 'adopted' || cur.status === 'rejected') {
+          cur.status = 'draft';
+          renderStatusUI('draft');
+          showToast('检测到正文修改，已重置为草稿态，需重新采纳', 'edit');
+        }
+      });
+    });
+
+    // 交互事件绑定
+    // 1. 采纳按钮
+    document.getElementById('btnAdopt').addEventListener('click', () => {
+      const cur = scriptDatabase[currentKey];
+      if (!sectionIntro.value.trim() && !sectionInteract.value.trim() && !sectionOutro.value.trim()) {
+        showToast('脚本内容为空，请先填写至少一段正文', 'warning');
+        return;
+      }
+      cur.status = 'adopted';
+      renderStatusUI('adopted');
+      showToast('已采纳当前脚本方案', 'check_circle');
+    });
+
+    // 2. 撤销采纳
+    document.getElementById('btnCancelAdopt').addEventListener('click', () => {
+      scriptDatabase[currentKey].status = 'draft';
+      renderStatusUI('draft');
+      showToast('已撤回采纳，当前为草稿状态', 'undo');
+    });
+
+    // 3. 提交运营审核
+    document.getElementById('btnSubmitReview').addEventListener('click', () => {
+      const cur = scriptDatabase[currentKey];
+      cur.status = 'pending';
+      renderStatusUI('pending');
+      showToast('已提交运营小林审核（本地演示状态）', 'send');
+    });
+
+    // 4. 待审撤回
+    document.getElementById('btnRevokeSubmit').addEventListener('click', () => {
+      scriptDatabase[currentKey].status = 'draft';
+      renderStatusUI('draft');
+      showToast('已撤回提交，回到草稿编辑状态', 'undo');
+    });
+
+    // 5. 恢复初始文本
+    document.getElementById('btnResetDraft').addEventListener('click', () => {
+      const cur = scriptDatabase[currentKey];
+      cur.intro = cur.initialIntro;
+      cur.interact = cur.initialInteract;
+      cur.outro = cur.initialOutro;
+      sectionIntro.value = cur.intro;
+      sectionInteract.value = cur.interact;
+      sectionOutro.value = cur.outro;
+      updateCharCounts();
+      showToast('已重置为预设草稿正文', 'refresh');
+    });
+
+    // 6. 不用此草稿 (标记已取消)
+    document.getElementById('btnDiscard').addEventListener('click', () => {
+      scriptDatabase[currentKey].status = 'cancelled';
+      renderStatusUI('cancelled');
+      showToast('已标记为不用（不等于审核拒绝）', 'block');
+    });
+
+    // 7. 恢复草稿
+    document.getElementById('btnReactivate').addEventListener('click', () => {
+      scriptDatabase[currentKey].status = 'draft';
+      renderStatusUI('draft');
+      showToast('已恢复为草稿状态，可继续采纳', 'check');
+    });
+
+    // 8. 模拟运营审核：通过
+    document.getElementById('simApproveBtn').addEventListener('click', () => {
+      scriptDatabase[currentKey].status = 'approved';
+      renderStatusUI('approved');
+      showToast('运营审核通过！已派生对应剪辑任务', 'verified');
+    });
+
+    // 9. 模拟运营审核：退回
+    document.getElementById('simRejectBtn').addEventListener('click', () => {
+      scriptDatabase[currentKey].status = 'rejected';
+      renderStatusUI('rejected');
+      showToast('运营退回修改：开场节奏可再提速', 'error');
+    });
+
+    // 模态弹层控制
+    const subjectModal = document.getElementById('subjectModal');
+    document.getElementById('switchObjectBtn').addEventListener('click', () => {
+      subjectModal.classList.remove('hidden');
+    });
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+      subjectModal.classList.add('hidden');
+    });
+
+    // 选择对象
+    document.querySelectorAll('.subject-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const key = item.getAttribute('data-key');
+        if (key && scriptDatabase[key]) {
+          currentKey = key;
+          renderCurrentSubject();
+          subjectModal.classList.add('hidden');
+          showToast(`已载入 ${scriptDatabase[key].subject} 的脚本任务`, 'swap_horiz');
+        }
+      });
+    });
+
+    // 初始化运行
+    renderCurrentSubject();
+  </script>
+</body>
+</html>

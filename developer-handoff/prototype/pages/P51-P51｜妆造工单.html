@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>妆造工单 - 明镜移动端产品原型</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#FAF5F1",
+            surface: "#FFFFFF",
+            warmGray: "#F4F0ED",
+            borderCol: "#EBE5E0",
+            charcoal: "#282838",
+            muted: "#686260",
+            primary: "#F88440",
+            primaryBg: "#FCF4EC",
+            primaryPressed: "#D96A31",
+            riskRed: "#BA1A1A",
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "-apple-system", "PingFang SC", "sans-serif"],
+            display: ["Public Sans", "-apple-system", "PingFang SC", "sans-serif"],
+            body: ["Public Sans", "-apple-system", "PingFang SC", "sans-serif"],
+            label: ["Public Sans", "-apple-system", "PingFang SC", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+
+<!-- Top App Bar -->
+
+<!-- Top App Bar -->
+<body><header class="fixed top-0 left-0 w-full z-50 bg-white border-b border-[#DDE3E8]">
+<div class="flex justify-between items-center w-full px-4 py-3 max-w-md mx-auto">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#EDF1F3] active:scale-95 transition-all text-[#282838]" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-[#282838]">主播放档</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#EDF1F3] active:scale-95 transition-all text-[#686260]">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas Content -->
+<main class="max-w-md mx-auto pt-20 px-4 space-y-4">
+<!-- Status Banner / Card -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-[#DDE3E8] space-y-3">
+<div class="flex justify-between items-start">
+<div>
+<span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A] mb-2" id="status-badge">
+            待接单
+          </span>
+<h2 class="text-lg font-bold text-[#282838]">妆造跟进</h2>
+</div>
+<div class="text-right">
+<span class="text-xs text-[#686260] block">服务负责人</span>
+<span class="text-sm font-bold text-[#282838]">阿灿</span>
+</div>
+</div>
+<div class="bg-[#EDF1F3] rounded-lg p-3 text-xs text-[#686260] space-y-1">
+<p id="context-time-text" class="">小雨 · 10月14日 周三 · 14:00</p>
+<p class="">妆造间 · 发起人：运营小林</p>
+</div>
+</section>
+<!-- Step Progress Bar -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-[#DDE3E8] space-y-3">
+<div class="flex justify-between text-xs text-[#686260] font-medium" id="step-labels">
+<span class="text-[#F88440] font-bold">已发起</span>
+<span id="step-lbl-2" class="">已接单</span>
+<span id="step-lbl-3" class="">服务中</span>
+<span id="step-lbl-4" class="">完成回传</span>
+</div>
+<div class="grid grid-cols-4 gap-2 h-2">
+<div class="bg-[#F88440] rounded-full transition-all duration-300" id="prog-1"></div>
+<div class="bg-[#EDF1F3] rounded-full transition-all duration-300" id="prog-2"></div>
+<div class="bg-[#EDF1F3] rounded-full transition-all duration-300" id="prog-3"></div>
+<div class="bg-[#EDF1F3] rounded-full transition-all duration-300" id="prog-4"></div>
+</div>
+</section>
+<!-- Service Details & Requirements -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-[#DDE3E8] space-y-3">
+<h3 class="text-sm font-bold text-[#282838] border-b border-[#DDE3E8] pb-2">服务要求与物料</h3>
+<div class="space-y-2 text-xs text-[#686260]">
+<div>
+<span class="font-semibold text-[#282838]">服务要求：</span>
+<p class="mt-0.5">妆面按主播档案执行，服装按本次预约准备</p>
+</div>
+<div>
+<span class="font-semibold text-[#282838]">所需物料：</span>
+<p class="mt-0.5">粉底/遮瑕、假发头饰、服装一套、补妆包</p>
+</div>
+<div>
+<span class="font-semibold text-[#282838]">备注说明：</span>
+<p class="mt-0.5">暂无备注</p>
+</div>
+</div>
+</section>
+<!-- Photo Upload Section (Hidden Initially) -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-[#DDE3E8] space-y-3 hidden" id="photo-section">
+<div class="flex justify-between items-center">
+<h3 class="text-sm font-bold text-[#282838]">现场照片回传</h3>
+<span class="text-xs text-[#F88440]">已选 <span id="photo-count" class="">0</span>/2 张</span>
+</div>
+<p class="text-xs text-[#686260]">完成服务后需补充2张现场照片（仅在本地预览，不会上传）</p>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="border-2 border-dashed border-[#DDE3E8] rounded-lg h-24 flex flex-col items-center justify-center cursor-pointer hover:border-[#F88440] transition-colors bg-[#EDF1F3]" id="slot-1" onclick="togglePhotoSlot(1)">
+<span class="material-symbols-outlined text-[#686260] text-2xl">add_a_photo</span>
+<span class="text-xs text-[#686260] mt-1">添加现场照片 1</span>
+</div>
+<div class="border-2 border-dashed border-[#DDE3E8] rounded-lg h-24 flex flex-col items-center justify-center cursor-pointer hover:border-[#F88440] transition-colors bg-[#EDF1F3]" id="slot-2" onclick="togglePhotoSlot(2)">
+<span class="material-symbols-outlined text-[#686260] text-2xl">add_a_photo</span>
+<span class="text-xs text-[#686260] mt-1">添加现场照片 2</span>
+</div>
+</div>
+<div class="text-xs text-[#BA1A1A] hidden" id="photo-warning">请先上传2张现场照片再提交回传！</div>
+</section>
+<!-- Initial Hint for Photo -->
+<div class="bg-[#FCF4EC] rounded-xl p-3 text-xs text-[#F88440] border border-[#F88440]/20 flex items-center space-x-2" id="initial-photo-hint">
+<span class="material-symbols-outlined text-sm">info</span>
+<span class="">完成服务后需补充2张现场照片</span>
+</div>
+<!-- Action Buttons Panel -->
+<section class="space-y-2 pt-2">
+<div id="primary-action-container">
+<button class="w-full py-3 bg-[#F88440] text-white font-bold rounded-xl shadow-sm hover:bg-[#D96A31] active:scale-95 transition-all text-sm" id="primary-btn" onclick="handlePrimaryAction()">
+          接单
+        </button>
+</div>
+<div class="grid grid-cols-2 gap-2" id="secondary-actions-container">
+<button class="py-2.5 bg-[#EDF1F3] text-[#282838] font-bold rounded-xl hover:bg-[#DDE3E8] active:scale-95 transition-all text-xs" onclick="openRescheduleModal()">
+          改期
+        </button>
+<a class="py-2.5 bg-[#EDF1F3] text-[#282838] font-bold rounded-xl hover:bg-[#DDE3E8] active:scale-95 transition-all text-xs text-center flex items-center justify-center" href="#back-to-p50" onclick="alert('即将返回排期 P50'); return false;">
+          回排期-&gt;P50
+        </a>
+</div>
+</section>
+</main>
+<!-- Reschedule Modal Overlay -->
+<div class="fixed inset-0 bg-black/40 z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4" id="reschedule-modal">
+<div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-xl p-5 space-y-4 animate-in fade-in slide-in-from-bottom duration-200">
+<div class="flex justify-between items-center border-b border-[#DDE3E8] pb-3">
+<h3 class="font-bold text-base text-[#282838]">修改工单排期时间</h3>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#EDF1F3] text-[#686260]" onclick="closeRescheduleModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-3">
+<div>
+<label class="text-xs text-[#686260] block mb-1">选择日期</label>
+<select class="w-full rounded-lg border-[#DDE3E8] text-xs py-2 bg-[#EDF1F3] text-[#282838] focus:border-[#F88440] focus:ring-[#F88440]" id="modal-date">
+<option>今天 (10月14日)</option>
+<option>明天 (10月15日)</option>
+<option>后天 (10月16日)</option>
+<option>周六 (10月17日)</option>
+<option>周日 (10月18日)</option>
+<option>周一 (10月19日)</option>
+<option>周二 (10月20日)</option>
+</select>
+</div>
+<div>
+<label class="text-xs text-[#686260] block mb-1">选择时间段</label>
+<select class="w-full rounded-lg border-[#DDE3E8] text-xs py-2 bg-[#EDF1F3] text-[#282838] focus:border-[#F88440] focus:ring-[#F88440]" id="modal-time">
+<option>14:00 (当前)</option>
+<option>10:00 早场</option>
+<option>16:00 下午场</option>
+<option>19:00 晚场</option>
+</select>
+</div>
+</div>
+<div class="flex space-x-2 pt-2">
+<button class="flex-1 py-2.5 bg-[#EDF1F3] text-[#686260] font-bold rounded-xl text-xs" onclick="closeRescheduleModal()">取消</button>
+<button class="flex-1 py-2.5 bg-[#F88440] text-white font-bold rounded-xl text-xs hover:bg-[#D96A31]" onclick="confirmReschedule()">确定修改</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 max-w-md mx-auto bg-white border-t border-[#DDE3E8]"><a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#F88440] transition-colors" href="#" onclick="alert('跳转到：工作台'); return false;">
+<span class="material-symbols-outlined text-xl">home</span>
+<span class="text-xs font-medium font-body mt-0.5">工作台</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#F88440] font-bold py-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="text-xs font-medium font-body mt-0.5">工单</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#F88440] transition-colors" href="#" onclick="alert('跳转到：团队'); return false;">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="text-xs font-medium font-body mt-0.5">团队</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#F88440] transition-colors" href="#" onclick="alert('跳转到：我的'); return false;">
+<span class="material-symbols-outlined text-xl">person</span>
+<span class="text-xs font-medium font-body mt-0.5">我的</span>
+</a></nav>
+<!-- Interactive JavaScript State Controller -->
+<script>
+    let currentState = 'pending'; // pending -> in_progress -> completed
+    let photo1Uploaded = false;
+    let photo2Uploaded = false;
+
+    function handlePrimaryAction() {
+      if (currentState === 'pending') {
+        // Switch to Service In Progress
+        currentState = 'in_progress';
+        document.getElementById('status-badge').className = 'inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-[#FCF4EC] text-[#F88440] border border-[#F88440]/30 mb-2';
+        document.getElementById('status-badge').innerText = '服务进行中';
+        
+        // Update step bar
+        document.getElementById('prog-2').className = 'bg-[#F88440] rounded-full transition-all duration-300';
+        document.getElementById('step-lbl-2').className = 'text-[#F88440] font-bold';
+        
+        // Update primary button
+        document.getElementById('primary-btn').innerText = '完成回传';
+        
+        // Show photo upload section & hide initial hint
+        document.getElementById('photo-section').classList.remove('hidden');
+        document.getElementById('initial-photo-hint').classList.add('hidden');
+      } else if (currentState === 'in_progress') {
+        // Check photos
+        if (!photo1Uploaded || !photo2Uploaded) {
+          document.getElementById('photo-warning').classList.remove('hidden');
+          return;
+        }
+        document.getElementById('photo-warning').classList.add('hidden');
+        
+        // Switch to Completed
+        currentState = 'completed';
+        document.getElementById('status-badge').className = 'inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-[#ECFDF5] text-[#047857] border border-[#A7F3D0] mb-2';
+        document.getElementById('status-badge').innerText = '已完成并回传';
+        
+        // Update step bar fully
+        document.getElementById('prog-3').className = 'bg-[#047857] rounded-full transition-all duration-300';
+        document.getElementById('prog-4').className = 'bg-[#047857] rounded-full transition-all duration-300';
+        document.getElementById('step-lbl-3').className = 'text-[#047857] font-bold';
+        document.getElementById('step-lbl-4').className = 'text-[#047857] font-bold';
+        
+        // Hide actions
+        document.getElementById('primary-action-container').style.display = 'none';
+        document.getElementById('secondary-actions-container').style.display = 'none';
+        
+        // Disable photo slots interaction
+        document.getElementById('slot-1').onclick = null;
+        document.getElementById('slot-2').onclick = null;
+      }
+    }
+
+    function togglePhotoSlot(slotNum) {
+      if (slotNum === 1) {
+        photo1Uploaded = !photo1Uploaded;
+        const slot1 = document.getElementById('slot-1');
+        if (photo1Uploaded) {
+          slot1.className = 'border-2 border-[#047857] rounded-lg h-24 flex flex-col items-center justify-center cursor-pointer bg-[#ECFDF5] text-[#047857] transition-colors';
+          slot1.innerHTML = '<span class="material-symbols-outlined text-2xl">check_circle</span><span class="text-xs mt-1 font-bold">照片 1 已选择</span>';
+        } else {
+          slot1.className = 'border-2 border-dashed border-[#DDE3E8] rounded-lg h-24 flex flex-col items-center justify-center cursor-pointer hover:border-[#F88440] transition-colors bg-[#EDF1F3]';
+          slot1.innerHTML = '<span class="material-symbols-outlined text-[#686260] text-2xl">add_a_photo</span><span class="text-xs text-[#686260] mt-1">添加现场照片 1</span>';
+        }
+      } else {
+        photo2Uploaded = !photo2Uploaded;
+        const slot2 = document.getElementById('slot-2');
+        if (photo2Uploaded) {
+          slot2.className = 'border-2 border-[#047857] rounded-lg h-24 flex flex-col items-center justify-center cursor-pointer bg-[#ECFDF5] text-[#047857] transition-colors';
+          slot2.innerHTML = '<span class="material-symbols-outlined text-2xl">check_circle</span><span class="text-xs mt-1 font-bold">照片 2 已选择</span>';
+        } else {
+          slot2.className = 'border-2 border-dashed border-[#DDE3E8] rounded-lg h-24 flex flex-col items-center justify-center cursor-pointer hover:border-[#F88440] transition-colors bg-[#EDF1F3]';
+          slot2.innerHTML = '<span class="material-symbols-outlined text-[#686260] text-2xl">add_a_photo</span><span class="text-xs text-[#686260] mt-1">添加现场照片 2</span>';
+        }
+      }
+      
+      let count = (photo1Uploaded ? 1 : 0) + (photo2Uploaded ? 1 : 0);
+      document.getElementById('photo-count').innerText = count;
+      if(count === 2) {
+        document.getElementById('photo-warning').classList.add('hidden');
+      }
+    }
+
+    function openRescheduleModal() {
+      document.getElementById('reschedule-modal').classList.remove('hidden');
+    }
+
+    function closeRescheduleModal() {
+      document.getElementById('reschedule-modal').classList.add('hidden');
+    }
+
+    function confirmReschedule() {
+      const d = document.getElementById('modal-date').value;
+      const t = document.getElementById('modal-time').value;
+      document.getElementById('context-time-text').innerText = `小雨 · ${d} · ${t.split(' ')[0]}`;
+      closeRescheduleModal();
+      alert('排期已成功修改！');
+    }
+  </script>
+
+
+</body></html>

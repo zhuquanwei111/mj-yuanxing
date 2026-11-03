@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>交接中心 · 运营小林 - 明镜</title>
+<!-- Material Symbols & Chinese sans-serif fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#FAF5F1",
+            surface: "#FFFFFF",
+            warmgray: {
+              base: "#F4F0ED",
+              border: "#EBE5E0"
+            },
+            charcoal: "#282838",
+            muted: "#686260",
+            primary: {
+              DEFAULT: "#F88440",
+              soft: "#FCF4EC",
+              pressed: "#D96A31"
+            },
+            risk: "#BA1A1A"
+          },
+          fontFamily: {
+            headline: ["Noto Sans SC", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+            display: ["Noto Sans SC", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+            body: ["Noto Sans SC", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+            label: ["Noto Sans SC", "-apple-system", "BlinkMacSystemFont", "PingFang SC", "Microsoft YaHei", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background-color: #FAF5F1;
+      color: #282838;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hide scrollbar for mobile cleanliness */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-[#F5F7F8] text-[#26313A] min-h-screen flex justify-center selection:bg-[#FFF1E8] selection:text-[#B34B2A]">
+<!-- Mobile Frame (Strict 390px viewport width) -->
+<div class="w-full max-w-[390px] min-h-screen bg-[#F5F7F8] flex flex-col relative pb-28 shadow-sm">
+<!-- Top App Bar (Shared Component Anchor) -->
+<header class="bg-white sticky top-0 z-40 w-full px-4 pt-3 pb-2.5 flex justify-between items-center border-b border-[#DDE3E8]"><div class="flex items-center space-x-6 text-sm font-medium"><button class="relative py-3.5 transition-colors text-[#B34B2A] font-bold min-h-[44px] flex items-center gap-1" id="tab-received" onclick="switchTab('received')"><span class="">我收到的</span><span class="text-xs font-bold px-1.5 py-0.5 rounded-full bg-[#FFF1E8] text-[#B34B2A]" id="badge-received">1</span><span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#B34B2A] rounded-full" id="indicator-received"></span></button><button class="relative py-3.5 transition-colors text-[#65717B] hover:text-[#26313A] min-h-[44px] flex items-center gap-1" id="tab-sent" onclick="switchTab('sent')"><span class="">我发起的</span><span class="text-xs font-medium px-1.5 py-0.5 rounded-full bg-[#EDF1F3] text-[#65717B]" id="badge-sent">4</span><span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-transparent rounded-full" id="indicator-sent"></span></button><button class="relative py-3.5 transition-colors text-[#65717B] hover:text-[#26313A] min-h-[44px] flex items-center gap-1" id="tab-all" onclick="switchTab('all')"><span class="">全部交接</span><span class="text-xs font-medium px-1.5 py-0.5 rounded-full bg-[#EDF1F3] text-[#65717B]" id="badge-all">5</span><span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-transparent rounded-full" id="indicator-all"></span></button></div></header>
+<!-- Page Intro Header & Realtime Stat Counter -->
+<div class="px-4 pt-4 pb-3 bg-white"><div class="flex items-baseline justify-between"><div><h2 class="text-xl font-bold tracking-tight text-[#26313A]">交接中心 · 运营小林</h2><p class="text-xs text-[#65717B] mt-0.5 font-normal">交接去向、当前负责人和回执状态</p></div></div><!-- Realtime Aggregate Stats Strip --><div class="mt-3 py-2 px-3 bg-[#EDF1F3] rounded-lg text-xs font-medium text-[#65717B] flex items-center justify-between"><div class="flex items-center gap-1.5"><span class="text-[#65717B]">全部</span><span class="font-bold text-[#26313A] text-sm" id="stat-total">5</span></div><span class="text-[#DDE3E8]">|</span><div class="flex items-center gap-1.5"><span class="text-[#65717B]">待接单</span><span class="font-bold text-[#26313A] text-sm" id="stat-pending">0</span></div><span class="text-[#DDE3E8]">|</span><div class="flex items-center gap-1.5"><span class="text-[#65717B]">处理中</span><span class="font-bold text-[#B34B2A] text-sm" id="stat-processing">3</span></div><span class="text-[#DDE3E8]">|</span><div class="flex items-center gap-1.5"><span class="text-[#65717B]">已回执</span><span class="font-bold text-[#26313A] text-sm" id="stat-done">2</span></div></div></div>
+<!-- Segment Tabs -->
+
+<!-- Dynamic Flow Description Banner -->
+<div class="px-4 py-2.5 flex items-center justify-between text-xs text-[#686260]"><div class="flex items-center gap-1 font-medium"><span class="w-1.5 h-3.5 bg-[#B34B2A] rounded-full inline-block"></span><span class="text-[#26313A] font-semibold" id="section-title">我收到的单据（待处理/需反馈）</span></div><span class="text-[11px] text-[#65717B]">单据状态自动同步</span></div>
+<!-- Interactive Handover Cards List Container -->
+<main class="px-3.5 space-y-3" id="card-list"><div class="bg-white rounded-xl p-4 shadow-sm border border-[#EBE5E0]"><div class="flex items-start justify-between pb-3 border-b border-[#F4F0ED]"><div class="flex items-center gap-2"><a class="font-bold text-base text-[#282838] hover:text-[#F88440] transition-colors flex items-center gap-1" href="#P22">茉莉 · 视觉<span class="material-symbols-outlined text-xs text-[#686260]">open_in_new</span></a><span class="text-xs text-[#686260] bg-[#F4F0ED] px-2 py-0.5 rounded font-medium">视觉制作</span></div><div class="flex items-center gap-2"><span class="text-xs text-[#686260]">今天</span><span class="inline-flex items-center text-xs font-semibold text-[#F88440] bg-[#FCF4EC] px-2.5 py-0.5 rounded-full">处理中</span></div></div><div class="py-3 text-xs text-[#282838] leading-relaxed"><span class="text-[#686260] font-medium">备注：</span>背景布已换好，回传照片在单子里，请验收</div><div class="pt-2.5 pb-3 border-t border-[#F4F0ED] grid grid-cols-2 gap-2 text-xs text-[#686260]"><div class="flex items-center gap-1.5"><span class="">发起人:</span><span class="font-medium text-[#282838]">视觉组 · 阿灿</span></div><div class="flex items-center gap-1.5"><span class="">当前责任:</span><span class="font-medium text-[#282838]">运营 · 小林</span></div></div><div class="pt-3 border-t border-[#F4F0ED] flex items-center justify-between gap-3"><a class="inline-flex items-center text-xs font-semibold text-[#F88440] hover:underline gap-0.5 py-2" href="#P22"><span class="">看主播</span><span class="material-symbols-outlined text-sm">chevron_right</span></a><button class="px-4 py-2.5 bg-[#F88440] hover:bg-[#D96A31] active:bg-[#D96A31] text-white text-xs font-semibold rounded-xl shadow-sm transition-all active:scale-95 flex items-center gap-1.5 min-h-[44px]" onclick="handleComplete('moli')"><span class="material-symbols-outlined text-base">check_circle</span><span class="">办完并回执</span></button></div></div></main>
+<!-- Empty State Container (Hidden by default) -->
+<div class="hidden px-4 py-12 flex-col items-center justify-center text-center" id="empty-state"><div class="w-14 h-14 rounded-full bg-[#EDF1F3] flex items-center justify-center text-[#65717B] mb-3"><span class="material-symbols-outlined text-2xl">inbox</span></div><p class="text-sm font-medium text-[#26313A]">当前范围暂无交接</p><p class="text-xs text-[#65717B] mt-1 mb-4">该分类下所有单据均已完成或尚未创建</p><button class="px-4 py-2 bg-[#FFF1E8] text-[#B34B2A] text-xs font-semibold rounded-lg hover:bg-[#B34B2A] hover:text-white transition-all active:scale-95 border border-[#B34B2A]/30" onclick="switchTab('all')">切换查看全部交接</button></div>
+<!-- Prototype Operational Notice Banner -->
+<div class="mx-3.5 mt-5 p-3 rounded-xl bg-[#EDF1F3] border border-[#DDE3E8] text-[11px] leading-relaxed text-[#65717B]"><div class="flex items-start gap-2"><span class="material-symbols-outlined text-[#B34B2A] text-sm shrink-0 mt-0.5">info</span><span class="leading-relaxed">接单、回执与提醒仅改变本地原型状态，不代表跨账号同步或真实送达。</span></div></div>
+<!-- Fixed Bottom Navigation Bar (Design System Compliant) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-2 py-1.5 max-w-[390px] mx-auto bg-white border-t border-[#DDE3E8]"><!-- 今天 (P20) --><a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#B34B2A] active:scale-95 transition-transform duration-150 flex-1" href="#P20"><span class="material-symbols-outlined text-xl">home</span><span class="text-[10px] font-medium mt-0.5">今天</span></a><!-- 我的主播 (P21) --><a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#B34B2A] active:scale-95 transition-transform duration-150 flex-1" href="#P21"><span class="material-symbols-outlined text-xl">group</span><span class="text-[10px] font-medium mt-0.5">我的主播</span></a><!-- 交接 (P25 - Active State) --><a class="flex flex-col items-center justify-center text-[#B34B2A] font-bold py-1 active:scale-95 transition-transform duration-150 flex-1" href="#P25"><span class="material-symbols-outlined fill text-xl">assignment</span><span class="text-[10px] font-medium mt-0.5">交接</span></a><!-- 我的 (P84) --><a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#B34B2A] active:scale-95 transition-transform duration-150 flex-1" href="#P84"><span class="material-symbols-outlined text-xl">person</span><span class="text-[10px] font-medium mt-0.5">我的</span></a><!-- 助理 (AI) --><a class="flex flex-col items-center justify-center text-[#65717B] py-1 hover:text-[#B34B2A] active:scale-95 transition-transform duration-150 flex-1" href="#AI"><span class="material-symbols-outlined text-xl">support_agent</span><span class="text-[10px] font-medium mt-0.5">助理</span></a></nav>
+<!-- Floating Global Feedback Toast -->
+<div class="fixed top-14 left-1/2 -translate-x-1/2 z-50 bg-[#282838]/90 text-white backdrop-blur-md px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 shadow-lg opacity-0 pointer-events-none transition-all duration-300" id="toast">
+<span class="material-symbols-outlined text-sm text-[#F88440]">check_circle</span>
+<span class="" id="toast-message">操作已记录</span>
+</div>
+</div>
+<script>
+    // In-memory data store for the handover items
+    const handovers = [
+      {
+        id: "moli",
+        title: "茉莉 · 视觉",
+        type: "received", // 我收到的
+        category: "视觉制作",
+        initiator: "视觉组 · 阿灿",
+        currentOwner: "运营 · 小林",
+        time: "今天",
+        status: "processing", // "processing" | "done"
+        statusText: "处理中",
+        note: "背景布已换好，回传照片在单子里，请验收",
+        anchorLink: "#P22"
+      },
+      {
+        id: "miaomiao",
+        title: "喵喵 · 经纪",
+        type: "sent", // 我发起的
+        category: "经纪交接",
+        initiator: "运营 · 小林",
+        currentOwner: "经纪人组 · 大鹏",
+        time: "10-13",
+        status: "processing",
+        statusText: "处理中",
+        note: "情绪回访，先微信后电话",
+        anchorLink: "#P22"
+      },
+      {
+        id: "maizi",
+        title: "麦子 · 培训",
+        type: "sent",
+        category: "培训跟进",
+        initiator: "运营 · 小林",
+        currentOwner: "培训组 · 安姐",
+        time: "10-08",
+        status: "processing",
+        statusText: "处理中",
+        note: "新人7天任务，第6天",
+        anchorLink: "#P22"
+      },
+      {
+        id: "xiaoyu",
+        title: "小雨 · 妆造",
+        type: "sent",
+        category: "形象妆造",
+        initiator: "运营 · 小林",
+        currentOwner: "妆造组 · 小蝶",
+        time: "10-12",
+        status: "done",
+        statusText: "已回执",
+        note: "明天16:00妆造，19:00彩排前完成",
+        anchorLink: "#P22"
+      },
+      {
+        id: "azhe",
+        title: "阿哲 · 妆造",
+        type: "sent",
+        category: "形象升级",
+        initiator: "运营 · 小林",
+        currentOwner: "妆造组 · 小蝶",
+        time: "09-28",
+        status: "done",
+        statusText: "已回执",
+        note: "秋季形象升级",
+        anchorLink: "#P22"
+      }
+    ];
+
+    let currentTab = "received";
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toast-message');
+      msg.textContent = message;
+      toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+      }, 2400);
+    }
+
+    function updateStats() {
+      const total = handovers.length;
+      const processing = handovers.filter(i => i.status === 'processing').length;
+      const done = handovers.filter(i => i.status === 'done').length;
+      const pending = 0; // per mock specs
+
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-pending').textContent = pending;
+      document.getElementById('stat-processing').textContent = processing;
+      document.getElementById('stat-done').textContent = done;
+
+      // Update badges in tabs
+      const receivedCount = handovers.filter(i => i.type === 'received').length;
+      const sentCount = handovers.filter(i => i.type === 'sent').length;
+      
+      document.getElementById('badge-received').textContent = receivedCount;
+      document.getElementById('badge-sent').textContent = sentCount;
+      document.getElementById('badge-all').textContent = total;
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+
+      // Reset tab button states
+      const tabs = ['received', 'sent', 'all'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        const indicator = document.getElementById(`indicator-${t}`);
+        if (t === tab) {
+          btn.className = "relative py-3 transition-colors text-[#F88440] font-bold";
+          indicator.className = "absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F88440] rounded-full";
+        } else {
+          btn.className = "relative py-3 transition-colors text-[#686260] hover:text-[#282838]";
+          indicator.className = "absolute bottom-0 left-0 right-0 h-[2.5px] bg-transparent rounded-full";
+        }
+      });
+
+      // Update title text
+      const titles = {
+        received: "我收到的单据（需跟进或验收）",
+        sent: "我发起的单据（协助跟踪进度）",
+        all: "全部交接单据明细"
+      };
+      document.getElementById('section-title').textContent = titles[tab];
+
+      renderCards();
+    }
+
+    function handleComplete(id) {
+      const item = handovers.find(i => i.id === id);
+      if (item) {
+        item.status = "done";
+        item.statusText = "已回执";
+        showToast("已办完并回执（本地演示）");
+        updateStats();
+        renderCards();
+      }
+    }
+
+    function handleRemind(id) {
+      showToast("提醒操作已记录（本地演示）");
+    }
+
+    function renderCards() {
+      const container = document.getElementById('card-list');
+      const emptyState = document.getElementById('empty-state');
+      
+      let filtered = handovers;
+      if (currentTab === 'received') {
+        filtered = handovers.filter(i => i.type === 'received');
+      } else if (currentTab === 'sent') {
+        filtered = handovers.filter(i => i.type === 'sent');
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = "";
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+        return;
+      } else {
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+      }
+
+      let html = "";
+      filtered.forEach(item => {
+        const isDone = item.status === "done";
+        
+        // Status Badge Style
+        const statusBadge = isDone 
+          ? `<span class="inline-flex items-center text-[11px] font-medium text-[#686260] bg-[#F4F0ED] px-2 py-0.5 rounded-full border border-[#EBE5E0]">已回执</span>`
+          : `<span class="inline-flex items-center text-[11px] font-medium text-[#F88440] bg-[#FCF4EC] px-2 py-0.5 rounded-full border border-[#F88440]/20">处理中</span>`;
+
+        // Card Action Section
+        let actionArea = "";
+        if (item.id === "moli") {
+          if (!isDone) {
+            actionArea = `
+              <div class="mt-3.5 pt-3 border-t border-[#EBE5E0]/70 flex items-center justify-between gap-3">
+                <a href="${item.anchorLink}" class="inline-flex items-center text-xs font-medium text-[#F88440] hover:underline">
+                  <span>看主播</span>
+                  <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </a>
+                <button onclick="handleComplete('${item.id}')" class="px-4 py-2 bg-[#F88440] hover:bg-[#D96A31] active:bg-[#D96A31] text-white text-xs font-semibold rounded-lg shadow-sm transition-all active:scale-95 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">check_circle</span>
+                  <span>办完并回执</span>
+                </button>
+              </div>
+            `;
+          } else {
+            actionArea = `
+              <div class="mt-3.5 pt-3 border-t border-[#EBE5E0]/70 flex items-center justify-between">
+                <a href="${item.anchorLink}" class="inline-flex items-center text-xs font-medium text-[#F88440] hover:underline">
+                  <span>看主播</span>
+                  <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </a>
+                <span class="text-xs text-[#686260] font-medium flex items-center gap-1 bg-[#F4F0ED] px-3 py-1.5 rounded-lg border border-[#EBE5E0]">
+                  <span class="material-symbols-outlined text-sm text-[#F88440]">task_alt</span>
+                  <span>已回执（本地演示）</span>
+                </span>
+              </div>
+            `;
+          }
+        } else {
+          // Sent items
+          if (!isDone) {
+            actionArea = `
+              <div class="mt-3.5 pt-3 border-t border-[#EBE5E0]/70 flex items-center justify-between">
+                <span class="text-[11px] text-[#686260]">仅记录本地操作</span>
+                <button onclick="handleRemind('${item.id}')" class="px-3 py-1.5 bg-white hover:bg-[#F4F0ED] active:bg-[#F4F0ED] text-[#F88440] text-xs font-semibold rounded-lg border border-[#F88440]/30 transition-all active:scale-95 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">notifications</span>
+                  <span>提醒负责人</span>
+                </button>
+              </div>
+            `;
+          } else {
+            actionArea = `
+              <div class="mt-2.5 pt-2 border-t border-[#EBE5E0]/50 flex items-center justify-between text-[11px] text-[#686260]">
+                <span>交接已闭环归档</span>
+                <span class="material-symbols-outlined text-sm text-[#686260]">done_all</span>
+              </div>
+            `;
+          }
+        }
+
+        html += `
+          <div class="bg-white rounded-xl p-3.5 border border-[#EBE5E0] shadow-[0_1px_3px_rgba(40,40,56,0.03)] hover:border-[#F88440]/40 transition-all">
+            <!-- Header Row -->
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-2">
+                <a href="${item.anchorLink}" class="font-bold text-sm text-[#282838] hover:text-[#F88440] transition-colors flex items-center gap-1">
+                  ${item.title}
+                  <span class="material-symbols-outlined text-xs text-[#686260]">open_in_new</span>
+                </a>
+                <span class="text-[11px] text-[#686260] bg-[#F4F0ED] px-1.5 py-0.5 rounded">${item.category}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-[#686260] font-normal">${item.time}</span>
+                ${statusBadge}
+              </div>
+            </div>
+
+            <!-- Handover Note Box -->
+            <div class="mt-2.5 bg-[#FAF5F1] rounded-lg p-2.5 border border-[#EBE5E0]/60">
+              <div class="text-xs text-[#282838] font-normal leading-relaxed">
+                <span class="text-[#686260] font-medium">备注：</span>${item.note}
+              </div>
+            </div>
+
+            <!-- Ownership Metadata Grid -->
+            <div class="mt-2.5 grid grid-cols-2 gap-2 text-xs text-[#686260]">
+              <div class="flex items-center gap-1">
+                <span class="text-[11px]">发起人:</span>
+                <span class="font-medium text-[#282838]">${item.initiator}</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="text-[11px]">当前责任:</span>
+                <span class="font-medium text-[#282838]">${item.currentOwner}</span>
+              </div>
+            </div>
+
+            <!-- Action Area -->
+            ${actionArea}
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Initial render
+    window.addEventListener('DOMContentLoaded', () => {
+      updateStats();
+      renderCards();
+    });
+  </script>
+
+
+</body></html>
